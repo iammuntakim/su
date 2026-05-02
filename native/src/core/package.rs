@@ -277,7 +277,7 @@ impl ManagerInfo {
 
         if cert.is_empty() || (pkg == self.repackaged_pkg && cert != self.repackaged_cert) {
             error!("pkg: repackaged APK signature invalid: {}", apk);
-            uninstall_pkg(&apk);
+            // uninstall_pkg(&apk);
             return Status::CertMismatch;
         }
 
@@ -302,7 +302,7 @@ impl ManagerInfo {
             error!("pkg: APK signature mismatch: {}", apk);
             #[cfg(all(feature = "check-signature", not(debug_assertions)))]
             {
-                uninstall_pkg(cstr!(APP_PACKAGE_NAME));
+               //  uninstall_pkg(cstr!(APP_PACKAGE_NAME));
                 return Status::CertMismatch;
             }
         }
