@@ -8,17 +8,17 @@ enum class Theme(
     val themeRes: Int
 ) {
 
+    Rayquaza(
+        themeName = "Rayquaza:M",
+        themeRes = R.style.ThemeFoundationMD2_Rayquaza
+    ),
     Piplup(
-        themeName = "Piplup",
+        themeName = "Piplup:D",
         themeRes = R.style.ThemeFoundationMD2_Piplup
     ),
     PiplupAmoled(
         themeName = "AMOLED",
         themeRes = R.style.ThemeFoundationMD2_Amoled
-    ),
-    Rayquaza(
-        themeName = "Rayquaza",
-        themeRes = R.style.ThemeFoundationMD2_Rayquaza
     ),
     Zapdos(
         themeName = "Zapdos",
@@ -37,7 +37,7 @@ enum class Theme(
         themeRes = R.style.ThemeFoundationMD2_Salamence
     ),
     Fraxure(
-        themeName = "Fraxure (Legacy)",
+        themeName = "Fraxure:L",
         themeRes = R.style.ThemeFoundationMD2_Fraxure
     );
 

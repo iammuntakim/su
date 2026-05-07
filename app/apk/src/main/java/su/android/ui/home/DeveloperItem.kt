@@ -29,6 +29,10 @@ private interface CanyieImpl : Dev {
     override val name get() = "canyie"
 }
 
+private interface MAImpl : Dev {
+    override val name get() = "MIKAILAMIN"
+}
+
 sealed class DeveloperItem : Dev {
 
     abstract val items: List<IconLink>
@@ -38,7 +42,7 @@ sealed class DeveloperItem : Dev {
         override val items =
             listOf(
                 object : IconLink.Twitter(), JohnImpl {},
-                IconLink.Github.Project
+                object : IconLink.Github.User(), JohnImpl {}
             )
     }
 
@@ -72,6 +76,14 @@ sealed class DeveloperItem : Dev {
             listOf<IconLink>(
                 object : IconLink.Twitter() { override val name = "canyie2977" },
                 object : IconLink.Github.User(), CanyieImpl {}
+            )
+    }
+
+    object MIKAILAMIN : DeveloperItem(), MAImpl {
+        override val items =
+            listOf(
+                object : IconLink.Github.User() { override val name = "mikailamin-master" },
+                IconLink.Source
             )
     }
 }
@@ -113,10 +125,12 @@ sealed class IconLink : RvItem() {
         abstract class User : Github(), Dev {
             override val link get() = "https://github.com/$name"
         }
+    }
 
-        object Project : Github() {
-            override val link get() = Const.Url.SOURCE_CODE_URL
-        }
+    object Source : IconLink() {
+        override val icon get() = R.drawable.ic_code
+        override val title get() = CoreR.string.github
+        override val link get() = Const.Url.SOURCE_CODE_URL
     }
 
     abstract class Sponsor : IconLink(), Dev {
