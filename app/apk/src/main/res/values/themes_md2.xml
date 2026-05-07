@@ -127,5 +127,33 @@
     </style>
 
     <!--3rd party themes-->
+    
+    <style name="ThemeFoundationMD2.Monochrome" parent="ThemeFoundationMD2.Piplup">
+        <item name="colorPrimary">#2E2E2E</item>
+        <item name="colorPrimaryVariant">#802E2E2E</item>
+
+        <item name="colorSecondary">#5A5A5A</item>
+        <item name="colorSecondaryVariant">#805A5A5A</item>
+
+        <item name="colorSurface">#FAFAFA</item>
+        <item name="colorSurfaceVariant">#EAEAEA</item>
+        <item name="colorSurfaceSurfaceVariant">?colorSurface</item>
+
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorOnPrimaryVariant">#D9FFFFFF</item>
+
+        <item name="colorOnSecondary">#FFFFFF</item>
+
+        <item name="colorOnBackground">?colorOnSurface</item>
+
+        <item name="colorError">#B00020</item>
+        <item name="colorOnError">#FFFFFF</item>
+
+        <item name="colorOnSurface">#1F1F1F</item>
+        <item name="colorOnSurfaceVariant">#991F1F1F</item>
+
+        <item name="colorDisabled">#9E9E9E</item>
+        <item name="colorDisabledVariant">#669E9E9E</item>
+    </style>
 
 </resources>

@@ -39,6 +39,10 @@ enum class Theme(
     Fraxure(
         themeName = "Fraxure:L",
         themeRes = R.style.ThemeFoundationMD2_Fraxure
+    ),
+    Monochrome(
+        themeName = "Monochrome:L",
+        themeRes = R.style.ThemeFoundationMD2_Monochrome
     );
 
     val isSelected get() = Config.themeOrdinal == ordinal

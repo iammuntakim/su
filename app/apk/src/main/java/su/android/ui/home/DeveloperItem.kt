@@ -22,7 +22,7 @@ private interface YUImpl : Dev {
 }
 
 private interface RikkaImpl : Dev {
-    override val name get() = "RikkaW"
+    override val name get() = "rikkaw"
 }
 
 private interface CanyieImpl : Dev {
@@ -30,7 +30,7 @@ private interface CanyieImpl : Dev {
 }
 
 private interface MAImpl : Dev {
-    override val name get() = "MIKAILAMIN"
+    override val name get() = "mikailamin"
 }
 
 sealed class DeveloperItem : Dev {
@@ -67,7 +67,7 @@ sealed class DeveloperItem : Dev {
         override val items =
             listOf<IconLink>(
                 object : IconLink.Twitter() { override val name = "rikkawww" },
-                object : IconLink.Github.User(), RikkaImpl {}
+                object : IconLink.Github.User() { override val name = "RikkaW" },
             )
     }
 
