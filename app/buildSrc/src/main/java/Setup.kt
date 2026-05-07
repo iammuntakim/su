@@ -311,10 +311,10 @@ fun Project.setupMainApk() {
     setupAppCommon()
 
     androidApp {
-        namespace = "com.topjohnwu.magisk"
+        namespace = "su.android"
 
         defaultConfig {
-            applicationId = "com.topjohnwu.magisk"
+            applicationId = "su.android"
             vectorDrawables.useSupportLibrary = true
             versionName = Config.version
             versionCode = Config.versionCode

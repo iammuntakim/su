@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.topjohnwu.magisk.ui.flash.ConsoleItem" />
+            type="su.android.ui.flash.ConsoleItem" />
 
     </data>
 

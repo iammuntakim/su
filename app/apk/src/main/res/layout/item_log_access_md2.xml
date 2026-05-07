@@ -5,15 +5,15 @@
 
     <data>
 
-        <import type="com.topjohnwu.magisk.R" />
+        <import type="su.android.R" />
 
         <variable
             name="item"
-            type="com.topjohnwu.magisk.ui.log.SuLogRvItem" />
+            type="su.android.ui.log.SuLogRvItem" />
 
         <variable
             name="viewModel"
-            type="com.topjohnwu.magisk.ui.log.LogViewModel" />
+            type="su.android.ui.log.LogViewModel" />
 
     </data>
 

@@ -27,6 +27,6 @@
 # Excessive obfuscation
 -repackageclasses
 -allowaccessmodification
--keepclassmembers class com.topjohnwu.magisk.dummy.* { <init>(); }
--keepclassmembers class com.topjohnwu.magisk.DownloadActivity { <init>(); }
--keepclassmembers class com.topjohnwu.magisk.StubRootService { <init>(); }
+-keepclassmembers class su.android.dummy.* { <init>(); }
+-keepclassmembers class su.android.DownloadActivity { <init>(); }
+-keepclassmembers class su.android.StubRootService { <init>(); }

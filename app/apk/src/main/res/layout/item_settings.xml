@@ -7,11 +7,11 @@
 
         <variable
             name="item"
-            type="com.topjohnwu.magisk.ui.settings.BaseSettingsItem" />
+            type="su.android.ui.settings.BaseSettingsItem" />
 
         <variable
             name="handler"
-            type="com.topjohnwu.magisk.ui.settings.BaseSettingsItem.Handler" />
+            type="su.android.ui.settings.BaseSettingsItem.Handler" />
 
     </data>
 

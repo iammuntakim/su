@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.topjohnwu.magisk.ui.module.ModuleViewModel" />
+            type="su.android.ui.module.ModuleViewModel" />
 
     </data>
 

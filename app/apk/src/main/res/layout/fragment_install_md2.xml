@@ -5,13 +5,13 @@
 
     <data>
 
-        <import type="com.topjohnwu.magisk.core.Info" />
+        <import type="su.android.core.Info" />
 
-        <import type="com.topjohnwu.magisk.core.Config" />
+        <import type="su.android.core.Config" />
 
         <variable
             name="viewModel"
-            type="com.topjohnwu.magisk.ui.install.InstallViewModel" />
+            type="su.android.ui.install.InstallViewModel" />
 
     </data>
 
