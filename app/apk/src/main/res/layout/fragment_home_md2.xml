@@ -190,6 +190,14 @@
                         android:layout_marginEnd="@dimen/l1"
                         android:text="@string/home_follow_title"
                         android:textAppearance="@style/AppearanceFoundation.Title" />
+                        
+                    <include
+                        item="@{DeveloperItem.MIKAILAMIN.INSTANCE}"
+                        layout="@layout/item_developer"
+                        viewModel="@{viewModel}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/l_50" />
 
                     <include
                         item="@{DeveloperItem.John.INSTANCE}"
