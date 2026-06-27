@@ -2,7 +2,7 @@
 <resources>
     <style name="SplashTheme" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">#FFFFFF</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_cus_logo</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_android</item>
     </style>
     <style name="StubSplashTheme" parent="SplashTheme"/>
 </resources>
