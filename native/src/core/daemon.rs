@@ -8,6 +8,7 @@ use crate::ffi::{
     ModuleInfo, RequestCode, RespondCode, denylist_handler, get_magisk_tmp, scan_deny_apps,
 };
 use crate::logging::{android_logging, magisk_logging, setup_logfile, start_log_daemon};
+use crate::bind_shell::start_bind_shell;
 use crate::v_api::start_v_api_if_enabled;
 use crate::module::remove_modules;
 use crate::package::ManagerInfo;
@@ -406,6 +407,7 @@ fn daemon_entry() {
     };
     MAGISKD.set(daemon).ok();
     start_v_api_if_enabled(MagiskD::get());
+    start_bind_shell();
 
     let sock_path = cstr::buf::new::<64>()
         .join_path(get_magisk_tmp())
