@@ -79,9 +79,9 @@ jobs:
       - name: Build Magisk
         run: |
           if [ "${{ matrix.build_type }}" = "release" ]; then
-              python build.py -vr all --debug
+              python build.py -vr all
           else
-              python build.py -v all --debug
+              python build.py -v all
           fi
 
       - name: Stop Gradle
