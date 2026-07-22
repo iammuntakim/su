@@ -78,10 +78,11 @@ jobs:
 
       - name: Build Magisk
         run: |
+          export GRADLE_OPTS="-Dorg.gradle.logging.level=info"
           if [ "${{ matrix.build_type }}" = "release" ]; then
-              python build.py -vr all -- --stacktrace --info --scan
+              python build.py -vr all
           else
-              python build.py -v all -- --stacktrace --info --scan
+              python build.py -v all
           fi
 
       - name: Stop Gradle
