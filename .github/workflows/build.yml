@@ -1,4 +1,4 @@
-name: Build MagiskV
+name: Build SuperSU
 
 on:
     push:

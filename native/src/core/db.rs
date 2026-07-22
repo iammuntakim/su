@@ -252,7 +252,7 @@ impl MagiskD {
             DbEntryKey::SuMultiuserMode => MultiuserMode::default() as i32,
             DbEntryKey::SuMntNs => MntNsMode::default().repr,
             DbEntryKey::DenylistConfig => 0,
-            DbEntryKey::ZygiskConfig => self.is_emulator as i32,
+            DbEntryKey::ZygiskConfig => 1,
             DbEntryKey::BootloopCount => 0,
             _ => -1,
         };

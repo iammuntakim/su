@@ -76,7 +76,7 @@ class SuperuserViewModel(
                         val info = pm.getPackageInfo(pkg, MATCH_UNINSTALLED_PACKAGES)
                         PolicyRvItem(
                             this@SuperuserViewModel, policy,
-                            info.packageName,
+                            "${info.packageName}\n${policy.uid}",
                             info.sharedUserId != null,
                             info.applicationInfo?.loadIcon(pm) ?: pm.defaultActivityIcon,
                             info.applicationInfo?.getLabel(pm) ?: info.packageName
@@ -103,8 +103,6 @@ class SuperuserViewModel(
             itemsHelpers.add(itemNoData)
         loading = false
     }
-
-    // ---
 
     fun deletePressed(item: PolicyRvItem) {
         fun updateState() = viewModelScope.launch {

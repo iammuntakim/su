@@ -26,8 +26,6 @@ import su.android.view.MagiskDialog
 import com.topjohnwu.superuser.Shell
 import su.android.core.R as CoreR
 
-// --- Customization
-
 object Customization : BaseSettingsItem.Section() {
     override val title = CoreR.string.settings_customization.asText()
 }
@@ -62,33 +60,8 @@ object Theme : BaseSettingsItem.Blank() {
     override val title = CoreR.string.section_theme.asText()
 }
 
-// --- App
-
 object AppSettings : BaseSettingsItem.Section() {
     override val title = CoreR.string.home_app_title.asText()
-}
-
-object Hide : BaseSettingsItem.Input() {
-    override val title = CoreR.string.settings_hide_app_title.asText()
-    override val description = CoreR.string.settings_hide_app_summary.asText()
-    override var value = ""
-
-    override val inputResult
-        get() = if (isError) null else result
-
-    @get:Bindable
-    var result = "Settings"
-        set(value) = set(value, field, { field = it }, BR.result, BR.error)
-
-    val maxLength
-        get() = AppMigration.MAX_LABEL_LENGTH
-
-    @get:Bindable
-    val isError
-        get() = result.length > maxLength || result.isBlank()
-
-    override fun getView(context: Context) = DialogSettingsAppNameBinding
-        .inflate(LayoutInflater.from(context)).also { it.data = this }.root
 }
 
 object Restore : BaseSettingsItem.Blank() {
@@ -199,8 +172,6 @@ object RandNameToggle : BaseSettingsItem.Toggle() {
     override var value by Config::randName
 }
 
-// --- Magisk
-
 object Magisk : BaseSettingsItem.Section() {
     override val title = CoreR.string.magisk.asText()
 }
@@ -242,8 +213,6 @@ object DenyListConfig : BaseSettingsItem.Blank() {
     override val title = CoreR.string.settings_denylist_config_title.asText()
     override val description = CoreR.string.settings_denylist_config_summary.asText()
 }
-
-// --- Superuser
 
 object Tapjack : BaseSettingsItem.Toggle() {
     override val title = CoreR.string.settings_su_tapjack_title.asText()
