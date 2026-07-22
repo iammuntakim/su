@@ -68,7 +68,7 @@ object Restore : BaseSettingsItem.Blank() {
     override val title = CoreR.string.settings_restore_app_title.asText()
     override val description = CoreR.string.settings_restore_app_summary.asText()
 
-    override fun onPressed(view: View, handler: Handler) {
+    override fun onPressed(view: View, handler: BaseSettingsItem.Handler) {
         handler.onItemPressed(view, this) {
             MagiskDialog(view.activity).apply {
                 setTitle(CoreR.string.settings_restore_app_title)
@@ -196,13 +196,12 @@ object DenyList : BaseSettingsItem.Toggle() {
 
     override var value = Config.denyList
         set(value) {
-            field = value
             val cmd = if (value) "enable" else "disable"
             Shell.cmd("magisk --denylist $cmd").submit { result ->
                 if (result.isSuccess) {
+                    field = value
                     Config.denyList = value
                 } else {
-                    field = !value
                     notifyPropertyChanged(BR.checked)
                 }
             }
