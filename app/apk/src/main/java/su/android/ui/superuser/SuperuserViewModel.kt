@@ -58,10 +58,10 @@ class SuperuserViewModel(
             return
         }
         loading = true
-        val policies = withContext(Dispatchers.IO) {
+        withContext(Dispatchers.IO) {
             db.deleteOutdated()
             db.delete(AppContext.applicationInfo.uid)
-            val tempPolicies = ArrayList<PolicyRvItem>()
+            val policies = ArrayList<PolicyRvItem>()
             val pm = AppContext.packageManager
             for (policy in db.fetchAll()) {
                 val pkgs =
@@ -76,7 +76,7 @@ class SuperuserViewModel(
                         val info = pm.getPackageInfo(pkg, MATCH_UNINSTALLED_PACKAGES)
                         PolicyRvItem(
                             this@SuperuserViewModel, policy,
-                            "${info.packageName}\n${policy.uid}",
+                            info.packageName,
                             info.sharedUserId != null,
                             info.applicationInfo?.loadIcon(pm) ?: pm.defaultActivityIcon,
                             info.applicationInfo?.getLabel(pm) ?: info.packageName
@@ -89,17 +89,14 @@ class SuperuserViewModel(
                     db.delete(policy.uid)
                     continue
                 }
-                tempPolicies.addAll(map)
+                policies.addAll(map)
             }
-            tempPolicies.sortWith(compareBy(
+            policies.sortWith(compareBy(
                 { it.appName.lowercase(Locale.ROOT) },
                 { it.packageName }
             ))
-            tempPolicies
+            itemsPolicies.update(policies)
         }
-
-        itemsPolicies.update(policies)
-
         if (itemsPolicies.isNotEmpty())
             itemsHelpers.clear()
         else if (itemsHelpers.isEmpty())
@@ -107,11 +104,11 @@ class SuperuserViewModel(
         loading = false
     }
 
+    // ---
+
     fun deletePressed(item: PolicyRvItem) {
         fun updateState() = viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                db.delete(item.item.uid)
-            }
+            db.delete(item.item.uid)
             val list = ArrayList(itemsPolicies)
             list.removeAll { it.item.uid == item.item.uid }
             itemsPolicies.update(list)
@@ -129,9 +126,7 @@ class SuperuserViewModel(
 
     fun updateNotify(item: PolicyRvItem) {
         viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                db.update(item.item)
-            }
+            db.update(item.item)
             val res = when {
                 item.item.notification -> R.string.su_snack_notif_on
                 else -> R.string.su_snack_notif_off
@@ -147,9 +142,7 @@ class SuperuserViewModel(
 
     fun updateLogging(item: PolicyRvItem) {
         viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                db.update(item.item)
-            }
+            db.update(item.item)
             val res = when {
                 item.item.logging -> R.string.su_snack_log_on
                 else -> R.string.su_snack_log_off
@@ -164,14 +157,13 @@ class SuperuserViewModel(
     }
 
     fun updatePolicy(item: PolicyRvItem, policy: Int) {
+        val items = itemsPolicies.filter { it.item.uid == item.item.uid }
         fun updateState() {
             viewModelScope.launch {
                 val res = if (policy >= SuPolicy.ALLOW) R.string.su_snack_grant else R.string.su_snack_deny
                 item.item.policy = policy
-                withContext(Dispatchers.IO) {
-                    db.update(item.item)
-                }
-                itemsPolicies.filter { it.item.uid == item.item.uid }.forEach {
+                db.update(item.item)
+                items.forEach {
                     it.notifyPropertyChanged(BR.enabled)
                     it.notifyPropertyChanged(BR.sliderValue)
                 }
