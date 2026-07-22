@@ -498,7 +498,7 @@ impl Cpio {
     }
 }
 
-const MAGISK_PATCHED: i32 = 1 << 0;
+const SUPERSU_PATCHED: i32 = 1 << 0;
 const UNSUPPORTED_CPIO: i32 = 1 << 1;
 
 impl Cpio {
@@ -553,7 +553,7 @@ impl Cpio {
             "overlay/init.magisk.rc",
         ] {
             if self.exists(file) {
-                return MAGISK_PATCHED;
+                return SUPERSU_PATCHED;
             }
         }
         0

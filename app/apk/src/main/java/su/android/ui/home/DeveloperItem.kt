@@ -24,7 +24,7 @@ sealed class DeveloperItem : Dev {
     object MIKAILAMIN : DeveloperItem(), MAImpl {
         override val items =
             listOf(
-                object : IconLink.Github.User() { override val name = "mikailamin-master" }
+                object : IconLink.Github.User() { override val name = "promikailamin" }
             )
     }
 

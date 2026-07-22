@@ -102,7 +102,7 @@ class FlashViewModel : BaseViewModel() {
 
     private fun savePressed() = withExternalRW {
         viewModelScope.launch(Dispatchers.IO) {
-            val name = "magisk_install_log_%s.log".format(
+            val name = "supersu_install_log_%s.log".format(
                 System.currentTimeMillis().toTime(timeFormatStandard)
             )
             val file = MediaStoreUtils.getFile(name)

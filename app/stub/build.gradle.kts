@@ -13,7 +13,7 @@ android {
     namespace = "su.android"
 
     val canary = !Config.version.contains(".")
-    val base = "https://github.com/iammuntakim/MagiskV/releases/download/"
+    val base = "https://github.com/iammuntakim/su/releases/download/"
     val url = base + "build/app-release.apk"
     val canaryUrl = base + "canary-${Config.versionCode}/"
 
