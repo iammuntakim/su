@@ -1,7 +1,7 @@
 package su.android.ui.log
 
 import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.RecyclerView
 import com.google.android.material.textview.MaterialTextView
 import su.android.R
 import su.android.databinding.DiffItem

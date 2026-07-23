@@ -23,7 +23,7 @@
             android:clipToPadding="false"
             android:fillViewport="true">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <androidx.recyclerview.RecyclerView
                 android:id="@+id/log_magisk"
                 app:items="@{viewModel.logs}"
                 app:extraBindings="@{viewModel.extraBindings}"

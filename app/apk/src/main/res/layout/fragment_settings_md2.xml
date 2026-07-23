@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <androidx.recyclerview.RecyclerView
             app:items="@{viewModel.items}"
             app:extraBindings="@{viewModel.extraBindings}"
             android:id="@+id/settings_list"

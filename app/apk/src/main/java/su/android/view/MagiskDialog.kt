@@ -16,7 +16,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.Bindable
 import androidx.databinding.PropertyChangeRegistry
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.RecyclerView
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.shape.MaterialShapeDrawable
 import su.android.BR

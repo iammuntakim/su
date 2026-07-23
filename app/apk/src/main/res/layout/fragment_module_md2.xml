@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <androidx.recyclerview.RecyclerView
             android:id="@+id/module_list"
             gone="@{viewModel.loading}"
             app:items="@{viewModel.items}"

@@ -22,7 +22,7 @@
             app:layout_fitsSystemWindowsInsets="top"
             tools:layout_marginTop="@dimen/internal_action_bar_size">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <androidx.recyclerview.RecyclerView
                 android:id="@+id/flash_content"
                 scrollToLast="@{true}"
                 android:layout_width="wrap_content"
