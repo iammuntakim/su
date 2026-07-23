@@ -162,7 +162,7 @@ def run_ndk_build(cmds: list[str]):
     cmds.append(f"APP_ABI={' '.join(build_abis.keys())}")
     cmds.append(f"-j{cpu_count}")
     cmds.append("APP_CFLAGS+=-O3 -flto -fomit-frame-pointer -ffunction-sections -fdata-sections")
-    cmds.append("APP_CPPFLAGS+=-O3 -flto -fomit-frame-pointer -ffunction-sections -fdata-sections")
+    cmds.append("APP_CPPFLAGS+=-O3 -std=c++23 -flto -fomit-frame-pointer -ffunction-sections -fdata-sections")
     cmds.append("APP_LDFLAGS+=-Wl,-O3,--gc-sections,--icf=all,-z,now,-z,relro,--strip-all")
     if args.verbose > 1:
         cmds.append("V=1")
