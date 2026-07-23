@@ -77,6 +77,7 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.activity)
     implementation(libs.collection.ktx)
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation(libs.profileinstaller)
 
     compileOnly(libs.test.junit)
