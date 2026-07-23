@@ -24,8 +24,10 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
-            isShrinkResources = false
+            isMinifyEnabled = true
+            // Enable resource shrinking if you have resources to strip
+            // isShrinkResources = true 
+            
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -77,7 +79,6 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.activity)
     implementation(libs.collection.ktx)
-    implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation(libs.profileinstaller)
 
     compileOnly(libs.test.junit)
