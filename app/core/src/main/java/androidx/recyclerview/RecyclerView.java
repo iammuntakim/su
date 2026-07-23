@@ -6,12 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.graphics.Region;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RadialGradient;
-import android.graphics.Shader;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +32,6 @@ public class RecyclerView extends android.view.ViewGroup {
 
     private boolean isClipToPaddingEnabled = true;
     private boolean isCustomDrawingEnabled = true;
-    private boolean isHardwareAccelerationAware = true;
 
     private int customBackgroundColor = Color.WHITE;
     private int parentBackgroundColor = Color.parseColor("#E0E0E0");
@@ -137,7 +130,8 @@ public class RecyclerView extends android.view.ViewGroup {
         );
     }
 
-    private void measureChildWithMargins(View child, int parentWidthMeasureSpec, int widthUsed, int parentHeightMeasureSpec, int heightUsed) {
+    @Override
+    protected void measureChildWithMargins(View child, int parentWidthMeasureSpec, int widthUsed, int parentHeightMeasureSpec, int heightUsed) {
         MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
 
         int childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec,
