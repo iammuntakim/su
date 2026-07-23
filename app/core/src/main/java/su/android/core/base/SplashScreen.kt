@@ -45,7 +45,6 @@ class SplashController<T>(private val activity: T)
 
     fun preOnCreate() {
         if (isRunningAsStub && !splashShown) {
-            // Manually apply splash theme for stub
             activity.theme.applyStyle(R.style.StubSplashTheme, true)
         }
     }
@@ -68,7 +67,6 @@ class SplashController<T>(private val activity: T)
                 activity.runOnUiThread {
                     splashShown = true
                     if (isRunningAsStub) {
-                        // Re-launch main activity without splash theme
                         activity.relaunch()
                     } else {
                         if (activity.lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
@@ -102,7 +100,6 @@ class SplashController<T>(private val activity: T)
 
         if (packageName != APP_PACKAGE_NAME) {
             runCatching {
-                // Hidden, remove su.android if exist as it could be malware
                 packageManager.getApplicationInfo(APP_PACKAGE_NAME, 0)
                 Shell.cmd("(pm uninstall $APP_PACKAGE_NAME)& >/dev/null 2>&1").exec()
             }
@@ -117,19 +114,12 @@ class SplashController<T>(private val activity: T)
 
         if (isPackageMigration) {
             runOnUiThread {
-                // Relaunch the process after package migration
                 StubApk.restartProcess(this)
             }
             return
         }
 
-        // Validate stub APK
-        if (isRunningAsStub && (
-                // Version mismatch
-                Info.stub!!.version != BuildConfig.STUB_VERSION ||
-                // Not properly patched
-                intent.component!!.className.contains(AppMigration.PLACEHOLDER))
-        ) {
+        if (isRunningAsStub && Info.stub!!.version != BuildConfig.STUB_VERSION) {
             withPermission(REQUEST_INSTALL_PACKAGES) { granted ->
                 if (granted) {
                     lifecycleScope.launch {
@@ -152,10 +142,8 @@ class SplashController<T>(private val activity: T)
         JobService.schedule(this)
         Shortcuts.setupDynamic(this)
 
-        // Pre-fetch network services
         ServiceLocator.networkService
 
-        // Wait for root service
         RootUtils.Connection.await()
     }
 }
