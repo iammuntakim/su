@@ -53,8 +53,7 @@ pub mod ffi {
         fn split_image_dtb(filename: Utf8CStrRef, skip_decomp: bool) -> i32;
         fn check_fmt(buf: &[u8]) -> FileFormat;
 
-        type CxxVector<T>;
-        type Vec<i32> = CxxVector<i32>;
+        fn cxx_vec_i32_dummy(v: &CxxVector<i32>);
     }
 
     extern "Rust" {

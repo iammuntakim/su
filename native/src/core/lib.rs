@@ -182,8 +182,7 @@ pub mod ffi {
         fn bind_text(self: Pin<&mut DbStatement>, index: i32, val: &str) -> i32;
         fn bind_int64(self: Pin<&mut DbStatement>, index: i32, val: i64) -> i32;
 
-        type CxxVector<T>;
-        type Vec<i32> = CxxVector<i32>;
+        fn cxx_vec_i32_dummy(v: &CxxVector<i32>);
     }
 
     extern "Rust" {

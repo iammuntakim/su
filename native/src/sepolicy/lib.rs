@@ -77,8 +77,7 @@ pub mod ffi {
         #[Self = SePolicy]
         fn from_data(data: &[u8]) -> SePolicy;
 
-        type CxxVector<T>;
-        type Vec<i32> = CxxVector<i32>;
+        fn cxx_vec_i32_dummy(v: &CxxVector<i32>);
     }
 
     extern "Rust" {
