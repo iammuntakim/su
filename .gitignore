@@ -1,12 +1,8 @@
-out
+out/
 *.zip
 *.apk
 *.log
 /notes.md
-
-# Built binaries
 native/out
-
-# Android Studio
 *.iml
 .idea
