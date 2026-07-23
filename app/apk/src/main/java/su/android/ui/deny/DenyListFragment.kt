@@ -7,7 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuProvider
-import androidx.recyclerview.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import su.android.R
 import su.android.arch.BaseFragment
 import su.android.arch.viewModel

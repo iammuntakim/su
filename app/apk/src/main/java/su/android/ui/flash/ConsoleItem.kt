@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.view.updateLayoutParams
 import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import su.android.R
 import su.android.databinding.DiffItem
 import su.android.databinding.ItemWrapper
