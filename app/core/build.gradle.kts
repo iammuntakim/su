@@ -1,4 +1,4 @@
-Plugins {
+plugins {
     id("com.android.library")
     kotlin("plugin.parcelize")
     id("dev.zacsweers.moshix")
@@ -20,16 +20,6 @@ android {
         buildConfigField("String", "APP_VERSION_NAME", "\"${Config.version}\"")
         buildConfigField("int", "STUB_VERSION", Config.stubVersion)
         consumerProguardFile("proguard-rules.pro")
-        
-        ndk {
-            abiFilters.addAll(listOf("arm64-v8a", "armeabi-v7a"))
-        }
-    }
-
-    sourceSets {
-        getByName("main") {
-            jniLibs.srcDirs("src/main/lib")
-        }
     }
 
     buildFeatures {
@@ -43,6 +33,8 @@ android {
 }
 
 dependencies {
+    implementation(files("lib/native.jar"))
+
     api(project(":shared"))
     coreLibraryDesugaring(libs.jdk.libs)
 
