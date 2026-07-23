@@ -214,7 +214,7 @@ def run_cargo(cmds: list[str]):
     ensure_paths()
     env = os.environ.copy()
     env["PATH"] = f"{rust_sysroot / 'bin'}{os.pathsep}{env['PATH']}"
-    opt_rustflags = f"-Z threads={min(8, cpu_count)} -C opt-level=3 -C lto=fat -C codegen-units=1 -C panic=abort -C embed-bitcode=yes -C link-arg=-s -C link-arg=-Wl,--gc-sections -C link-arg=-Wl,--icf=all"
+    opt_rustflags = f"-Z threads={min(8, cpu_count)} -C opt-level=3 -C codegen-units=1 -C panic=abort -C embed-bitcode=yes -C link-arg=-s -C link-arg=-Wl,--gc-sections -C link-arg=-Wl,--icf=all"
     if "CARGO_BUILD_RUSTFLAGS" in env:
         env["CARGO_BUILD_RUSTFLAGS"] += f" {opt_rustflags}"
     else:
@@ -599,4 +599,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
