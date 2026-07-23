@@ -1,4 +1,4 @@
-Name: Build SuperSU
+name: Build SuperSU
 
 on:
     push:
