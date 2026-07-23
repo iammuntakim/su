@@ -2,9 +2,9 @@ name: Build SuperSU
 
 on:
     push:
-        branches: [main, master]
+        branches: [main, master, app]
     pull_request:
-        branches: [main, master]
+        branches: [main, master, app]
     workflow_dispatch:
 
 jobs:
@@ -91,5 +91,5 @@ jobs:
                   git tag "$tag"
                   git push origin "$tag"
                   gh release create "$tag" "$file" \
-                      --title "SuperSU $tag" \
+                      --title "$tag" \
                       --notes "$body"
