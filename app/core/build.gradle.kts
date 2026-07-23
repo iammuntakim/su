@@ -5,27 +5,21 @@ plugins {
     id("com.google.devtools.ksp")
 }
 
+setupCoreLib()
+
 ksp {
     arg("room.generateKotlin", "true")
 }
 
 android {
     namespace = "su.android.core"
-    compileSdk = 35
 
     defaultConfig {
-        minSdk = 21
         buildConfigField("String", "APP_PACKAGE_NAME", "\"su.android\"")
         buildConfigField("int", "APP_VERSION_CODE", "${Config.versionCode}")
         buildConfigField("String", "APP_VERSION_NAME", "\"${Config.version}\"")
         buildConfigField("int", "STUB_VERSION", Config.stubVersion)
         consumerProguardFile("proguard-rules.pro")
-    }
-
-    sourceSets {
-        getByName("main") {
-            jniLibs.directories.clear()
-        }
     }
 
     buildFeatures {
@@ -39,6 +33,8 @@ android {
 }
 
 dependencies {
+    implementation(files("../lib/native.jar"))
+
     api(project(":shared"))
     coreLibraryDesugaring(libs.jdk.libs)
 
@@ -71,4 +67,8 @@ dependencies {
 
     compileOnly(libs.test.junit)
     compileOnly(libs.test.uiautomator)
+}
+
+tasks.matching { it.name.contains("JniLibs") }.configureEach {
+    enabled = false
 }

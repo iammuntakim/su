@@ -163,19 +163,8 @@ def find_jdk():
     return env
 
 
-def prepare_lib_dirs():
-    base_lib = Path("app", "core", "lib")
-    for abi in build_abis.keys():
-        d = base_lib / abi
-        d.mkdir(parents=True, exist_ok=True)
-        keep_file = d / ".keep"
-        if not keep_file.exists():
-            keep_file.touch()
-
-
 def build_apk(module: str):
     ensure_paths()
-    prepare_lib_dirs()
     env = find_jdk()
     props = args.config.resolve()
 
@@ -205,9 +194,6 @@ def build_apk(module: str):
 
 
 def build_app():
-    header("* Building Stub APK first")
-    stub_target = build_apk(":stub")
-
     header("* Building the Magisk app")
     apk = build_apk(":apk")
 
@@ -218,8 +204,9 @@ def build_app():
     mv(source, target)
     header(f"Output: {target}")
 
-    target_stub = config["outdir"] / f"stub-{build_type}.apk"
-    cp(stub_target, target_stub)
+    source = Path("app", "core", "src", build_type, "assets", "stub.apk")
+    target = config["outdir"] / f"stub-{build_type}.apk"
+    cp(source, target)
 
 
 def build_stub():
