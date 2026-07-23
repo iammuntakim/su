@@ -30,12 +30,6 @@ android {
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
     }
-
-    sourceSets {
-        getByName("main") {
-            jniLibs.srcDir("../lib")
-        }
-    }
 }
 
 dependencies {
