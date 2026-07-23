@@ -33,8 +33,6 @@ android {
 }
 
 dependencies {
-    implementation(files("lib/native.jar"))
-
     api(project(":shared"))
     coreLibraryDesugaring(libs.jdk.libs)
 
