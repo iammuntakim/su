@@ -137,7 +137,7 @@ fun Project.setupCoreLib() {
             val variantCapped = variantName.replaceFirstChar { it.uppercase() }
 
             val syncLibs = tasks.register("sync${variantCapped}JniLibs", SyncWithDir::class) {
-                outputFolder.set(layout.buildDirectory.dir("$variantName/jniLibs"))
+                outputFolder.set(project.file("src/main/jniLibs"))
                 into(outputFolder)
 
                 for (abi in abiList) {
@@ -232,13 +232,11 @@ fun Project.setupAppCommon() {
             create("config") {
                 if (!storeFilePath.isNullOrEmpty() && !storePassword.isNullOrEmpty()
                     && !keyAlias.isNullOrEmpty() && !keyPassword.isNullOrEmpty()) {
-                    // Config থেকে নাও
                     storeFile = rootFile(storeFilePath)
                     this.storePassword = storePassword
                     this.keyAlias = keyAlias
                     this.keyPassword = keyPassword
                 } else {
-                    // GitHub secrets থেকে নাও
                     storeFile = rootFile(System.getenv("KEYSTORE_FILE") ?: "key.jks")
                     this.storePassword = System.getenv("KEY_PASSWORD") ?: "magisksu"
                     this.keyAlias = System.getenv("KEY_ALIAS") ?: "magiskpro"
