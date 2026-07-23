@@ -29,7 +29,7 @@ public class Switch extends android.widget.Switch {
     protected int thumbColor = Color.WHITE;
     protected int shadowColor = Color.parseColor("#26000000");
 
-    protected float widthScale = 1.75f;
+    protected float widthScale = 0.30f;
     protected float thumbPaddingRatio = 0.06f;
     protected float shadowOffsetYRatio = 0.8f;
     protected long animationDuration = 300;
