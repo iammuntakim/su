@@ -53,7 +53,7 @@ mod ffi {
         type FnBoolStr;
         fn call(self: &FnBoolStr, key: Utf8CStrRef) -> bool;
 
-        type CxxVector<i32>;
+        fn cxx_vec_i32_dummy(v: &CxxVector<i32>);
     }
 
     extern "Rust" {
