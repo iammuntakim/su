@@ -125,10 +125,6 @@
     <string name="settings_dark_mode_dark">Always dark</string>
     <string name="settings_download_path_title">Download path</string>
     <string name="settings_download_path_message">Files will be saved to %1$s</string>
-    <string name="settings_hide_app_title">Hide the SuperSU app (No need)</string>
-    <string name="settings_hide_app_summary">Install a proxy app with a random package ID and custom app label</string>
-    <string name="settings_restore_app_title">Restore the SuperSU app</string>
-    <string name="settings_restore_app_summary">Unhide the app and restore the original APK</string>
     <string name="language">Language</string>
     <string name="system_default">(System default)</string>
     <string name="settings_check_update_title">Check for updates</string>
