@@ -50,9 +50,9 @@ jobs:
             - name: Build App
               run: |
                   if [ "${{ matrix.build_type }}" = "release" ]; then
-                      python build.py -vr app
+                      python build.py -vr apk
                   else
-                      python build.py -v app
+                      python build.py -v apk
                   fi
 
             - name: Stop Gradle

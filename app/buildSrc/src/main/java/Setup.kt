@@ -142,7 +142,7 @@ fun Project.setupCoreLib() {
 
                 for (abi in abiList) {
                     into(abi) {
-                        from(rootFile("native/out/$abi")) {
+                        from(rootFile("lib/$abi")) {
                             include("magiskboot", "magiskinit", "magiskpolicy", "magisk", "libinit-ld.so")
                             rename { if (it.endsWith(".so")) it else "lib$it.so" }
                         }
