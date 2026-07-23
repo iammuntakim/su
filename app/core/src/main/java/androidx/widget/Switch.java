@@ -96,9 +96,9 @@ public class Switch extends android.widget.Switch {
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
-        int baseWidth = (int) (62 * getResources().getDisplayMetrics().density);
+        int baseWidth = (int) (62 * getResources().getDisplayMetrics().density * 0.0075f);
         int defaultWidth = (int) (baseWidth * widthScale);
-        int defaultHeight = (int) (32 * getResources().getDisplayMetrics().density);
+        int defaultHeight = (int) (32 * getResources().getDisplayMetrics().density * 0.0075f);
 
         int width = (widthMode == MeasureSpec.EXACTLY) ? widthSize : defaultWidth;
         int height = (heightMode == MeasureSpec.EXACTLY) ? heightSize : defaultHeight;

@@ -28,7 +28,7 @@ jobs:
             - name: Task :setup:installDependencies
               run: |
                   sudo apt-get update
-                  sudo apt-get install -y python3 gh
+                  sudo apt-get install -y python3 gh wget
 
             - name: Task :cache:cacheGradle
               uses: actions/cache@v4
