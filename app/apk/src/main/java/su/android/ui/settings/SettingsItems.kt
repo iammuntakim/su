@@ -8,15 +8,12 @@ import android.view.View
 import androidx.databinding.Bindable
 import su.android.BR
 import su.android.R
-import su.android.core.BuildConfig
 import su.android.core.Config
 import su.android.core.Const
 import su.android.core.Info
 import su.android.core.ktx.activity
-import su.android.core.tasks.AppMigration
 import su.android.core.utils.LocaleSetting
 import su.android.core.utils.MediaStoreUtils
-import su.android.databinding.DialogSettingsAppNameBinding
 import su.android.databinding.DialogSettingsDownloadPathBinding
 import su.android.databinding.DialogSettingsUpdateChannelBinding
 import su.android.databinding.set
