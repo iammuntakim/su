@@ -1,7 +1,7 @@
 LOCAL_PATH := $(call my-dir)
 
 ########################
-# Binaries
+#  Binaries
 ########################
 
 ifdef B_MAGISK
