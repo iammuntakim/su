@@ -27,6 +27,7 @@ def error(str):
 def header(str):
     color_print("\033[44;39m", f"\n{str}\n")
 
+
 def vprint(str):
     if args.verbose > 0:
         print(str)
@@ -255,6 +256,8 @@ def ensure_paths():
             error("Please set Android SDK path to environment variable ANDROID_HOME")
 
     gradlew = Path.cwd() / "app" / "gradlew"
+    if gradlew.exists() and not is_windows:
+        gradlew.chmod(gradlew.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
 
 
 def parse_props(file: Path) -> dict[str, str]:
