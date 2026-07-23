@@ -7,6 +7,7 @@ plugins {
 
 setupCoreLib()
 
+
 ksp {
     arg("room.generateKotlin", "true")
 }
