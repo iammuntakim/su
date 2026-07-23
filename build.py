@@ -27,7 +27,6 @@ def error(str):
 def header(str):
     color_print("\033[44;39m", f"\n{str}\n")
 
-
 def vprint(str):
     if args.verbose > 0:
         print(str)
