@@ -76,6 +76,9 @@ pub mod ffi {
         fn compile_split() -> SePolicy;
         #[Self = SePolicy]
         fn from_data(data: &[u8]) -> SePolicy;
+
+        type CxxVector<T>;
+        type Vec<i32> = CxxVector<i32>;
     }
 
     extern "Rust" {

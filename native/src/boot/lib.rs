@@ -14,7 +14,6 @@ mod dtb;
 mod format;
 mod patch;
 mod payload;
-// Suppress warnings in generated code
 #[allow(warnings)]
 mod proto;
 mod sign;
@@ -23,13 +22,11 @@ mod sign;
 pub mod ffi {
     enum FileFormat {
         UNKNOWN,
-        /* Boot formats */
         CHROMEOS,
         AOSP,
         AOSP_VENDOR,
         DHTB,
         BLOB,
-        /* Compression formats */
         GZIP,
         ZOPFLI,
         XZ,
@@ -38,9 +35,7 @@ pub mod ffi {
         LZ4,
         LZ4_LEGACY,
         LZ4_LG,
-        /* Unsupported compression */
         LZOP,
-        /* Misc */
         MTK,
         DTB,
         ZIMAGE,
@@ -57,6 +52,9 @@ pub mod ffi {
         fn repack(src_img: Utf8CStrRef, out_img: Utf8CStrRef, skip_comp: bool);
         fn split_image_dtb(filename: Utf8CStrRef, skip_decomp: bool) -> i32;
         fn check_fmt(buf: &[u8]) -> FileFormat;
+
+        type CxxVector<T>;
+        type Vec<i32> = CxxVector<i32>;
     }
 
     extern "Rust" {
@@ -77,7 +75,6 @@ pub mod ffi {
         fn sign_payload_for_cxx(payload: &[u8]) -> Vec<u8>;
     }
 
-    // BootImage FFI
     unsafe extern "C++" {
         include!("bootimg.hpp");
         #[cxx_name = "boot_img"]
