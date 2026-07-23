@@ -20,7 +20,6 @@ import su.android.core.R
 import su.android.core.isRunningAsStub
 import su.android.core.ktx.activity
 import su.android.core.ktx.toast
-import su.android.core.tasks.AppMigration
 import su.android.core.utils.LocaleSetting
 import su.android.core.utils.RootUtils
 import su.android.databinding.bindExtra
@@ -38,7 +37,6 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
 
     private fun createItems(): List<BaseSettingsItem> {
         val context = AppContext
-        val hidden = context.packageName != BuildConfig.APP_PACKAGE_NAME
 
         val list = mutableListOf(
             Customization,
@@ -51,9 +49,6 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
             AppSettings,
             UpdateChannel, UpdateChannelUrl, DoHToggle, UpdateChecker, DownloadPath, RandNameToggle
         ))
-        if (Info.env.isActive && Const.USER_ID == 0) {
-            if (hidden) list.add(Restore)
-        }
 
         if (Info.env.isActive) {
             list.addAll(listOf(
@@ -103,7 +98,6 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
             SystemlessHosts -> createHosts()
             DenyListConfig -> SettingsFragmentDirections.actionSettingsFragmentToDenyFragment().navigate()
             UpdateChannel -> openUrlIfNecessary(view)
-            Restore -> viewModelScope.launch { AppMigration.restore(view.activity) }
             Zygisk -> if (Zygisk.mismatch) SnackbarEvent(R.string.reboot_apply_change).publish()
             else -> Unit
         }
