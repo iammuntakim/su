@@ -19,18 +19,18 @@ jobs:
                 build_type: [release]
 
         steps:
-            - name: > Task :check:checkOut
+            - name: Task :check:checkOut
               uses: actions/checkout@v4
               with:
                   submodules: recursive
                   fetch-depth: 1
 
-            - name: > Task :setup:installDependencies
+            - name: Task :setup:installDependencies
               run: |
                   sudo apt-get update
                   sudo apt-get install -y python3 gh
 
-            - name: > Task :cache:cacheGradle
+            - name: Task :cache:cacheGradle
               uses: actions/cache@v4
               with:
                   path: |
@@ -40,14 +40,14 @@ jobs:
                   restore-keys: |
                       gradle-${{ runner.os }}-
 
-            - name: > Task :setup:installJava
+            - name: Task :setup:installJava
               uses: actions/setup-java@v4
               with:
                   distribution: temurin
                   java-version: 21
                   cache: gradle
 
-            - name: > Task :app:buildApk
+            - name: Task :app:buildApk
               run: |
                   if [ "${{ matrix.build_type }}" = "release" ]; then
                       python build.py -vr app
@@ -55,16 +55,16 @@ jobs:
                       python build.py -v app
                   fi
 
-            - name: > Task :stop:stopGradle
+            - name: Task :stop:stopGradle
               run: ./app/gradlew --stop
 
-            - name: > Task :upload:uploadArtifact
+            - name: Task :upload:uploadArtifact
               uses: actions/upload-artifact@v4
               with:
                   name: magisk_${{ matrix.build_type }}
                   path: out/app-release.apk
 
-            - name: > Task :publish:writeGithubRelease
+            - name: Task :publish:writeGithubRelease
               env:
                   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
