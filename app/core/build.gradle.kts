@@ -30,11 +30,15 @@ android {
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
     }
+
+    sourceSets {
+        getByName("main") {
+            jniLibs.srcDirs("../lib")
+        }
+    }
 }
 
 dependencies {
-    implementation(files("../lib/native.jar"))
-
     api(project(":shared"))
     coreLibraryDesugaring(libs.jdk.libs)
 
@@ -67,8 +71,4 @@ dependencies {
 
     compileOnly(libs.test.junit)
     compileOnly(libs.test.uiautomator)
-}
-
-tasks.matching { it.name.contains("JniLibs") }.configureEach {
-    enabled = false
 }
