@@ -1,12 +1,11 @@
-name: Build Native Binaries
+name: Build Native Libraries
 
 on:
     push:
-        branches: [main, master, native, app]
+        branches: [main, master, native]
     pull_request:
-        branches: [main, master, native, app]
+        branches: [main, master, native]
     workflow_dispatch:
-
 
 jobs:
     build:
@@ -27,7 +26,7 @@ jobs:
             - name: Install dependencies
               run: |
                   sudo apt-get update
-                  sudo apt-get install -y ccache python3 zip
+                  sudo apt-get install -y ccache python3 zip tar xz-utils
 
             - name: Setup ccache
               run: |
@@ -53,6 +52,8 @@ jobs:
             - name: Setup Android SDK Environment
               run: |
                   echo "ANDROID_HOME=$ANDROID_SDK_ROOT" >> $GITHUB_ENV
+                  sudo mkdir -p $ANDROID_SDK_ROOT/ndk
+                  sudo chown -R $USER:$USER $ANDROID_SDK_ROOT/ndk
 
             - name: Setup ONDK Toolchain
               run: |
@@ -67,4 +68,3 @@ jobs:
               with:
                   name: native-binary-jar
                   path: native/out/native.jar
-                  
