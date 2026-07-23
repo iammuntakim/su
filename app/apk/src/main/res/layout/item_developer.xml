@@ -31,7 +31,7 @@
             android:textStyle="bold"
             tools:text="\@topjohnwu" />
 
-        <androidx.recyclerview.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             app:items="@{item.items}"
             app:extraBindings="@{viewModel.extraBindings}"
             app:nestedScrollingEnabled="@{false}"

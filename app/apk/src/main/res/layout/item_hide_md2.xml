@@ -95,7 +95,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.recyclerview.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 goneUnless="@{item.isExpanded}"
                 app:items="@{item.processes}"
                 app:extraBindings="@{viewModel.extraBindings}"
