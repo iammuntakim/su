@@ -61,31 +61,6 @@ object AppSettings : BaseSettingsItem.Section() {
     override val title = CoreR.string.home_app_title.asText()
 }
 
-object Restore : BaseSettingsItem.Blank() {
-    override val title = CoreR.string.settings_restore_app_title.asText()
-    override val description = CoreR.string.settings_restore_app_summary.asText()
-
-    override fun onPressed(view: View, handler: Handler) {
-        handler.onItemPressed(view, this) {
-            MagiskDialog(view.activity).apply {
-                setTitle(CoreR.string.settings_restore_app_title)
-                setMessage(CoreR.string.restore_app_confirmation)
-                setButton(MagiskDialog.ButtonType.POSITIVE) {
-                    text = android.R.string.ok
-                    onClick {
-                        handler.onItemAction(view, this@Restore)
-                    }
-                }
-                setButton(MagiskDialog.ButtonType.NEGATIVE) {
-                    text = android.R.string.cancel
-                }
-                setCancelable(true)
-                show()
-            }
-        }
-    }
-}
-
 object AddShortcut : BaseSettingsItem.Blank() {
     override val title = CoreR.string.add_shortcut_title.asText()
     override val description = CoreR.string.setting_add_shortcut_summary.asText()
