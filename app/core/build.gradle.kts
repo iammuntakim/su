@@ -5,12 +5,9 @@ plugins {
     id("com.google.devtools.ksp")
 }
 
-setupCoreLib()
-
 ksp {
     arg("room.generateKotlin", "true")
 }
-
 
 android {
     namespace = "su.android.core"
@@ -21,6 +18,12 @@ android {
         buildConfigField("String", "APP_VERSION_NAME", "\"${Config.version}\"")
         buildConfigField("int", "STUB_VERSION", Config.stubVersion)
         consumerProguardFile("proguard-rules.pro")
+    }
+
+    sourceSets {
+        getByName("main") {
+            jniLibs.setSrcDirs(emptyList<String>())
+        }
     }
 
     buildFeatures {
