@@ -11,6 +11,7 @@ ksp {
     arg("room.generateKotlin", "true")
 }
 
+
 android {
     namespace = "su.android.core"
 
