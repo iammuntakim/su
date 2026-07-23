@@ -22,22 +22,6 @@ android {
         consumerProguardFile("proguard-rules.pro")
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = true
-            // Enable resource shrinking if you have resources to strip
-            // isShrinkResources = true 
-            
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-        debug {
-            isMinifyEnabled = false
-        }
-    }
-
     buildFeatures {
         aidl = true
         buildConfig = true
