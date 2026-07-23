@@ -65,7 +65,7 @@ abi_alias = {
     "arm64": "arm64-v8a",
 }
 default_abis = support_abis.keys() - {"riscv64"}
-clean_targets = {"app"}
+clean_targets = {"app", "native"}
 
 config = {}
 args: argparse.Namespace
@@ -163,8 +163,41 @@ def find_jdk():
     return env
 
 
+def build_native():
+    ensure_paths()
+    header("* Building native binaries")
+
+    # Ensure jniLibs dir exists so Gradle tasks can evaluate properly
+    jni_dir = Path("app", "core", "src", "main", "jniLibs")
+    for abi in build_abis.keys():
+        (jni_dir / abi).mkdir(parents=True, exist_ok=True)
+
+    targets = ["magisk", "magiskboot", "magiskpolicy", "resetprop"]
+    
+    # Check for ndk-build or cmake scripts if native build tool exists
+    ndk_build = sdk_path / "ndk-bundle" / "ndk-build"
+    if not ndk_build.exists():
+        ndk_dirs = sorted((sdk_path / "ndk").glob("*"), reverse=True) if (sdk_path / "ndk").exists() else []
+        if ndk_dirs:
+            ndk_build = ndk_dirs[0] / "ndk-build"
+
+    if ndk_build.exists():
+        vprint(f"Building NDK binaries using {ndk_build}")
+        proc = execv([
+            str(ndk_build),
+            f"-j{cpu_count}",
+            f"NDK_PROJECT_PATH={Path.cwd()}",
+            f"APP_ABI={' '.join(build_abis.keys())}"
+        ])
+        if proc.returncode != 0:
+            error("Native build failed!")
+
+
 def build_apk(module: str):
     ensure_paths()
+    # Ensure native JNI folders are populated before running Gradle
+    build_native()
+    
     env = find_jdk()
     props = args.config.resolve()
 
@@ -234,6 +267,7 @@ def cleanup():
     os.chdir("app")
     execv([gradlew, ":clean"], env=find_jdk())
     os.chdir("..")
+    rm_rf(Path("app", "core", "src", "main", "jniLibs"))
 
 
 def build_all():
