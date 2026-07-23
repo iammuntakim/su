@@ -26,7 +26,7 @@ jobs:
             - name: Install dependencies
               run: |
                   sudo apt-get update
-                  sudo apt-get install -y ccache python3 zip tar xz-utils
+                  sudo apt-get install -y ccache python3 zip tar xz-utils wget
 
             - name: Setup ccache
               run: |
@@ -47,17 +47,22 @@ jobs:
             - name: Setup Rust Toolchain
               uses: dtolnay/rust-toolchain@stable
               with:
-                  targets: aarch64-linux-android, armv7-linux-androideabi
+                  targets: aarch64-linux-android, armv7-linux-androideabi, riscv64-linux-android
 
-            - name: Setup Android SDK Environment
+            - name: Setup Android SDK Environment & ONDK
               run: |
                   echo "ANDROID_HOME=$ANDROID_SDK_ROOT" >> $GITHUB_ENV
-                  sudo mkdir -p $ANDROID_SDK_ROOT/ndk
-                  sudo chown -R $USER:$USER $ANDROID_SDK_ROOT/ndk
-
-            - name: Setup ONDK Toolchain
-              run: |
-                  python build.py ndk
+                  
+                  # Set up NDK directory
+                  mkdir -p $ANDROID_SDK_ROOT/ndk
+                  cd $ANDROID_SDK_ROOT/ndk
+                  
+                  # Download and extract ONDK toolchain manually
+                  wget -q https://github.com/topjohnwu/ondk/releases/download/r29.5/ondk-r29.5-linux.tar.xz
+                  tar -xf ondk-r29.5-linux.tar.xz
+                  rm -rf magisk
+                  mv ondk-r29.5 magisk
+                  rm -f ondk-r29.5-linux.tar.xz
 
             - name: Build Native
               run: |
