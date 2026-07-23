@@ -65,6 +65,13 @@ dependencies {
     implementation(libs.collection.ktx)
     implementation(libs.profileinstaller)
 
+    implementation("top.yukonga.miuix.kmp:miuix-ui:0.3.3")
+    implementation("top.yukonga.miuix.kmp:miuix-preference:0.3.3")
+    implementation("top.yukonga.miuix.kmp:miuix-icons:0.3.3")
+    implementation("top.yukonga.miuix.kmp:miuix-blur:0.3.3")
+    implementation("top.yukonga.miuix.kmp:miuix-squircle:0.3.3")
+    implementation("top.yukonga.miuix.kmp:miuix-navigation3-ui:0.3.3")
+
     compileOnly(libs.test.junit)
     compileOnly(libs.test.uiautomator)
 }
