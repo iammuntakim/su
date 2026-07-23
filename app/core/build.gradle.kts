@@ -20,6 +20,7 @@ android {
         buildConfigField("String", "APP_VERSION_NAME", "\"${Config.version}\"")
         buildConfigField("int", "STUB_VERSION", Config.stubVersion)
         consumerProguardFile("proguard-rules.pro")
+        
         ndk {
             abiFilters.addAll(listOf("arm64-v8a", "armeabi-v7a"))
         }
@@ -32,12 +33,6 @@ android {
 
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
-    }
-
-    packaging {
-        jniLibs {
-            useLegacyPackaging = true
-        }
     }
 }
 
@@ -74,8 +69,4 @@ dependencies {
 
     compileOnly(libs.test.junit)
     compileOnly(libs.test.uiautomator)
-}
-
-tasks.matching { it.name.contains("Sync") && it.name.contains("JniLibs") }.configureEach {
-    actions = emptyList()
 }

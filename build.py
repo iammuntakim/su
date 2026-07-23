@@ -174,6 +174,11 @@ def build_apk(module: str):
         [
             gradlew,
             f"{module}:assemble{build_type}",
+            "--no-build-cache",
+            "-x",
+            ":core:syncReleaseJniLibs",
+            "-x",
+            ":core:syncDebugJniLibs",
             f"-PconfigPath={props}",
             f"-PabiList={','.join(build_abis.keys())}",
         ],
