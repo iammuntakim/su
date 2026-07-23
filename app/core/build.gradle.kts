@@ -1,4 +1,4 @@
-plugins {
+Plugins {
     id("com.android.library")
     kotlin("plugin.parcelize")
     id("dev.zacsweers.moshix")
@@ -23,6 +23,12 @@ android {
         
         ndk {
             abiFilters.addAll(listOf("arm64-v8a", "armeabi-v7a"))
+        }
+    }
+
+    sourceSets {
+        getByName("main") {
+            jniLibs.srcDirs("src/main/lib")
         }
     }
 

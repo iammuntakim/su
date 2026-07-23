@@ -163,13 +163,11 @@ def find_jdk():
     return env
 
 
-def prepare_jni_dirs():
-    # Create required jniLibs ABI subdirectories so AGP sync Release/Debug JNI tasks pass evaluation
-    base_jni = Path("app", "core", "src", "main", "jniLibs")
+def prepare_lib_dirs():
+    base_lib = Path("app", "core", "src", "main", "lib")
     for abi in build_abis.keys():
-        d = base_jni / abi
+        d = base_lib / abi
         d.mkdir(parents=True, exist_ok=True)
-        # Create a dummy keeps file if directory is empty
         keep_file = d / ".keep"
         if not keep_file.exists():
             keep_file.touch()
@@ -177,7 +175,7 @@ def prepare_jni_dirs():
 
 def build_apk(module: str):
     ensure_paths()
-    prepare_jni_dirs()
+    prepare_lib_dirs()
     env = find_jdk()
     props = args.config.resolve()
 
