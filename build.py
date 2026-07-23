@@ -26,7 +26,7 @@ def error(str):
 
 def header(str):
     color_print("\033[44;39m", f"\n{str}\n")
-    
+
 
 def vprint(str):
     if args.verbose > 0:
@@ -205,6 +205,9 @@ def build_apk(module: str):
 
 
 def build_app():
+    header("* Building Stub APK first")
+    stub_target = build_apk(":stub")
+
     header("* Building the Magisk app")
     apk = build_apk(":apk")
 
@@ -215,9 +218,8 @@ def build_app():
     mv(source, target)
     header(f"Output: {target}")
 
-    source = Path("app", "core", "src", build_type, "assets", "stub.apk")
-    target = config["outdir"] / f"stub-{build_type}.apk"
-    cp(source, target)
+    target_stub = config["outdir"] / f"stub-{build_type}.apk"
+    cp(stub_target, target_stub)
 
 
 def build_stub():
