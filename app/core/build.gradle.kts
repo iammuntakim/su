@@ -11,8 +11,10 @@ ksp {
 
 android {
     namespace = "su.android.core"
+    compileSdk = 35
 
     defaultConfig {
+        minSdk = 21
         buildConfigField("String", "APP_PACKAGE_NAME", "\"su.android\"")
         buildConfigField("int", "APP_VERSION_CODE", "${Config.versionCode}")
         buildConfigField("String", "APP_VERSION_NAME", "\"${Config.version}\"")
@@ -22,7 +24,7 @@ android {
 
     sourceSets {
         getByName("main") {
-            jniLibs.setSrcDirs(emptyList<String>())
+            jniLibs.directories.clear()
         }
     }
 
