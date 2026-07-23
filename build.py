@@ -174,8 +174,6 @@ def build_apk(module: str):
         [
             gradlew,
             f"{module}:assemble{build_type}",
-            "--no-build-cache",
-            "--rerun-tasks",
             f"-PconfigPath={props}",
             f"-PabiList={','.join(build_abis.keys())}",
         ],
