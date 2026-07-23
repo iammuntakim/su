@@ -58,7 +58,7 @@ pub mod ffi {
         #[cxx_name = "type"]
         fn type_(self: &mut SePolicy, t: &str, a: Vec<&str>);
         fn attribute(self: &mut SePolicy, t: &str);
-        fn type_transition(self: &mut SePolicy, s: &str, t: &str, c: &str, d: &str, o: &str);
+        fn type_transition(self: &str, t: &str, c: &str, d: &str, o: &str);
         fn type_change(self: &mut SePolicy, s: &str, t: &str, c: &str, d: &str);
         fn type_member(self: &mut SePolicy, s: &str, t: &str, c: &str, d: &str);
         fn genfscon(self: &mut SePolicy, s: &str, t: &str, c: &str);
@@ -76,8 +76,6 @@ pub mod ffi {
         fn compile_split() -> SePolicy;
         #[Self = SePolicy]
         fn from_data(data: &[u8]) -> SePolicy;
-
-        fn cxx_vec_i32_dummy(v: &CxxVector<i32>);
     }
 
     extern "Rust" {

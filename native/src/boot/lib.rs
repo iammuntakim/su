@@ -52,8 +52,6 @@ pub mod ffi {
         fn repack(src_img: Utf8CStrRef, out_img: Utf8CStrRef, skip_comp: bool);
         fn split_image_dtb(filename: Utf8CStrRef, skip_decomp: bool) -> i32;
         fn check_fmt(buf: &[u8]) -> FileFormat;
-
-        fn cxx_vec_i32_dummy(v: &CxxVector<i32>);
     }
 
     extern "Rust" {

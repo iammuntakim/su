@@ -58,8 +58,6 @@ pub mod ffi {
         fn preload_lib() -> Utf8CStrRef<'static>;
         fn preload_policy() -> Utf8CStrRef<'static>;
         fn preload_ack() -> Utf8CStrRef<'static>;
-
-        fn cxx_vec_i32_dummy(v: &CxxVector<i32>);
     }
 
     #[namespace = "rust"]
