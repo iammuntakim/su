@@ -38,7 +38,7 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <su.android.widget.ConcealableBottomNavigationView
+        <top.mauix.navigation.BottomNavigation
             android:id="@+id/main_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
