@@ -20,6 +20,7 @@ import su.android.core.R
 import su.android.core.isRunningAsStub
 import su.android.core.ktx.activity
 import su.android.core.ktx.toast
+import su.android.core.tasks.AppMigration
 import su.android.core.utils.LocaleSetting
 import su.android.core.utils.RootUtils
 import su.android.databinding.bindExtra
@@ -37,19 +38,26 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
 
     private fun createItems(): List<BaseSettingsItem> {
         val context = AppContext
+        val hidden = context.packageName != BuildConfig.APP_PACKAGE_NAME
 
+        // Customization
         val list = mutableListOf(
             Customization,
-            if (LocaleSetting.useLocaleManager) LanguageSystem else Language
+            Theme, if (LocaleSetting.useLocaleManager) LanguageSystem else Language
         )
         if (isRunningAsStub && ShortcutManagerCompat.isRequestPinShortcutSupported(context))
             list.add(AddShortcut)
 
+        // Manager
         list.addAll(listOf(
             AppSettings,
             UpdateChannel, UpdateChannelUrl, DoHToggle, UpdateChecker, DownloadPath, RandNameToggle
         ))
+        if (Info.env.isActive && Const.USER_ID == 0) {
+            if (hidden) list.add(Restore) else list.add(Hide)
+        }
 
+        // Magisk
         if (Info.env.isActive) {
             list.addAll(listOf(
                 Magisk,
@@ -60,6 +68,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
             }
         }
 
+        // Superuser
         if (Info.showSuperUser) {
             list.addAll(listOf(
                 Superuser,
@@ -67,9 +76,11 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
                 AutomaticResponse, RequestTimeout, SUNotification
             ))
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                // Re-authenticate is not feasible on 8.0+
                 list.add(Reauthenticate)
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                // Can hide overlay windows on 12.0+
                 list.remove(Tapjack)
             }
             if (Const.Version.atLeast_30_1()) {
@@ -92,11 +103,14 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
 
     override fun onItemAction(view: View, item: BaseSettingsItem) {
         when (item) {
+            Theme -> SettingsFragmentDirections.actionSettingsFragmentToThemeFragment().navigate()
             LanguageSystem -> view.activity.startActivity(LocaleSetting.localeSettingsIntent)
             AddShortcut -> AddHomeIconEvent().publish()
             SystemlessHosts -> createHosts()
             DenyListConfig -> SettingsFragmentDirections.actionSettingsFragmentToDenyFragment().navigate()
             UpdateChannel -> openUrlIfNecessary(view)
+            is Hide -> viewModelScope.launch { AppMigration.hide(view.activity, item.value) }
+            Restore -> viewModelScope.launch { AppMigration.restore(view.activity) }
             Zygisk -> if (Zygisk.mismatch) SnackbarEvent(R.string.reboot_apply_change).publish()
             else -> Unit
         }
