@@ -31,7 +31,7 @@ public class BottomNavigation extends View {
     public interface OnItemSelectedListener { boolean onNavigationItemSelected(MenuItem item); }
     public interface OnItemReselectedListener { void onNavigationItemReselected(MenuItem item); }
 
-    private static final int[] STATE_SET = { android.R.attr.state_hidden };
+    private static final int[] STATE_SET = { android.R.attr.state_checkable };
 
     private BottomMenu menu;
     private final List<ItemHolder> items = new ArrayList<>();
