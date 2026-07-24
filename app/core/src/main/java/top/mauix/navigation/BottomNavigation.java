@@ -22,10 +22,8 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.PathInterpolator;
 import android.view.View.BaseSavedState;
-import android.view.animation.Interpolator;
 import java.util.ArrayList;
 import java.util.List;
-import su.android.R;
 
 public class BottomNavigation extends View {
 
@@ -33,7 +31,7 @@ public class BottomNavigation extends View {
     public interface OnItemSelectedListener { boolean onNavigationItemSelected(MenuItem item); }
     public interface OnItemReselectedListener { void onNavigationItemReselected(MenuItem item); }
 
-    private static final int[] STATE_SET = { R.attr.state_hidden };
+    private static final int[] STATE_SET = { android.R.attr.state_hidden };
 
     private BottomMenu menu;
     private final List<ItemHolder> items = new ArrayList<>();
