@@ -6,6 +6,7 @@ import android.animation.ObjectAnimator;
 import android.animation.StateListAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -40,7 +41,7 @@ public class BottomNavigation extends View {
     private boolean isHidden;
 
     private int activeColor = Color.parseColor("#007AFF"), inactiveColor = Color.parseColor("#8E8E93");
-    private int badgeBgColor = Color.parseColor("#FF3B30"), blurBgColor = Color.parseColor("#CCF9F9F9");
+    private int badgeBgColor = Color.parseColor("#FF3B30");
     private int currentBlurBgColor, currentInactiveColor, currentActiveColor;
 
     private ValueAnimator themeAnimator;
@@ -67,7 +68,11 @@ public class BottomNavigation extends View {
         
         iconSizePx = 24 * density; textSizePx = 11 * density;
         badgeTextSizePx = 10 * density; cornerRadiusPx = 20 * density;
-        currentBlurBgColor = blurBgColor; currentInactiveColor = inactiveColor; currentActiveColor = activeColor;
+        
+        boolean isDarkMode = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+        currentBlurBgColor = Color.parseColor(isDarkMode ? "#CC1C1C1E" : "#CCF9F9F9");
+        currentInactiveColor = inactiveColor;
+        currentActiveColor = Color.parseColor(isDarkMode ? "#0A84FF" : "#007AFF");
 
         bgPaint = new Paint(Paint.ANTI_ALIAS_FLAG); bgPaint.setColor(currentBlurBgColor);
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG); textPaint.setTextAlign(Paint.Align.CENTER); textPaint.setTextSize(textSizePx);
