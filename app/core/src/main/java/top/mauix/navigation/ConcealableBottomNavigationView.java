@@ -1,4 +1,4 @@
-package top.mauix.naviagtion;
+package top.mauix.navigation;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.view.Gravity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +17,7 @@ import androidx.customview.view.AbsSavedState;
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import su.android.R;
+import su.android.core.R;
 
 public class ConcealableBottomNavigationView extends BottomNavigationView {
 
@@ -46,24 +45,24 @@ public class ConcealableBottomNavigationView extends BottomNavigationView {
     }
 
     private void initProfessionalStyling() {
+        setItemIconTintList(createColorStateList());
+        setItemTextColor(createColorStateList());
         setLabelVisibilityMode(LABEL_VISIBILITY_LABELED);
-        setItemActiveIndicatorStyle(android.R.color.transparent);
+        setItemActiveIndicatorEnabled(false);
         setBackgroundColor(Color.TRANSPARENT);
-        
         ViewCompat.setElevation(this, 16f);
+    }
 
+    private ColorStateList createColorStateList() {
         int[][] states = new int[][]{
                 new int[]{android.R.attr.state_selected},
                 new int[]{-android.R.attr.state_selected}
         };
-        
         int[] colors = new int[]{
                 Color.parseColor("#007AFF"),
                 Color.parseColor("#8E8E93")
         };
-        
-        setItemIconTintList(new ColorStateList(states, colors));
-        setItemTextColor(new ColorStateList(states, colors));
+        return new ColorStateList(states, colors);
     }
 
     private void recreateAnimator(int height) {
