@@ -21,10 +21,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.PathInterpolator;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.customview.view.AbsSavedState;
-import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
+import android.view.View.BaseSavedState;
+import android.view.animation.Interpolator;
 import java.util.ArrayList;
 import java.util.List;
 import su.android.R;
@@ -61,9 +59,9 @@ public class BottomNavigation extends View {
     private float touchStartX, touchStartY, customWidthPx = -1, customHeightPx = -1;
     private final ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
-    public BottomNavigation(@NonNull Context c) { this(c, null); }
-    public BottomNavigation(@NonNull Context c, @Nullable AttributeSet a) { this(c, a, 0); }
-    public BottomNavigation(@NonNull Context c, @Nullable AttributeSet a, int d) {
+    public BottomNavigation(Context c) { this(c, null); }
+    public BottomNavigation(Context c, AttributeSet a) { this(c, a, 0); }
+    public BottomNavigation(Context c, AttributeSet a, int d) {
         super(c, a, d);
         menu = new BottomMenu(c);
         touchSlop = ViewConfiguration.get(c).getScaledTouchSlop();
@@ -85,10 +83,10 @@ public class BottomNavigation extends View {
     private void recreateAnimator(int height) {
         Animator toHidden = ObjectAnimator.ofFloat(this, "translationY", height);
         toHidden.setDuration(175);
-        toHidden.setInterpolator(new FastOutLinearInInterpolator());
+        toHidden.setInterpolator(new PathInterpolator(0.4f, 0.0f, 1.0f, 1.0f));
         Animator toUnhidden = ObjectAnimator.ofFloat(this, "translationY", 0);
         toUnhidden.setDuration(225);
-        toUnhidden.setInterpolator(new FastOutLinearInInterpolator());
+        toUnhidden.setInterpolator(new PathInterpolator(0.0f, 0.0f, 0.2f, 1.0f));
 
         StateListAnimator animator = new StateListAnimator();
         animator.addState(STATE_SET, toHidden);
@@ -228,7 +226,7 @@ public class BottomNavigation extends View {
     }
 
     @Override
-    protected void onDraw(@NonNull Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawRoundRect(boundsRect, cornerRadiusPx, cornerRadiusPx, bgPaint);
         if (items.isEmpty()) return;
@@ -317,7 +315,6 @@ public class BottomNavigation extends View {
         return super.onTouchEvent(event);
     }
 
-    @Nullable
     @Override
     protected Parcelable onSaveInstanceState() {
         SavedState state = new SavedState(super.onSaveInstanceState());
@@ -336,11 +333,11 @@ public class BottomNavigation extends View {
         setHidden(ss.isHidden);
     }
 
-    static class SavedState extends AbsSavedState {
+    static class SavedState extends BaseSavedState {
         public boolean isHidden;
 
         public SavedState(Parcel source) {
-            super(source, SavedState.class.getClassLoader());
+            super(source);
             isHidden = source.readByte() != 0;
         }
 
@@ -465,7 +462,7 @@ public class BottomNavigation extends View {
         @Override public MenuItem setTitle(int title) { this.title = context.getString(title); return this; }
         @Override public CharSequence getTitle() { return title; }
         @Override public MenuItem setIcon(Drawable icon) { this.icon = icon; return this; }
-        @Override public MenuItem setIcon(int iconRes) { this.icon = context.getResources().getDrawable(iconRes); return this; }
+        @Override public MenuItem setIcon(int iconRes) { this.icon = context.getDrawable(iconRes); return this; }
         @Override public Drawable getIcon() { return icon; }
         @Override public MenuItem setChecked(boolean checked) { this.isChecked = checked; return this; }
         @Override public boolean isChecked() { return isChecked; }
@@ -494,8 +491,8 @@ public class BottomNavigation extends View {
         @Override public MenuItem setActionView(View view) { return this; }
         @Override public MenuItem setActionView(int resId) { return this; }
         @Override public View getActionView() { return null; }
-        @Override public MenuItem setActionProvider(android.content.ActionProvider actionProvider) { return this; }
-        @Override public android.content.ActionProvider getActionProvider() { return null; }
+        @Override public MenuItem setActionProvider(android.view.ActionProvider actionProvider) { return this; }
+        @Override public android.view.ActionProvider getActionProvider() { return null; }
         @Override public boolean expandActionView() { return false; }
         @Override public boolean collapseActionView() { return false; }
         @Override public boolean isActionViewExpanded() { return false; }
