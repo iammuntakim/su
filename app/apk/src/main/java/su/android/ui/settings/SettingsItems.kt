@@ -23,6 +23,7 @@ import su.android.view.MagiskDialog
 import com.topjohnwu.superuser.Shell
 import su.android.core.R as CoreR
 
+
 object SystemlessHosts : BaseSettingsItem.Blank() {
     override val title = CoreR.string.settings_hosts_title.asText()
     override val description = CoreR.string.settings_hosts_summary.asText()
