@@ -28,7 +28,6 @@ import su.android.events.AuthEvent
 import su.android.events.SnackbarEvent
 import kotlinx.coroutines.launch
 
-
 class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
 
     val items = createItems()
