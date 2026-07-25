@@ -22,8 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/l1"
-            android:layout_marginBottom="@dimen/l_50"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="96dp"
             android:onClick="@{() -> viewModel.installPressed()}"
             app:srcCompat="@drawable/ic_module_storage_md2" />
 
