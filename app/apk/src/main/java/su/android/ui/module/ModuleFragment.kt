@@ -43,7 +43,20 @@ class ModuleFragment : BaseFragment<FragmentModuleMd2Binding>() {
             post { addInvalidateItemDecorationsObserver() }
         }
 
-        ViewCompat.requestApplyWindowInsets(binding.root)
+        binding.root.apply {
+            if (isAttachedToWindow) {
+                requestApplyInsets()
+            } else {
+                addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
+                    override fun onViewAttachedToWindow(v: View) {
+                        v.removeOnAttachStateChangeListener(this)
+                        v.requestApplyInsets()
+                    }
+                    override fun onViewDetachedFromWindow(v: View) {}
+                })
+            }
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
             val navBarHeight = insets.getInsets(WindowInsetsCompat.Type.navigationBars() or WindowInsetsCompat.Type.systemBars()).bottom
 
