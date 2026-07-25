@@ -185,10 +185,17 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
             R.id.modulesFragment -> MainDirections.actionModuleFragment()
             R.id.superuserFragment -> MainDirections.actionSuperuserFragment()
             R.id.logFragment -> MainDirections.actionLogFragment()
-            R.id.settingsFragment -> HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
+            R.id.settingsFragment -> {
+                try {
+                    HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
+                } catch (e: Exception) {
+                    null
+                }
+            }
             else -> null
         }
     }
+
 
     @SuppressLint("InlinedApi")
     override fun showInvalidStateMessage(): Unit = runOnUiThread {
