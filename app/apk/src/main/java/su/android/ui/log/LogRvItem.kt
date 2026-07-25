@@ -9,6 +9,7 @@ import su.android.databinding.ItemWrapper
 import su.android.databinding.ObservableRvItem
 import su.android.databinding.ViewAwareItem
 
+
 class LogRvItem(
     override val item: String
 ) : ObservableRvItem(), DiffItem<LogRvItem>, ItemWrapper<String>, ViewAwareItem {
