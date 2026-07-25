@@ -43,7 +43,7 @@ class ModuleFragment : BaseFragment<FragmentModuleMd2Binding>() {
 
         val extraBottom = (120 * resources.displayMetrics.density).toInt()
 
-        binding.moduleList.updatePadding(bottom = extraBottom + 160)
+        binding.moduleList.updatePadding(bottom = extraBottom + 120)
         
         binding.fabInstall.updateLayoutParams<androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams> {
             this.bottomMargin = extraBottom

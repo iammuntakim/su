@@ -98,7 +98,8 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
                 R.id.homeFragment,
                 R.id.modulesFragment,
                 R.id.superuserFragment,
-                R.id.logFragment -> true
+                R.id.logFragment,
+                R.id.settingsFragment -> true
                 else -> false
             }
 
@@ -184,6 +185,7 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
             R.id.modulesFragment -> MainDirections.actionModuleFragment()
             R.id.superuserFragment -> MainDirections.actionSuperuserFragment()
             R.id.logFragment -> MainDirections.actionLogFragment()
+            R.id.settingsFragment -> HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
             else -> null
         }
     }
