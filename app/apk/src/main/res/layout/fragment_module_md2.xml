@@ -31,7 +31,7 @@
                 android:clipToPadding="false"
                 android:orientation="vertical"
                 android:paddingTop="@dimen/internal_action_bar_size"
-                android:paddingBottom="120dp"
+                android:paddingBottom="180dp"
                 app:fitsSystemWindowsInsets="top|bottom"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_module_md2" />
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
-            android:layout_marginBottom="80dp"
+            android:layout_marginBottom="110dp"
             android:onClick="@{() -> viewModel.installPressed()}"
             app:elevation="0dp"
             app:pressedTranslationZ="0dp"
