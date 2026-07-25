@@ -38,16 +38,15 @@
             app:tint="?colorPrimary"
             tools:layout_marginBottom="64dp" />
 
-        <com.google.android.material.card.MaterialCardView
+        <com.google.android.material.circularreveal.cardview.CircularRevealCardView
             android:id="@+id/log_filter"
-            style="@style/Widget.Material3.CardView.Elevated"
+            style="@style/WidgetFoundation.Card"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="bottom"
             android:visibility="invisible"
             app:cardBackgroundColor="?colorSurface"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="2dp">
+            app:cardCornerRadius="0dp">
 
             <include
                 android:id="@+id/log_filter_superuser"
@@ -56,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-        </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
     </FrameLayout>
 
