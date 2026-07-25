@@ -156,7 +156,7 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
         val bottomView = binding.mainNavigation
         if (requiresAnimation) {
             bottomView.isVisible = true
-            bottomView.setHidden(hide)
+            bottomView.translationY = if (hide) bottomView.height.toFloat() + (20 * resources.displayMetrics.density) else 0f
         } else {
             bottomView.isGone = hide
         }
