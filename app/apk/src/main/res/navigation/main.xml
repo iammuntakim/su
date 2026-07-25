@@ -5,6 +5,14 @@
     android:id="@+id/main"
     app:startDestination="@id/homeFragment">
 
+    <action
+        android:id="@+id/action_global_settingsFragment"
+        app:destination="@id/settingsFragment"
+        app:enterAnim="@anim/fragment_enter"
+        app:exitAnim="@anim/fragment_exit"
+        app:popEnterAnim="@anim/fragment_enter_pop"
+        app:popExitAnim="@anim/fragment_exit_pop" />
+
     <fragment
         android:id="@+id/denyFragment"
         android:name="su.android.ui.deny.DenyListFragment"
