@@ -50,8 +50,8 @@ class ModuleViewModel : AsyncLoadViewModel() {
         if (moduleLoaded) {
             loadInstalled()
             if (items.isEmpty()) {
-                items.insertItem(InstallModule)
-                    .insertList(itemsInstalled)
+                items.insertList(itemsInstalled)
+                    .insertItem(InstallModule)
             }
         }
         loading = false
