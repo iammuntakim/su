@@ -97,7 +97,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <top.mauix.widgets.Switch
+                        <com.google.android.material.materialswitch.MaterialSwitch
                             gone="@{item.showSlider}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
