@@ -188,7 +188,6 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
             R.id.settingsFragment -> {
                 val currentId = navigation.currentDestination?.id
                 when (currentId) {
-                    R.id.modulesFragment -> su.android.ui.modules.ModuleFragmentDirections.actionModuleFragmentToSettingsFragment()
                     R.id.superuserFragment -> su.android.ui.superuser.SuperuserFragmentDirections.actionSuperuserFragmentToSettingsFragment()
                     R.id.logFragment -> su.android.ui.log.LogFragmentDirections.actionLogFragmentToSettingsFragment()
                     else -> HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
@@ -197,7 +196,6 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
             else -> null
         }
     }
-    
 
     @SuppressLint("InlinedApi")
     override fun showInvalidStateMessage(): Unit = runOnUiThread {
