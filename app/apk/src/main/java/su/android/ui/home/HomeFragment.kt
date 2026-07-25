@@ -17,8 +17,6 @@ import su.android.core.Info
 import su.android.core.download.DownloadEngine
 import su.android.databinding.FragmentHomeMd2Binding
 import su.android.core.R as CoreR
-import androidx.navigation.findNavController
-import su.android.arch.NavigationActivity
 
 class HomeFragment : BaseFragment<FragmentHomeMd2Binding>(), MenuProvider {
 
@@ -50,7 +48,6 @@ class HomeFragment : BaseFragment<FragmentHomeMd2Binding>(), MenuProvider {
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        // If titles are squished, hide icons
         with(binding.homeMagiskWrapper) {
             checkTitle(homeMagiskTitle, homeMagiskIcon)
         }
@@ -69,14 +66,6 @@ class HomeFragment : BaseFragment<FragmentHomeMd2Binding>(), MenuProvider {
 
     override fun onMenuItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_settings ->
-                activity?.let {
-                    NavigationActivity.navigate(
-                        HomeFragmentDirections.actionHomeFragmentToSettingsFragment(),
-                        it.findNavController(R.id.main_nav_host),
-                        it.contentResolver,
-                    )
-                }
             R.id.action_reboot -> activity?.let { RebootMenu.inflate(it).show() }
             else -> return super.onOptionsItemSelected(item)
         }
