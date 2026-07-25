@@ -48,7 +48,6 @@
             android:clickable="true"
             android:enabled="true"
             android:focusable="true"
-            android:fontFamily="sans-serif-medium"
             android:text="@string/close"
             android:textAllCaps="false"
             android:textColor="?colorOnPrimary"

@@ -41,7 +41,7 @@ class ModuleFragment : BaseFragment<FragmentModuleMd2Binding>() {
             post { addInvalidateItemDecorationsObserver() }
         }
 
-        val extraBottom = (140 * resources.displayMetrics.density).toInt()
+        val extraBottom = (120 * resources.displayMetrics.density).toInt()
 
         binding.moduleList.updatePadding(bottom = extraBottom + 160)
         

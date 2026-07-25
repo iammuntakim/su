@@ -33,6 +33,8 @@ class DenyListFragment : BaseFragment<FragmentDenyMd2Binding>(), MenuProvider {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        activity?.addMenuProvider(this, view.lifecycle)
+
         binding.appList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 if (newState != RecyclerView.SCROLL_STATE_IDLE) activity?.hideKeyboard()
@@ -49,7 +51,7 @@ class DenyListFragment : BaseFragment<FragmentDenyMd2Binding>(), MenuProvider {
     override fun onPreBind(binding: FragmentDenyMd2Binding) = Unit
 
     override fun onBackPressed(): Boolean {
-        if (searchView.isIconfiedByDefault && !searchView.isIconified) {
+        if (::searchView.isInitialized && searchView.isIconfiedByDefault && !searchView.isIconified) {
             searchView.isIconified = true
             return true
         }
@@ -88,12 +90,14 @@ class DenyListFragment : BaseFragment<FragmentDenyMd2Binding>(), MenuProvider {
                 return true
             }
         }
-        return super.onOptionsItemSelected(item)
+        return false
     }
 
     override fun onPrepareMenu(menu: Menu) {
         val showSystem = menu.findItem(R.id.action_show_system)
         val showOS = menu.findItem(R.id.action_show_OS)
-        showOS.isEnabled = showSystem.isChecked
+        if (showSystem != null && showOS != null) {
+            showOS.isEnabled = showSystem.isChecked
+        }
     }
 }

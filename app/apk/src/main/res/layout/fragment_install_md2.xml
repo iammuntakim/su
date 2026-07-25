@@ -64,7 +64,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginStart="@dimen/l1"
                             android:layout_weight="1"
-                            android:fontFamily="sans-serif-medium"
+                
                             android:gravity="center_vertical"
                             android:text="@string/install_options_title"
                             android:textSize="8sp"
@@ -75,7 +75,7 @@
                             gone="@{viewModel.step != 0}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-medium"
+                
                             android:onClick="@{() -> viewModel.setStep(1)}"
                             android:text="@string/install_next"
                             android:textSize="8sp" />
@@ -101,7 +101,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:checked="@={Config.keepVerity}"
-                            android:fontFamily="sans-serif-medium"
+                
                             android:text="@string/keep_dm_verity"
                             android:textSize="8sp"
                             tools:checked="true" />
@@ -112,7 +112,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:checked="@={Config.keepEnc}"
-                            android:fontFamily="sans-serif-medium"
+                
                             android:text="@string/keep_force_encryption"
                             android:textSize="8sp"
                             app:tint="?colorPrimary" />
@@ -123,7 +123,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:checked="@={Config.recovery}"
-                            android:fontFamily="sans-serif-medium"
+                
                             android:text="@string/recovery_mode"
                             android:textSize="8sp"
                             app:tint="?colorPrimary" />
@@ -166,7 +166,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginStart="@dimen/l1"
                             android:layout_weight="1"
-                            android:fontFamily="sans-serif-medium"
+                
                             android:gravity="center_vertical"
                             android:text="@string/install_method_title"
                             android:textSize="8sp"
@@ -178,7 +178,7 @@
                             isEnabled="@{viewModel.method == @id/method_patch ? viewModel.data != null : viewModel.method != -1}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-medium"
+                
                             android:onClick="@{() -> viewModel.install()}"
                             android:text="@string/install_start"
                             android:textSize="8sp"
@@ -204,7 +204,7 @@
                             style="@style/Widget.Material3.CompoundButton.RadioButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-medium"
+                
                             android:text="@string/select_patch_file"
                             android:textSize="8sp" />
 
@@ -214,7 +214,7 @@
                             gone="@{!viewModel.rooted}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-medium"
+                
                             android:text="@string/direct_install"
                             android:textSize="8sp" />
 
@@ -224,7 +224,7 @@
                             gone="@{viewModel.noSecondSlot}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-medium"
+                
                             android:text="@string/install_inactive_slot"
                             android:textSize="8sp" />
 
@@ -253,7 +253,6 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
                     android:breakStrategy="simple"
-                    android:fontFamily="sans-serif-medium"
                     android:hyphenationFrequency="none"
                     android:textSize="8sp"
                     tools:ignore="UnusedAttribute"

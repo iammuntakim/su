@@ -30,30 +30,15 @@
             tools:listitem="@layout/item_hide_md2"
             tools:paddingTop="40dp" />
 
-        <LinearLayout
-            goneUnless="@{viewModel.loading}"
-            android:layout_width="match_parent"
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="vertical"
-            tools:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/loading"
-                android:textSize="8sp"
-                android:textStyle="bold" />
-
-            <ProgressBar
-                style="@style/Widget.Material3.CircularProgressIndicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/l1" />
-
-        </LinearLayout>
+            android:indeterminate="true"
+            android:visibility="@{viewModel.loading ? android.view.View.VISIBLE : android.view.View.GONE}"
+            app:indicatorSize="48dp"
+            app:trackCornerRadius="8dp"
+            tools:visibility="visible" />
 
     </FrameLayout>
 

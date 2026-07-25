@@ -48,7 +48,6 @@
             android:clickable="@{!viewModel.flashing}"
             android:enabled="@{!viewModel.flashing}"
             android:focusable="true"
-            android:fontFamily="sans-serif-medium"
             android:onClick="@{() -> viewModel.restartPressed()}"
             android:text="@string/reboot"
             android:textAllCaps="false"
