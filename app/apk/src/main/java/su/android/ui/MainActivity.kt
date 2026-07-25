@@ -35,9 +35,6 @@ import su.android.core.model.module.LocalModule
 import su.android.core.tasks.AppMigration
 import su.android.databinding.ActivityMainMd2Binding
 import su.android.ui.home.HomeFragmentDirections
-import su.android.ui.module.ModuleFragmentDirections
-import su.android.ui.superuser.SuperuserFragmentDirections
-import su.android.ui.log.LogFragmentDirections
 import su.android.ui.theme.Theme
 import su.android.view.MagiskDialog
 import su.android.view.Shortcuts
@@ -177,12 +174,7 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
         return when (name) {
             Const.Nav.SUPERUSER -> MainDirections.actionSuperuserFragment()
             Const.Nav.MODULES -> MainDirections.actionModuleFragment()
-            Const.Nav.SETTINGS -> when (navigation.currentDestination?.id) {
-                R.id.modulesFragment -> ModuleFragmentDirections.actionModuleFragmentToSettingsFragment()
-                R.id.superuserFragment -> SuperuserFragmentDirections.actionSuperuserFragmentToSettingsFragment()
-                R.id.logFragment -> LogFragmentDirections.actionLogFragmentToSettingsFragment()
-                else -> HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
-            }
+            Const.Nav.SETTINGS -> HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
             else -> null
         }
     }
@@ -193,14 +185,7 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
             R.id.modulesFragment -> MainDirections.actionModuleFragment()
             R.id.superuserFragment -> MainDirections.actionSuperuserFragment()
             R.id.logFragment -> MainDirections.actionLogFragment()
-            R.id.settingsFragment -> {
-                when (navigation.currentDestination?.id) {
-                    R.id.modulesFragment -> ModuleFragmentDirections.actionModuleFragmentToSettingsFragment()
-                    R.id.superuserFragment -> SuperuserFragmentDirections.actionSuperuserFragmentToSettingsFragment()
-                    R.id.logFragment -> LogFragmentDirections.actionLogFragmentToSettingsFragment()
-                    else -> HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
-                }
-            }
+            R.id.settingsFragment -> HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
             else -> null
         }
     }
