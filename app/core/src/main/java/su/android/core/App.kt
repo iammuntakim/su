@@ -9,7 +9,9 @@ import java.io.PrintWriter
 import java.io.StringWriter
 import kotlin.system.exitProcess
 
-open class App : Application() {
+open class App : Application {
+
+    constructor() : super()
 
     constructor(o: Any) : this() {
         val data = StubApk.Data(o)
