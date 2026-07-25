@@ -41,8 +41,8 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
             fixEdgeEffect()
         }
 
-        val extraBottom = (100 * resources.displayMetrics.density).toInt()
-        binding.settingsList.updatePadding(bottom = extraBottom + 100)
+        val extraBottom = (200 * resources.displayMetrics.density).toInt()
+        binding.settingsList.updatePadding(bottom = extraBottom + 200)
     }
 
     override fun onResume() {
