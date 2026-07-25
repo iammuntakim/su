@@ -16,6 +16,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
+import com.google.android.material.navigation.NavigationBarView
 import su.android.MainDirections
 import su.android.R
 import su.android.arch.BaseViewModel
@@ -118,6 +119,7 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
         }
         binding.mainNavigation.setOnItemReselectedListener {
         }
+        binding.mainNavigation.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
         binding.mainNavigation.menu.apply {
             findItem(R.id.superuserFragment)?.isEnabled = Info.showSuperUser
             findItem(R.id.modulesFragment)?.isEnabled = Info.env.isActive && LocalModule.loaded()
