@@ -43,13 +43,14 @@ class ModuleFragment : BaseFragment<FragmentModuleMd2Binding>() {
             post { addInvalidateItemDecorationsObserver() }
         }
 
+        ViewCompat.requestApplyWindowInsets(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
-            val navBarHeight = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
+            val navBarHeight = insets.getInsets(WindowInsetsCompat.Type.navigationBars() or WindowInsetsCompat.Type.systemBars()).bottom
 
-            binding.moduleList.updatePadding(bottom = navBarHeight + 140)
+            binding.moduleList.updatePadding(bottom = navBarHeight + 160)
             
             binding.fabInstall.updateLayoutParams<androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams> {
-                this.bottomMargin = navBarHeight + 80
+                this.bottomMargin = navBarHeight + 24
             }
 
             insets
