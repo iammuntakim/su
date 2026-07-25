@@ -41,9 +41,9 @@ class ModuleFragment : BaseFragment<FragmentModuleMd2Binding>() {
             post { addInvalidateItemDecorationsObserver() }
         }
 
-        val extraBottom = (120 * resources.displayMetrics.density).toInt()
+        val extraBottom = (100 * resources.displayMetrics.density).toInt()
 
-        binding.moduleList.updatePadding(bottom = extraBottom + 120)
+        binding.moduleList.updatePadding(bottom = extraBottom + 100)
         
         binding.fabInstall.updateLayoutParams<androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams> {
             this.bottomMargin = extraBottom

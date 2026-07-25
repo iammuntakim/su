@@ -35,9 +35,6 @@ import su.android.core.model.module.LocalModule
 import su.android.core.tasks.AppMigration
 import su.android.databinding.ActivityMainMd2Binding
 import su.android.ui.home.HomeFragmentDirections
-import su.android.ui.modules.ModuleFragmentDirections
-import su.android.ui.superuser.SuperuserFragmentDirections
-import su.android.ui.log.LogFragmentDirections
 import su.android.ui.theme.Theme
 import su.android.view.MagiskDialog
 import su.android.view.Shortcuts
@@ -191,9 +188,9 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
             R.id.settingsFragment -> {
                 val currentId = navigation.currentDestination?.id
                 when (currentId) {
-                    R.id.modulesFragment -> ModuleFragmentDirections.actionModuleFragmentToSettingsFragment()
-                    R.id.superuserFragment -> SuperuserFragmentDirections.actionSuperuserFragmentToSettingsFragment()
-                    R.id.logFragment -> LogFragmentDirections.actionLogFragmentToSettingsFragment()
+                    R.id.modulesFragment -> su.android.ui.modules.ModuleFragmentDirections.actionModuleFragmentToSettingsFragment()
+                    R.id.superuserFragment -> su.android.ui.superuser.SuperuserFragmentDirections.actionSuperuserFragmentToSettingsFragment()
+                    R.id.logFragment -> su.android.ui.log.LogFragmentDirections.actionLogFragmentToSettingsFragment()
                     else -> HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
                 }
             }
