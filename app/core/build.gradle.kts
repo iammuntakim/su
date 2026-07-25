@@ -7,7 +7,6 @@ plugins {
 
 setupCoreLib()
 
-
 ksp {
     arg("room.generateKotlin", "true")
 }
@@ -65,6 +64,7 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.collection.ktx)
     implementation(libs.profileinstaller)
+    implementation(libs.material)
 
     compileOnly(libs.test.junit)
     compileOnly(libs.test.uiautomator)
