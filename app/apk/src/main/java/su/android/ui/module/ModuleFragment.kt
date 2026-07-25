@@ -45,12 +45,11 @@ class ModuleFragment : BaseFragment<FragmentModuleMd2Binding>() {
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
             val navBarHeight = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
-            val bottomMargin = resources.getDimensionPixelSize(R.dimen.l2) + navBarHeight
 
-            binding.moduleList.updatePadding(bottom = bottomMargin + 120)
+            binding.moduleList.updatePadding(bottom = navBarHeight + 120)
             
             binding.fabInstall.updateLayoutParams<androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams> {
-                this.bottomMargin = 1280 + navBarHeight
+                this.bottomMargin = navBarHeight + 16
             }
 
             insets
