@@ -43,17 +43,16 @@ class ModuleFragment : BaseFragment<FragmentModuleMd2Binding>() {
             post { addInvalidateItemDecorationsObserver() }
         }
 
-        val fab = view.findViewById<View>(R.id.floatingActionButton) ?: view.findViewById<com.google.android.material.floatingactionbutton.FloatingActionButton>(com.google.android.material.R.id.floatingActionButton)
-        
-        ViewCompat.setOnApplyWindowInsetsListener(view) { _, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
             val navBarHeight = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
             val bottomMargin = resources.getDimensionPixelSize(R.dimen.l2) + navBarHeight
-            
+
             binding.moduleList.updatePadding(bottom = bottomMargin + 120)
             
-            view.findViewById<View>(android.R.id.content)?.let {
+            binding.fabInstall.updateLayoutParams<androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams> {
+                this.bottomMargin = 1280 + navBarHeight
             }
-            
+
             insets
         }
     }
