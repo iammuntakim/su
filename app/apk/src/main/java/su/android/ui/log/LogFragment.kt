@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.HorizontalScrollView
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
+import androidx.core.view.updatePadding
 import su.android.R
 import su.android.arch.BaseFragment
 import su.android.arch.viewModel
@@ -19,7 +20,6 @@ import rikka.recyclerview.addEdgeSpacing
 import rikka.recyclerview.addItemSpacing
 import rikka.recyclerview.fixEdgeEffect
 import su.android.core.R as CoreR
-
 
 class LogFragment : BaseFragment<FragmentLogMd2Binding>(), MenuProvider {
 
@@ -55,17 +55,19 @@ class LogFragment : BaseFragment<FragmentLogMd2Binding>(), MenuProvider {
         }
 
         binding.logFilterSuperuser.logSuperuser.apply {
-            addEdgeSpacing(bottom = R.dimen.l1)
+            addEdgeSpacing(top = R.dimen.l_50, bottom = R.dimen.l_50)
             addItemSpacing(R.dimen.l1, R.dimen.l_50, R.dimen.l1)
             fixEdgeEffect()
         }
+
+        val extraBottom = (120 * resources.displayMetrics.density).toInt()
+        binding.logFilterSuperuser.logSuperuser.updatePadding(bottom = extraBottom + 120)
 
         if (!AccessibilityUtils.isAnimationEnabled(requireContext().contentResolver)) {
             val scrollView = view.findViewById<HorizontalScrollView>(R.id.log_scroll_magisk)
             scrollView.setOverScrollMode(View.OVER_SCROLL_NEVER)
         }
     }
-
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_log_md2, menu)
@@ -83,7 +85,6 @@ class LogFragment : BaseFragment<FragmentLogMd2Binding>(), MenuProvider {
         }
         return super.onOptionsItemSelected(item)
     }
-
 
     override fun onPreBind(binding: FragmentLogMd2Binding) = Unit
 
