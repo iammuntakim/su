@@ -22,11 +22,11 @@
             android:clipToPadding="false"
             android:orientation="vertical"
             android:paddingTop="@dimen/internal_action_bar_size"
+            app:extraBindings="@{viewModel.extraBindings}"
             app:fitsSystemWindowsInsets="top|bottom"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:invisible="@{viewModel.loading}"
             app:items="@{viewModel.items}"
-            app:extraBindings="@{viewModel.extraBindings}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_hide_md2"
             tools:paddingTop="40dp" />
 
@@ -42,12 +42,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
                 android:text="@string/loading"
-                android:textAppearance="@style/AppearanceFoundation.Title"
+                android:textSize="8sp"
                 android:textStyle="bold" />
 
             <ProgressBar
-                style="@style/WidgetFoundation.ProgressBar.Indeterminate"
+                style="@style/Widget.Material3.CircularProgressIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/l1" />
 
         </LinearLayout>

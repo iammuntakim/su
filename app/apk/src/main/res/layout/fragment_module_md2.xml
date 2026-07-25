@@ -41,25 +41,28 @@
                 goneUnless="@{viewModel.loading}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
                 android:text="@string/loading"
-                android:textAppearance="@style/AppearanceFoundation.Title"
+                android:textSize="8sp"
                 android:textStyle="bold" />
 
             <ProgressBar
-                style="@style/WidgetFoundation.ProgressBar.Indeterminate"
+                style="@style/Widget.Material3.CircularProgressIndicator"
                 goneUnless="@{viewModel.loading}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/l1" />
 
             <TextView
                 gone="@{viewModel.loading || viewModel.items.size() != 1 }"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
                 android:text="@string/module_empty"
-                android:textAppearance="@style/AppearanceFoundation.Title"
+                android:textSize="8sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
     </FrameLayout>
-
 
 </layout>
