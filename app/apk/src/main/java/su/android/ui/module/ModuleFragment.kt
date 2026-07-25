@@ -2,8 +2,6 @@ package su.android.ui.module
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import su.android.R
@@ -43,30 +41,12 @@ class ModuleFragment : BaseFragment<FragmentModuleMd2Binding>() {
             post { addInvalidateItemDecorationsObserver() }
         }
 
-        binding.root.apply {
-            if (isAttachedToWindow) {
-                requestApplyInsets()
-            } else {
-                addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
-                    override fun onViewAttachedToWindow(v: View) {
-                        v.removeOnAttachStateChangeListener(this)
-                        v.requestApplyInsets()
-                    }
-                    override fun onViewDetachedFromWindow(v: View) {}
-                })
-            }
-        }
+        val extraBottom = (140 * resources.displayMetrics.density).toInt()
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
-            val navBarHeight = insets.getInsets(WindowInsetsCompat.Type.navigationBars() or WindowInsetsCompat.Type.systemBars()).bottom
-
-            binding.moduleList.updatePadding(bottom = navBarHeight + 160)
-            
-            binding.fabInstall.updateLayoutParams<androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams> {
-                this.bottomMargin = navBarHeight + 24
-            }
-
-            insets
+        binding.moduleList.updatePadding(bottom = extraBottom + 160)
+        
+        binding.fabInstall.updateLayoutParams<androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams> {
+            this.bottomMargin = extraBottom
         }
     }
 
