@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- This is a modified version of AXMLPrinter2(By Google) library. Check out how many changes are made at https://github.com/developer-krushna/AXMLPrinter by (@developer-krushna) -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:height="35dp"
     android:width="35dp"
