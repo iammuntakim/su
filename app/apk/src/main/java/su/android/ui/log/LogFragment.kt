@@ -55,7 +55,7 @@ class LogFragment : BaseFragment<FragmentLogMd2Binding>(), MenuProvider {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return super.onCreateView(inflater, container, savedInstanceState)!!
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
