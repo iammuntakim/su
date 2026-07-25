@@ -36,7 +36,6 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@android:color/transparent"
                 app:layout_scrollFlags="noScroll"
-                app:titleTextAppearance="@style/TextAppearance.Material3.Toolbar.Title"
                 tools:title="Home" />
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -53,8 +52,6 @@
             app:elevation="8dp"
             app:itemActiveIndicatorStyle="@style/Widget.Material3.BottomNavigationView.ActiveIndicator"
             app:itemIconTint="@color/color_menu_tint"
-            app:itemTextAppearanceActive="@style/TextAppearance.Material3.LabelMedium"
-            app:itemTextAppearanceInactive="@style/TextAppearance.Material3.LabelMedium"
             app:itemTextColor="@color/color_menu_tint"
             app:labelVisibilityMode="selected"
             app:fitsSystemWindowsInsets="start|end|bottom"
