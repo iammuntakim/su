@@ -174,7 +174,7 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
         return when (name) {
             Const.Nav.SUPERUSER -> MainDirections.actionSuperuserFragment()
             Const.Nav.MODULES -> MainDirections.actionModuleFragment()
-            Const.Nav.SETTINGS -> HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
+            Const.Nav.SETTINGS -> MainDirections.actionGlobalSettingsFragment()
             else -> null
         }
     }
@@ -185,14 +185,7 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
             R.id.modulesFragment -> MainDirections.actionModuleFragment()
             R.id.superuserFragment -> MainDirections.actionSuperuserFragment()
             R.id.logFragment -> MainDirections.actionLogFragment()
-            R.id.settingsFragment -> {
-                when (navigation.currentDestination?.id) {
-                    R.id.modulesFragment -> su.android.ui.module.ModuleFragmentDirections.actionModuleFragmentToSettingsFragment()
-                    R.id.superuserFragment -> su.android.ui.superuser.SuperuserFragmentDirections.actionSuperuserFragmentToSettingsFragment()
-                    R.id.logFragment -> su.android.ui.log.LogFragmentDirections.actionLogFragmentToSettingsFragment()
-                    else -> HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
-                }
-            }
+            R.id.settingsFragment -> MainDirections.actionGlobalSettingsFragment()
             else -> null
         }
     }
