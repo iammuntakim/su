@@ -37,17 +37,15 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
+        <top.mauix.navigation.BottomNavigation
             android:id="@+id/main_navigation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="64dp"
             android:layout_gravity="bottom|center_horizontal"
-            android:fitsSystemWindows="false"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             app:fitsSystemWindowsInsets="start|end|bottom"
-            app:itemIconTint="@color/color_menu_tint"
-            app:itemRippleColor="?attr/colorPrimary"
-            app:itemTextColor="@color/color_menu_tint"
-            app:labelVisibilityMode="labeled"
             app:menu="@menu/menu_bottom_nav" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
