@@ -42,11 +42,13 @@ open class App : Application {
                 val exceptionType = throwable.javaClass.simpleName
                 val fullError = "$exceptionType\n$stackTraceString"
 
-                val intent = Intent(this, DebugActivity::class.java).apply {
+                val context: Context = AppContext.get() ?: this
+
+                val intent = Intent(context, DebugActivity::class.java).apply {
                     putExtra("error", fullError)
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
                 }
-                startActivity(intent)
+                context.startActivity(intent)
                 exitProcess(1)
             } catch (e: Exception) {
                 defaultHandler?.uncaughtException(thread, throwable)
