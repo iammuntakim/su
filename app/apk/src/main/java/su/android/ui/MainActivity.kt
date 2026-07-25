@@ -35,6 +35,9 @@ import su.android.core.model.module.LocalModule
 import su.android.core.tasks.AppMigration
 import su.android.databinding.ActivityMainMd2Binding
 import su.android.ui.home.HomeFragmentDirections
+import su.android.ui.modules.ModuleFragmentDirections
+import su.android.ui.superuser.SuperuserFragmentDirections
+import su.android.ui.log.LogFragmentDirections
 import su.android.ui.theme.Theme
 import su.android.view.MagiskDialog
 import su.android.view.Shortcuts
@@ -186,16 +189,17 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
             R.id.superuserFragment -> MainDirections.actionSuperuserFragment()
             R.id.logFragment -> MainDirections.actionLogFragment()
             R.id.settingsFragment -> {
-                try {
-                    HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
-                } catch (e: Exception) {
-                    null
+                val currentId = navigation.currentDestination?.id
+                when (currentId) {
+                    R.id.modulesFragment -> ModuleFragmentDirections.actionModuleFragmentToSettingsFragment()
+                    R.id.superuserFragment -> SuperuserFragmentDirections.actionSuperuserFragmentToSettingsFragment()
+                    R.id.logFragment -> LogFragmentDirections.actionLogFragmentToSettingsFragment()
+                    else -> HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
                 }
             }
             else -> null
         }
     }
-
 
     @SuppressLint("InlinedApi")
     override fun showInvalidStateMessage(): Unit = runOnUiThread {
