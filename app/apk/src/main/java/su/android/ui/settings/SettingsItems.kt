@@ -55,12 +55,6 @@ object LanguageSystem : BaseSettingsItem.Blank() {
 object Theme : BaseSettingsItem.Blank() {
     override val icon = R.drawable.ic_paint
     override val title = CoreR.string.section_theme.asText()
-
-    override fun onClick(view: View) {
-        view.context.activity?.let {
-            su.android.ui.theme.ThemeActivity.start(it)
-        }
-    }
 }
 
 object AppSettings : BaseSettingsItem.Section() {
