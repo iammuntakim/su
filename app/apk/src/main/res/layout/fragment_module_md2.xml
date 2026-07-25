@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
-            android:layout_marginBottom="110dp"
+            android:layout_marginBottom="128dp"
             android:onClick="@{() -> viewModel.installPressed()}"
             app:elevation="0dp"
             app:pressedTranslationZ="0dp"
