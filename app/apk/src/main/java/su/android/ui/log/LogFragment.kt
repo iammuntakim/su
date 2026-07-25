@@ -18,6 +18,7 @@ import su.android.utils.MotionRevealHelper
 import rikka.recyclerview.addEdgeSpacing
 import rikka.recyclerview.addItemSpacing
 import rikka.recyclerview.fixEdgeEffect
+import com.google.android.material.circularreveal.cardview.CircularRevealCardView
 import su.android.core.R as CoreR
 
 class LogFragment : BaseFragment<FragmentLogMd2Binding>(), MenuProvider {
@@ -33,7 +34,7 @@ class LogFragment : BaseFragment<FragmentLogMd2Binding>(), MenuProvider {
     private var isMagiskLogVisible
         get() = binding.logFilter.isVisible
         set(value) {
-            MotionRevealHelper.withViews(binding.logFilter, binding.logFilterToggle, value)
+            MotionRevealHelper.withViews<CircularRevealCardView, View>(binding.logFilter, binding.logFilterToggle, value)
             actionSave?.isVisible = !value
             with(activity as MainActivity) {
                 invalidateToolbar()
