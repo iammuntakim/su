@@ -1,10 +1,12 @@
 package su.android.ui.log
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import android.widget.HorizontalScrollView
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
@@ -48,6 +50,14 @@ class LogFragment : BaseFragment<FragmentLogMd2Binding>(), MenuProvider {
         activity?.setTitle(CoreR.string.logs)
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.logFilterToggle.setOnClickListener {
@@ -60,8 +70,8 @@ class LogFragment : BaseFragment<FragmentLogMd2Binding>(), MenuProvider {
             fixEdgeEffect()
         }
 
-        val extraBottom = (120 * resources.displayMetrics.density).toInt()
-        binding.logFilterSuperuser.logSuperuser.updatePadding(bottom = extraBottom + 120)
+        val extraBottom = (100 * resources.displayMetrics.density).toInt()
+        binding.logFilterSuperuser.logSuperuser.updatePadding(bottom = extraBottom + 100)
 
         if (!AccessibilityUtils.isAnimationEnabled(requireContext().contentResolver)) {
             val scrollView = view.findViewById<HorizontalScrollView>(R.id.log_scroll_magisk)

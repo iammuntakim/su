@@ -1,7 +1,9 @@
 package su.android.ui.module
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import su.android.R
@@ -29,6 +31,14 @@ class ModuleFragment : BaseFragment<FragmentModuleMd2Binding>() {
             viewModel.requestInstallLocalModule(it, displayName)
             viewModel.data.value = null
         }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

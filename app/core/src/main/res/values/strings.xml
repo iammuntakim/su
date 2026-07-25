@@ -128,7 +128,6 @@
     <string name="language">Language</string>
     <string name="system_default">(System default)</string>
     <string name="settings_check_update_title">Check for updates</string>
-    <string name="settings_check_update_summary">Periodically check for updates in the background</string>
     <string name="settings_update_channel_title">Update channel</string>
     <string name="settings_update_stable">Stable</string>
     <string name="settings_update_beta">Beta</string>
@@ -137,11 +136,8 @@
     <string name="settings_update_custom_msg">Insert a custom channel URL</string>
     <string name="settings_zygisk_summary">Run parts of SuperSU in the Zygote daemon</string>
     <string name="settings_denylist_title">Enforce DenyList</string>
-    <string name="settings_denylist_summary">Processes on the denylist will have all SuperSU modifications reverted</string>
     <string name="settings_denylist_config_title">Configure DenyList</string>
-    <string name="settings_denylist_config_summary">Select the processes to be included on the denylist</string>
     <string name="settings_hosts_title">Systemless hosts</string>
-    <string name="settings_hosts_summary">Systemless hosts support for ad blocking apps</string>
     <string name="settings_hosts_toast">Added systemless hosts module</string>
     <string name="settings_app_name_hint">New name</string>
     <string name="settings_app_name_helper">App will be repackaged with this name</string>
@@ -161,34 +157,21 @@
     <string name="request_timeout">Request timeout</string>
     <string name="superuser_notification">Superuser notification</string>
     <string name="settings_su_reauth_title">Reauthenticate after upgrade</string>
-    <string name="settings_su_reauth_summary">Ask for Superuser permissions again after upgrading apps</string>
     <string name="settings_su_tapjack_title">Tapjacking protection</string>
-    <string name="settings_su_tapjack_summary">The Superuser prompt dialog won\'t respond to input while obscured by any other window or overlay</string>
     <string name="settings_su_auth_title">User authentication</string>
-    <string name="settings_su_auth_summary">Ask for user authentication during Superuser requests</string>
     <string name="settings_su_auth_insecure">No authentication method is configured on the device</string>
     <string name="settings_su_restrict_title">Restrict root capabilities</string>
-    <string name="settings_su_restrict_summary">Will restrict new Superuser apps by default. Warning: this will break most apps. Don\'t enable it unless you know what you\'re doing.</string>
     <string name="settings_customization">Customization</string>
-    <string name="setting_add_shortcut_summary">Add a pretty shortcut to the home screen in case the name and icon are difficult to recognize after hiding the app</string>
     <string name="settings_doh_title">DNS over HTTPS</string>
-    <string name="settings_doh_description">Workaround DNS poisoning in some nations</string>
     <string name="settings_random_name_title">Randomize output name</string>
-    <string name="settings_random_name_description">Randomize the output file name of patched images and tar files to prevent detection</string>
     <string name="multiuser_mode">Multiuser mode</string>
     <string name="settings_owner_only">Device owner only</string>
     <string name="settings_owner_manage">Device owner managed</string>
     <string name="settings_user_independent">User-independent</string>
-    <string name="owner_only_summary">Only owner has root access</string>
-    <string name="owner_manage_summary">Only owner can manage root access and receive request prompts</string>
-    <string name="user_independent_summary">Each user has their own separate root rules</string>
     <string name="mount_namespace_mode">Mount namespace mode</string>
     <string name="settings_ns_global">Global namespace</string>
     <string name="settings_ns_requester">Inherit namespace</string>
     <string name="settings_ns_isolate">Isolated namespace</string>
-    <string name="global_summary">All root sessions use the global mount namespace</string>
-    <string name="requester_summary">Root sessions will inherit their requester\'s namespace</string>
-    <string name="isolate_summary">Each root session will have its own isolated namespace</string>
 
     <!--Notifications-->
     <string name="update_channel">SuperSU updates</string>

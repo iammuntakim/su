@@ -1,7 +1,10 @@
 package su.android.ui.settings
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.core.view.updatePadding
 import su.android.R
 import su.android.arch.BaseFragment
 import su.android.arch.viewModel
@@ -19,22 +22,34 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
 
     override fun onStart() {
         super.onStart()
-
         activity?.title = resources.getString(CoreR.string.settings)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.settingsList.apply {
-            addEdgeSpacing(bottom = R.dimen.l1)
+            addEdgeSpacing(top = R.dimen.l_50, bottom = R.dimen.l_50)
             addItemSpacing(R.dimen.l1, R.dimen.l_50, R.dimen.l1)
             fixEdgeEffect()
         }
+
+        val extraBottom = (100 * resources.displayMetrics.density).toInt()
+        binding.settingsList.updatePadding(bottom = extraBottom + 100)
     }
 
     override fun onResume() {
         super.onResume()
         viewModel.items.forEach { it.refresh() }
     }
+
+    override fun onPreBind(binding: FragmentSettingsMd2Binding) = Unit
 
 }

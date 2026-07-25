@@ -45,11 +45,6 @@ object Language : BaseSettingsItem.Selector() {
 
 object LanguageSystem : BaseSettingsItem.Blank() {
     override val title = CoreR.string.language.asText()
-    override val description: TextHolder
-        get() {
-            val locale = LocaleSetting.instance.appLocale
-            return locale?.getDisplayName(locale)?.asText() ?: CoreR.string.system_default.asText()
-        }
 }
 
 object Theme : BaseSettingsItem.Blank() {
@@ -63,7 +58,6 @@ object AppSettings : BaseSettingsItem.Section() {
 
 object AddShortcut : BaseSettingsItem.Blank() {
     override val title = CoreR.string.add_shortcut_title.asText()
-    override val description = CoreR.string.setting_add_shortcut_summary.asText()
 }
 
 object DownloadPath : BaseSettingsItem.Input() {
@@ -75,7 +69,6 @@ object DownloadPath : BaseSettingsItem.Input() {
         }
 
     override val title = CoreR.string.settings_download_path_title.asText()
-    override val description get() = MediaStoreUtils.fullPath(value).asText()
 
     override var inputResult: String = value
         set(value) = set(value, field, { field = it }, BR.inputResult, BR.path)
@@ -101,7 +94,6 @@ object UpdateChannel : BaseSettingsItem.Selector() {
 
 object UpdateChannelUrl : BaseSettingsItem.Input() {
     override val title = CoreR.string.settings_update_custom.asText()
-    override val description get() = value.asText()
     override var value
         get() = Config.customChannelUrl
         set(value) {
@@ -123,24 +115,20 @@ object UpdateChannelUrl : BaseSettingsItem.Input() {
 
 object UpdateChecker : BaseSettingsItem.Toggle() {
     override val title = CoreR.string.settings_check_update_title.asText()
-    override val description = CoreR.string.settings_check_update_summary.asText()
     override var value by Config::checkUpdate
 }
 
 object DoHToggle : BaseSettingsItem.Toggle() {
     override val title = CoreR.string.settings_doh_title.asText()
-    override val description = CoreR.string.settings_doh_description.asText()
     override var value by Config::doh
 }
 
 object SystemlessHosts : BaseSettingsItem.Blank() {
     override val title = CoreR.string.settings_hosts_title.asText()
-    override val description = CoreR.string.settings_hosts_summary.asText()
 }
 
 object RandNameToggle : BaseSettingsItem.Toggle() {
     override val title = CoreR.string.settings_random_name_title.asText()
-    override val description = CoreR.string.settings_random_name_description.asText()
     override var value by Config::randName
 }
 
@@ -150,9 +138,6 @@ object Magisk : BaseSettingsItem.Section() {
 
 object Zygisk : BaseSettingsItem.Toggle() {
     override val title = CoreR.string.zygisk.asText()
-    override val description get() =
-        if (mismatch) CoreR.string.reboot_apply_change.asText()
-        else CoreR.string.settings_zygisk_summary.asText()
     override var value
         get() = Config.zygisk
         set(value) {
@@ -164,7 +149,6 @@ object Zygisk : BaseSettingsItem.Toggle() {
 
 object DenyList : BaseSettingsItem.Toggle() {
     override val title = CoreR.string.settings_denylist_title.asText()
-    override val description get() = CoreR.string.settings_denylist_summary.asText()
 
     override var value = Config.denyList
         set(value) {
@@ -183,25 +167,19 @@ object DenyList : BaseSettingsItem.Toggle() {
 
 object DenyListConfig : BaseSettingsItem.Blank() {
     override val title = CoreR.string.settings_denylist_config_title.asText()
-    override val description = CoreR.string.settings_denylist_config_summary.asText()
 }
 
 object Tapjack : BaseSettingsItem.Toggle() {
     override val title = CoreR.string.settings_su_tapjack_title.asText()
-    override val description = CoreR.string.settings_su_tapjack_summary.asText()
     override var value by Config::suTapjack
 }
 
 object Authentication : BaseSettingsItem.Toggle() {
     override val title = CoreR.string.settings_su_auth_title.asText()
-    override var description = CoreR.string.settings_su_auth_summary.asText()
     override var value by Config::suAuth
 
     override fun refresh() {
         isEnabled = Info.isDeviceSecure
-        if (!isEnabled) {
-            description = CoreR.string.settings_su_auth_insecure.asText()
-        }
     }
 }
 
@@ -218,7 +196,6 @@ object AccessMode : BaseSettingsItem.Selector() {
 object MultiuserMode : BaseSettingsItem.Selector() {
     override val title = CoreR.string.multiuser_mode.asText()
     override val entryRes = CoreR.array.multiuser_mode
-    override val descriptionRes = CoreR.array.multiuser_summary
     override var value by Config::suMultiuserMode
 
     override fun refresh() {
@@ -229,7 +206,6 @@ object MultiuserMode : BaseSettingsItem.Selector() {
 object MountNamespaceMode : BaseSettingsItem.Selector() {
     override val title = CoreR.string.mount_namespace_mode.asText()
     override val entryRes = CoreR.array.namespace
-    override val descriptionRes = CoreR.array.namespace_summary
     override var value by Config::suMntNamespaceMode
 }
 
@@ -259,7 +235,6 @@ object SUNotification : BaseSettingsItem.Selector() {
 
 object Reauthenticate : BaseSettingsItem.Toggle() {
     override val title = CoreR.string.settings_su_reauth_title.asText()
-    override val description = CoreR.string.settings_su_reauth_summary.asText()
     override var value by Config::suReAuth
 
     override fun refresh() {
@@ -269,6 +244,5 @@ object Reauthenticate : BaseSettingsItem.Toggle() {
 
 object Restrict : BaseSettingsItem.Toggle() {
     override val title = CoreR.string.settings_su_restrict_title.asText()
-    override val description = CoreR.string.settings_su_restrict_summary.asText()
     override var value by Config::suRestrict
 }

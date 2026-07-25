@@ -1,7 +1,9 @@
 package su.android.ui.superuser
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.updatePadding
 import su.android.R
 import su.android.arch.BaseFragment
@@ -20,6 +22,14 @@ class SuperuserFragment : BaseFragment<FragmentSuperuserMd2Binding>() {
     override fun onStart() {
         super.onStart()
         activity?.title = resources.getString(CoreR.string.superuser)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
