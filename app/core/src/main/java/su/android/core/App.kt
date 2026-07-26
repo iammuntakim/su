@@ -44,7 +44,7 @@ open class App : Application {
 
                 val intent = Intent(this, DebugActivity::class.java).apply {
                     putExtra("error", fullError)
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 }
                 startActivity(intent)
                 exitProcess(1)

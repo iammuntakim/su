@@ -1,19 +1,60 @@
 package su.android.ui.settings
 
 import android.content.Context
+import android.content.res.Resources
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
+import androidx.databinding.Bindable
 import su.android.BR
+import su.android.R
 import su.android.core.Config
 import su.android.core.Const
 import su.android.core.Info
+import su.android.core.ktx.activity
+import su.android.core.utils.LocaleSetting
+import su.android.core.utils.MediaStoreUtils
 import su.android.databinding.DialogSettingsDownloadPathBinding
 import su.android.databinding.DialogSettingsUpdateChannelBinding
 import su.android.databinding.set
+import su.android.utils.TextHolder
 import su.android.utils.asText
+import su.android.view.MagiskDialog
 import com.topjohnwu.superuser.Shell
 import su.android.core.R as CoreR
+
+object Customization : BaseSettingsItem.Section() {
+    override val title = CoreR.string.settings_customization.asText()
+}
+
+object Language : BaseSettingsItem.Selector() {
+    private val names: Array<String> get() = LocaleSetting.available.names
+    private val tags: Array<String> get() = LocaleSetting.available.tags
+
+    override var value
+        get() = tags.indexOf(Config.locale)
+        set(value) {
+            Config.locale = tags[value]
+        }
+
+    override val title = CoreR.string.language.asText()
+
+    override fun entries(res: Resources) = names
+    override fun descriptions(res: Resources) = names
+}
+
+object LanguageSystem : BaseSettingsItem.Blank() {
+    override val title = CoreR.string.language.asText()
+}
+
+object Theme : BaseSettingsItem.Blank() {
+    override val icon = R.drawable.ic_paint
+    override val title = CoreR.string.section_theme.asText()
+}
+
+object AppSettings : BaseSettingsItem.Section() {
+    override val title = CoreR.string.home_app_title.asText()
+}
 
 object AddShortcut : BaseSettingsItem.Blank() {
     override val title = CoreR.string.add_shortcut_title.asText()
@@ -24,27 +65,20 @@ object DownloadPath : BaseSettingsItem.Input() {
         get() = Config.downloadDir
         set(value) {
             Config.downloadDir = value
+            notifyPropertyChanged(BR.description)
         }
 
     override val title = CoreR.string.settings_download_path_title.asText()
 
-    var path: String
-        get() = value
-        set(val_value) {
-            value = val_value
-        }
-
     override var inputResult: String = value
-        get() = value
-        set(value) {
-            field = value
-            this.value = value
-        }
+        set(value) = set(value, field, { field = it }, BR.inputResult, BR.path)
+
+    @get:Bindable
+    val path get() = MediaStoreUtils.fullPath(inputResult)
 
     override fun getView(context: Context) = DialogSettingsDownloadPathBinding
         .inflate(LayoutInflater.from(context)).also { it.data = this }.root
 }
-
 
 object UpdateChannel : BaseSettingsItem.Selector() {
     override var value
@@ -65,12 +99,11 @@ object UpdateChannelUrl : BaseSettingsItem.Input() {
         set(value) {
             Config.customChannelUrl = value
             Info.resetUpdate()
+            notifyPropertyChanged(BR.description)
         }
 
     override var inputResult: String = value
-        set(value) {
-            field = value
-        }
+        set(value) = set(value, field, { field = it }, BR.inputResult)
 
     override fun refresh() {
         isEnabled = UpdateChannel.value == Config.Value.CUSTOM_CHANNEL
@@ -99,12 +132,17 @@ object RandNameToggle : BaseSettingsItem.Toggle() {
     override var value by Config::randName
 }
 
+object Magisk : BaseSettingsItem.Section() {
+    override val title = CoreR.string.magisk.asText()
+}
+
 object Zygisk : BaseSettingsItem.Toggle() {
     override val title = CoreR.string.zygisk.asText()
     override var value
         get() = Config.zygisk
         set(value) {
             Config.zygisk = value
+            notifyPropertyChanged(BR.description)
         }
     val mismatch get() = value != Info.isZygiskEnabled
 }
@@ -143,6 +181,10 @@ object Authentication : BaseSettingsItem.Toggle() {
     override fun refresh() {
         isEnabled = Info.isDeviceSecure
     }
+}
+
+object Superuser : BaseSettingsItem.Section() {
+    override val title = CoreR.string.superuser.asText()
 }
 
 object AccessMode : BaseSettingsItem.Selector() {
@@ -203,11 +245,4 @@ object Reauthenticate : BaseSettingsItem.Toggle() {
 object Restrict : BaseSettingsItem.Toggle() {
     override val title = CoreR.string.settings_su_restrict_title.asText()
     override var value by Config::suRestrict
-}
-
-object Uninstall : BaseSettingsItem.Blank() {
-    override val title = CoreR.string.uninstall.asText()
-    override val onClick: () -> Unit = {
-        UninstallDialog().show() 
-    }
 }
