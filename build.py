@@ -170,15 +170,18 @@ def build_apk(module: str):
 
     os.chdir("app")
     build_type = "Release" if args.release else "Debug"
-    proc = execv(
-        [
-            gradlew,
-            f"{module}:assemble{build_type}",
-            f"-PconfigPath={props}",
-            f"-PabiList={','.join(build_abis.keys())}",
-        ],
-        env=env,
-    )
+    gradle_args = [
+        gradlew,
+        f"{module}:assemble{build_type}",
+        f"-PconfigPath={props}",
+        f"-PabiList={','.join(build_abis.keys())}",
+    ]
+    if args.stacktrace:
+        gradle_args.append("--stacktrace")
+    if args.info:
+        gradle_args.append("--info")
+
+    proc = execv(gradle_args, env=env)
     os.chdir("..")
     if proc.returncode != 0:
         error(f"Build {module} failed!")
@@ -232,7 +235,12 @@ def cleanup():
     ensure_paths()
     header("* Cleaning app")
     os.chdir("app")
-    execv([gradlew, ":clean"], env=find_jdk())
+    gradle_args = [gradlew, ":clean"]
+    if args.stacktrace:
+        gradle_args.append("--stacktrace")
+    if args.info:
+        gradle_args.append("--info")
+    execv(gradle_args, env=find_jdk())
     os.chdir("..")
 
 
@@ -325,6 +333,12 @@ def parse_args():
     )
     parser.add_argument(
         "-v", "--verbose", action="count", default=0, help="verbose output"
+    )
+    parser.add_argument(
+        "--stacktrace", action="store_true", help="print full stack trace"
+    )
+    parser.add_argument(
+        "--info", action="store_true", help="set log level to info"
     )
     parser.add_argument(
         "-c",
