@@ -50,9 +50,9 @@ jobs:
             - name: Task :app:buildApk
               run: |
                   if [ "${{ matrix.build_type }}" = "release" ]; then
-                      python build.py -vr app --stacktrace
+                      python build.py -vr --stacktrace app
                   else
-                      python build.py -v app --stacktrace
+                      python build.py -v --stacktrace app
                   fi
 
             - name: Task :stop:stopGradle
