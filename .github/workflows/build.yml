@@ -9,7 +9,7 @@ on:
 
 jobs:
     build:
-        runs-on: macos-latest
+        runs-on: ubuntu-24.04
 
         permissions:
             contents: write
@@ -27,7 +27,8 @@ jobs:
 
             - name: Task :setup:installDependencies
               run: |
-                  brew install python3 gh
+                  sudo apt-get update
+                  sudo apt-get install -y python3 gh
 
             - name: Task :cache:cacheGradle
               uses: actions/cache@v4
@@ -49,9 +50,9 @@ jobs:
             - name: Task :app:buildApk
               run: |
                   if [ "${{ matrix.build_type }}" = "release" ]; then
-                      python3 build.py -vr app
+                      python build.py -vr app --no-daemon
                   else
-                      python3 build.py -v app
+                      python build.py -v app --no-daemon
                   fi
 
             - name: Task :stop:stopGradle
