@@ -4,6 +4,7 @@ import su.android.dialog.UninstallDialog
 import android.content.Context
 import android.os.Build
 import android.view.LayoutInflater
+import android.view.View
 import su.android.BR
 import su.android.core.Config
 import su.android.core.Const
