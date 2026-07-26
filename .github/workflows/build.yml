@@ -56,9 +56,9 @@ jobs:
             - name: Task :app:buildApk
               run: |
                   if [ "${{ matrix.build_type }}" = "release" ]; then
-                      python build.py -vr app --no-daemon
+                      python build.py -vr app
                   else
-                      python build.py -v app --no-daemon
+                      python build.py -v app
                   fi
 
             - name: Task :stop:stopGradle
