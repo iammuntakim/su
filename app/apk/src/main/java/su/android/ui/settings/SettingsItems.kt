@@ -208,7 +208,7 @@ object Restrict : BaseSettingsItem.Toggle() {
 
 object Uninstall : BaseSettingsItem.Blank() {
     override val title = CoreR.string.uninstall.asText()
-    override fun onClick(context: Context) {
+    override fun onClick(context: Context, view: View) {
         UninstallDialog(context).show()
     }
 }
