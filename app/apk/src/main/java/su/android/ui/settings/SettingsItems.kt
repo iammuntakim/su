@@ -4,12 +4,10 @@ import su.android.dialog.UninstallDialog
 import android.content.Context
 import android.os.Build
 import android.view.LayoutInflater
-import android.view.View
 import su.android.BR
 import su.android.core.Config
 import su.android.core.Const
 import su.android.core.Info
-import su.android.core.ktx.activity
 import su.android.databinding.DialogSettingsDownloadPathBinding
 import su.android.databinding.DialogSettingsUpdateChannelBinding
 import su.android.databinding.set
@@ -18,9 +16,40 @@ import com.topjohnwu.superuser.Shell
 import su.android.core.R as CoreR
 
 
+object Customization : BaseSettingsItem.Category() {
+    override val title = CoreR.string.customization.asText()
+}
+
+object Theme : BaseSettingsItem.Selector() {
+    override val title = CoreR.string.theme.asText()
+    override val entryRes = CoreR.array.theme
+    override var value by Config::theme
+}
+
+object LanguageSystem : BaseSettingsItem.Blank() {
+    override val title = CoreR.string.system_language.asText()
+}
+
+object Language : BaseSettingsItem.Selector() {
+    override val title = CoreR.string.language.asText()
+    override val entryRes = CoreR.array.language
+    override var value by Config::language
+}
+
+object AppSettings : BaseSettingsItem.Category() {
+    override val title = CoreR.string.app_settings.asText()
+}
+
+object Magisk : BaseSettingsItem.Category() {
+    override val title = CoreR.string.magisk.asText()
+}
+
+object Superuser : BaseSettingsItem.Category() {
+    override val title = CoreR.string.superuser.asText()
+}
+
 object AddShortcut : BaseSettingsItem.Blank() {
     override val title = CoreR.string.add_shortcut_title.asText()
-    override fun onClick(context: Context) {}
 }
 
 object DownloadPath : BaseSettingsItem.Input() {
@@ -96,7 +125,6 @@ object DoHToggle : BaseSettingsItem.Toggle() {
 
 object SystemlessHosts : BaseSettingsItem.Blank() {
     override val title = CoreR.string.settings_hosts_title.asText()
-    override fun onClick(context: Context) {}
 }
 
 object RandNameToggle : BaseSettingsItem.Toggle() {
@@ -134,7 +162,6 @@ object DenyList : BaseSettingsItem.Toggle() {
 
 object DenyListConfig : BaseSettingsItem.Blank() {
     override val title = CoreR.string.settings_denylist_config_title.asText()
-    override fun onClick(context: Context) {}
 }
 
 object Tapjack : BaseSettingsItem.Toggle() {
