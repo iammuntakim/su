@@ -6,7 +6,6 @@ import android.content.res.Resources
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
-import androidx.databinding.Bindable
 import su.android.BR
 import su.android.R
 import su.android.core.Config
@@ -38,7 +37,9 @@ object DownloadPath : BaseSettingsItem.Input() {
     override val title = CoreR.string.settings_download_path_title.asText()
 
     override var inputResult: String = value
-        set(value) = set(value, field, { field = it }, BR.inputResult)
+        set(value) {
+            field = value
+        }
 
     override fun getView(context: Context) = DialogSettingsDownloadPathBinding
         .inflate(LayoutInflater.from(context)).also { it.data = this }.root
@@ -66,7 +67,9 @@ object UpdateChannelUrl : BaseSettingsItem.Input() {
         }
 
     override var inputResult: String = value
-        set(value) = set(value, field, { field = it }, BR.inputResult)
+        set(value) {
+            field = value
+        }
 
     override fun refresh() {
         isEnabled = UpdateChannel.value == Config.Value.CUSTOM_CHANNEL
