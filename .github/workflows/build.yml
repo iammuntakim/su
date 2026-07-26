@@ -1,4 +1,4 @@
-name: Build SuperSU
+Name: Build SuperSU
 
 on:
     push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
     build:
-        runs-on: windows-latest
+        runs-on: macos-latest
 
         permissions:
             contents: write
@@ -26,11 +26,8 @@ jobs:
                   fetch-depth: 1
 
             - name: Task :setup:installDependencies
-              shell: pwsh
               run: |
-                  Write-Host "Initializing Windows Build Environment..."
-                  choco install python --version=3.11.2 -y
-                  refreshenv
+                  brew install python3 gh
 
             - name: Task :cache:cacheGradle
               uses: actions/cache@v4
@@ -50,50 +47,15 @@ jobs:
                   cache: gradle
 
             - name: Task :app:buildApk
-              shell: pwsh
               run: |
-                  $ErrorActionPreference = "Continue"
-                  $global:failedSteps = 0
-
-                  Write-Host "SUPERSU WINDOWS BUILD PIPELINE INITIALIZED"
-                  Write-Host "Starting comprehensive build execution..."
-                  
-                  if ("${{ matrix.build_type }}" -eq "release") {
-                      Write-Host "Executing python build.py with release flags and stacktrace..."
-                      python build.py -vr --stacktrace app
-                      if ($LASTEXITCODE -ne 0) {
-                          Write-Error "Build step failed with exit code $LASTEXITCODE"
-                          $global:failedSteps++
-                      }
-                  } else {
-                      Write-Host "Executing python build.py with debug flags and stacktrace..."
-                      python build.py -v --stacktrace app
-                      if ($LASTEXITCODE -ne 0) {
-                          Write-Error "Build step failed with exit code $LASTEXITCODE"
-                          $global:failedSteps++
-                      }
-                  }
-
-                  if ($global:failedSteps -gt 0) {
-                      Write-Host "BUILD PIPELINE ENCOUNTERED ERRORS"
-                      Write-Host "Total Failed Operations: $global:failedSteps"
-                      exit $global:failedSteps
-                  } else {
-                      Write-Host "BUILD PIPELINE COMPLETED SUCCESSFULLY"
-                  }
+                  if [ "${{ matrix.build_type }}" = "release" ]; then
+                      python3 build.py -vr app
+                  else
+                      python3 build.py -v app
+                  fi
 
             - name: Task :stop:stopGradle
-              shell: pwsh
-              run: |
-                  $ErrorActionPreference = "Continue"
-                  Write-Host "Stopping Gradle daemon gracefully..."
-                  if (Test-Path "./app/gradlew.bat") {
-                      ./app/gradlew.bat --stop
-                  } elseif (Test-Path "./gradlew.bat") {
-                      ./gradlew.bat --stop
-                  } else {
-                      Write-Host "Gradle wrapper not found, skipping stop command."
-                  }
+              run: ./app/gradlew --stop
 
             - name: Task :upload:uploadArtifact
               uses: actions/upload-artifact@v4
@@ -102,40 +64,31 @@ jobs:
                   path: out/app-release.apk
 
             - name: Task :publish:writeGithubRelease
-              shell: pwsh
               env:
                   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
-                  $ErrorActionPreference = "Continue"
-                  Write-Host "Starting GitHub release synchronization process..."
-
-                  if ("${{ matrix.build_type }}" -eq "release") {
-                      $tag = "SuperSU"
-                      $file = "out/app-release.apk"
-                  } else {
-                      $tag = "canary_build"
-                      $file = "out/app-debug.apk"
-                  }
-
-                  $commit = git rev-parse --short HEAD
-                  $branch = $env:GITHUB_REF -replace 'refs/heads/', ''
-                  $buildTime = (Get-Date).ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss UTC")
-                  
-                  $body = "SuperSU automated build on Windows environment`n`nBranch: $branch`nCommit: $commit`nBuild type: ${{ matrix.build_type }}`nBuild time: $buildTime`nActor: $($env:GITHUB_ACTOR)`nRepository: $($env:GITHUB_REPOSITORY)"
-
-                  Write-Host "Cleaning up existing remote and local tags..."
-                  gh release delete "$tag" -y 2>&1
-                  git tag -d "$tag" 2>&1
-                  git push origin ":refs/tags/$tag" 2>&1
-
-                  Write-Host "Creating new git tag and GitHub release..."
+                  if [ "${{ matrix.build_type }}" = "release" ]; then
+                      tag="SuperSU"
+                      file="out/app-release.apk"
+                  else
+                      tag="canary_build"
+                      file="out/app-debug.apk"
+                  fi
+                  commit=$(git rev-parse --short HEAD)
+                  branch=${GITHUB_REF#refs/heads/}
+                  build_time=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+                  body=$(printf "SuperSU automated build\n\nBranch: %s\nCommit: %s\nBuild type: %s\nBuild time: %s\nActor: %s\nRepository: %s\n" \
+                      "$branch" \
+                      "$commit" \
+                      "${{ matrix.build_type }}" \
+                      "$build_time" \
+                      "$GITHUB_ACTOR" \
+                      "$GITHUB_REPOSITORY")
+                  gh release delete "$tag" -y || true
+                  git tag -d "$tag" || true
+                  git push origin :refs/tags/$tag || true
                   git tag "$tag"
                   git push origin "$tag"
-                  
-                  gh release create "$tag" "$file" --title "$tag" --notes "$body"
-                  if ($LASTEXITCODE -ne 0) {
-                      Write-Error "Failed to publish GitHub release."
-                      exit 1
-                  } else {
-                      Write-Host "Release published successfully."
-                  }
+                  gh release create "$tag" "$file" \
+                      --title "$tag" \
+                      --notes "$body"
