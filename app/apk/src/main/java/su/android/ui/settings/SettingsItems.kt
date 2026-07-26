@@ -26,9 +26,7 @@ import su.android.core.R as CoreR
 
 object AddShortcut : BaseSettingsItem.Blank() {
     override val title = CoreR.string.add_shortcut_title.asText()
-    override fun onClick(context: Context) {
-        // implementation or super call if needed by base
-    }
+    override fun onClick(context: Context) {}
 }
 
 object DownloadPath : BaseSettingsItem.Input() {
@@ -36,7 +34,6 @@ object DownloadPath : BaseSettingsItem.Input() {
         get() = Config.downloadDir
         set(value) {
             Config.downloadDir = value
-            notifyPropertyChanged(BR.description)
         }
 
     override val title = CoreR.string.settings_download_path_title.asText()
@@ -44,7 +41,6 @@ object DownloadPath : BaseSettingsItem.Input() {
     override var inputResult: String = value
         set(value) = set(value, field, { field = it }, BR.inputResult, BR.path)
 
-    @get:Bindable
     val path get() = MediaStoreUtils.fullPath(inputResult)
 
     override fun getView(context: Context) = DialogSettingsDownloadPathBinding
@@ -70,7 +66,6 @@ object UpdateChannelUrl : BaseSettingsItem.Input() {
         set(value) {
             Config.customChannelUrl = value
             Info.resetUpdate()
-            notifyPropertyChanged(BR.description)
         }
 
     override var inputResult: String = value
@@ -110,7 +105,6 @@ object Zygisk : BaseSettingsItem.Toggle() {
         get() = Config.zygisk
         set(value) {
             Config.zygisk = value
-            notifyPropertyChanged(BR.description)
         }
     val mismatch get() = value != Info.isZygiskEnabled
 }
@@ -213,7 +207,7 @@ object Restrict : BaseSettingsItem.Toggle() {
 }
 
 object Uninstall : BaseSettingsItem.Blank() {
-    override val title = CoreR.string.settings_uninstall_title.asText()
+    override val title = CoreR.string.uninstall.asText()
     override fun onClick(context: Context) {
         context.activity?.let { UninstallDialog(it).show() }
     }
