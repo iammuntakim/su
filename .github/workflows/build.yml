@@ -33,7 +33,7 @@ jobs:
                   echo "org.gradle.configureondemand=true" >> ~/.gradle/gradle.properties
                   echo "org.gradle.caching=true" >> ~/.gradle/gradle.properties
                   echo "org.gradle.workers.max=$(nproc)" >> ~/.gradle/gradle.properties
-                  echo "org.gradle.jvmargs=-Xmx6g -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=10 -XX:+UnlockDiagnosticVMOptions -XX:+UseJVMCICompiler" >> ~/.gradle/gradle.properties
+                  echo "org.gradle.jvmargs=-Xmx12g -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=10 -XX:+UnlockDiagnosticVMOptions -XX:+UseJVMCICompiler" >> ~/.gradle/gradle.properties
                   sudo apt-get update
                   sudo apt-get install -y python3 gh
 

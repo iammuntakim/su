@@ -1,6 +1,5 @@
 package su.android.ui.settings
 
-import su.android.dialog.UninstallDialog
 import android.content.Context
 import android.os.Build
 import android.view.LayoutInflater
@@ -209,7 +208,4 @@ object Restrict : BaseSettingsItem.Toggle() {
 
 object Uninstall : BaseSettingsItem.Blank() {
     override val title = CoreR.string.uninstall.asText()
-    override fun onClick(context: Context) {
-        UninstallDialog(context).show()
-    }
 }
