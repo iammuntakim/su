@@ -37,6 +37,12 @@ object DownloadPath : BaseSettingsItem.Input() {
 
     override val title = CoreR.string.settings_download_path_title.asText()
 
+    var path: String
+        get() = value
+        set(val_value) {
+            value = val_value
+        }
+
     override var inputResult: String = value
         set(value) {
             field = value
@@ -45,6 +51,7 @@ object DownloadPath : BaseSettingsItem.Input() {
     override fun getView(context: Context) = DialogSettingsDownloadPathBinding
         .inflate(LayoutInflater.from(context)).also { it.data = this }.root
 }
+
 
 object UpdateChannel : BaseSettingsItem.Selector() {
     override var value
