@@ -18,7 +18,6 @@ import su.android.core.ktx.toast
 import su.android.core.utils.LocaleSetting
 import su.android.core.utils.RootUtils
 import su.android.databinding.bindExtra
-import su.android.dialog.UninstallDialog
 import su.android.events.AddHomeIconEvent
 import su.android.events.AuthEvent
 import su.android.events.SnackbarEvent
@@ -66,8 +65,6 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
                 list.add(Restrict)
             }
         }
-
-        list.add(Uninstall)
 
         return list
     }
