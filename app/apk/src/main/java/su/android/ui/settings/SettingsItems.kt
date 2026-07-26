@@ -16,38 +16,6 @@ import com.topjohnwu.superuser.Shell
 import su.android.core.R as CoreR
 
 
-object Customization : BaseSettingsItem.Category() {
-    override val title = CoreR.string.customization.asText()
-}
-
-object Theme : BaseSettingsItem.Selector() {
-    override val title = CoreR.string.theme.asText()
-    override val entryRes = CoreR.array.theme
-    override var value by Config::theme
-}
-
-object LanguageSystem : BaseSettingsItem.Blank() {
-    override val title = CoreR.string.system_language.asText()
-}
-
-object Language : BaseSettingsItem.Selector() {
-    override val title = CoreR.string.language.asText()
-    override val entryRes = CoreR.array.language
-    override var value by Config::language
-}
-
-object AppSettings : BaseSettingsItem.Category() {
-    override val title = CoreR.string.app_settings.asText()
-}
-
-object Magisk : BaseSettingsItem.Category() {
-    override val title = CoreR.string.magisk.asText()
-}
-
-object Superuser : BaseSettingsItem.Category() {
-    override val title = CoreR.string.superuser.asText()
-}
-
 object AddShortcut : BaseSettingsItem.Blank() {
     override val title = CoreR.string.add_shortcut_title.asText()
 }

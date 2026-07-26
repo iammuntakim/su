@@ -33,21 +33,16 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
     private fun createItems(): List<BaseSettingsItem> {
         val context = AppContext
 
-        val list = mutableListOf<BaseSettingsItem>(
-            Customization,
-            Theme, if (LocaleSetting.useLocaleManager) LanguageSystem else Language
-        )
+        val list = mutableListOf<BaseSettingsItem>()
         if (isRunningAsStub && ShortcutManagerCompat.isRequestPinShortcutSupported(context))
             list.add(AddShortcut)
 
         list.addAll(listOf(
-            AppSettings,
             UpdateChannel, UpdateChannelUrl, DoHToggle, UpdateChecker, DownloadPath, RandNameToggle
         ))
 
         if (Info.env.isActive) {
             list.addAll(listOf(
-                Magisk,
                 SystemlessHosts
             ))
             if (Const.Version.atLeast_24_0()) {
@@ -57,7 +52,6 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
 
         if (Info.showSuperUser) {
             list.addAll(listOf(
-                Superuser,
                 Tapjack, Authentication, AccessMode, MultiuserMode, MountNamespaceMode,
                 AutomaticResponse, RequestTimeout, SUNotification
             ))
@@ -87,7 +81,6 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
 
     override fun onItemAction(view: View, item: BaseSettingsItem) {
         when (item) {
-            LanguageSystem -> view.activity.startActivity(LocaleSetting.localeSettingsIntent)
             AddShortcut -> AddHomeIconEvent().publish()
             SystemlessHosts -> createHosts()
             DenyListConfig -> SettingsFragmentDirections.actionSettingsFragmentToDenyFragment().navigate()
