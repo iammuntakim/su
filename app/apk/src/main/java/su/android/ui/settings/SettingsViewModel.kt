@@ -38,7 +38,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
     private fun createItems(): List<BaseSettingsItem> {
         val context = AppContext
 
-        val list = mutableListOf(
+        val list = mutableListOf<BaseSettingsItem>(
             Customization,
             Theme, if (LocaleSetting.useLocaleManager) LanguageSystem else Language
         )

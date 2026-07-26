@@ -25,7 +25,7 @@ import su.android.core.R as CoreR
 
 object AddShortcut : BaseSettingsItem.Blank() {
     override val title = CoreR.string.add_shortcut_title.asText()
-    override fun onClick(context: Context) {}
+    override fun onClick(view: View) {}
 }
 
 object DownloadPath : BaseSettingsItem.Input() {
@@ -101,7 +101,7 @@ object DoHToggle : BaseSettingsItem.Toggle() {
 
 object SystemlessHosts : BaseSettingsItem.Blank() {
     override val title = CoreR.string.settings_hosts_title.asText()
-    override fun onClick(context: Context) {}
+    override fun onClick(view: View) {}
 }
 
 object RandNameToggle : BaseSettingsItem.Toggle() {
@@ -139,7 +139,7 @@ object DenyList : BaseSettingsItem.Toggle() {
 
 object DenyListConfig : BaseSettingsItem.Blank() {
     override val title = CoreR.string.settings_denylist_config_title.asText()
-    override fun onClick(context: Context) {}
+    override fun onClick(view: View) {}
 }
 
 object Tapjack : BaseSettingsItem.Toggle() {
@@ -218,7 +218,7 @@ object Restrict : BaseSettingsItem.Toggle() {
 
 object Uninstall : BaseSettingsItem.Blank() {
     override val title = CoreR.string.uninstall.asText()
-    override fun onClick(context: Context) {
-        context.activity?.let { UninstallDialog(it).show() }
+    override fun onClick(view: View) {
+        view.activity?.let { UninstallDialog(it).show() }
     }
 }
