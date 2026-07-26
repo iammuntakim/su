@@ -6,6 +6,7 @@ import android.content.res.Resources
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
+import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import su.android.BR
 import su.android.R
@@ -25,6 +26,9 @@ import su.android.core.R as CoreR
 
 object AddShortcut : BaseSettingsItem.Blank() {
     override val title = CoreR.string.add_shortcut_title.asText()
+    override fun onClick(context: Context) {
+        // implementation or super call if needed by base
+    }
 }
 
 object DownloadPath : BaseSettingsItem.Input() {
@@ -92,6 +96,7 @@ object DoHToggle : BaseSettingsItem.Toggle() {
 
 object SystemlessHosts : BaseSettingsItem.Blank() {
     override val title = CoreR.string.settings_hosts_title.asText()
+    override fun onClick(context: Context) {}
 }
 
 object RandNameToggle : BaseSettingsItem.Toggle() {
@@ -130,6 +135,7 @@ object DenyList : BaseSettingsItem.Toggle() {
 
 object DenyListConfig : BaseSettingsItem.Blank() {
     override val title = CoreR.string.settings_denylist_config_title.asText()
+    override fun onClick(context: Context) {}
 }
 
 object Tapjack : BaseSettingsItem.Toggle() {
@@ -207,8 +213,8 @@ object Restrict : BaseSettingsItem.Toggle() {
 }
 
 object Uninstall : BaseSettingsItem.Blank() {
-    override val title = CoreR.string.uninstall.asText()
+    override val title = CoreR.string.settings_uninstall_title.asText()
     override fun onClick(context: Context) {
-        UninstallDialog().show()
+        context.activity?.let { UninstallDialog(it).show() }
     }
 }
