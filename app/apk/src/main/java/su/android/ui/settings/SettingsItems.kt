@@ -2,30 +2,25 @@ package su.android.ui.settings
 
 import su.android.dialog.UninstallDialog
 import android.content.Context
-import android.content.res.Resources
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import su.android.BR
-import su.android.R
 import su.android.core.Config
 import su.android.core.Const
 import su.android.core.Info
 import su.android.core.ktx.activity
-import su.android.core.utils.MediaStoreUtils
 import su.android.databinding.DialogSettingsDownloadPathBinding
 import su.android.databinding.DialogSettingsUpdateChannelBinding
 import su.android.databinding.set
-import su.android.utils.TextHolder
 import su.android.utils.asText
-import su.android.view.MagiskDialog
 import com.topjohnwu.superuser.Shell
 import su.android.core.R as CoreR
 
 
 object AddShortcut : BaseSettingsItem.Blank() {
     override val title = CoreR.string.add_shortcut_title.asText()
-    override fun onClick(view: View) {}
+    override fun onClick(context: Context) {}
 }
 
 object DownloadPath : BaseSettingsItem.Input() {
@@ -101,7 +96,7 @@ object DoHToggle : BaseSettingsItem.Toggle() {
 
 object SystemlessHosts : BaseSettingsItem.Blank() {
     override val title = CoreR.string.settings_hosts_title.asText()
-    override fun onClick(view: View) {}
+    override fun onClick(context: Context) {}
 }
 
 object RandNameToggle : BaseSettingsItem.Toggle() {
@@ -139,7 +134,7 @@ object DenyList : BaseSettingsItem.Toggle() {
 
 object DenyListConfig : BaseSettingsItem.Blank() {
     override val title = CoreR.string.settings_denylist_config_title.asText()
-    override fun onClick(view: View) {}
+    override fun onClick(context: Context) {}
 }
 
 object Tapjack : BaseSettingsItem.Toggle() {
@@ -218,7 +213,7 @@ object Restrict : BaseSettingsItem.Toggle() {
 
 object Uninstall : BaseSettingsItem.Blank() {
     override val title = CoreR.string.uninstall.asText()
-    override fun onClick(view: View) {
-        view.activity?.let { UninstallDialog(it).show() }
+    override fun onClick(context: Context) {
+        UninstallDialog(context).show()
     }
 }
