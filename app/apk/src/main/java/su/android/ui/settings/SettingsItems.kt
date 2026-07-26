@@ -15,7 +15,6 @@ import su.android.utils.asText
 import com.topjohnwu.superuser.Shell
 import su.android.core.R as CoreR
 
-
 object AddShortcut : BaseSettingsItem.Blank() {
     override val title = CoreR.string.add_shortcut_title.asText()
 }
