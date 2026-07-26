@@ -44,8 +44,10 @@ object DownloadPath : BaseSettingsItem.Input() {
         }
 
     override var inputResult: String = value
+        get() = value
         set(value) {
             field = value
+            this.value = value
         }
 
     override fun getView(context: Context) = DialogSettingsDownloadPathBinding
