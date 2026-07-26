@@ -1,3 +1,5 @@
+package su.android.ui.settings
+
 import su.android.dialog.UninstallDialog
 import android.content.Context
 import android.content.res.Resources
