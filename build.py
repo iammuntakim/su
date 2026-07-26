@@ -175,9 +175,12 @@ def build_apk(module: str):
         f"{module}:assemble{build_type}",
         f"-PconfigPath={props}",
         f"-PabiList={','.join(build_abis.keys())}",
+        "--no-daemon",
+        "--parallel",
+        "--configure-on-demand",
+        f"--max-workers={cpu_count}",
+        "-Dorg.gradle.jvmargs=-Xmx4g -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=20",
     ]
-    if args.stacktrace:
-        gradle_args.append("--stacktrace")
     if args.info:
         gradle_args.append("--info")
 
@@ -235,9 +238,7 @@ def cleanup():
     ensure_paths()
     header("* Cleaning app")
     os.chdir("app")
-    gradle_args = [gradlew, ":clean"]
-    if args.stacktrace:
-        gradle_args.append("--stacktrace")
+    gradle_args = [gradlew, ":clean", "--no-daemon"]
     if args.info:
         gradle_args.append("--info")
     execv(gradle_args, env=find_jdk())
@@ -333,9 +334,6 @@ def parse_args():
     )
     parser.add_argument(
         "-v", "--verbose", action="count", default=0, help="verbose output"
-    )
-    parser.add_argument(
-        "--stacktrace", action="store_true", help="print full stack trace"
     )
     parser.add_argument(
         "--info", action="store_true", help="set log level to info"
