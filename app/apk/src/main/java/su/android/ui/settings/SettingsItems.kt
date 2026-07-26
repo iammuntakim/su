@@ -208,4 +208,7 @@ object Restrict : BaseSettingsItem.Toggle() {
 
 object Uninstall : BaseSettingsItem.Blank() {
     override val title = CoreR.string.uninstall.asText()
+    override val onClick: () -> Unit = {
+        UninstallDialog().show() 
+    }
 }
