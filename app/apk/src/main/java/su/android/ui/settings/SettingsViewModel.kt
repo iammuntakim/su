@@ -89,7 +89,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
             DenyListConfig -> SettingsFragmentDirections.actionSettingsFragmentToDenyFragment().navigate()
             UpdateChannel -> openUrlIfNecessary(view)
             Zygisk -> if (Zygisk.mismatch) SnackbarEvent(R.string.reboot_apply_change).publish()
-            Uninstall -> view.context?.activity?.let { UninstallDialog(it).show() }
+            Uninstall -> UninstallDialog(view.context).show()
             else -> Unit
         }
     }

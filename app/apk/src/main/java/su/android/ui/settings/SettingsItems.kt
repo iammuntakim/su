@@ -208,5 +208,5 @@ object Restrict : BaseSettingsItem.Toggle() {
 }
 
 object Uninstall : BaseSettingsItem.Blank() {
-    override val title = CoreR.string.uninstall.asText()
+    override val title = CoreR.string.uninstall_system.asText()
 }
