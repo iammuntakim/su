@@ -18,6 +18,7 @@ import su.android.core.ktx.toast
 import su.android.core.utils.LocaleSetting
 import su.android.core.utils.RootUtils
 import su.android.databinding.bindExtra
+import su.android.dialog.UninstallDialog
 import su.android.events.AddHomeIconEvent
 import su.android.events.AuthEvent
 import su.android.events.SnackbarEvent
@@ -66,6 +67,8 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
             }
         }
 
+        list.add(Uninstall)
+
         return list
     }
 
@@ -86,6 +89,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
             DenyListConfig -> SettingsFragmentDirections.actionSettingsFragmentToDenyFragment().navigate()
             UpdateChannel -> openUrlIfNecessary(view)
             Zygisk -> if (Zygisk.mismatch) SnackbarEvent(R.string.reboot_apply_change).publish()
+            Uninstall -> view.context?.activity?.let { UninstallDialog(it).show() }
             else -> Unit
         }
     }
