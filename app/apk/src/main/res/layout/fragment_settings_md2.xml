@@ -12,16 +12,15 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?android:attr/colorBackground"
-        android:fitsSystemWindows="true">
+        android:background="?android:attr/colorBackground">
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/settings_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="80dp">
+            android:paddingEnd="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -32,7 +31,7 @@
                     android:id="@+id/search_bar"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/bg_search_bar"
                     android:clickable="true"
@@ -88,8 +87,9 @@
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:layout_marginEnd="16dp"
-                                android:src="@drawable/ic_search_md2"
-                                app:tint="?android:attr/textColorPrimary" />
+                                app:srcCompat="@{viewModel.updateChannel.icon}"
+                                app:tint="?android:attr/textColorPrimary"
+                                tools:src="@drawable/ic_search_md2" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -138,8 +138,9 @@
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:layout_marginEnd="16dp"
-                                android:src="@drawable/ic_search_md2"
-                                app:tint="?android:attr/textColorPrimary" />
+                                app:srcCompat="@{viewModel.downloadPath.icon}"
+                                app:tint="?android:attr/textColorPrimary"
+                                tools:src="@drawable/ic_search_md2" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -193,8 +194,9 @@
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:layout_marginEnd="16dp"
-                            android:src="@drawable/ic_search_md2"
-                            app:tint="?android:attr/textColorPrimary" />
+                            app:srcCompat="@{viewModel.systemlessHosts.icon}"
+                            app:tint="?android:attr/textColorPrimary"
+                            tools:src="@drawable/ic_search_md2" />
 
                         <LinearLayout
                             android:layout_width="0dp"

@@ -34,12 +34,12 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
-        ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.settingsScrollView) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.updatePadding(
                 top = systemBars.top,
-                bottom = systemBars.bottom
+                bottom = systemBars.bottom + (80 * resources.displayMetrics.density).toInt()
             )
             insets
         }
