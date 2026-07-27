@@ -1,13 +1,11 @@
 package su.android.ui.settings
 
-import android.os.Build
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.viewModelScope
 import su.android.arch.BaseViewModel
 import su.android.core.AppContext
 import su.android.core.Config
-import su.android.core.Info
 import su.android.core.R
 import su.android.core.utils.RootUtils
 import su.android.events.AuthEvent
@@ -26,14 +24,25 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
         systemlessHosts.refresh()
     }
 
-    override fun onItemPressed(view: View, item: BaseSettingsItem, doAction: (() -> Unit)?) {
-        val action = doAction ?: { onItemAction(view, item) }
+    fun onUpdateChannelClick(view: View) {
+        onItemPressed(view, updateChannel) { onItemAction(view, updateChannel) }
+    }
+
+    fun onDownloadPathClick(view: View) {
+        onItemPressed(view, downloadPath) { onItemAction(view, downloadPath) }
+    }
+
+    fun onSystemlessHostsClick(view: View) {
+        onItemPressed(view, systemlessHosts) { onItemAction(view, systemlessHosts) }
+    }
+
+    override fun onItemPressed(view: View, item: BaseSettingsItem, doAction: () -> Unit) {
         when (item) {
-            DownloadPath -> withExternalRW(action)
-            UpdateChecker -> withPostNotificationPermission(action)
-            Authentication -> AuthEvent(action).publish()
-            AutomaticResponse -> if (Config.suAuth) AuthEvent(action).publish() else action()
-            else -> action()
+            DownloadPath -> withExternalRW(doAction)
+            UpdateChecker -> withPostNotificationPermission(doAction)
+            Authentication -> AuthEvent(doAction).publish()
+            AutomaticResponse -> if (Config.suAuth) AuthEvent(doAction).publish() else doAction()
+            else -> doAction()
         }
     }
 
