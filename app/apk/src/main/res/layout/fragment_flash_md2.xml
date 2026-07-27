@@ -49,7 +49,6 @@
             android:enabled="@{!viewModel.flashing}"
             android:focusable="true"
             android:onClick="@{() -> viewModel.restartPressed()}"
-            android:text="@string/reboot"
             android:textAllCaps="false"
             android:textColor="?colorOnPrimary"
             android:textSize="8sp"
