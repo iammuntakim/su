@@ -2,6 +2,7 @@ package su.android.ui.settings
 
 import android.os.Build
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.viewModelScope
 import su.android.BR
 import su.android.arch.BaseViewModel
@@ -13,6 +14,7 @@ import su.android.core.R
 import su.android.core.utils.RootUtils
 import su.android.databinding.bindExtra
 import su.android.events.AuthEvent
+import su.android.events.SnackbarEvent
 import kotlinx.coroutines.launch
 
 class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
@@ -67,7 +69,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
         when (item) {
             SystemlessHosts -> createHosts()
             UpdateChannel -> openUrlIfNecessary(view)
-            Zygisk -> if (Zygisk.mismatch) su.android.events.SnackbarEvent(R.string.reboot_apply_change).publish()
+            Zygisk -> if (Zygisk.mismatch) SnackbarEvent(R.string.reboot_apply_change).publish()
             else -> Unit
         }
     }
@@ -82,7 +84,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
     private fun createHosts() {
         viewModelScope.launch {
             RootUtils.addSystemlessHosts()
-            AppContext.toast(R.string.settings_hosts_toast, android.widget.Toast.LENGTH_SHORT)
+            Toast.makeText(AppContext, R.string.settings_hosts_toast, Toast.LENGTH_SHORT).show()
         }
     }
 }
