@@ -51,7 +51,6 @@
             android:onClick="@{() -> viewModel.restartPressed()}"
             android:textAllCaps="false"
             android:textColor="?colorOnPrimary"
-            android:textSize="8sp"
             android:visibility="gone"
             app:backgroundTint="?colorPrimary"
             app:cornerRadius="24dp"

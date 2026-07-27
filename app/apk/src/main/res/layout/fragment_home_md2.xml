@@ -44,7 +44,7 @@
                 android:onClick="@{() -> viewModel.onTestPressed()}"
                 android:text="TEST"
                 android:textAllCaps="false"
-                android:textSize="8sp"
+
                 tools:visibility="gone" />
 
             <com.google.android.material.card.MaterialCardView
@@ -70,7 +70,7 @@
             
                         android:padding="@dimen/l1"
                         android:text="@string/home_notice_content"
-                        android:textSize="8sp"
+        
                         app:layout_constraintEnd_toStartOf="@+id/home_notice_hide"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -84,7 +84,7 @@
                         android:onClick="@{() -> viewModel.hideNotice()}"
                         android:text="@string/hide"
                         android:textAllCaps="false"
-                        android:textSize="8sp"
+        
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -135,8 +135,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/l1"
                         android:layout_marginEnd="@dimen/l1"
-                        android:text="@string/home_follow_title"
-                        android:textSize="8sp" />
+                        android:text="@string/home_follow_title" />
 
                     <include
                         item="@{DeveloperItem.MIKAILAMIN.INSTANCE}"

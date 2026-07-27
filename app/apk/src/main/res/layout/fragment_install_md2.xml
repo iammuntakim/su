@@ -64,10 +64,8 @@
                             android:layout_height="match_parent"
                             android:layout_marginStart="@dimen/l1"
                             android:layout_weight="1"
-                
                             android:gravity="center_vertical"
                             android:text="@string/install_options_title"
-                            android:textSize="8sp"
                             android:textStyle="bold" />
 
                         <Button
@@ -75,10 +73,9 @@
                             gone="@{viewModel.step != 0}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                
                             android:onClick="@{() -> viewModel.setStep(1)}"
                             android:text="@string/install_next"
-                            android:textSize="8sp" />
+                             />
 
                     </LinearLayout>
 
@@ -101,9 +98,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:checked="@={Config.keepVerity}"
-                
-                            android:text="@string/keep_dm_verity"
-                            android:textSize="8sp"
+                            android:text="@string/keep_dm_verity"  
                             tools:checked="true" />
 
                         <CheckBox
@@ -112,9 +107,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:checked="@={Config.keepEnc}"
-                
                             android:text="@string/keep_force_encryption"
-                            android:textSize="8sp"
                             app:tint="?colorPrimary" />
 
                         <CheckBox
@@ -123,9 +116,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:checked="@={Config.recovery}"
-                
                             android:text="@string/recovery_mode"
-                            android:textSize="8sp"
                             app:tint="?colorPrimary" />
 
                     </LinearLayout>
@@ -166,10 +157,8 @@
                             android:layout_height="match_parent"
                             android:layout_marginStart="@dimen/l1"
                             android:layout_weight="1"
-                
                             android:gravity="center_vertical"
                             android:text="@string/install_method_title"
-                            android:textSize="8sp"
                             android:textStyle="bold" />
 
                         <Button
@@ -178,10 +167,8 @@
                             isEnabled="@{viewModel.method == @id/method_patch ? viewModel.data != null : viewModel.method != -1}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                
                             android:onClick="@{() -> viewModel.install()}"
-                            android:text="@string/install_start"
-                            android:textSize="8sp"
+                            android:text="@string/install_start"    
                             app:icon="@drawable/ic_forth_md2"
                             app:iconGravity="textEnd" />
 
@@ -204,9 +191,8 @@
                             style="@style/Widget.Material3.CompoundButton.RadioButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                
                             android:text="@string/select_patch_file"
-                            android:textSize="8sp" />
+                             />
 
                         <RadioButton
                             android:id="@+id/method_direct"
@@ -214,9 +200,8 @@
                             gone="@{!viewModel.rooted}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                
                             android:text="@string/direct_install"
-                            android:textSize="8sp" />
+                             />
 
                         <RadioButton
                             android:id="@+id/method_inactive_slot"
@@ -224,9 +209,8 @@
                             gone="@{viewModel.noSecondSlot}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                
                             android:text="@string/install_inactive_slot"
-                            android:textSize="8sp" />
+                             />
 
                     </RadioGroup>
 
@@ -254,7 +238,6 @@
                     android:layout_margin="15dp"
                     android:breakStrategy="simple"
                     android:hyphenationFrequency="none"
-                    android:textSize="8sp"
                     tools:ignore="UnusedAttribute"
                     tools:maxLines="5"
                     tools:text="@tools:sample/lorem/random"
