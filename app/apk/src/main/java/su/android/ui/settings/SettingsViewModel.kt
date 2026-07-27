@@ -1,68 +1,41 @@
 package su.android.ui.settings
 
-import android.app.Activity
-import android.content.Intent
-import android.net.Uri
 import android.os.Build
-import android.provider.Settings
 import android.view.View
-import android.widget.Toast
-import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.lifecycle.viewModelScope
 import su.android.BR
 import su.android.arch.BaseViewModel
 import su.android.core.AppContext
-import su.android.core.BuildConfig
 import su.android.core.Config
 import su.android.core.Const
 import su.android.core.Info
 import su.android.core.R
-import su.android.core.isRunningAsStub
-import su.android.core.ktx.activity
-import su.android.core.ktx.toast
-import su.android.core.utils.LocaleSetting
 import su.android.core.utils.RootUtils
 import su.android.databinding.bindExtra
-import su.android.events.AddHomeIconEvent
 import su.android.events.AuthEvent
-import su.android.events.SnackbarEvent
 import kotlinx.coroutines.launch
 
 class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
 
-    val items = createItems()
+    val items: List<BaseSettingsItem> = createItems()
     val extraBindings = bindExtra {
         it.put(BR.handler, this)
     }
 
     private fun createItems(): List<BaseSettingsItem> {
-        val context = AppContext
-
-        val list = mutableListOf(
-            Customization,
-            Theme, if (LocaleSetting.useLocaleManager) LanguageSystem else Language
-        )
-        if (isRunningAsStub && ShortcutManagerCompat.isRequestPinShortcutSupported(context))
-            list.add(AddShortcut)
-
-        list.addAll(listOf(
-            AppSettings,
+        val list = mutableListOf<BaseSettingsItem>(
             UpdateChannel, UpdateChannelUrl, DoHToggle, UpdateChecker, DownloadPath, RandNameToggle
-        ))
+        )
 
         if (Info.env.isActive) {
-            list.addAll(listOf(
-                Magisk,
-                SystemlessHosts
-            ))
+            list.addAll(listOf(SystemlessHosts))
             if (Const.Version.atLeast_24_0()) {
-                list.addAll(listOf(Zygisk, DenyList, DenyListConfig))
+                list.add(Zygisk)
             }
         }
 
         if (Info.showSuperUser) {
             list.addAll(listOf(
-                Superuser,
                 Tapjack, Authentication, AccessMode, MultiuserMode, MountNamespaceMode,
                 AutomaticResponse, RequestTimeout, SUNotification
             ))
@@ -92,12 +65,9 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
 
     override fun onItemAction(view: View, item: BaseSettingsItem) {
         when (item) {
-            LanguageSystem -> view.activity.startActivity(LocaleSetting.localeSettingsIntent)
-            AddShortcut -> AddHomeIconEvent().publish()
             SystemlessHosts -> createHosts()
-            DenyListConfig -> SettingsFragmentDirections.actionSettingsFragmentToDenyFragment().navigate()
             UpdateChannel -> openUrlIfNecessary(view)
-            Zygisk -> if (Zygisk.mismatch) SnackbarEvent(R.string.reboot_apply_change).publish()
+            Zygisk -> if (Zygisk.mismatch) su.android.events.SnackbarEvent(R.string.reboot_apply_change).publish()
             else -> Unit
         }
     }
@@ -112,7 +82,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
     private fun createHosts() {
         viewModelScope.launch {
             RootUtils.addSystemlessHosts()
-            AppContext.toast(R.string.settings_hosts_toast, Toast.LENGTH_SHORT)
+            AppContext.toast(R.string.settings_hosts_toast, android.widget.Toast.LENGTH_SHORT)
         }
     }
 }

@@ -51,5 +51,4 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
     }
 
     override fun onPreBind(binding: FragmentSettingsMd2Binding) = Unit
-
 }
