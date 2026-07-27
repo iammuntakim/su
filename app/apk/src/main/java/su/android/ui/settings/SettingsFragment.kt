@@ -36,10 +36,12 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
         super.onViewCreated(view, savedInstanceState)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.rootContainer) { _, insets ->
-            val navBarBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            binding.rootContainer.updatePadding(
+                top = bars.top
+            )
             binding.settingsScrollView.updatePadding(
-                top = navBarBars.top,
-                bottom = navBarBars.bottom + (16 * resources.displayMetrics.density).toInt()
+                bottom = bars.bottom
             )
             insets
         }
