@@ -35,11 +35,11 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.settingsScrollView) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.updatePadding(
-                top = systemBars.top,
-                bottom = systemBars.bottom + (80 * resources.displayMetrics.density).toInt()
+        ViewCompat.setOnApplyWindowInsetsListener(binding.rootContainer) { _, insets ->
+            val navBarBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            binding.settingsScrollView.updatePadding(
+                top = navBarBars.top,
+                bottom = navBarBars.bottom + (16 * resources.displayMetrics.density).toInt()
             )
             insets
         }
