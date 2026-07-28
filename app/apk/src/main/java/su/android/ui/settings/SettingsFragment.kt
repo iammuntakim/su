@@ -4,14 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
+import rikka.recyclerview.addEdgeSpacing
+import rikka.recyclerview.addItemSpacing
+import rikka.recyclerview.fixEdgeEffect
 import su.android.R
 import su.android.arch.BaseFragment
 import su.android.arch.viewModel
 import su.android.databinding.FragmentSettingsMd2Binding
-import rikka.recyclerview.addEdgeSpacing
-import rikka.recyclerview.addItemSpacing
-import rikka.recyclerview.fixEdgeEffect
 import su.android.core.R as CoreR
 
 class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
@@ -41,8 +43,12 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
             fixEdgeEffect()
         }
 
-        val extraBottom = (100 * resources.displayMetrics.density).toInt()
-        binding.settingsList.updatePadding(bottom = extraBottom + 100)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.settingsList) { v, insets ->
+            val navBars = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
+            val extraBottom = (100 * resources.displayMetrics.density).toInt()
+            v.updatePadding(bottom = extraBottom + navBars.bottom)
+            insets
+        }
     }
 
     override fun onResume() {
@@ -51,5 +57,4 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
     }
 
     override fun onPreBind(binding: FragmentSettingsMd2Binding) = Unit
-
 }

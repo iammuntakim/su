@@ -1,25 +1,18 @@
 package su.android.ui.settings
 
 import android.content.Context
-import android.content.res.Resources
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.Bindable
 import su.android.BR
-import su.android.R
 import su.android.core.Config
 import su.android.core.Const
 import su.android.core.Info
-import su.android.core.ktx.activity
-import su.android.core.utils.LocaleSetting
 import su.android.core.utils.MediaStoreUtils
 import su.android.databinding.DialogSettingsDownloadPathBinding
-import su.android.databinding.DialogSettingsUpdateChannelBinding
 import su.android.databinding.set
-import su.android.utils.TextHolder
 import su.android.utils.asText
-import su.android.view.MagiskDialog
 import com.topjohnwu.superuser.Shell
 import su.android.core.R as CoreR
 
@@ -42,30 +35,6 @@ object DownloadPath : BaseSettingsItem.Input() {
 
     override fun getView(context: Context) = DialogSettingsDownloadPathBinding
         .inflate(LayoutInflater.from(context)).also { it.data = this }.root
-}
-
-object UpdateChannelUrl : BaseSettingsItem.Input() {
-    override val title = CoreR.string.settings_update_custom.asText()
-    override val description get() = value.asText()
-    override var value
-        get() = Config.customChannelUrl
-        set(value) {
-            Config.customChannelUrl = value
-            Info.resetUpdate()
-            notifyPropertyChanged(BR.description)
-        }
-
-    override var inputResult: String = value
-        set(value) = set(value, field, { field = it }, BR.inputResult)
-
-    override fun getView(context: Context) = DialogSettingsUpdateChannelBinding
-        .inflate(LayoutInflater.from(context)).also { it.data = this }.root
-}
-
-object UpdateChecker : BaseSettingsItem.Toggle() {
-    override val title = CoreR.string.settings_check_update_title.asText()
-    override val description = CoreR.string.settings_check_update_summary.asText()
-    override var value by Config::checkUpdate
 }
 
 object DoHToggle : BaseSettingsItem.Toggle() {
