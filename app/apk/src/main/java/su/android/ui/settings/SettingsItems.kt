@@ -15,6 +15,13 @@ import su.android.utils.asText
 import com.topjohnwu.superuser.Shell
 import su.android.core.R as CoreR
 
+sealed class SettingsGroupItem : BaseSettingsItem() {
+    data class CardGroup(
+        val categoryTitle: CharSequence? = null,
+        val children: List<BaseSettingsItem>
+    ) : SettingsGroupItem()
+}
+
 object DownloadPath : BaseSettingsItem.Input() {
     override var value
         get() = Config.downloadDir

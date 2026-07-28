@@ -27,40 +27,39 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
     }
 
     private fun createItems(): List<BaseSettingsItem> {
-        val list = mutableListOf<BaseSettingsItem>()
+        val resultList = mutableListOf<BaseSettingsItem>()
 
-        list.addAll(listOf(
-            DoHToggle, DownloadPath
-        ))
+        val generalList = mutableListOf<BaseSettingsItem>(DoHToggle, DownloadPath)
+        resultList.add(SettingsGroupItem.CardGroup(children = generalList))
 
         if (Info.env.isActive) {
-            list.addAll(listOf(
-                SystemlessHosts
-            ))
+            val magiskList = mutableListOf<BaseSettingsItem>(SystemlessHosts)
             if (Const.Version.atLeast_24_0()) {
-                list.addAll(listOf(Zygisk, DenyList, DenyListConfig))
+                magiskList.addAll(listOf(Zygisk, DenyList, DenyListConfig))
             }
+            resultList.add(SettingsGroupItem.CardGroup(children = magiskList))
         }
 
         if (Info.showSuperUser) {
-            list.addAll(listOf(
+            val suList = mutableListOf<BaseSettingsItem>(
                 Tapjack, Authentication, AccessMode, MultiuserMode, MountNamespaceMode,
                 AutomaticResponse, RequestTimeout, SUNotification
-            ))
+            )
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-                list.add(Reauthenticate)
+                suList.add(Reauthenticate)
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                list.remove(Tapjack)
+                suList.remove(Tapjack)
             }
             if (Const.Version.atLeast_30_1()) {
-                list.add(Restrict)
+                suList.add(Restrict)
             }
+            resultList.add(SettingsGroupItem.CardGroup(children = suList))
         }
 
-        list.add(Uninstall)
+        resultList.add(SettingsGroupItem.CardGroup(children = listOf(Uninstall)))
 
-        return list
+        return resultList
     }
 
     fun onDeletePressed() = UninstallDialog().show()
