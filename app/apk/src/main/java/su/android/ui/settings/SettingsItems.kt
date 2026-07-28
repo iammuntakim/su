@@ -12,6 +12,7 @@ import su.android.core.Info
 import su.android.core.utils.MediaStoreUtils
 import su.android.databinding.DialogSettingsDownloadPathBinding
 import su.android.databinding.set
+import su.android.dialog.UninstallDialog
 import su.android.utils.asText
 import com.topjohnwu.superuser.Shell
 import su.android.core.R as CoreR
@@ -165,4 +166,11 @@ object Restrict : BaseSettingsItem.Toggle() {
     override val title = CoreR.string.settings_su_restrict_title.asText()
     override val description = CoreR.string.settings_su_restrict_summary.asText()
     override var value by Config::suRestrict
+}
+
+object Uninstall : BaseSettingsItem.Button() {
+    override val title = CoreR.string.uninstall.asText()
+    override val description = CoreR.string.uninstall_summary.asText()
+
+    fun onDeletePressed() = UninstallDialog().show()
 }
