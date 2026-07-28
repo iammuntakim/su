@@ -74,7 +74,7 @@ object DenyList : BaseSettingsItem.Toggle() {
                 if (result.isSuccess) {
                     Config.denyList = v
                 }
-                notifyPropertyChanged(BR.value)
+                notifyPropertyChanged(BR.checked)
             }
         }
 }
