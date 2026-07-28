@@ -68,11 +68,11 @@ object DenyList : BaseSettingsItem.Toggle() {
 
     override var value: Boolean
         get() = Config.denyList
-        set(value) {
-            val cmd = if (value) "enable" else "disable"
+        set(v) {
+            val cmd = if (v) "enable" else "disable"
             Shell.cmd("magisk --denylist $cmd").submit { result ->
                 if (result.isSuccess) {
-                    Config.denyList = value
+                    Config.denyList = v
                 }
                 notifyPropertyChanged(BR.value)
             }

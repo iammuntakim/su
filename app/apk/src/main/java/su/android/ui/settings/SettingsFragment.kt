@@ -46,12 +46,12 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
             val statusBars = insets.getInsets(WindowInsetsCompat.Type.statusBars())
             val navBars = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
-            
-            binding.appBar?.updatePadding(top = statusBars.top)
-            
+
+            binding.toolbar?.updatePadding(top = statusBars.top)
+
             val extraBottom = (100 * resources.displayMetrics.density).toInt()
             binding.settingsList.updatePadding(bottom = extraBottom + navBars.bottom)
-            
+
             insets
         }
     }
