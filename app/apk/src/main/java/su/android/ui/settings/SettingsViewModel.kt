@@ -1,4 +1,4 @@
-Package su.android.ui.settings
+package su.android.ui.settings
 
 import android.app.Activity
 import android.content.Intent

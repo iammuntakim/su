@@ -1,4 +1,4 @@
-Package su.android.ui.settings
+package su.android.ui.settings
 
 import android.content.Context
 import android.content.res.Resources
