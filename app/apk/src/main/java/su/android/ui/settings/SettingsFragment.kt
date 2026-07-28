@@ -54,7 +54,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
                 TypedValue.complexToDimensionPixelSize(tv.data, resources.displayMetrics)
             } else 0
 
-            val extraBottom = (50 * resources.displayMetrics.density).toInt()
+            val extraBottom = (120 * resources.displayMetrics.density).toInt()
 
             v.updatePadding(
                 top = systemBars.top + actionBarSize,
