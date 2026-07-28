@@ -25,12 +25,11 @@ import su.android.core.utils.RootUtils
 import su.android.databinding.bindExtra
 import su.android.events.AddHomeIconEvent
 import su.android.events.AuthEvent
-import su.android.events.Event
 import su.android.events.SnackbarEvent
+import su.android.events.ViewEvent
 import kotlinx.coroutines.launch
-import su.android.ui.base.Event
 
-class DenyListEvent : Event()
+class DenyListEvent : ViewEvent()
 
 class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
 
