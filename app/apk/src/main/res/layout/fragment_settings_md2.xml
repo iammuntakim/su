@@ -12,30 +12,26 @@
     </data>
 
     <FrameLayout
+        android:id="@+id/root_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            app:items="@{viewModel.items}"
-            app:extraBindings="@{viewModel.extraBindings}"
             android:id="@+id/settings_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:focusableInTouchMode="false"
             android:clipToPadding="false"
+            android:focusableInTouchMode="false"
             android:orientation="vertical"
-            android:paddingTop="@dimen/internal_action_bar_size"
-            app:fitsSystemWindowsInsets="top|bottom"
+            app:extraBindings="@{viewModel.extraBindings}"
+            app:items="@{viewModel.items}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:layout_marginTop="24dp"
-            tools:listitem="@layout/item_settings"
-            tools:paddingTop="@dimen/l1" />
+            tools:listitem="@layout/item_settings" />
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/snackbar_container"
-            app:fitsSystemWindowsInsets="top|bottom"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </FrameLayout>
 
 </layout>
