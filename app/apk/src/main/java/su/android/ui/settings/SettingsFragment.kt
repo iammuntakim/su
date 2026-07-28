@@ -1,6 +1,7 @@
 package su.android.ui.settings
 
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,7 +48,12 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.settingsList) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            val actionBarSize = resources.getDimensionPixelSize(CoreR.dimen.internal_action_bar_size)
+            
+            val tv = TypedValue()
+            val actionBarSize = if (requireContext().theme.resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+                TypedValue.complexToDimensionPixelSize(tv.data, resources.displayMetrics)
+            } else 0
+
             val extraBottom = (50 * resources.displayMetrics.density).toInt()
 
             v.updatePadding(
