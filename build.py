@@ -179,10 +179,11 @@ def build_apk(module: str):
         "--parallel",
         "--configure-on-demand",
         f"--max-workers={cpu_count}",
-        "-Dorg.gradle.jvmargs=-Xmx4g -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=20",
+        "-Dorg.gradle.jvmargs=-Xmx16g -XX:MaxMetaspaceSize=2g -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=20",
+        "--info",
     ]
-    if args.info:
-        gradle_args.append("--info")
+    if args.stacktrace:
+        gradle_args.append("--stacktrace")
 
     proc = execv(gradle_args, env=env)
     os.chdir("..")
@@ -238,9 +239,9 @@ def cleanup():
     ensure_paths()
     header("* Cleaning app")
     os.chdir("app")
-    gradle_args = [gradlew, ":clean", "--no-daemon"]
-    if args.info:
-        gradle_args.append("--info")
+    gradle_args = [gradlew, ":clean", "--no-daemon", "--info"]
+    if args.stacktrace:
+        gradle_args.append("--stacktrace")
     execv(gradle_args, env=find_jdk())
     os.chdir("..")
 
@@ -336,7 +337,13 @@ def parse_args():
         "-v", "--verbose", action="count", default=0, help="verbose output"
     )
     parser.add_argument(
-        "--info", action="store_true", help="set log level to info"
+        "--info", action="store_true", help="set log level to info (always enabled)"
+    )
+    parser.add_argument(
+        "--stacktrace",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="toggle Gradle stacktrace output (default: enabled)",
     )
     parser.add_argument(
         "-c",

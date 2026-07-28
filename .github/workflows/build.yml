@@ -1,4 +1,4 @@
-name: Build SuperSU
+Name: Build SuperSU
 
 on:
     push:
@@ -27,13 +27,6 @@ jobs:
 
             - name: Task :setup:installDependencies
               run: |
-                  mkdir -p ~/.gradle
-                  echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
-                  echo "org.gradle.parallel=true" >> ~/.gradle/gradle.properties
-                  echo "org.gradle.configureondemand=true" >> ~/.gradle/gradle.properties
-                  echo "org.gradle.caching=true" >> ~/.gradle/gradle.properties
-                  echo "org.gradle.workers.max=$(nproc)" >> ~/.gradle/gradle.properties
-                  echo "org.gradle.jvmargs=-Xmx12g -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=10 -XX:+UnlockDiagnosticVMOptions -XX:+UseJVMCICompiler" >> ~/.gradle/gradle.properties
                   sudo apt-get update
                   sudo apt-get install -y python3 gh
 
