@@ -17,6 +17,7 @@ import su.android.databinding.FragmentSettingsMd2Binding
 import su.android.databinding.ItemSettingsBinding
 import su.android.core.R as CoreR
 
+
 class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
 
     override val layoutRes = R.layout.fragment_settings_md2
