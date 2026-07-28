@@ -65,7 +65,7 @@ object Zygisk : BaseSettingsItem.Toggle() {
 
 object DenyList : BaseSettingsItem.Toggle() {
     override val title = CoreR.string.settings_denylist_title.asText()
-    override val description get() = CoreR.string.settings_denylist_summary.asText()
+    override val description = CoreR.string.settings_denylist_summary.asText()
 
     override var value: Boolean
         get() = Config.denyList
@@ -173,8 +173,9 @@ object Uninstall : BaseSettingsItem.Blank() {
     override val description = CoreR.string.uninstall_summary.asText()
 
     fun onDeletePressed(context: Context) {
-        (context as? FragmentActivity)?.supportFragmentManager?.let {
-            UninstallDialog().show(it, null)
+        val activity = context as? FragmentActivity
+        if (activity != null) {
+            UninstallDialog().show(activity.supportFragmentManager, "uninstall")
         }
     }
 }
