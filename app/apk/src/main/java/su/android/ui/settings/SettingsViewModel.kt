@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import su.android.BR
 import su.android.arch.BaseViewModel
 import su.android.core.AppContext
+import su.android.core.Config
 import su.android.core.Const
 import su.android.core.Info
 import su.android.core.R
