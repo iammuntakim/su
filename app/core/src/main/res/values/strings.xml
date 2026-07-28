@@ -119,18 +119,41 @@
     <string name="settings_download_path_message">Files will be saved to %1$s</string>
     <string name="language">Language</string>
     <string name="system_default">(System default)</string>
+
+    <string name="settings_hide_app_title">Hide the SuperSU app</string>
+    <string name="settings_hide_app_summary">Hide the app with a random package name</string>
+    <string name="settings_restore_app_title">Restore the SuperSU app</string>
+    <string name="settings_restore_app_summary">Restore the app to its original state</string>
+    <string name="setting_add_shortcut_summary">Add a shortcut of the app to the home screen</string>
+
     <string name="settings_check_update_title">Check for updates</string>
+    <string name="settings_check_update_summary">Automatically check for updates</string>
+
     <string name="settings_update_channel_title">Update channel</string>
     <string name="settings_update_stable">Stable</string>
     <string name="settings_update_beta">Beta</string>
     <string name="settings_update_debug">Debug</string>
     <string name="settings_update_custom">Custom</string>
     <string name="settings_update_custom_msg">Insert a custom channel URL</string>
-    <string name="settings_zygisk_summary">Run parts of SuperSU in the Zygote daemon</string>
-    <string name="settings_denylist_title">Enforce DenyList</string>
-    <string name="settings_denylist_config_title">Configure DenyList</string>
+
+    <string name="settings_doh_title">DNS over HTTPS</string>
+    <string name="settings_doh_description">Resolve domain names securely over HTTPS</string>
+
     <string name="settings_hosts_title">Systemless hosts</string>
+    <string name="settings_hosts_summary">Add systemless hosts module for ad-blocking apps</string>
     <string name="settings_hosts_toast">Added systemless hosts module</string>
+
+    <string name="settings_random_name_title">Randomize output name</string>
+    <string name="settings_random_name_description">Randomize APK output file names</string>
+
+    <string name="zygisk">Zygisk</string>
+    <string name="settings_zygisk_summary">Run parts of SuperSU in the Zygote daemon</string>
+
+    <string name="settings_denylist_title">Enforce DenyList</string>
+    <string name="settings_denylist_summary">Enforce DenyList to revoke root permissions for designated apps</string>
+    <string name="settings_denylist_config_title">Configure DenyList</string>
+    <string name="settings_denylist_config_summary">Configure apps and processes in the DenyList</string>
+
     <string name="settings_app_name_hint">New name</string>
     <string name="settings_app_name_helper">App will be repackaged with this name</string>
     <string name="settings_app_name_error">Invalid format</string>
@@ -148,14 +171,21 @@
     <string name="auto_response">Automatic response</string>
     <string name="request_timeout">Request timeout</string>
     <string name="superuser_notification">Superuser notification</string>
+
     <string name="settings_su_reauth_title">Reauthenticate after upgrade</string>
+    <string name="settings_su_reauth_summary">Reauthenticate Superuser access when an app is upgraded</string>
+
     <string name="settings_su_tapjack_title">Tapjacking protection</string>
+    <string name="settings_su_tapjack_summary">Block Superuser dialog when touches are obscured</string>
+
     <string name="settings_su_auth_title">User authentication</string>
+    <string name="settings_su_auth_summary">Require user authentication for Superuser requests</string>
     <string name="settings_su_auth_insecure">No authentication method is configured on the device</string>
+
     <string name="settings_su_restrict_title">Restrict root capabilities</string>
+    <string name="settings_su_restrict_summary">Restrict root processes capabilities</string>
+
     <string name="settings_customization">Customization</string>
-    <string name="settings_doh_title">DNS over HTTPS</string>
-    <string name="settings_random_name_title">Randomize output name</string>
     <string name="multiuser_mode">Multiuser mode</string>
     <string name="settings_owner_only">Device owner only</string>
     <string name="settings_owner_manage">Device owner managed</string>
