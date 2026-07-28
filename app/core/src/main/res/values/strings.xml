@@ -146,7 +146,6 @@
     <string name="settings_random_name_title">Randomize output name</string>
     <string name="settings_random_name_description">Randomize APK output file names</string>
 
-    <string name="zygisk">Zygisk</string>
     <string name="settings_zygisk_summary">Run parts of SuperSU in the Zygote daemon</string>
 
     <string name="settings_denylist_title">Enforce DenyList</string>
