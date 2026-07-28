@@ -37,6 +37,8 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        
+        binding.settingsList.clipToPadding = false
         binding.settingsList.apply {
             addEdgeSpacing(top = R.dimen.l_50, bottom = R.dimen.l_50)
             addItemSpacing(R.dimen.l1, R.dimen.l_50, R.dimen.l1)
@@ -45,15 +47,22 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val navView = activity?.findViewById<View>(R.id.nav_view)
+            
+            val navHeight = if (navView != null && navView.visibility == View.VISIBLE) {
+                navView.height
+            } else {
+                0
+            }
+
             val extraBottom = (50 * resources.displayMetrics.density).toInt()
 
             binding.root.updatePadding(
-                top = systemBars.top,
-                bottom = systemBars.bottom
+                top = systemBars.top
             )
 
             binding.settingsList.updatePadding(
-                bottom = extraBottom + systemBars.bottom
+                bottom = extraBottom + systemBars.bottom + navHeight
             )
 
             insets
