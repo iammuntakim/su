@@ -41,7 +41,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
         val list = mutableListOf<BaseSettingsItem>()
 
         list.addAll(listOf(
-            DoHToggle, UpdateChecker, DownloadPath, RandNameToggle
+            DoHToggle, DownloadPath, RandNameToggle
         ))
 
         if (Info.env.isActive) {
@@ -75,7 +75,6 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
     override fun onItemPressed(view: View, item: BaseSettingsItem, doAction: () -> Unit) {
         when (item) {
             DownloadPath -> withExternalRW(doAction)
-            UpdateChecker -> withPostNotificationPermission(doAction)
             Authentication -> AuthEvent(doAction).publish()
             AutomaticResponse -> if (Config.suAuth) AuthEvent(doAction).publish() else doAction()
             else -> doAction()
