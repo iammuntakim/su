@@ -26,10 +26,7 @@ import su.android.databinding.bindExtra
 import su.android.events.AddHomeIconEvent
 import su.android.events.AuthEvent
 import su.android.events.SnackbarEvent
-import su.android.events.ViewEvent
 import kotlinx.coroutines.launch
-
-class DenyListEvent : ViewEvent()
 
 class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
 
@@ -80,7 +77,6 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
             DownloadPath -> withExternalRW(doAction)
             Authentication -> AuthEvent(doAction).publish()
             AutomaticResponse -> if (Config.suAuth) AuthEvent(doAction).publish() else doAction()
-            DenyListConfig -> DenyListEvent().publish()
             else -> doAction()
         }
     }
@@ -88,6 +84,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
     override fun onItemAction(view: View, item: BaseSettingsItem) {
         when (item) {
             SystemlessHosts -> createHosts()
+            DenyListConfig -> SettingsFragmentDirections.actionSettingsFragmentToDenyFragment().navigate()
             Zygisk -> if (Zygisk.mismatch) SnackbarEvent(R.string.reboot_apply_change).publish()
             else -> Unit
         }
