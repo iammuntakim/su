@@ -38,31 +38,23 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
     private fun createItems(): List<BaseSettingsItem> {
         val context = AppContext
 
-        val list = mutableListOf(
-            Customization,
-            Theme, if (LocaleSetting.useLocaleManager) LanguageSystem else Language
-        )
-        if (isRunningAsStub && ShortcutManagerCompat.isRequestPinShortcutSupported(context))
-            list.add(AddShortcut)
+        val list = mutableListOf<BaseSettingsItem>()
 
         list.addAll(listOf(
-            AppSettings,
             UpdateChannel, UpdateChannelUrl, DoHToggle, UpdateChecker, DownloadPath, RandNameToggle
         ))
 
         if (Info.env.isActive) {
             list.addAll(listOf(
-                Magisk,
                 SystemlessHosts
             ))
             if (Const.Version.atLeast_24_0()) {
-                list.addAll(listOf(Zygisk, DenyList, DenyListConfig))
+                list.addAll(listOf(Zygisk, DenyList))
             }
         }
 
         if (Info.showSuperUser) {
             list.addAll(listOf(
-                Superuser,
                 Tapjack, Authentication, AccessMode, MultiuserMode, MountNamespaceMode,
                 AutomaticResponse, RequestTimeout, SUNotification
             ))
@@ -92,10 +84,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
 
     override fun onItemAction(view: View, item: BaseSettingsItem) {
         when (item) {
-            LanguageSystem -> view.activity.startActivity(LocaleSetting.localeSettingsIntent)
-            AddShortcut -> AddHomeIconEvent().publish()
             SystemlessHosts -> createHosts()
-            DenyListConfig -> SettingsFragmentDirections.actionSettingsFragmentToDenyFragment().navigate()
             UpdateChannel -> openUrlIfNecessary(view)
             Zygisk -> if (Zygisk.mismatch) SnackbarEvent(R.string.reboot_apply_change).publish()
             else -> Unit
