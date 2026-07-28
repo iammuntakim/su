@@ -15,6 +15,7 @@ import su.android.arch.BaseFragment
 import su.android.arch.viewModel
 import su.android.databinding.FragmentSettingsMd2Binding
 import su.android.databinding.ItemSettingsBinding
+import su.android.databinding.ItemSettingsCardBinding
 import su.android.core.R as CoreR
 
 class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
@@ -61,38 +62,57 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
     }
 
     private fun populateCards() {
-        val container = binding.settingsContainer
-        container.removeAllViews()
+        val rootContainer = binding.settingsContainer
+        rootContainer.removeAllViews()
 
-        val itemMargin = resources.getDimensionPixelSize(R.dimen.l_50)
+        val cardMargin = resources.getDimensionPixelSize(R.dimen.l1)
         val handler = viewModel as? BaseSettingsItem.Handler
 
-        viewModel.items.forEach { item ->
-            val itemBinding = DataBindingUtil.inflate<ItemSettingsBinding>(
-                layoutInflater,
-                R.layout.item_settings,
-                container,
-                false
-            )
+        viewModel.items.forEach { group ->
+            if (group is SettingsGroupItem.CardGroup) {
+                val cardBinding = DataBindingUtil.inflate<ItemSettingsCardBinding>(
+                    layoutInflater,
+                    R.layout.item_settings_card,
+                    rootContainer,
+                    false
+                )
 
-            itemBinding.item = item
-            itemBinding.handler = handler
-            itemBinding.lifecycleOwner = viewLifecycleOwner
+                group.children.forEach { childItem ->
+                    val itemBinding = DataBindingUtil.inflate<ItemSettingsBinding>(
+                        layoutInflater,
+                        R.layout.item_settings,
+                        cardBinding.cardContainer,
+                        false
+                    )
 
-            val lp = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply {
-                setMargins(0, itemMargin, 0, itemMargin)
+                    itemBinding.item = childItem
+                    itemBinding.handler = handler
+                    itemBinding.lifecycleOwner = viewLifecycleOwner
+
+                    cardBinding.cardContainer.addView(itemBinding.root)
+                }
+
+                val lp = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    setMargins(0, cardMargin / 2, 0, cardMargin / 2)
+                }
+
+                rootContainer.addView(cardBinding.root, lp)
             }
-
-            container.addView(itemBinding.root, lp)
         }
     }
 
     override fun onResume() {
         super.onResume()
-        viewModel.items.forEach { it.refresh() }
+        viewModel.items.forEach { group ->
+            if (group is SettingsGroupItem.CardGroup) {
+                group.children.forEach { it.refresh() }
+            } else {
+                group.refresh()
+            }
+        }
     }
 
     override fun onPreBind(binding: FragmentSettingsMd2Binding) = Unit
