@@ -43,10 +43,15 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
             fixEdgeEffect()
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.settingsList) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
+            val statusBars = insets.getInsets(WindowInsetsCompat.Type.statusBars())
             val navBars = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
+            
+            binding.appBar?.updatePadding(top = statusBars.top)
+            
             val extraBottom = (100 * resources.displayMetrics.density).toInt()
-            v.updatePadding(bottom = extraBottom + navBars.bottom)
+            binding.settingsList.updatePadding(bottom = extraBottom + navBars.bottom)
+            
             insets
         }
     }

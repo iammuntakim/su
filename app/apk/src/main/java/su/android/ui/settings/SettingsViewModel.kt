@@ -25,6 +25,7 @@ import su.android.core.utils.RootUtils
 import su.android.databinding.bindExtra
 import su.android.events.AddHomeIconEvent
 import su.android.events.AuthEvent
+import su.android.events.OpenDenyListEvent
 import su.android.events.SnackbarEvent
 import kotlinx.coroutines.launch
 
@@ -75,6 +76,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
     override fun onItemPressed(view: View, item: BaseSettingsItem, doAction: () -> Unit) {
         when (item) {
             DownloadPath -> withExternalRW(doAction)
+            DenyListConfig -> OpenDenyListEvent().publish()
             Authentication -> AuthEvent(doAction).publish()
             AutomaticResponse -> if (Config.suAuth) AuthEvent(doAction).publish() else doAction()
             else -> doAction()
