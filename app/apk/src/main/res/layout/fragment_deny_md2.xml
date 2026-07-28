@@ -22,35 +22,23 @@
             android:clipToPadding="false"
             android:orientation="vertical"
             android:paddingTop="@dimen/internal_action_bar_size"
+            app:extraBindings="@{viewModel.extraBindings}"
             app:fitsSystemWindowsInsets="top|bottom"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:invisible="@{viewModel.loading}"
             app:items="@{viewModel.items}"
-            app:extraBindings="@{viewModel.extraBindings}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_hide_md2"
             tools:paddingTop="40dp" />
 
-        <LinearLayout
-            goneUnless="@{viewModel.loading}"
-            android:layout_width="match_parent"
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="vertical"
-            tools:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/loading"
-                android:textAppearance="@style/AppearanceFoundation.Title"
-                android:textStyle="bold" />
-
-            <ProgressBar
-                style="@style/WidgetFoundation.ProgressBar.Indeterminate"
-                android:layout_marginTop="@dimen/l1" />
-
-        </LinearLayout>
+            android:indeterminate="true"
+            android:visibility="@{viewModel.loading ? android.view.View.VISIBLE : android.view.View.GONE}"
+            app:indicatorSize="48dp"
+            app:trackCornerRadius="8dp"
+            tools:visibility="visible" />
 
     </FrameLayout>
 

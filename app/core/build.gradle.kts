@@ -33,7 +33,7 @@ android {
 }
 
 dependencies {
-    implementation(files("lib/native.jar"))
+    implementation(files("../lib/native.jar"))
 
     api(project(":shared"))
     coreLibraryDesugaring(libs.jdk.libs)
@@ -64,14 +64,12 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.collection.ktx)
     implementation(libs.profileinstaller)
-
-    implementation("top.yukonga.miuix.kmp:miuix-ui-android:0.8.8")
-    implementation("top.yukonga.miuix.kmp:miuix-preference-android:0.8.8")
-    implementation("top.yukonga.miuix.kmp:miuix-icons-android:0.8.8")
-    implementation("top.yukonga.miuix.kmp:miuix-blur-android:0.8.8")
-    implementation("top.yukonga.miuix.kmp:miuix-squircle-android:0.8.8")
-    implementation("top.yukonga.miuix.kmp:miuix-navigation3-ui-android:0.8.8")
+    implementation(libs.material)
 
     compileOnly(libs.test.junit)
     compileOnly(libs.test.uiautomator)
+}
+
+tasks.matching { it.name.contains("JniLibs") }.configureEach {
+    enabled = false
 }

@@ -89,7 +89,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/module_title"
                     tools:text="@tools:sample/lorem" />
 
-                <com.google.android.material.switchmaterial.SwitchMaterial
+                <com.google.android.material.materialswitch.MaterialSwitch
                     android:id="@+id/module_indicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -181,7 +181,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/l1"
                     android:layout_marginEnd="@dimen/l_50"
-                    android:fontFamily="sans-serif-medium"
                     android:text="@{item.noticeText}"
                     android:textAppearance="@style/AppearanceFoundation.Caption.Primary"
                     android:textColor="?colorError"

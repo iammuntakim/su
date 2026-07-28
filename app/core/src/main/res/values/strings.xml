@@ -1,6 +1,5 @@
 <resources>
 
-    <!--Sections-->
     <string name="modules">Modules</string>
     <string name="superuser">Superuser</string>
     <string name="logs">Logs</string>
@@ -10,7 +9,6 @@
     <string name="section_theme">Themes</string>
     <string name="denylist">DenyList</string>
 
-    <!--Home-->
     <string name="no_connection">No connection available</string>
     <string name="app_changelog">Changelog</string>
     <string name="loading">Loading…</string>
@@ -30,7 +28,6 @@
     <string name="uninstall_magisk_title">Uninstall SuperSU</string>
     <string name="uninstall_magisk_msg">All modules will be disabled/removed!\nRoot will be removed!\nAny internal storage unencrypted through the use of SuperSU will be re-encrypted!</string>
 
-    <!--Install-->
     <string name="keep_force_encryption">Preserve force encryption</string>
     <string name="keep_dm_verity">Preserve AVB 2.0/dm-verity</string>
     <string name="recovery_mode">Recovery mode</string>
@@ -48,7 +45,6 @@
     <string name="reboot_delay_toast">Rebooting in 5 seconds…</string>
     <string name="flash_screen_title">Installation</string>
 
-    <!--Superuser-->
     <string name="su_request_title">Superuser request</string>
     <string name="touch_filtered_warning">Because an app is obscuring a Superuser request, SuperSU can\'t verify your response.</string>
     <string name="deny">Deny</string>
@@ -78,7 +74,6 @@
     <string name="superuser_toggle_revoke">Revoke</string>
     <string name="superuser_policy_none">No apps have asked for Superuser permission yet.</string>
 
-    <!--Logs-->
     <string name="log_data_none">You\'re log-free. Try using your root apps more.</string>
     <string name="log_data_magisk_none">SuperSU logs are empty, that\'s weird.</string>
     <string name="menuSaveLog">Save log</string>
@@ -90,13 +85,11 @@
     <string name="selinux_context">SELinux context: %s</string>
     <string name="supp_group">Supplementary group: %s</string>
 
-    <!--MagiskHide-->
     <string name="show_system_app">Show system apps</string>
     <string name="show_os_app">Show OS apps</string>
     <string name="hide_filter_hint">Filter by name</string>
     <string name="hide_search">Search</string>
 
-    <!--Module-->
     <string name="no_info_provided">(No info provided)</string>
     <string name="reboot_userspace">Soft reboot</string>
     <string name="reboot_recovery">Reboot to Recovery</string>
@@ -117,7 +110,6 @@
     <string name="confirm_install">Install module %1$s?</string>
     <string name="confirm_install_title">Install confirmation</string>
 
-    <!--Settings-->
     <string name="settings_dark_mode_title">Theme mode</string>
     <string name="settings_dark_mode_message">Select mode which best suits your style!</string>
     <string name="settings_dark_mode_light">Always light</string>
@@ -125,28 +117,42 @@
     <string name="settings_dark_mode_dark">Always dark</string>
     <string name="settings_download_path_title">Download path</string>
     <string name="settings_download_path_message">Files will be saved to %1$s</string>
-    <string name="settings_hide_app_title">Hide the SuperSU app (No need)</string>
-    <string name="settings_hide_app_summary">Install a proxy app with a random package ID and custom app label</string>
-    <string name="settings_restore_app_title">Restore the SuperSU app</string>
-    <string name="settings_restore_app_summary">Unhide the app and restore the original APK</string>
     <string name="language">Language</string>
     <string name="system_default">(System default)</string>
+
+    <string name="settings_hide_app_title">Hide the SuperSU app</string>
+    <string name="settings_hide_app_summary">Hide the app with a random package name</string>
+    <string name="settings_restore_app_title">Restore the SuperSU app</string>
+    <string name="settings_restore_app_summary">Restore the app to its original state</string>
+    <string name="setting_add_shortcut_summary">Add a shortcut of the app to the home screen</string>
+
     <string name="settings_check_update_title">Check for updates</string>
-    <string name="settings_check_update_summary">Periodically check for updates in the background</string>
+    <string name="settings_check_update_summary">Automatically check for updates</string>
+
     <string name="settings_update_channel_title">Update channel</string>
     <string name="settings_update_stable">Stable</string>
     <string name="settings_update_beta">Beta</string>
     <string name="settings_update_debug">Debug</string>
     <string name="settings_update_custom">Custom</string>
     <string name="settings_update_custom_msg">Insert a custom channel URL</string>
-    <string name="settings_zygisk_summary">Run parts of SuperSU in the Zygote daemon</string>
-    <string name="settings_denylist_title">Enforce DenyList</string>
-    <string name="settings_denylist_summary">Processes on the denylist will have all SuperSU modifications reverted</string>
-    <string name="settings_denylist_config_title">Configure DenyList</string>
-    <string name="settings_denylist_config_summary">Select the processes to be included on the denylist</string>
+
+    <string name="settings_doh_title">DNS over HTTPS</string>
+    <string name="settings_doh_description">Resolve domain names securely over HTTPS</string>
+
     <string name="settings_hosts_title">Systemless hosts</string>
-    <string name="settings_hosts_summary">Systemless hosts support for ad blocking apps</string>
+    <string name="settings_hosts_summary">Add systemless hosts module for ad-blocking apps</string>
     <string name="settings_hosts_toast">Added systemless hosts module</string>
+
+    <string name="settings_random_name_title">Randomize output name</string>
+    <string name="settings_random_name_description">Randomize APK output file names</string>
+
+    <string name="settings_zygisk_summary">Run parts of SuperSU in the Zygote daemon</string>
+
+    <string name="settings_denylist_title">Enforce DenyList</string>
+    <string name="settings_denylist_summary">Enforce DenyList to revoke root permissions for designated apps</string>
+    <string name="settings_denylist_config_title">Configure DenyList</string>
+    <string name="settings_denylist_config_summary">Configure apps and processes in the DenyList</string>
+
     <string name="settings_app_name_hint">New name</string>
     <string name="settings_app_name_helper">App will be repackaged with this name</string>
     <string name="settings_app_name_error">Invalid format</string>
@@ -164,21 +170,21 @@
     <string name="auto_response">Automatic response</string>
     <string name="request_timeout">Request timeout</string>
     <string name="superuser_notification">Superuser notification</string>
+
     <string name="settings_su_reauth_title">Reauthenticate after upgrade</string>
-    <string name="settings_su_reauth_summary">Ask for Superuser permissions again after upgrading apps</string>
+    <string name="settings_su_reauth_summary">Reauthenticate Superuser access when an app is upgraded</string>
+
     <string name="settings_su_tapjack_title">Tapjacking protection</string>
-    <string name="settings_su_tapjack_summary">The Superuser prompt dialog won\'t respond to input while obscured by any other window or overlay</string>
+    <string name="settings_su_tapjack_summary">Block Superuser dialog when touches are obscured</string>
+
     <string name="settings_su_auth_title">User authentication</string>
-    <string name="settings_su_auth_summary">Ask for user authentication during Superuser requests</string>
+    <string name="settings_su_auth_summary">Require user authentication for Superuser requests</string>
     <string name="settings_su_auth_insecure">No authentication method is configured on the device</string>
+
     <string name="settings_su_restrict_title">Restrict root capabilities</string>
-    <string name="settings_su_restrict_summary">Will restrict new Superuser apps by default. Warning: this will break most apps. Don\'t enable it unless you know what you\'re doing.</string>
+    <string name="settings_su_restrict_summary">Restrict root processes capabilities</string>
+
     <string name="settings_customization">Customization</string>
-    <string name="setting_add_shortcut_summary">Add a pretty shortcut to the home screen in case the name and icon are difficult to recognize after hiding the app</string>
-    <string name="settings_doh_title">DNS over HTTPS</string>
-    <string name="settings_doh_description">Workaround DNS poisoning in some nations</string>
-    <string name="settings_random_name_title">Randomize output name</string>
-    <string name="settings_random_name_description">Randomize the output file name of patched images and tar files to prevent detection</string>
     <string name="multiuser_mode">Multiuser mode</string>
     <string name="settings_owner_only">Device owner only</string>
     <string name="settings_owner_manage">Device owner managed</string>
@@ -194,7 +200,6 @@
     <string name="requester_summary">Root sessions will inherit their requester\'s namespace</string>
     <string name="isolate_summary">Each root session will have its own isolated namespace</string>
 
-    <!--Notifications-->
     <string name="update_channel">SuperSU updates</string>
     <string name="progress_channel">Progress notifications</string>
     <string name="updated_channel">Update complete</string>
@@ -204,7 +209,6 @@
     <string name="updated_title">SuperSU updated</string>
     <string name="updated_text">Tap to open app</string>
 
-    <!--Toasts, Dialogs-->
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="repo_install_title">Install %1$s %2$s(%3$d)</string>
@@ -236,7 +240,7 @@
     <string name="unsupport_other_su_msg">A \"su\" binary not from SuperSU has been detected. Please remove any competing root solution and/or reinstall SuperSU.</string>
     <string name="unsupport_external_storage_msg">SuperSU is installed to external storage. Please move the app to internal storage.</string>
     <string name="unsupport_nonroot_stub_msg">The hidden SuperSU app cannot continue to work because root was lost. Please restore the original APK.</string>
-    <string name="unsupport_nonroot_stub_title">@string/settings_restore_app_title</string>
+    <string name="unsupport_nonroot_stub_title">Restore the SuperSU App</string>
     <string name="external_rw_permission_denied">Grant storage permission to enable this functionality</string>
     <string name="post_notifications_denied">Grant notifications permission to enable this functionality</string>
     <string name="install_unknown_denied">Allow \"Install unknown apps\" to enable this functionality</string>
@@ -245,5 +249,6 @@
     <string name="app_not_found">No app found to handle this action</string>
     <string name="reboot_apply_change">Reboot to apply changes</string>
     <string name="restore_app_confirmation">This will restore the hidden app back to the original app. Do you really want to do this?</string>
+    <string name="settings_search">Search settings</string>
 
 </resources>

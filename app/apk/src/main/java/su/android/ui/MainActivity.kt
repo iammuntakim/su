@@ -16,6 +16,8 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 import su.android.MainDirections
 import su.android.R
 import su.android.arch.BaseViewModel
@@ -83,7 +85,6 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
         showUnsupportedMessage()
         askForHomeShortcut()
 
-        // Ask permission to post notifications for background update check
         if (Config.checkUpdate) {
             withPermission(Manifest.permission.POST_NOTIFICATIONS) {
                 Config.checkUpdate = it
@@ -97,7 +98,8 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
                 R.id.homeFragment,
                 R.id.modulesFragment,
                 R.id.superuserFragment,
-                R.id.logFragment -> true
+                R.id.logFragment,
+                R.id.settingsFragment -> true
                 else -> false
             }
 
@@ -118,8 +120,8 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
             true
         }
         binding.mainNavigation.setOnItemReselectedListener {
-            // https://issuetracker.google.com/issues/124538620
         }
+        binding.mainNavigation.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
         binding.mainNavigation.menu.apply {
             findItem(R.id.superuserFragment)?.isEnabled = Info.showSuperUser
             findItem(R.id.modulesFragment)?.isEnabled = Info.env.isActive && LocalModule.loaded()
@@ -158,14 +160,13 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
         val bottomView = binding.mainNavigation
         if (requiresAnimation) {
             bottomView.isVisible = true
-            bottomView.isHidden = hide
+            bottomView.translationY = if (hide) bottomView.height.toFloat() + (20 * resources.displayMetrics.density) else 0f
         } else {
             bottomView.isGone = hide
         }
     }
 
     fun invalidateToolbar() {
-        //binding.mainToolbar.startAnimations()
         binding.mainToolbar.invalidate()
     }
 
@@ -184,6 +185,7 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
             R.id.modulesFragment -> MainDirections.actionModuleFragment()
             R.id.superuserFragment -> MainDirections.actionSuperuserFragment()
             R.id.logFragment -> MainDirections.actionLogFragment()
+            R.id.settingsFragment -> HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
             else -> null
         }
     }
@@ -257,7 +259,6 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
     private fun askForHomeShortcut() {
         if (isRunningAsStub && !Config.askedHome &&
             ShortcutManagerCompat.isRequestPinShortcutSupported(this)) {
-            // Ask and show dialog
             Config.askedHome = true
             MagiskDialog(this).apply {
                 setTitle(CoreR.string.add_shortcut_title)

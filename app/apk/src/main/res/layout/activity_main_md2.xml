@@ -6,7 +6,6 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         app:consumeSystemWindowsInsets="start|end"
         app:edgeToEdge="true"
         app:fitsSystemWindowsInsets="start|end"
@@ -22,37 +21,36 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/main_toolbar_wrapper"
-            style="@style/WidgetFoundation.Appbar"
+            style="@style/Widget.Material3.AppBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:fitsSystemWindowsInsets="top">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/main_toolbar"
-                style="@style/WidgetFoundation.Toolbar"
+                style="@style/Widget.Material3.Toolbar.Surface"
                 android:layout_width="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="?attr/actionBarSize"
                 app:layout_scrollFlags="noScroll"
-                tools:layout_marginTop="24dp"
                 tools:title="Home" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <su.android.widget.ConcealableBottomNavigationView
+        <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/main_navigation"
+            style="@style/Widget.Material3.BottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:fitsSystemWindows="false"
-            android:paddingBottom="0dp"
-            app:fitsSystemWindowsInsets="start|end|bottom"
-            app:itemHorizontalTranslationEnabled="false"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            app:elevation="8dp"
+            app:itemActiveIndicatorStyle="@style/Widget.Material3.BottomNavigationView.ActiveIndicator"
             app:itemIconTint="@color/color_menu_tint"
-            app:itemRippleColor="?colorPrimary"
-            app:itemTextAppearanceActive="@style/AppearanceFoundation.Tiny.Bold"
-            app:itemTextAppearanceInactive="@style/AppearanceFoundation.Tiny.Bold"
             app:itemTextColor="@color/color_menu_tint"
-            app:labelVisibilityMode="labeled"
+            app:labelVisibilityMode="selected"
+            app:fitsSystemWindowsInsets="start|end|bottom"
             app:menu="@menu/menu_bottom_nav" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

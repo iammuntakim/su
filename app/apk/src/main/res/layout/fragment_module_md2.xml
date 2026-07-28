@@ -11,24 +11,44 @@
 
     </data>
 
-    <FrameLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/module_list"
+        <com.google.android.material.card.MaterialCardView
             gone="@{viewModel.loading}"
-            app:items="@{viewModel.items}"
-            app:extraBindings="@{viewModel.extraBindings}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/internal_action_bar_size"
-            android:paddingBottom="@dimen/internal_action_bar_size"
-            app:fitsSystemWindowsInsets="top|bottom"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_module_md2" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/module_list"
+                app:items="@{viewModel.items}"
+                app:extraBindings="@{viewModel.extraBindings}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/internal_action_bar_size"
+                android:paddingBottom="180dp"
+                app:fitsSystemWindowsInsets="top|bottom"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_module_md2" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_install"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="128dp"
+            android:onClick="@{() -> viewModel.installPressed()}"
+            app:elevation="0dp"
+            app:pressedTranslationZ="0dp"
+            app:srcCompat="@drawable/ic_module_storage_md2" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,13 +61,16 @@
                 goneUnless="@{viewModel.loading}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+    
                 android:text="@string/loading"
-                android:textAppearance="@style/AppearanceFoundation.Title"
+                
                 android:textStyle="bold" />
 
             <ProgressBar
-                style="@style/WidgetFoundation.ProgressBar.Indeterminate"
+                style="@style/Widget.Material3.CircularProgressIndicator"
                 goneUnless="@{viewModel.loading}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/l1" />
 
             <TextView
@@ -55,11 +78,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/module_empty"
-                android:textAppearance="@style/AppearanceFoundation.Title"
+                
                 android:textStyle="bold" />
         </LinearLayout>
 
-    </FrameLayout>
-
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

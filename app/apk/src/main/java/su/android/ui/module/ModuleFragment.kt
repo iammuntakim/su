@@ -1,7 +1,11 @@
 package su.android.ui.module
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.core.view.updateLayoutParams
+import androidx.core.view.updatePadding
 import su.android.R
 import su.android.arch.BaseFragment
 import su.android.arch.viewModel
@@ -29,14 +33,30 @@ class ModuleFragment : BaseFragment<FragmentModuleMd2Binding>() {
         }
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return super.onCreateView(inflater, container, savedInstanceState)!!
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.moduleList.apply {
-            addEdgeSpacing(top = R.dimen.l_50, bottom = R.dimen.l1)
+            addEdgeSpacing(top = R.dimen.l_50, bottom = R.dimen.l_50)
             addItemSpacing(R.dimen.l1, R.dimen.l_50, R.dimen.l1)
             fixEdgeEffect()
             post { addInvalidateItemDecorationsObserver() }
+        }
+
+        val extraBottom = (100 * resources.displayMetrics.density).toInt()
+
+        binding.moduleList.updatePadding(bottom = extraBottom + 100)
+        
+        binding.fabInstall.updateLayoutParams<androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams> {
+            this.bottomMargin = extraBottom
         }
     }
 

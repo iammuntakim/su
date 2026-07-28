@@ -1,13 +1,16 @@
 package su.android.ui.log
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import android.widget.HorizontalScrollView
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
+import androidx.core.view.updatePadding
 import su.android.R
 import su.android.arch.BaseFragment
 import su.android.arch.viewModel
@@ -47,6 +50,14 @@ class LogFragment : BaseFragment<FragmentLogMd2Binding>(), MenuProvider {
         activity?.setTitle(CoreR.string.logs)
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return super.onCreateView(inflater, container, savedInstanceState)!!
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.logFilterToggle.setOnClickListener {
@@ -54,17 +65,19 @@ class LogFragment : BaseFragment<FragmentLogMd2Binding>(), MenuProvider {
         }
 
         binding.logFilterSuperuser.logSuperuser.apply {
-            addEdgeSpacing(bottom = R.dimen.l1)
+            addEdgeSpacing(top = R.dimen.l_50, bottom = R.dimen.l_50)
             addItemSpacing(R.dimen.l1, R.dimen.l_50, R.dimen.l1)
             fixEdgeEffect()
         }
+
+        val extraBottom = (100 * resources.displayMetrics.density).toInt()
+        binding.logFilterSuperuser.logSuperuser.updatePadding(bottom = extraBottom + 100)
 
         if (!AccessibilityUtils.isAnimationEnabled(requireContext().contentResolver)) {
             val scrollView = view.findViewById<HorizontalScrollView>(R.id.log_scroll_magisk)
             scrollView.setOverScrollMode(View.OVER_SCROLL_NEVER)
         }
     }
-
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_log_md2, menu)
@@ -82,7 +95,6 @@ class LogFragment : BaseFragment<FragmentLogMd2Binding>(), MenuProvider {
         }
         return super.onOptionsItemSelected(item)
     }
-
 
     override fun onPreBind(binding: FragmentLogMd2Binding) = Unit
 

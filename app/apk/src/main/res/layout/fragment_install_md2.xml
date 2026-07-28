@@ -33,13 +33,15 @@
             android:paddingTop="@dimen/l_50">
 
             <com.google.android.material.card.MaterialCardView
-                style="@style/WidgetFoundation.Card"
+                style="@style/Widget.Material3.CardView.Elevated"
                 gone="@{viewModel.skipOptions}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/l1"
                 android:layout_marginEnd="@dimen/l1"
-                android:focusable="false">
+                android:focusable="false"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -64,16 +66,16 @@
                             android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:text="@string/install_options_title"
-                            android:textAppearance="@style/AppearanceFoundation.Body"
                             android:textStyle="bold" />
 
                         <Button
-                            style="@style/WidgetFoundation.Button.Text"
+                            style="@style/Widget.Material3.Button.TextButton"
                             gone="@{viewModel.step != 0}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:onClick="@{() -> viewModel.setStep(1)}"
-                            android:text="@string/install_next" />
+                            android:text="@string/install_next"
+                             />
 
                     </LinearLayout>
 
@@ -91,16 +93,16 @@
                         tools:layout_gravity="center">
 
                         <CheckBox
-                            style="@style/WidgetFoundation.Checkbox"
+                            style="@style/Widget.Material3.CompoundButton.CheckBox"
                             gone="@{Info.isSAR}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:checked="@={Config.keepVerity}"
-                            android:text="@string/keep_dm_verity"
+                            android:text="@string/keep_dm_verity"  
                             tools:checked="true" />
 
                         <CheckBox
-                            style="@style/WidgetFoundation.Checkbox"
+                            style="@style/Widget.Material3.CompoundButton.CheckBox"
                             goneUnless="@{Info.isFDE}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -109,7 +111,7 @@
                             app:tint="?colorPrimary" />
 
                         <CheckBox
-                            style="@style/WidgetFoundation.Checkbox"
+                            style="@style/Widget.Material3.CompoundButton.CheckBox"
                             gone="@{Info.ramdisk}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -124,13 +126,15 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                style="@style/WidgetFoundation.Card"
+                style="@style/Widget.Material3.CardView.Elevated"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/l1"
                 android:layout_marginTop="@dimen/l1"
                 android:layout_marginEnd="@dimen/l1"
-                android:focusable="false">
+                android:focusable="false"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -155,17 +159,16 @@
                             android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:text="@string/install_method_title"
-                            android:textAppearance="@style/AppearanceFoundation.Body"
                             android:textStyle="bold" />
 
                         <Button
-                            style="@style/WidgetFoundation.Button.Text"
+                            style="@style/Widget.Material3.Button.TextButton"
                             gone="@{viewModel.step != 1}"
                             isEnabled="@{viewModel.method == @id/method_patch ? viewModel.data != null : viewModel.method != -1}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:onClick="@{() -> viewModel.install()}"
-                            android:text="@string/install_start"
+                            android:text="@string/install_start"    
                             app:icon="@drawable/ic_forth_md2"
                             app:iconGravity="textEnd" />
 
@@ -185,26 +188,29 @@
 
                         <RadioButton
                             android:id="@+id/method_patch"
-                            style="@style/WidgetFoundation.RadioButton"
+                            style="@style/Widget.Material3.CompoundButton.RadioButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/select_patch_file" />
+                            android:text="@string/select_patch_file"
+                             />
 
                         <RadioButton
                             android:id="@+id/method_direct"
-                            style="@style/WidgetFoundation.RadioButton"
+                            style="@style/Widget.Material3.CompoundButton.RadioButton"
                             gone="@{!viewModel.rooted}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/direct_install" />
+                            android:text="@string/direct_install"
+                             />
 
                         <RadioButton
                             android:id="@+id/method_inactive_slot"
-                            style="@style/WidgetFoundation.RadioButton"
+                            style="@style/Widget.Material3.CompoundButton.RadioButton"
                             gone="@{viewModel.noSecondSlot}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/install_inactive_slot" />
+                            android:text="@string/install_inactive_slot"
+                             />
 
                     </RadioGroup>
 
@@ -213,14 +219,16 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                style="@style/WidgetFoundation.Card"
+                style="@style/Widget.Material3.CardView.Elevated"
                 gone="@{viewModel.notes.length == 0}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/l1"
                 android:layout_marginTop="@dimen/l1"
                 android:layout_marginEnd="@dimen/l1"
-                android:focusable="false">
+                android:focusable="false"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="2dp">
 
                 <TextView
                     android:id="@+id/release_notes"
@@ -230,7 +238,6 @@
                     android:layout_margin="15dp"
                     android:breakStrategy="simple"
                     android:hyphenationFrequency="none"
-                    android:textAppearance="@style/AppearanceFoundation.Caption"
                     tools:ignore="UnusedAttribute"
                     tools:maxLines="5"
                     tools:text="@tools:sample/lorem/random"

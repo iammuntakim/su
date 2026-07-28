@@ -35,25 +35,29 @@
             android:paddingTop="@dimen/l1">
 
             <Button
-                style="@style/WidgetFoundation.Button"
+                style="@style/Widget.Material3.Button"
                 gone="@{!viewModel.showTest}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+    
                 android:onClick="@{() -> viewModel.onTestPressed()}"
                 android:text="TEST"
                 android:textAllCaps="false"
+
                 tools:visibility="gone" />
 
             <com.google.android.material.card.MaterialCardView
-                style="@style/WidgetFoundation.Card.Primary"
+                style="@style/Widget.Material3.CardView.Elevated"
                 goneUnless="@{viewModel.noticeVisible}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/l1"
                 android:layout_marginEnd="@dimen/l1"
                 android:layout_marginBottom="@dimen/l1"
-                android:focusable="false">
+                android:focusable="false"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="2dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -63,21 +67,24 @@
                         android:id="@+id/home_notice_content"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+            
                         android:padding="@dimen/l1"
                         android:text="@string/home_notice_content"
-                        android:textAppearance="@style/AppearanceFoundation.Caption.OnPrimary"
+        
                         app:layout_constraintEnd_toStartOf="@+id/home_notice_hide"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
                         android:id="@+id/home_notice_hide"
-                        style="@style/WidgetFoundation.Button.Text.OnPrimary"
+                        style="@style/Widget.Material3.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+            
                         android:onClick="@{() -> viewModel.hideNotice()}"
                         android:text="@string/hide"
                         android:textAllCaps="false"
+        
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -108,12 +115,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/home_magisk_wrapper" />
 
             <com.google.android.material.card.MaterialCardView
-                style="@style/WidgetFoundation.Card"
+                style="@style/Widget.Material3.CardView.Elevated"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_margin="@dimen/l1"
-                android:focusable="false">
+                android:focusable="false"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -126,9 +135,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/l1"
                         android:layout_marginEnd="@dimen/l1"
-                        android:text="@string/home_follow_title"
-                        android:textAppearance="@style/AppearanceFoundation.Title" />
-                        
+                        android:text="@string/home_follow_title" />
+
                     <include
                         item="@{DeveloperItem.MIKAILAMIN.INSTANCE}"
                         layout="@layout/item_developer"

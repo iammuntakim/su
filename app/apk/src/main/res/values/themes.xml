@@ -1,32 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Base.V23.Theme.Foundation.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:windowBackground">?colorSurface</item>
+    <style name="Base.V23.Theme.Foundation.Light" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowBackground">?attr/colorSurface</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="dialogTheme">@style/ThemeOverlay.Foundation.Dialog</item>
         <item name="android:statusBarColor">#40bdbdbd</item>
         <item name="android:navigationBarColor">#38000000</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="colorPrimary">#007AFF</item>
+        <item name="colorSecondary">#007AFF</item>
+        <item name="colorTertiary">#007AFF</item>
+        <item name="materialCardViewStyle">@style/Widget.Foundation.CardView</item>
     </style>
 
-    <style name="Base.V23.Theme.Foundation" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="android:windowBackground">?colorSurface</item>
+    <style name="Base.V23.Theme.Foundation" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">?attr/colorSurface</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="dialogTheme">@style/ThemeOverlay.Foundation.Dialog</item>
         <item name="android:statusBarColor">#60000000</item>
         <item name="android:navigationBarColor">#60000000</item>
+        <item name="colorPrimary">#007AFF</item>
+        <item name="colorSecondary">#007AFF</item>
+        <item name="colorTertiary">#007AFF</item>
+        <item name="materialCardViewStyle">@style/Widget.Foundation.CardView</item>
     </style>
 
     <style name="Theme.Foundation.Light" parent="Base.V23.Theme.Foundation.Light" />
 
     <style name="Theme.Foundation" parent="Base.V23.Theme.Foundation" />
 
-    <style name="Base.V23.ThemeOverlay.Foundation.Dialog" parent="ThemeOverlay.MaterialComponents.Dialog">
+    <style name="Base.V23.ThemeOverlay.Foundation.Dialog" parent="ThemeOverlay.Material3.Dialog">
         <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
         <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Foundation.Card</item>
     </style>
 
     <style name="ThemeOverlay.Foundation.Dialog" parent="Base.V23.ThemeOverlay.Foundation.Dialog" />
+
+    <style name="Widget.Foundation.CardView" parent="Widget.Material3.CardView.Elevated">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Foundation.Card</item>
+    </style>
+
+    <style name="ShapeAppearance.Foundation.Card" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
 
 </resources>
