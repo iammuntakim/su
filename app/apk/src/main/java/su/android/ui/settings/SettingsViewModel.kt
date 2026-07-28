@@ -28,6 +28,7 @@ import su.android.events.AuthEvent
 import su.android.events.Event
 import su.android.events.SnackbarEvent
 import kotlinx.coroutines.launch
+import su.android.ui.base.Event
 
 class DenyListEvent : Event()
 
