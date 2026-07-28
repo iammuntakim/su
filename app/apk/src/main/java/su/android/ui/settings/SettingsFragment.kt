@@ -65,8 +65,6 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
         container.removeAllViews()
 
         val itemMargin = resources.getDimensionPixelSize(R.dimen.l_50)
-        val sideMargin = resources.getDimensionPixelSize(R.dimen.l1)
-
         val handler = viewModel as? BaseSettingsItem.Handler
 
         viewModel.items.forEach { item ->
@@ -85,7 +83,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             ).apply {
-                setMargins(sideMargin, itemMargin, sideMargin, itemMargin)
+                setMargins(0, itemMargin, 0, itemMargin)
             }
 
             container.addView(itemBinding.root, lp)

@@ -16,7 +16,7 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        style="@style/WidgetFoundation.Card"
+        style="?attr/materialCardViewFilledStyle"
         isEnabled="@{item.enabled}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,6 +24,9 @@
         android:clickable="@{item.enabled}"
         android:focusable="@{item.enabled}"
         android:onClick="@{(view) -> item.onPressed(view, handler)}"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:strokeWidth="0dp"
         tools:layout_gravity="center">
 
         <LinearLayout
@@ -57,7 +60,7 @@
                     android:layout_gravity="center"
                     android:gravity="start"
                     android:text="@{item.title}"
-                    android:textAppearance="@style/AppearanceFoundation.Body"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
                     android:textStyle="bold"
                     tools:lines="1"
                     tools:text="@tools:sample/lorem/random" />
@@ -67,7 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{item.description}"
-                    android:textAppearance="@style/AppearanceFoundation.Tiny.Variant"
+                    android:textAppearance="?attr/textAppearanceBodySmall"
                     tools:lines="2"
                     tools:text="@tools:sample/lorem/random" />
 
