@@ -1,33 +1,22 @@
 package su.android.ui.settings
 
-import android.app.Activity
-import android.content.Intent
-import android.net.Uri
 import android.os.Build
-import android.provider.Settings
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import su.android.BR
 import su.android.arch.BaseViewModel
 import su.android.core.AppContext
-import su.android.core.BuildConfig
-import su.android.core.Config
 import su.android.core.Const
 import su.android.core.Info
 import su.android.core.R
-import su.android.core.isRunningAsStub
-import su.android.core.ktx.activity
 import su.android.core.ktx.toast
-import su.android.core.utils.LocaleSetting
 import su.android.core.utils.RootUtils
 import su.android.databinding.bindExtra
 import su.android.dialog.UninstallDialog
-import su.android.events.AddHomeIconEvent
 import su.android.events.AuthEvent
 import su.android.events.SnackbarEvent
-import kotlinx.coroutines.launch
 
 class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
 
@@ -37,8 +26,6 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
     }
 
     private fun createItems(): List<BaseSettingsItem> {
-        val context = AppContext
-
         val list = mutableListOf<BaseSettingsItem>()
 
         list.addAll(listOf(
