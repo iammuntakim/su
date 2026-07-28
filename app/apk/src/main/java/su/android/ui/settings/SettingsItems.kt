@@ -3,8 +3,8 @@ package su.android.ui.settings
 import android.content.Context
 import android.os.Build
 import android.view.LayoutInflater
-import android.view.View
 import androidx.databinding.Bindable
+import androidx.fragment.app.FragmentActivity
 import su.android.BR
 import su.android.core.Config
 import su.android.core.Const
@@ -13,7 +13,6 @@ import su.android.core.utils.MediaStoreUtils
 import su.android.databinding.DialogSettingsDownloadPathBinding
 import su.android.databinding.set
 import su.android.dialog.UninstallDialog
-import su.android.ui.MainFragment
 import su.android.utils.asText
 import com.topjohnwu.superuser.Shell
 import su.android.core.R as CoreR
@@ -173,9 +172,9 @@ object Uninstall : BaseSettingsItem.Blank() {
     override val title = CoreR.string.uninstall.asText()
     override val description = CoreR.string.uninstall_summary.asText()
 
-    override fun onClick(v: View) {
-        (v.context as? MainFragment)?.let { fragment ->
-            UninstallDialog().show(fragment.childFragmentManager, null)
+    fun onDeletePressed(context: Context) {
+        (context as? FragmentActivity)?.supportFragmentManager?.let {
+            UninstallDialog().show(it, null)
         }
     }
 }
