@@ -48,12 +48,6 @@ object SystemlessHosts : BaseSettingsItem.Blank() {
     override val description = CoreR.string.settings_hosts_summary.asText()
 }
 
-object RandNameToggle : BaseSettingsItem.Toggle() {
-    override val title = CoreR.string.settings_random_name_title.asText()
-    override val description = CoreR.string.settings_random_name_description.asText()
-    override var value by Config::randName
-}
-
 object Zygisk : BaseSettingsItem.Toggle() {
     override val title = CoreR.string.zygisk.asText()
     override val description get() =
@@ -72,17 +66,15 @@ object DenyList : BaseSettingsItem.Toggle() {
     override val title = CoreR.string.settings_denylist_title.asText()
     override val description get() = CoreR.string.settings_denylist_summary.asText()
 
-    override var value = Config.denyList
+    override var value: Boolean
+        get() = Config.denyList
         set(value) {
-            field = value
             val cmd = if (value) "enable" else "disable"
             Shell.cmd("magisk --denylist $cmd").submit { result ->
                 if (result.isSuccess) {
                     Config.denyList = value
-                } else {
-                    field = !value
-                    notifyPropertyChanged(BR.checked)
                 }
+                notifyPropertyChanged(BR.value)
             }
         }
 }
