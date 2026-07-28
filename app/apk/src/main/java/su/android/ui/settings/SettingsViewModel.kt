@@ -41,7 +41,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
         val list = mutableListOf<BaseSettingsItem>()
 
         list.addAll(listOf(
-            UpdateChannelUrl, DoHToggle, UpdateChecker, DownloadPath, RandNameToggle
+            DoHToggle, UpdateChecker, DownloadPath, RandNameToggle
         ))
 
         if (Info.env.isActive) {
@@ -49,7 +49,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
                 SystemlessHosts
             ))
             if (Const.Version.atLeast_24_0()) {
-                list.addAll(listOf(Zygisk, DenyList))
+                list.addAll(listOf(Zygisk, DenyList, DenyListConfig))
             }
         }
 

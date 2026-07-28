@@ -15,7 +15,6 @@ import su.android.core.ktx.activity
 import su.android.core.utils.LocaleSetting
 import su.android.core.utils.MediaStoreUtils
 import su.android.databinding.DialogSettingsDownloadPathBinding
-import su.android.databinding.DialogSettingsUpdateChannelBinding
 import su.android.databinding.set
 import su.android.utils.TextHolder
 import su.android.utils.asText
@@ -41,24 +40,6 @@ object DownloadPath : BaseSettingsItem.Input() {
     val path get() = MediaStoreUtils.fullPath(inputResult)
 
     override fun getView(context: Context) = DialogSettingsDownloadPathBinding
-        .inflate(LayoutInflater.from(context)).also { it.data = this }.root
-}
-
-object UpdateChannelUrl : BaseSettingsItem.Input() {
-    override val title = CoreR.string.settings_update_custom.asText()
-    override val description get() = value.asText()
-    override var value
-        get() = Config.customChannelUrl
-        set(value) {
-            Config.customChannelUrl = value
-            Info.resetUpdate()
-            notifyPropertyChanged(BR.description)
-        }
-
-    override var inputResult: String = value
-        set(value) = set(value, field, { field = it }, BR.inputResult)
-
-    override fun getView(context: Context) = DialogSettingsUpdateChannelBinding
         .inflate(LayoutInflater.from(context)).also { it.data = this }.root
 }
 
@@ -116,6 +97,11 @@ object DenyList : BaseSettingsItem.Toggle() {
                 }
             }
         }
+}
+
+object DenyListConfig : BaseSettingsItem.Blank() {
+    override val title = CoreR.string.settings_denylist_config_title.asText()
+    override val description = CoreR.string.settings_denylist_config_summary.asText()
 }
 
 object Tapjack : BaseSettingsItem.Toggle() {
