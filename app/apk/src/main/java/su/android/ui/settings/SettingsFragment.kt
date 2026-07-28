@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import su.android.R
 import su.android.arch.BaseFragment
 import su.android.arch.viewModel
 import su.android.databinding.FragmentSettingsMd2Binding
+import rikka.recyclerview.addEdgeSpacing
+import rikka.recyclerview.addItemSpacing
+import rikka.recyclerview.fixEdgeEffect
 import su.android.core.R as CoreR
 
 class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
@@ -34,23 +35,21 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        ViewCompat.setOnApplyWindowInsetsListener(binding.rootContainer) { _, insets ->
-            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            binding.rootContainer.updatePadding(
-                top = bars.top
-            )
-            binding.settingsScrollView.updatePadding(
-                bottom = bars.bottom
-            )
-            insets
+        binding.settingsList.apply {
+            addEdgeSpacing(top = R.dimen.l_50, bottom = R.dimen.l_50)
+            addItemSpacing(R.dimen.l1, R.dimen.l_50, R.dimen.l1)
+            fixEdgeEffect()
         }
+
+        val extraBottom = (100 * resources.displayMetrics.density).toInt()
+        binding.settingsList.updatePadding(bottom = extraBottom + 100)
     }
 
     override fun onResume() {
         super.onResume()
-        viewModel.refreshAll()
+        viewModel.items.forEach { it.refresh() }
     }
 
     override fun onPreBind(binding: FragmentSettingsMd2Binding) = Unit
+
 }

@@ -1,39 +1,83 @@
 package su.android.ui.settings
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.provider.Settings
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.lifecycle.viewModelScope
+import su.android.BR
 import su.android.arch.BaseViewModel
 import su.android.core.AppContext
+import su.android.core.BuildConfig
 import su.android.core.Config
+import su.android.core.Const
+import su.android.core.Info
 import su.android.core.R
+import su.android.core.isRunningAsStub
+import su.android.core.ktx.activity
+import su.android.core.ktx.toast
+import su.android.core.utils.LocaleSetting
 import su.android.core.utils.RootUtils
+import su.android.databinding.bindExtra
+import su.android.events.AddHomeIconEvent
 import su.android.events.AuthEvent
 import su.android.events.SnackbarEvent
 import kotlinx.coroutines.launch
 
 class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
 
-    val updateChannel = UpdateChannel
-    val downloadPath = DownloadPath
-    val systemlessHosts = SystemlessHosts
-
-    fun refreshAll() {
-        updateChannel.refresh()
-        downloadPath.refresh()
-        systemlessHosts.refresh()
+    val items = createItems()
+    val extraBindings = bindExtra {
+        it.put(BR.handler, this)
     }
 
-    fun onUpdateChannelClick(view: View) {
-        onItemPressed(view, updateChannel) { onItemAction(view, updateChannel) }
-    }
+    private fun createItems(): List<BaseSettingsItem> {
+        val context = AppContext
 
-    fun onDownloadPathClick(view: View) {
-        onItemPressed(view, downloadPath) { onItemAction(view, downloadPath) }
-    }
+        val list = mutableListOf(
+            Customization,
+            Theme, if (LocaleSetting.useLocaleManager) LanguageSystem else Language
+        )
+        if (isRunningAsStub && ShortcutManagerCompat.isRequestPinShortcutSupported(context))
+            list.add(AddShortcut)
 
-    fun onSystemlessHostsClick(view: View) {
-        onItemPressed(view, systemlessHosts) { onItemAction(view, systemlessHosts) }
+        list.addAll(listOf(
+            AppSettings,
+            UpdateChannel, UpdateChannelUrl, DoHToggle, UpdateChecker, DownloadPath, RandNameToggle
+        ))
+
+        if (Info.env.isActive) {
+            list.addAll(listOf(
+                Magisk,
+                SystemlessHosts
+            ))
+            if (Const.Version.atLeast_24_0()) {
+                list.addAll(listOf(Zygisk, DenyList, DenyListConfig))
+            }
+        }
+
+        if (Info.showSuperUser) {
+            list.addAll(listOf(
+                Superuser,
+                Tapjack, Authentication, AccessMode, MultiuserMode, MountNamespaceMode,
+                AutomaticResponse, RequestTimeout, SUNotification
+            ))
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                list.add(Reauthenticate)
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                list.remove(Tapjack)
+            }
+            if (Const.Version.atLeast_30_1()) {
+                list.add(Restrict)
+            }
+        }
+
+        return list
     }
 
     override fun onItemPressed(view: View, item: BaseSettingsItem, doAction: () -> Unit) {
@@ -48,7 +92,10 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
 
     override fun onItemAction(view: View, item: BaseSettingsItem) {
         when (item) {
+            LanguageSystem -> view.activity.startActivity(LocaleSetting.localeSettingsIntent)
+            AddShortcut -> AddHomeIconEvent().publish()
             SystemlessHosts -> createHosts()
+            DenyListConfig -> SettingsFragmentDirections.actionSettingsFragmentToDenyFragment().navigate()
             UpdateChannel -> openUrlIfNecessary(view)
             Zygisk -> if (Zygisk.mismatch) SnackbarEvent(R.string.reboot_apply_change).publish()
             else -> Unit
@@ -65,7 +112,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
     private fun createHosts() {
         viewModelScope.launch {
             RootUtils.addSystemlessHosts()
-            Toast.makeText(AppContext, R.string.settings_hosts_toast, Toast.LENGTH_SHORT).show()
+            AppContext.toast(R.string.settings_hosts_toast, Toast.LENGTH_SHORT)
         }
     }
 }

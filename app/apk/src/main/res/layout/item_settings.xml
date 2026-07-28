@@ -20,71 +20,56 @@
         isEnabled="@{item.enabled}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
         android:alpha="@{item.enabled ? 1f : .5f}"
         android:clickable="@{item.enabled}"
         android:focusable="@{item.enabled}"
         android:onClick="@{(view) -> item.onPressed(view, handler)}"
-        app:cardBackgroundColor="?attr/colorSurfaceVariant"
-        app:cardCornerRadius="28dp"
-        app:cardElevation="0dp"
-        app:strokeWidth="0dp"
         tools:layout_gravity="center">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:minHeight="72dp"
             android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingTop="12dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="12dp">
+            android:paddingStart="@{item.icon == 0 ? @dimen/l1 : 0}"
+            android:paddingEnd="@dimen/l1">
 
             <ImageView
                 android:id="@+id/icon"
                 style="@style/WidgetFoundation.Icon"
                 gone="@{item.icon == 0}"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_marginEnd="16dp"
                 android:background="@null"
                 app:srcCompat="@{item.icon}"
-                app:tint="?android:attr/textColorPrimary"
-                tools:srcCompat="@drawable/ic_search_md2" />
+                tools:srcCompat="@drawable/ic_fingerprint" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingTop="@dimen/l1"
+                android:paddingBottom="@dimen/l1">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:gravity="start"
                     android:text="@{item.title}"
                     android:textAppearance="@style/AppearanceFoundation.Body"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="18sp"
                     android:textStyle="bold"
                     tools:lines="1"
-                    tools:text="Setting Title" />
+                    tools:text="@tools:sample/lorem/random" />
 
                 <TextView
                     gone="@{item.description.empty}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
                     android:text="@{item.description}"
                     android:textAppearance="@style/AppearanceFoundation.Tiny.Variant"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="14sp"
                     tools:lines="2"
-                    tools:text="Setting summary or description text" />
+                    tools:text="@tools:sample/lorem/random" />
 
             </LinearLayout>
 
@@ -94,7 +79,6 @@
                 isEnabled="@{item.enabled}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:checked="@{item.checked}"
                 android:focusable="@{item.enabled}"
                 android:onCheckedChanged="@{(v, c) -> item.onToggle(v, handler, c)}" />

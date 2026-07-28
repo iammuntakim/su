@@ -4,245 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="su.android.ui.settings.SettingsViewModel" />
+
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/root_container"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?android:attr/colorBackground">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            app:elevation="0dp">
-
-            <LinearLayout
-                android:id="@+id/search_bar"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/bg_search_bar"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                app:layout_scrollFlags="scroll|enterAlways|snap">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_search_md2"
-                    app:tint="?android:attr/textColorSecondary" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:text="@string/settings_search"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="18sp" />
-            </LinearLayout>
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/settings_scroll_view"
+        <androidx.recyclerview.widget.RecyclerView
+            app:items="@{viewModel.items}"
+            app:extraBindings="@{viewModel.extraBindings}"
+            android:id="@+id/settings_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:focusableInTouchMode="false"
             android:clipToPadding="false"
-            android:fillViewport="true"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="24dp">
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    app:cardBackgroundColor="?attr/colorSurfaceVariant"
-                    app:cardCornerRadius="28dp"
-                    app:cardElevation="0dp"
-                    app:strokeWidth="0dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:gravity="center_vertical"
-                            android:minHeight="72dp"
-                            android:onClick="@{viewModel::onUpdateChannelClick}"
-                            android:paddingStart="16dp"
-                            android:paddingTop="12dp"
-                            android:paddingEnd="16dp"
-                            android:paddingBottom="12dp">
-
-                            <ImageView
-                                android:layout_width="28dp"
-                                android:layout_height="28dp"
-                                android:layout_marginEnd="16dp"
-                                app:srcCompat="@{viewModel.updateChannel.icon}"
-                                app:tint="?android:attr/textColorPrimary"
-                                tools:src="@drawable/ic_search_md2" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@{viewModel.updateChannel.title}"
-                                    android:textColor="?android:attr/textColorPrimary"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="2dp"
-                                    android:text="@{viewModel.updateChannel.description}"
-                                    android:textColor="?android:attr/textColorSecondary"
-                                    android:textSize="14sp" />
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginStart="60dp"
-                            android:background="?android:attr/listDivider" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:gravity="center_vertical"
-                            android:minHeight="72dp"
-                            android:onClick="@{viewModel::onDownloadPathClick}"
-                            android:paddingStart="16dp"
-                            android:paddingTop="12dp"
-                            android:paddingEnd="16dp"
-                            android:paddingBottom="12dp">
-
-                            <ImageView
-                                android:layout_width="28dp"
-                                android:layout_height="28dp"
-                                android:layout_marginEnd="16dp"
-                                app:srcCompat="@{viewModel.downloadPath.icon}"
-                                app:tint="?android:attr/textColorPrimary"
-                                tools:src="@drawable/ic_search_md2" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@{viewModel.downloadPath.title}"
-                                    android:textColor="?android:attr/textColorPrimary"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="2dp"
-                                    android:text="@{viewModel.downloadPath.description}"
-                                    android:textColor="?android:attr/textColorSecondary"
-                                    android:textSize="14sp" />
-                            </LinearLayout>
-                        </LinearLayout>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    app:cardBackgroundColor="?attr/colorSurfaceVariant"
-                    app:cardCornerRadius="28dp"
-                    app:cardElevation="0dp"
-                    app:strokeWidth="0dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:gravity="center_vertical"
-                        android:minHeight="72dp"
-                        android:onClick="@{viewModel::onSystemlessHostsClick}"
-                        android:paddingStart="16dp"
-                        android:paddingTop="12dp"
-                        android:paddingEnd="16dp"
-                        android:paddingBottom="12dp">
-
-                        <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:layout_marginEnd="16dp"
-                            app:srcCompat="@{viewModel.systemlessHosts.icon}"
-                            app:tint="?android:attr/textColorPrimary"
-                            tools:src="@drawable/ic_search_md2" />
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@{viewModel.systemlessHosts.title}"
-                                android:textColor="?android:attr/textColorPrimary"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="@{viewModel.systemlessHosts.description}"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+            android:orientation="vertical"
+            android:paddingTop="@dimen/internal_action_bar_size"
+            app:fitsSystemWindowsInsets="top|bottom"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:layout_marginTop="24dp"
+            tools:listitem="@layout/item_settings"
+            tools:paddingTop="@dimen/l1" />
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/snackbar_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            android:layout_height="match_parent"
+            android:id="@+id/snackbar_container"
+            app:fitsSystemWindowsInsets="top|bottom"/>
+    </FrameLayout>
+
 </layout>
