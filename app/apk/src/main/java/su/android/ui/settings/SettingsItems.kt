@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.view.LayoutInflater
 import androidx.databinding.Bindable
-import androidx.fragment.app.FragmentActivity
 import su.android.BR
 import su.android.core.Config
 import su.android.core.Const
@@ -65,7 +64,7 @@ object Zygisk : BaseSettingsItem.Toggle() {
 
 object DenyList : BaseSettingsItem.Toggle() {
     override val title = CoreR.string.settings_denylist_title.asText()
-    override val description = CoreR.string.settings_denylist_summary.asText()
+    override val description get() = CoreR.string.settings_denylist_summary.asText()
 
     override var value: Boolean
         get() = Config.denyList
@@ -172,10 +171,7 @@ object Uninstall : BaseSettingsItem.Blank() {
     override val title = CoreR.string.uninstall.asText()
     override val description = CoreR.string.uninstall_summary.asText()
 
-    fun onDeletePressed(context: Context) {
-        val activity = context as? FragmentActivity
-        if (activity != null) {
-            UninstallDialog().show(activity.supportFragmentManager, "uninstall")
-        }
+    fun onDeletePressed() {
+        UninstallDialog().show()
     }
 }

@@ -69,6 +69,8 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
             }
         }
 
+        list.add(Uninstall)
+
         return list
     }
 
@@ -77,6 +79,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
             DownloadPath -> withExternalRW(doAction)
             Authentication -> AuthEvent(doAction).publish()
             AutomaticResponse -> if (Config.suAuth) AuthEvent(doAction).publish() else doAction()
+            Uninstall -> Uninstall.onDeletePressed()
             else -> doAction()
         }
     }
