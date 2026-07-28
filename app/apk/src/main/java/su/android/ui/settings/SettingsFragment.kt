@@ -5,16 +5,16 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import rikka.recyclerview.addEdgeSpacing
-import rikka.recyclerview.addItemSpacing
-import rikka.recyclerview.fixEdgeEffect
+import androidx.databinding.DataBindingUtil
 import su.android.R
 import su.android.arch.BaseFragment
 import su.android.arch.viewModel
 import su.android.databinding.FragmentSettingsMd2Binding
+import su.android.databinding.ItemSettingsBinding
 import su.android.core.R as CoreR
 
 class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
@@ -39,14 +39,9 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.settingsList.apply {
-            clipToPadding = false
-            addEdgeSpacing(top = R.dimen.l_50, bottom = R.dimen.l_50)
-            addItemSpacing(R.dimen.l1, R.dimen.l_50, R.dimen.l1)
-            fixEdgeEffect()
-        }
+        populateCards()
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.settingsList) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.settingsScrollView) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             
             val tv = TypedValue()
@@ -54,7 +49,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
                 TypedValue.complexToDimensionPixelSize(tv.data, resources.displayMetrics)
             } else 0
 
-            val extraBottom = (100 * resources.displayMetrics.density).toInt()
+            val extraBottom = (80 * resources.displayMetrics.density).toInt()
 
             v.updatePadding(
                 top = systemBars.top + actionBarSize,
@@ -62,6 +57,38 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
             )
 
             insets
+        }
+    }
+
+    private fun populateCards() {
+        val container = binding.settingsContainer
+        container.removeAllViews()
+
+        val itemMargin = resources.getDimensionPixelSize(R.dimen.l_50)
+        val sideMargin = resources.getDimensionPixelSize(R.dimen.l1)
+
+        val handler = viewModel as? BaseSettingsItem.Handler
+
+        viewModel.items.forEach { item ->
+            val itemBinding = DataBindingUtil.inflate<ItemSettingsBinding>(
+                layoutInflater,
+                R.layout.item_settings,
+                container,
+                false
+            )
+
+            itemBinding.item = item
+            itemBinding.handler = handler
+            itemBinding.lifecycleOwner = viewLifecycleOwner
+
+            val lp = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                setMargins(sideMargin, itemMargin, sideMargin, itemMargin)
+            }
+
+            container.addView(itemBinding.root, lp)
         }
     }
 
