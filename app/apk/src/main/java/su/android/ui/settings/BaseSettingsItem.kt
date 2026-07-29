@@ -36,7 +36,6 @@ sealed class BaseSettingsItem : ObservableRvItem() {
     }
     open fun refresh() {}
 
-    // Only for toggle
     open val showSwitch get() = false
     @get:Bindable
     open val isChecked get() = false
@@ -44,12 +43,6 @@ sealed class BaseSettingsItem : ObservableRvItem() {
         set(checked, isChecked, { onPressed(view, handler) })
 
     abstract class Value<T> : BaseSettingsItem() {
-
-        /**
-         * Represents last agreed-upon value by the validation process and the user for current
-         * child. Be very aware that this shouldn't be **set** unless both sides agreed that _that_
-         * is the new value.
-         * */
         abstract var value: T
             protected set
     }
@@ -60,7 +53,6 @@ sealed class BaseSettingsItem : ObservableRvItem() {
         override val isChecked get() = value
 
         override fun onPressed(view: View, handler: Handler) {
-            // Make sure the checked state is synced
             notifyPropertyChanged(BR.checked)
             handler.onItemPressed(view, this) {
                 value = !value

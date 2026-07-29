@@ -34,13 +34,13 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingStart="@{item.icon == 0 ? @dimen/l1 : 0}"
+            android:paddingStart="@{item.icon == null || item.icon == 0 ? @dimen/l1 : 0}"
             android:paddingEnd="@dimen/l1">
 
             <ImageView
                 android:id="@+id/icon"
                 style="@style/WidgetFoundation.Icon"
-                gone="@{item.icon == 0}"
+                gone="@{item.icon == null || item.icon == 0}"
                 android:background="@null"
                 app:srcCompat="@{item.icon}"
                 tools:srcCompat="@drawable/ic_fingerprint" />

@@ -44,7 +44,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.settingsScrollView) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            
+
             val tv = TypedValue()
             val actionBarSize = if (requireContext().theme.resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
                 TypedValue.complexToDimensionPixelSize(tv.data, resources.displayMetrics)
