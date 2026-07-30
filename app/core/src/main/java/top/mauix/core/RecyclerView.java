@@ -20,7 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-public class RecyclerView extends top.mauix.core.RecyclerView {
+public class RecyclerView extends androidx.recyclerview.widget.RecyclerView {
 
     private float startY = 0f;
     private float lastY = 0f;
@@ -266,7 +266,7 @@ public class RecyclerView extends top.mauix.core.RecyclerView {
     private class IosDividerItemDecoration extends ItemDecoration {
 
         @Override
-        public void onDrawOver(@NonNull Canvas c, @NonNull top.mauix.core.RecyclerView parent, @NonNull State state) {
+        public void onDrawOver(@NonNull Canvas c, @NonNull androidx.recyclerview.widget.RecyclerView parent, @NonNull State state) {
             int childCount = parent.getChildCount();
             int width = parent.getWidth();
 
@@ -287,7 +287,7 @@ public class RecyclerView extends top.mauix.core.RecyclerView {
         }
 
         @Override
-        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull top.mauix.core.RecyclerView parent, @NonNull State state) {
+        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull androidx.recyclerview.widget.RecyclerView parent, @NonNull State state) {
             outRect.set(0, 0, 0, dividerHeight);
         }
     }
@@ -297,7 +297,7 @@ public class RecyclerView extends top.mauix.core.RecyclerView {
         private View currentPressedView = null;
 
         @Override
-        public boolean onInterceptTouchEvent(@NonNull top.mauix.core.RecyclerView rv, @NonNull MotionEvent e) {
+        public boolean onInterceptTouchEvent(@NonNull androidx.recyclerview.widget.RecyclerView rv, @NonNull MotionEvent e) {
             if (!enablePressAnimation) {
                 return false;
             }
@@ -319,7 +319,7 @@ public class RecyclerView extends top.mauix.core.RecyclerView {
         }
 
         @Override
-        public void onTouchEvent(@NonNull top.mauix.core.RecyclerView rv, @NonNull MotionEvent e) {
+        public void onTouchEvent(@NonNull androidx.recyclerview.widget.RecyclerView rv, @NonNull MotionEvent e) {
             int action = e.getActionMasked();
             if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
                 if (currentPressedView != null) {
@@ -350,7 +350,7 @@ public class RecyclerView extends top.mauix.core.RecyclerView {
     public static class IosItemAnimator extends DefaultItemAnimator {
 
         @Override
-        public boolean animateAdd(final ViewHolder holder) {
+        public boolean animateAdd(final androidx.recyclerview.widget.RecyclerView.ViewHolder holder) {
             dispatchAddStarting(holder);
             holder.itemView.setAlpha(0f);
             holder.itemView.setScaleX(0.90f);
@@ -372,7 +372,7 @@ public class RecyclerView extends top.mauix.core.RecyclerView {
         }
 
         @Override
-        public boolean animateRemove(final ViewHolder holder) {
+        public boolean animateRemove(final androidx.recyclerview.widget.RecyclerView.ViewHolder holder) {
             dispatchRemoveStarting(holder);
             holder.itemView.animate()
                 .alpha(0f)
