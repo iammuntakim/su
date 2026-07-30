@@ -2,7 +2,7 @@ package su.android.databinding
 
 import androidx.databinding.PropertyChangeRegistry
 import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.RecyclerView
+import top.mauix.core.RecyclerView
 
 abstract class RvItem {
     abstract val layoutRes: Int
