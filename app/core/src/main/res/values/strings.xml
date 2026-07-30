@@ -18,10 +18,8 @@
     <string name="home_package">Package</string>
     <string name="home_app_title">App</string>
     <string name="home_notice_content">Download SuperSU ONLY from the official GitHub page. Files from unknown sources can be malicious!</string>
-    <string name="home_support_title">Support Us</string>
     <string name="home_follow_title">Follow Us</string>
     <string name="home_item_source">Source</string>
-    <string name="home_support_content">SuperSU is, and always will be, free, and open source. However, you can show us that you care by making a donation.</string>
     <string name="home_installed_version">Installed</string>
     <string name="home_latest_version">Latest</string>
     <string name="invalid_update_channel">Invalid update channel</string>
@@ -101,7 +99,6 @@
     <string name="module_state_remove">Remove</string>
     <string name="module_action">Action</string>
     <string name="module_state_restore">Restore</string>
-    <string name="module_action_install_external">Install from storage</string>
     <string name="update_available">Update available</string>
     <string name="suspend_text_riru">Module suspended because %1$s is enabled</string>
     <string name="suspend_text_zygisk">Module suspended because %1$s isn\'t enabled</string>
@@ -117,24 +114,14 @@
     <string name="settings_dark_mode_dark">Always dark</string>
     <string name="settings_download_path_title">Download path</string>
     <string name="settings_download_path_message">Files will be saved to %1$s</string>
-    <string name="language">Language</string>
     <string name="system_default">(System default)</string>
 
-    <string name="settings_hide_app_title">Hide the SuperSU app</string>
-    <string name="settings_hide_app_summary">Hide the app with a random package name</string>
-    <string name="settings_restore_app_title">Restore the SuperSU app</string>
-    <string name="settings_restore_app_summary">Restore the app to its original state</string>
-    <string name="setting_add_shortcut_summary">Add a shortcut of the app to the home screen</string>
 
-    <string name="settings_check_update_title">Check for updates</string>
-    <string name="settings_check_update_summary">Automatically check for updates</string>
 
-    <string name="settings_update_channel_title">Update channel</string>
     <string name="settings_update_stable">Stable</string>
     <string name="settings_update_beta">Beta</string>
     <string name="settings_update_debug">Debug</string>
     <string name="settings_update_custom">Custom</string>
-    <string name="settings_update_custom_msg">Insert a custom channel URL</string>
 
     <string name="settings_doh_title">DNS over HTTPS</string>
     <string name="settings_doh_description">Resolve domain names securely over HTTPS</string>
@@ -143,8 +130,6 @@
     <string name="settings_hosts_summary">Add systemless hosts module for ad-blocking apps</string>
     <string name="settings_hosts_toast">Added systemless hosts module</string>
 
-    <string name="settings_random_name_title">Randomize output name</string>
-    <string name="settings_random_name_description">Randomize APK output file names</string>
 
     <string name="settings_zygisk_summary">Run parts of SuperSU in the Zygote daemon</string>
 
@@ -153,9 +138,6 @@
     <string name="settings_denylist_config_title">Configure DenyList</string>
     <string name="settings_denylist_config_summary">Configure apps and processes in the DenyList</string>
 
-    <string name="settings_app_name_hint">New name</string>
-    <string name="settings_app_name_helper">App will be repackaged with this name</string>
-    <string name="settings_app_name_error">Invalid format</string>
     <string name="settings_su_app_adb">Apps and ADB</string>
     <string name="settings_su_app">Apps only</string>
     <string name="settings_su_adb">ADB only</string>
@@ -184,7 +166,6 @@
     <string name="settings_su_restrict_title">Restrict root capabilities</string>
     <string name="settings_su_restrict_summary">Restrict root processes capabilities</string>
 
-    <string name="settings_customization">Customization</string>
     <string name="multiuser_mode">Multiuser mode</string>
     <string name="settings_owner_only">Device owner only</string>
     <string name="settings_owner_manage">Device owner managed</string>
@@ -217,7 +198,6 @@
     <string name="close">Close</string>
     <string name="release_notes">Release notes</string>
     <string name="flashing">Flashing…</string>
-    <string name="running">Running…</string>
     <string name="done">Done!</string>
     <string name="done_action">Done running action of %1$s</string>
     <string name="failure">Failed!</string>
@@ -248,7 +228,6 @@
     <string name="add_shortcut_msg">After hiding this app, its name and icon might become difficult to recognize. Do you want to add a pretty shortcut to the home screen?</string>
     <string name="app_not_found">No app found to handle this action</string>
     <string name="reboot_apply_change">Reboot to apply changes</string>
-    <string name="restore_app_confirmation">This will restore the hidden app back to the original app. Do you really want to do this?</string>
     <string name="uninstall">Uninstall</string>
 <string name="uninstall_summary">Complete removal or restore stock image</string>
 

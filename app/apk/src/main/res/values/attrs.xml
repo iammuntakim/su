@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--region Deprecated-->
-    <attr name="cardStyle" format="reference" />
-    <attr name="colorAccentFallback" format="reference" />
-    <attr name="imageColorTint" format="reference" />
     <attr name="colorControl" format="reference" />
-    <!--endregion-->
 
     <!--region Colors-->
 
@@ -19,8 +14,6 @@
 
     <!--endregion-->
 
-    <declare-styleable name="ConcealableView">
-        <attr name="state_hidden" format="boolean" />
-    </declare-styleable>
+
 
 </resources>
