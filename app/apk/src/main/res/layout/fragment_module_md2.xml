@@ -22,7 +22,7 @@
             android:clipToPadding="false"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <top.mauix.core.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/module_list"
                 app:items="@{viewModel.items}"
                 app:extraBindings="@{viewModel.extraBindings}"

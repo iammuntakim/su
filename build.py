@@ -200,7 +200,7 @@ def build_apk(module: str):
 
 
 def build_app():
-    header("* Building the Magisk app")
+    header("* Building the SuperSU app")
     apk = build_apk(":apk")
 
     build_type = "release" if args.release else "debug"
@@ -325,7 +325,7 @@ def load_config():
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Magisk build script")
+    parser = argparse.ArgumentParser(description="SuperSU build script")
     parser.set_defaults(func=lambda x: None)
     parser.add_argument(
         "-r", "--release", action="store_true", help="compile in release mode"
@@ -342,7 +342,7 @@ def parse_args():
     subparsers = parser.add_subparsers(title="actions")
 
     all_parser = subparsers.add_parser("all", help="build everything")
-    app_parser = subparsers.add_parser("app", help="build the Magisk app")
+    app_parser = subparsers.add_parser("app", help="build the SuperSU app")
     stub_parser = subparsers.add_parser("stub", help="build the stub app")
     test_parser = subparsers.add_parser("test", help="build the test app")
     clean_parser = subparsers.add_parser("clean", help="cleanup")

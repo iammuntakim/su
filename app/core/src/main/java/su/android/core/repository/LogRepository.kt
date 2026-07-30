@@ -6,8 +6,6 @@ import su.android.core.data.SuLogDao
 import su.android.core.ktx.await
 import su.android.core.model.su.SuLog
 import com.topjohnwu.superuser.Shell
-
-
 class LogRepository(
     private val logDao: SuLogDao
 ) {

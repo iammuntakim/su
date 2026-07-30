@@ -195,7 +195,7 @@ class Environment : BaseTest {
     fun setupEnvironment() {
         runBlocking {
             assertTrue(
-                "Magisk setup failed",
+                "SuperSU setup failed",
                 MagiskInstaller.Emulator(TimberLog, TimberLog).exec()
             )
         }

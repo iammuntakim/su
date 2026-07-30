@@ -1,6 +1,6 @@
 #MAGISK
 ############################################
-# Magisk Flash Script (updater-script)
+# SuperSU Flash Script (updater-script)
 ############################################
 
 ##############
@@ -33,7 +33,7 @@ if echo $MAGISK_VER | grep -q '\.'; then
 else
   PRETTY_VER="$MAGISK_VER($MAGISK_VER_CODE)"
 fi
-print_title "Magisk $PRETTY_VER Installer"
+print_title "SuperSU $PRETTY_VER Installer"
 
 is_mounted /data || mount /data || is_mounted /cache || mount /cache
 mount_partitions
@@ -70,8 +70,6 @@ ui_print "- Constructing environment"
 rm -rf $MAGISKBIN 2>/dev/null
 mkdir -p $MAGISKBIN 2>/dev/null
 cp -af $BINDIR/. $COMMONDIR/. $BBBIN $MAGISKBIN
-
-# Remove files only used by the Magisk app
 rm -f $MAGISKBIN/bootctl $MAGISKBIN/main.jar \
   $MAGISKBIN/module_installer.sh $MAGISKBIN/uninstaller.sh
 

@@ -3,29 +3,22 @@ package su.android;
 import static android.R.string.no;
 import static android.R.string.ok;
 import static android.R.string.yes;
-import static su.android.R.string.dling;
 import static su.android.R.string.no_internet_msg;
 import static su.android.R.string.upgrade_msg;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.content.res.loader.ResourcesLoader;
 import android.content.res.loader.ResourcesProvider;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.system.Os;
 import android.system.OsConstants;
 import android.util.Log;
-import android.view.ContextThemeWrapper;
-
 import su.android.net.Networking;
-import su.android.net.Request;
 import su.android.utils.APKInstall;
 
 import java.io.ByteArrayInputStream;
@@ -46,18 +39,11 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class DownloadActivity extends Activity {
 
-    private static final String APP_NAME = "Magisk";
-
-    private Context themed;
-    private boolean dynLoad;
+    private static final String APP_NAME = "SuperSU";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        themed = new ContextThemeWrapper(this, android.R.style.Theme_DeviceDefault);
-
-        // Only download and dynamic load full APK if hidden
-        dynLoad = !getPackageName().equals(BuildConfig.APPLICATION_ID);
 
         // Inject resources
         try {
@@ -71,7 +57,7 @@ public class DownloadActivity extends Activity {
         if (Networking.checkNetworkStatus(this)) {
             showDialog();
         } else {
-            new AlertDialog.Builder(themed)
+            new AlertDialog.Builder(this)
                     .setCancelable(false)
                     .setTitle(APP_NAME)
                     .setMessage(getString(no_internet_msg))
@@ -91,12 +77,8 @@ public class DownloadActivity extends Activity {
         finish();
     }
 
-    private Request request(String url) {
-        return Networking.get(url).setErrorHandler((conn, e) -> error(e));
-    }
-
     private void showDialog() {
-        new AlertDialog.Builder(themed)
+        new AlertDialog.Builder(this)
                 .setCancelable(false)
                 .setTitle(APP_NAME)
                 .setMessage(getString(upgrade_msg))
@@ -115,28 +97,6 @@ public class DownloadActivity extends Activity {
             return;
         }
         finish();
-    }
-
-    private void dlAPK() {
-        ProgressDialog.show(themed, getString(dling), getString(dling) + " " + APP_NAME, true);
-        // Download and upgrade the app
-        var request = request(BuildConfig.APK_URL).setExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-        if (dynLoad) {
-            request.getAsFile(StubApk.current(this), file -> StubApk.restartProcess(this));
-        } else {
-            request.getAsInputStream(input -> {
-                var session = APKInstall.startSession(this);
-                try (input; var out = session.openStream(this)) {
-                    if (out != null)
-                        APKInstall.transfer(input, out);
-                } catch (IOException e) {
-                    error(e);
-                }
-                Intent intent = session.waitIntent();
-                if (intent != null)
-                    startActivity(intent);
-            });
-        }
     }
 
     private void decryptResources(OutputStream out) throws Exception {

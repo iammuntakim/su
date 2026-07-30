@@ -1,13 +1,10 @@
 package su.android;
 
+import static su.android.BuildConfig.APPLICATION_ID;
+
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.util.Log;
-
-import java.io.File;
-import java.lang.reflect.Constructor;
 
 public class StubRootService extends ContextWrapper {
 
@@ -17,25 +14,25 @@ public class StubRootService extends ContextWrapper {
 
     @Override
     protected void attachBaseContext(Context base) {
+        // Never load the real root service when hidden
+        if (!base.getPackageName().equals(APPLICATION_ID))
+            return;
+
         ClassLoader loader = DynLoad.loadApk(base);
         if (loader == null)
             return;
 
         try {
-            // Create application to get the real root service class
             var data = DynLoad.createApkData();
-            File apk = StubApk.current(base);
-            PackageManager pm = base.getPackageManager();
-            PackageInfo pkgInfo = pm.getPackageArchiveInfo(apk.getPath(), 0);
+            var pkgInfo = base.getPackageManager().getPackageArchiveInfo(
+                    StubApk.current(base).getPath(), 0);
             loader.loadClass(pkgInfo.applicationInfo.className)
                     .getConstructor(Object.class)
                     .newInstance(data.getObject());
 
-            // Create the actual RootService and call its attachBaseContext
-            Constructor<?> ctor = data.getRootService().getConstructor(Object.class);
+            var ctor = data.getRootService().getConstructor(Object.class);
             ctor.setAccessible(true);
-            Object service = ctor.newInstance(this);
-            DynLoad.attachContext(service, base);
+            DynLoad.attachContext(ctor.newInstance(this), base);
         } catch (Exception e) {
             Log.e(StubRootService.class.getSimpleName(), "", e);
         }

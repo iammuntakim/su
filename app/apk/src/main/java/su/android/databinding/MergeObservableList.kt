@@ -36,8 +36,6 @@ class MergeObservableList<T> : AbstractList<T>(), ObservableList<T> {
 
     override val size: Int
         get() = lists.fold(0) { i, it -> i + it.size }
-
-
     fun insertItem(obj: T): MergeObservableList<T> {
         val idx = size
         lists.add(listOf(obj))

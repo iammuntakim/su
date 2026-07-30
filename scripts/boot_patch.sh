@@ -1,18 +1,13 @@
 #!/system/bin/sh
 #######################################################################################
-# Magisk Boot Image Patcher
+# SuperSU Boot Image Patcher
 #######################################################################################
-#
 # Usage: boot_patch.sh <bootimage>
-#
 # The following environment variables can configure the installation:
 # KEEPVERITY, KEEPFORCEENCRYPT, PATCHVBMETAFLAG, RECOVERYMODE, LEGACYSAR
-#
 # This script should be placed in a directory with the following files:
-#
 # File name          Type      Description
-#
-# boot_patch.sh      script    A script to patch boot image for Magisk.
+
 #                  (this file) The script will use files in its same
 #                              directory to complete the patching process.
 # util_functions.sh  script    A script which hosts all functions required
@@ -21,10 +16,9 @@
 # magisk             binary    The magisk binary.
 # magiskboot         binary    A tool to manipulate boot images.
 # init-ld            binary    The library that will be LD_PRELOAD of /init
-# stub.apk           binary    The stub Magisk app to embed into ramdisk.
+
 # chromeos           folder    This folder includes the utility and keys to sign
 #                  (optional)  chromeos boot images. Only used for Pixel C.
-#
 #######################################################################################
 
 ############
@@ -140,7 +134,7 @@ case $STATUS in
     cp -af $RAMDISK ramdisk.cpio.orig 2>/dev/null
     ;;
   1 )
-    # Magisk patched
+    # SuperSU patched
     ui_print "- Magisk patched boot image detected"
     ./magiskboot cpio $RAMDISK \
     "extract .backup/.magisk config.orig" \

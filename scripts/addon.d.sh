@@ -1,10 +1,8 @@
 #!/sbin/sh
 # ADDOND_VERSION=2
 ########################################################
-#
-# Magisk Survival Script for ROMs with addon.d support
+# SuperSU Survival Script for ROMs with addon.d support
 # by topjohnwu and osm0sis
-#
 ########################################################
 
 trampoline() {
@@ -91,7 +89,7 @@ main() {
   else
     PRETTY_VER="$MAGISK_VER($MAGISK_VER_CODE)"
   fi
-  print_title "Magisk $PRETTY_VER addon.d"
+  print_title "SuperSU $PRETTY_VER addon.d"
 
   mount_partitions
   check_data

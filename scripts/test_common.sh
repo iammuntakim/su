@@ -52,7 +52,7 @@ run_setup() {
   local variant=$1
   adb shell 'PATH=$PATH:/debug_ramdisk magisk -v'
 
-  # Install the Magisk app
+  # SuperSU app
   adb install -r -g out/app-${variant}.apk
 
   # Install the test app

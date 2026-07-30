@@ -66,8 +66,6 @@ abstract class BaseFragment<Binding : ViewDataBinding> : Fragment(), ViewModelHo
     }
 
     open fun onBackPressed(): Boolean = false
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.addOnRebindCallback(object : OnRebindCallback<Binding>() {

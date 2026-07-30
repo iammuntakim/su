@@ -1,5 +1,5 @@
 ##################################
-# Magisk app internal scripts
+# SuperSU app internal scripts
 ##################################
 
 # $1 = delay

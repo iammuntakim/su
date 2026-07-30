@@ -1,21 +1,13 @@
 #####################################################################
-#   AVD Magisk Setup
 #####################################################################
-#
 # Support API level: 23 - 36
-#
-# For developing Magisk, just use:
+
 # ./build.py emulator
-#
-# This script will stop zygote, simulate the Magisk start up process
+
 # that would've happened before zygote was started, and finally
 # restart zygote. This is useful for setting up the emulator for
-# developing Magisk, testing modules, and developing root apps using
+
 # the official Android emulator (AVD) instead of a real device.
-#
-# This only covers the "core" features of Magisk. For testing
-# magiskinit, please checkout avd_patch.sh.
-#
 #####################################################################
 
 mount_tmpfs() {
@@ -124,7 +116,7 @@ else
   mount_tmpfs /debug_ramdisk
 fi
 
-# Magisk stuff
+# SuperSU stuff
 mkdir -p $MAGISKBIN 2>/dev/null
 unzip -oj magisk.apk 'assets/*.sh' -d $MAGISKBIN
 mkdir /data/adb/modules 2>/dev/null

@@ -1,6 +1,6 @@
 #MAGISK
 ############################################
-# Magisk Uninstaller (updater-script)
+# SuperSU Uninstaller (updater-script)
 ############################################
 
 ##############
@@ -33,7 +33,7 @@ if echo $MAGISK_VER | grep -q '\.'; then
 else
   PRETTY_VER="$MAGISK_VER($MAGISK_VER_CODE)"
 fi
-print_title "Magisk $PRETTY_VER Uninstaller"
+print_title "SuperSU $PRETTY_VER Uninstaller"
 
 is_mounted /data || mount /data || abort "! Unable to mount /data, please uninstall with the Magisk app"
 mount_partitions
@@ -100,7 +100,7 @@ case $((STATUS & 3)) in
   0 )  # Stock boot
     ui_print "- Stock boot image detected"
     ;;
-  1 )  # Magisk patched
+  1 )  # SuperSU patched
     ui_print "- Magisk patched image detected"
     # Find SHA1 of stock boot image
     ./magiskboot cpio ramdisk.cpio "extract .backup/.magisk config.orig"

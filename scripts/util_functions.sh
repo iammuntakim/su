@@ -1,5 +1,5 @@
 ############################################
-# Magisk General Utility Functions
+# SuperSU General Utility Functions
 ############################################
 
 #MAGISK_VERSION_STUB
@@ -470,7 +470,6 @@ remove_system_su() {
     ui_print "- Removing system installed root"
     blockdev --setrw /dev/block/mapper/system$SLOT 2>/dev/null
     mount -o rw,remount $POSTINST/system
-    # SuperSU
     cd bin
     if [ -e .ext/.su ]; then
       mv -f app_process32_original app_process32 2>/dev/null
@@ -724,7 +723,7 @@ install_module() {
   done
 
   if $BOOTMODE; then
-    # Update info for Magisk app
+    
     mktouch /data/adb/modules/$MODID/update
     rm -rf /data/adb/modules/$MODID/remove 2>/dev/null
     rm -rf /data/adb/modules/$MODID/disable 2>/dev/null

@@ -14,7 +14,7 @@ android {
 
     val canary = !Config.version.contains(".")
     val base = "https://github.com/iammuntakim/su/releases/download/"
-    val url = base + "build/app-release.apk"
+    val url = base + "SuperSU/app-release.apk"
     val canaryUrl = base + "canary-${Config.versionCode}/"
 
     defaultConfig {

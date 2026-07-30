@@ -49,8 +49,6 @@ private class DnsResolver(client: OkHttpClient) : Dns {
         return Dns.SYSTEM.lookup(hostname)
     }
 }
-
-
 fun createOkHttpClient(context: Context): OkHttpClient {
     val appCache = Cache(File(context.cacheDir, "okhttp"), 10 * 1024 * 1024)
     val builder = OkHttpClient.Builder().cache(appCache)
@@ -67,7 +65,7 @@ fun createOkHttpClient(context: Context): OkHttpClient {
 
     builder.addInterceptor { chain ->
         val request = chain.request().newBuilder()
-        request.header("User-Agent", "Magisk/${BuildConfig.APP_VERSION_CODE}")
+        request.header("User-Agent", "SuperSU/${BuildConfig.APP_VERSION_CODE}")
         request.header("Accept-Language", LocaleSetting.instance.currentLocale.toLanguageTag())
         chain.proceed(request.build())
     }

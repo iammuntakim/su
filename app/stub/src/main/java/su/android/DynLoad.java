@@ -53,6 +53,15 @@ public class DynLoad {
     // Dynamically load APK from internal, external storage, or previous app
     static DynamicClassLoader loadApk(Context context) {
         File apk = StubApk.current(context);
+
+        // If hidden, replace any existing APK with random stub and never load
+        if (!context.getPackageName().equals(APPLICATION_ID)) {
+            if (apk.exists()) {
+                apk.delete();
+            }
+            return null;
+        }
+
         File update = StubApk.update(context);
 
         if (update.exists()) {
@@ -88,25 +97,6 @@ public class DynLoad {
         if (apk.exists()) {
             apk.setReadOnly();
             return new DynamicClassLoader(apk);
-        }
-
-        // If no APK is loaded, attempt to copy from previous app
-        if (!context.getPackageName().equals(APPLICATION_ID)) {
-            try {
-                var info = context.getPackageManager().getApplicationInfo(APPLICATION_ID, 0);
-                apk.delete();
-                var src = new FileInputStream(info.sourceDir);
-                var out = new FileOutputStream(apk);
-                apk.setReadOnly();
-                try (src; out) {
-                    APKInstall.transfer(src, out);
-                }
-                return new DynamicClassLoader(apk);
-            } catch (PackageManager.NameNotFoundException ignored) {
-            } catch (IOException e) {
-                Log.e(DynLoad.class.getSimpleName(), "", e);
-                apk.delete();
-            }
         }
 
         return null;
