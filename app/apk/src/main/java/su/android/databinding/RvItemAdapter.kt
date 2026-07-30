@@ -11,7 +11,7 @@ import androidx.databinding.ObservableList.OnListChangedCallback
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.findViewTreeLifecycleOwner
-import top.mauix.core.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import su.android.BR
 
 class RvItemAdapter<T: RvItem>(
