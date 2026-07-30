@@ -1,7 +1,5 @@
 <resources>
 
-    <string name="magisk">SuperSU</string>
-    <string name="zygisk">Zygisk</string>
     <string name="modules">Modules</string>
     <string name="superuser">Superuser</string>
     <string name="logs">Logs</string>
