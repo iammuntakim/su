@@ -22,13 +22,37 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class RecyclerView extends androidx.recyclerview.widget.RecyclerView {
 
-    public static abstract class OnScrollListener extends androidx.recyclerview.widget.RecyclerView.OnScrollListener {}
+    public static abstract class OnScrollListener extends androidx.recyclerview.widget.RecyclerView.OnScrollListener {
+        @Override
+        public void onScrollStateChanged(@NonNull androidx.recyclerview.widget.RecyclerView recyclerView, int newState) {
+            if (recyclerView instanceof top.mauix.core.RecyclerView) {
+                onScrollStateChanged((top.mauix.core.RecyclerView) recyclerView, newState);
+            } else {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        }
+
+        @Override
+        public void onScrolled(@NonNull androidx.recyclerview.widget.RecyclerView recyclerView, int dx, int dy) {
+            if (recyclerView instanceof top.mauix.core.RecyclerView) {
+                onScrolled((top.mauix.core.RecyclerView) recyclerView, dx, dy);
+            } else {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        }
+
+        public void onScrollStateChanged(@NonNull top.mauix.core.RecyclerView recyclerView, int newState) {}
+        public void onScrolled(@NonNull top.mauix.core.RecyclerView recyclerView, int dx, int dy) {}
+    }
+
     public static abstract class Adapter<VH extends androidx.recyclerview.widget.RecyclerView.ViewHolder> extends androidx.recyclerview.widget.RecyclerView.Adapter<VH> {}
+
     public static abstract class ViewHolder extends androidx.recyclerview.widget.RecyclerView.ViewHolder {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
         }
     }
+
     public static abstract class ItemDecoration extends androidx.recyclerview.widget.RecyclerView.ItemDecoration {}
     public interface OnItemTouchListener extends androidx.recyclerview.widget.RecyclerView.OnItemTouchListener {}
     public static abstract class ItemAnimator extends androidx.recyclerview.widget.RecyclerView.ItemAnimator {}
