@@ -22,6 +22,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class RecyclerView extends androidx.recyclerview.widget.RecyclerView {
 
+    public static abstract class OnScrollListener extends androidx.recyclerview.widget.RecyclerView.OnScrollListener {}
+    public static abstract class Adapter<VH extends androidx.recyclerview.widget.RecyclerView.ViewHolder> extends androidx.recyclerview.widget.RecyclerView.Adapter<VH> {}
+    public static abstract class ViewHolder extends androidx.recyclerview.widget.RecyclerView.ViewHolder {
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+    }
+    public static abstract class ItemDecoration extends androidx.recyclerview.widget.RecyclerView.ItemDecoration {}
+    public interface OnItemTouchListener extends androidx.recyclerview.widget.RecyclerView.OnItemTouchListener {}
+    public static abstract class ItemAnimator extends androidx.recyclerview.widget.RecyclerView.ItemAnimator {}
+    public static abstract class LayoutManager extends androidx.recyclerview.widget.RecyclerView.LayoutManager {}
+    public static class State extends androidx.recyclerview.widget.RecyclerView.State {}
+
     private float startY = 0f;
     private float lastY = 0f;
     private float overscrollOffset = 0f;
@@ -263,10 +276,10 @@ public class RecyclerView extends androidx.recyclerview.widget.RecyclerView {
         }
     }
 
-    private class IosDividerItemDecoration extends ItemDecoration {
+    private class IosDividerItemDecoration extends androidx.recyclerview.widget.RecyclerView.ItemDecoration {
 
         @Override
-        public void onDrawOver(@NonNull Canvas c, @NonNull androidx.recyclerview.widget.RecyclerView parent, @NonNull State state) {
+        public void onDrawOver(@NonNull Canvas c, @NonNull androidx.recyclerview.widget.RecyclerView parent, @NonNull androidx.recyclerview.widget.RecyclerView.State state) {
             int childCount = parent.getChildCount();
             int width = parent.getWidth();
 
@@ -287,12 +300,12 @@ public class RecyclerView extends androidx.recyclerview.widget.RecyclerView {
         }
 
         @Override
-        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull androidx.recyclerview.widget.RecyclerView parent, @NonNull State state) {
+        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull androidx.recyclerview.widget.RecyclerView parent, @NonNull androidx.recyclerview.widget.RecyclerView.State state) {
             outRect.set(0, 0, 0, dividerHeight);
         }
     }
 
-    private class IosItemTouchListener implements OnItemTouchListener {
+    private class IosItemTouchListener implements androidx.recyclerview.widget.RecyclerView.OnItemTouchListener {
 
         private View currentPressedView = null;
 
