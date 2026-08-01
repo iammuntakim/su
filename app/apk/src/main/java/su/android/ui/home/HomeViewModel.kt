@@ -61,8 +61,6 @@ class HomeViewModel : AsyncLoadViewModel() {
                 CoreR.string.not_available.asText()
         }
 
-    // --- device info ---
-
     val deviceModel get() = Build.MODEL ?: ""
     val deviceManufacturer get() = Build.MANUFACTURER ?: ""
     val androidVersion
