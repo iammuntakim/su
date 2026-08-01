@@ -179,10 +179,13 @@ def build_apk(module: str):
         "--parallel",
         "--build-cache",
         "--configure-on-demand",
-        f"--max-workers={cpu_count}",
+        f        "--max-workers={cpu_count}",
         "-Dorg.gradle.jvmargs=-Xmx16g -XX:MaxMetaspaceSize=2g -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=20",
-        "-q",
     ]
+    if args.verbose >= 1:
+        gradle_args.append("--stacktrace")
+    else:
+        gradle_args.append("-q")
 
     proc = execv(gradle_args, env=env)
     os.chdir("..")
