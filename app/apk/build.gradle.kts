@@ -1,10 +1,20 @@
 plugins {
     id("com.android.application")
     kotlin("plugin.parcelize")
+    id("com.android.legacy-kapt")
     id("androidx.navigation.safeargs.kotlin")
 }
 
 setupMainApk()
+
+kapt {
+    correctErrorTypes = true
+    useBuildCache = true
+    mapDiagnosticLocations = true
+    javacOptions {
+        option("-Xmaxerrs", "1000")
+    }
+}
 
 android {
     buildFeatures {
@@ -46,4 +56,5 @@ dependencies {
     implementation(libs.fragment.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+    kapt(kotlin("stdlib"))
 }
