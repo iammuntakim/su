@@ -211,8 +211,9 @@ def build_app():
     header(f"Output: {target}")
 
     source = Path("app", "core", "src", build_type, "assets", "stub.apk")
-    target = config["outdir"] / f"stub-{build_type}.apk"
-    cp(source, target)
+    if source.exists():
+        target = config["outdir"] / f"stub-{build_type}.apk"
+        cp(source, target)
 
 
 def build_stub():

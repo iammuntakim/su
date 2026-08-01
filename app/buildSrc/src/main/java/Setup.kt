@@ -179,7 +179,6 @@ fun Project.setupCoreLib() {
                 it.addGeneratedSourceDirectory(syncResources, SyncWithDir::outputFolder)
             }
 
-            val stubTask = tasks.getByPath(":stub:comment$variantCapped")
             val syncAssets = tasks.register("sync${variantCapped}Assets", SyncWithDir::class) {
                 outputFolder.set(layout.buildDirectory.dir("$variantName/assets"))
                 into(outputFolder)
@@ -191,15 +190,11 @@ fun Project.setupCoreLib() {
                         "app_functions.sh", "uninstaller.sh", "module_installer.sh")
                 }
                 from(rootFile("tools/bootctl"))
-                into("chromeos") {
-                    from(rootFile("tools/futility"))
-                    from(rootFile("tools/keys")) {
-                        include("kernel_data_key.vbprivk", "kernel.keyblock")
+                if (Config.buildStub) {
+                    from(tasks.getByPath(":stub:comment$variantCapped")) {
+                        include { it.name.endsWith(".apk") }
+                        rename { "stub.apk" }
                     }
-                }
-                from(stubTask) {
-                    include { it.name.endsWith(".apk") }
-                    rename { "stub.apk" }
                 }
                 filesMatching("**/util_functions.sh") {
                     filter {
