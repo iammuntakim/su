@@ -163,7 +163,7 @@ abstract class MagiskInstallImpl protected constructor(
             // Extract scripts
             for (script in listOf("util_functions.sh", "boot_patch.sh", "addon.d.sh", "stub.apk")) {
                 val dest = File(installDir, script)
-                if (script == "stub.apk" && !context.assets.list("").any { it == script }) {
+                if (script == "stub.apk" && context.assets.list("")?.contains(script) != true) {
                     continue
                 }
                 context.assets.open(script).writeTo(dest)
