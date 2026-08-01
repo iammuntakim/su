@@ -14,7 +14,6 @@ import su.android.R
 import su.android.arch.BaseFragment
 import su.android.arch.viewModel
 import su.android.core.Info
-import su.android.core.download.DownloadEngine
 import su.android.databinding.FragmentHomeMd2Binding
 import su.android.core.R as CoreR
 
@@ -26,7 +25,6 @@ class HomeFragment : BaseFragment<FragmentHomeMd2Binding>(), MenuProvider {
     override fun onStart() {
         super.onStart()
         activity?.setTitle(CoreR.string.section_home)
-        DownloadEngine.observeProgress(this, viewModel::onProgressUpdate)
     }
 
     private fun checkTitle(text: TextView, icon: ImageView) {
@@ -51,9 +49,6 @@ class HomeFragment : BaseFragment<FragmentHomeMd2Binding>(), MenuProvider {
         with(binding.homeMagiskWrapper) {
             checkTitle(homeMagiskTitle, homeMagiskIcon)
         }
-        with(binding.homeManagerWrapper) {
-            checkTitle(homeManagerTitle, homeManagerIcon)
-        }
 
         return binding.root
     }
@@ -72,8 +67,4 @@ class HomeFragment : BaseFragment<FragmentHomeMd2Binding>(), MenuProvider {
         return true
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.stateManagerProgress = 0
-    }
 }

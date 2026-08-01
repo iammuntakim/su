@@ -103,16 +103,187 @@
                 android:layout_marginEnd="@dimen/l1"
                 app:layout_constraintTop_toBottomOf="@+id/home_device_wrapper" />
 
-            <include
-                android:id="@+id/home_manager_wrapper"
-                layout="@layout/include_home_manager"
-                viewModel="@{viewModel}"
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.Material3.CardView.Elevated"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/l1"
                 android:layout_marginTop="@dimen/l1"
                 android:layout_marginEnd="@dimen/l1"
-                app:layout_constraintTop_toBottomOf="@+id/home_magisk_wrapper" />
+                app:cardCornerRadius="24dp"
+                app:cardElevation="2dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/l1"
+                    android:paddingTop="@dimen/l_50"
+                    android:paddingEnd="@dimen/l1"
+                    android:paddingBottom="@dimen/l_50">
+
+                    <ImageView
+                        android:id="@+id/home_device_icon"
+                        style="@style/WidgetFoundation.Icon.Primary"
+                        android:padding="@dimen/l_25"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_device_info" />
+
+                    <TextView
+                        android:id="@+id/home_device_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/l1"
+                        android:text="@string/home_device_info"
+                        android:textAppearance="@style/AppearanceFoundation.Title"
+                        android:textColor="?colorPrimary"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        app:layout_constraintBottom_toBottomOf="@+id/home_device_icon"
+                        app:layout_constraintStart_toEndOf="@+id/home_device_icon"
+                        app:layout_constraintTop_toTopOf="@+id/home_device_icon" />
+
+                    <Button
+                        android:id="@+id/home_device_more"
+                        style="@style/WidgetFoundation.Button.Text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:onClick="@{() -> viewModel.onMorePressed()}"
+                        android:text="@string/home_more"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_more_vert"
+                        app:layout_constraintBottom_toBottomOf="@+id/home_device_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/home_device_title" />
+
+                    <LinearLayout
+                        android:id="@+id/home_device_rows"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/l_50"
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toBottomOf="@+id/home_device_icon">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/l_50"
+                            android:paddingBottom="@dimen/l_50"
+                            android:onClick="@{() -> viewModel.onDeviceInfoPressed()}">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:includeFontPadding="false"
+                                android:text="@string/home_model"
+                                android:textAppearance="@style/AppearanceFoundation.Caption.Variant" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:includeFontPadding="false"
+                                android:text="@{viewModel.deviceModel}"
+                                android:textAppearance="@style/AppearanceFoundation.Caption"
+                                android:textStyle="bold"
+                                tools:text="Pixel 7" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/l_50"
+                            android:paddingBottom="@dimen/l_50">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:includeFontPadding="false"
+                                android:text="@string/android_version"
+                                android:textAppearance="@style/AppearanceFoundation.Caption.Variant" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:includeFontPadding="false"
+                                android:text="@{viewModel.androidVersion}"
+                                android:textAppearance="@style/AppearanceFoundation.Caption"
+                                android:textStyle="bold"
+                                tools:text="Android 14 (API 34)" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/l_50"
+                            android:paddingBottom="@dimen/l_50">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:includeFontPadding="false"
+                                android:text="@string/home_kernel"
+                                android:textAppearance="@style/AppearanceFoundation.Caption.Variant" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:includeFontPadding="false"
+                                android:text="@{viewModel.kernelVersion}"
+                                android:textAppearance="@style/AppearanceFoundation.Caption"
+                                android:textStyle="bold"
+                                tools:text="5.15.0" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/l_50"
+                            android:paddingBottom="@dimen/l_50">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:includeFontPadding="false"
+                                android:text="@string/home_ram"
+                                android:textAppearance="@style/AppearanceFoundation.Caption.Variant" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:includeFontPadding="false"
+                                android:text="@{viewModel.ramInfo}"
+                                android:textAppearance="@style/AppearanceFoundation.Caption"
+                                android:textStyle="bold"
+                                tools:text="8.00 GB" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 style="@style/Widget.Material3.CardView.Elevated"

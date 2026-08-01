@@ -12,12 +12,14 @@ import su.android.core.Config
 import su.android.core.Const
 import su.android.core.Info
 import su.android.core.R
+import su.android.core.ktx.activity
 import su.android.core.ktx.toast
 import su.android.core.utils.RootUtils
 import su.android.databinding.bindExtra
 import su.android.dialog.UninstallDialog
 import su.android.events.AuthEvent
 import su.android.events.SnackbarEvent
+import su.android.view.InfoDialog
 
 class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
 
@@ -31,6 +33,12 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
 
         val generalList = mutableListOf<BaseSettingsItem>(DoHToggle, DownloadPath)
         resultList.add(SettingsGroupItem.CardGroup(children = generalList))
+
+        resultList.add(
+            SettingsGroupItem.CardGroup(
+                children = listOf(DeviceInfo, BuildProp)
+            )
+        )
 
         if (Info.env.isActive) {
             val magiskList = mutableListOf<BaseSettingsItem>(SystemlessHosts)
@@ -79,6 +87,8 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
             SystemlessHosts -> createHosts()
             DenyListConfig -> SettingsFragmentDirections.actionSettingsFragmentToDenyFragment().navigate()
             Zygisk -> if (Zygisk.mismatch) SnackbarEvent(R.string.reboot_apply_change).publish()
+            DeviceInfo -> InfoDialog.deviceInfo(view.activity)
+            BuildProp -> InfoDialog.buildProp(view.activity)
             else -> Unit
         }
     }

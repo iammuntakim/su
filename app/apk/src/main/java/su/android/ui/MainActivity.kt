@@ -34,7 +34,6 @@ import su.android.core.ktx.toast
 import su.android.core.model.module.LocalModule
 import su.android.core.tasks.AppMigration
 import su.android.databinding.ActivityMainMd2Binding
-import su.android.ui.home.HomeFragmentDirections
 import su.android.ui.theme.Theme
 import su.android.view.MagiskDialog
 import su.android.view.Shortcuts
@@ -98,7 +97,6 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
                 R.id.homeFragment,
                 R.id.modulesFragment,
                 R.id.superuserFragment,
-                R.id.logFragment,
                 R.id.settingsFragment -> true
                 else -> false
             }
@@ -174,7 +172,7 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
         return when (name) {
             Const.Nav.SUPERUSER -> MainDirections.actionSuperuserFragment()
             Const.Nav.MODULES -> MainDirections.actionModuleFragment()
-            Const.Nav.SETTINGS -> HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
+            Const.Nav.SETTINGS -> MainDirections.actionGlobalSettingsFragment()
             else -> null
         }
     }
@@ -184,8 +182,7 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
             R.id.homeFragment -> MainDirections.actionHomeFragment()
             R.id.modulesFragment -> MainDirections.actionModuleFragment()
             R.id.superuserFragment -> MainDirections.actionSuperuserFragment()
-            R.id.logFragment -> MainDirections.actionLogFragment()
-            R.id.settingsFragment -> HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
+            R.id.settingsFragment -> MainDirections.actionGlobalSettingsFragment()
             else -> null
         }
     }
