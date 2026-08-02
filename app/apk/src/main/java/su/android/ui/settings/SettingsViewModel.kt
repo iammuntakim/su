@@ -12,14 +12,20 @@ import su.android.core.Config
 import su.android.core.Const
 import su.android.core.Info
 import su.android.core.R
+<<<<<<< HEAD
 import su.android.core.ktx.activity
+=======
+>>>>>>> 15cf5a33d (Build SuperSU)
 import su.android.core.ktx.toast
 import su.android.core.utils.RootUtils
 import su.android.databinding.bindExtra
 import su.android.dialog.UninstallDialog
 import su.android.events.AuthEvent
 import su.android.events.SnackbarEvent
+<<<<<<< HEAD
 import su.android.view.InfoDialog
+=======
+>>>>>>> 15cf5a33d (Build SuperSU)
 
 class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
 
@@ -34,12 +40,15 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
         val generalList = mutableListOf<BaseSettingsItem>(DoHToggle, DownloadPath)
         resultList.add(SettingsGroupItem.CardGroup(children = generalList))
 
+<<<<<<< HEAD
         resultList.add(
             SettingsGroupItem.CardGroup(
                 children = listOf(DeviceInfo, BuildProp)
             )
         )
 
+=======
+>>>>>>> 15cf5a33d (Build SuperSU)
         if (Info.env.isActive) {
             val magiskList = mutableListOf<BaseSettingsItem>(SystemlessHosts)
             if (Const.Version.atLeast_24_0()) {
@@ -87,8 +96,11 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
             SystemlessHosts -> createHosts()
             DenyListConfig -> SettingsFragmentDirections.actionSettingsFragmentToDenyFragment().navigate()
             Zygisk -> if (Zygisk.mismatch) SnackbarEvent(R.string.reboot_apply_change).publish()
+<<<<<<< HEAD
             DeviceInfo -> InfoDialog.deviceInfo(view.activity)
             BuildProp -> InfoDialog.buildProp(view.activity)
+=======
+>>>>>>> 15cf5a33d (Build SuperSU)
             else -> Unit
         }
     }

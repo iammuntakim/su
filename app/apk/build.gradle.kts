@@ -56,5 +56,10 @@ dependencies {
     implementation(libs.fragment.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+<<<<<<< HEAD
+=======
+
+    // Make sure kapt runs with a proper kotlin-stdlib
+>>>>>>> 15cf5a33d (Build SuperSU)
     kapt(kotlin("stdlib"))
 }

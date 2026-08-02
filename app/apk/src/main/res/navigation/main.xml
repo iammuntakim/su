@@ -26,6 +26,17 @@
         tools:layout="@layout/fragment_home_md2">
 
         <action
+<<<<<<< HEAD
+=======
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/fragment_enter"
+            app:exitAnim="@anim/fragment_exit"
+            app:popEnterAnim="@anim/fragment_enter_pop"
+            app:popExitAnim="@anim/fragment_exit_pop" />
+
+        <action
+>>>>>>> 15cf5a33d (Build SuperSU)
             android:id="@+id/action_homeFragment_to_installFragment"
             app:destination="@id/installFragment"
             app:enterAnim="@anim/fragment_enter"
@@ -75,6 +86,15 @@
         tools:layout="@layout/fragment_install_md2" />
 
     <fragment
+<<<<<<< HEAD
+=======
+        android:id="@+id/logFragment"
+        android:name="su.android.ui.log.LogFragment"
+        android:label="LogFragment"
+        tools:layout="@layout/fragment_log_md2" />
+
+    <fragment
+>>>>>>> 15cf5a33d (Build SuperSU)
         android:id="@+id/modulesFragment"
         android:name="su.android.ui.module.ModuleFragment"
         android:label="ModuleFragment"
@@ -122,6 +142,18 @@
         app:popUpTo="@id/homeFragment" />
 
     <action
+<<<<<<< HEAD
+=======
+        android:id="@+id/action_logFragment"
+        app:destination="@id/logFragment"
+        app:enterAnim="@anim/fragment_enter"
+        app:exitAnim="@anim/fragment_exit"
+        app:popEnterAnim="@anim/fragment_enter_pop"
+        app:popExitAnim="@anim/fragment_exit_pop"
+        app:popUpTo="@id/homeFragment" />
+
+    <action
+>>>>>>> 15cf5a33d (Build SuperSU)
         android:id="@+id/action_moduleFragment"
         app:destination="@id/modulesFragment"
         app:enterAnim="@anim/fragment_enter"

@@ -103,13 +103,21 @@
                 android:layout_marginEnd="@dimen/l1"
                 app:layout_constraintTop_toBottomOf="@+id/home_device_wrapper" />
 
+<<<<<<< HEAD
             <com.google.android.material.card.MaterialCardView
                 style="@style/Widget.Material3.CardView.Elevated"
+=======
+            <include
+                android:id="@+id/home_manager_wrapper"
+                layout="@layout/include_home_manager"
+                viewModel="@{viewModel}"
+>>>>>>> 15cf5a33d (Build SuperSU)
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/l1"
                 android:layout_marginTop="@dimen/l1"
                 android:layout_marginEnd="@dimen/l1"
+<<<<<<< HEAD
                 app:cardCornerRadius="24dp"
                 app:cardElevation="2dp">
 
@@ -284,6 +292,9 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
+=======
+                app:layout_constraintTop_toBottomOf="@+id/home_magisk_wrapper" />
+>>>>>>> 15cf5a33d (Build SuperSU)
 
             <com.google.android.material.card.MaterialCardView
                 style="@style/Widget.Material3.CardView.Elevated"

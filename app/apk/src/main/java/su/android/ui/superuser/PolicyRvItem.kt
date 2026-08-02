@@ -71,6 +71,17 @@ class PolicyRvItem(
             viewModel.updateNotify(this)
         }
 
+<<<<<<< HEAD
+=======
+    @get:Bindable
+    var shouldLog
+        get() = item.logging
+        private set(value) = setImpl(value, shouldLog) {
+            item.logging = it
+            viewModel.updateLogging(this)
+        }
+
+>>>>>>> 15cf5a33d (Build SuperSU)
     fun toggleExpand() {
         isExpanded = !isExpanded
     }
@@ -79,6 +90,13 @@ class PolicyRvItem(
         shouldNotify = !shouldNotify
     }
 
+<<<<<<< HEAD
+=======
+    fun toggleLog() {
+        shouldLog = !shouldLog
+    }
+
+>>>>>>> 15cf5a33d (Build SuperSU)
     fun revoke() {
         viewModel.deletePressed(this)
     }
