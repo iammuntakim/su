@@ -31,7 +31,7 @@ jobs:
                   sudo apt-get install -y python3 gh
 
             - name: Task :cache:cacheGradle
-              uses: actions/cache@d4323d450d92b8b757163830335e239433433a00
+              uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9
               with:
                   path: |
                       ~/.gradle/caches
@@ -41,7 +41,7 @@ jobs:
                       gradle-${{ runner.os }}-
 
             - name: Task :setup:installJava
-              uses: actions/setup-java@3a47288d4525d606b2020e7401764421b779391b
+              uses: actions/setup-java@dd12632fcd4407eed7e2d7801a2d12c8b00693a6
               with:
                   distribution: temurin
                   java-version: 21
