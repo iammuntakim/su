@@ -34,10 +34,6 @@ import su.android.core.ktx.toast
 import su.android.core.model.module.LocalModule
 import su.android.core.tasks.AppMigration
 import su.android.databinding.ActivityMainMd2Binding
-<<<<<<< HEAD
-=======
-import su.android.ui.home.HomeFragmentDirections
->>>>>>> 15cf5a33d (Build SuperSU)
 import su.android.ui.theme.Theme
 import su.android.view.MagiskDialog
 import su.android.view.Shortcuts
@@ -101,10 +97,7 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
                 R.id.homeFragment,
                 R.id.modulesFragment,
                 R.id.superuserFragment,
-<<<<<<< HEAD
-=======
                 R.id.logFragment,
->>>>>>> 15cf5a33d (Build SuperSU)
                 R.id.settingsFragment -> true
                 else -> false
             }
@@ -180,11 +173,7 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
         return when (name) {
             Const.Nav.SUPERUSER -> MainDirections.actionSuperuserFragment()
             Const.Nav.MODULES -> MainDirections.actionModuleFragment()
-<<<<<<< HEAD
             Const.Nav.SETTINGS -> MainDirections.actionGlobalSettingsFragment()
-=======
-            Const.Nav.SETTINGS -> HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
->>>>>>> 15cf5a33d (Build SuperSU)
             else -> null
         }
     }
@@ -194,12 +183,8 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
             R.id.homeFragment -> MainDirections.actionHomeFragment()
             R.id.modulesFragment -> MainDirections.actionModuleFragment()
             R.id.superuserFragment -> MainDirections.actionSuperuserFragment()
-<<<<<<< HEAD
-            R.id.settingsFragment -> MainDirections.actionGlobalSettingsFragment()
-=======
             R.id.logFragment -> MainDirections.actionLogFragment()
-            R.id.settingsFragment -> HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
->>>>>>> 15cf5a33d (Build SuperSU)
+            R.id.settingsFragment -> MainDirections.actionGlobalSettingsFragment()
             else -> null
         }
     }

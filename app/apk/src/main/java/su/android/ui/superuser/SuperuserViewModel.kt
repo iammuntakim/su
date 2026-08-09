@@ -140,8 +140,6 @@ class SuperuserViewModel(
         }
     }
 
-<<<<<<< HEAD
-=======
     fun updateLogging(item: PolicyRvItem) {
         viewModelScope.launch {
             db.update(item.item)
@@ -158,7 +156,6 @@ class SuperuserViewModel(
         }
     }
 
->>>>>>> 15cf5a33d (Build SuperSU)
     fun updatePolicy(item: PolicyRvItem, policy: Int) {
         val items = itemsPolicies.filter { it.item.uid == item.item.uid }
         fun updateState() {

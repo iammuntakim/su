@@ -16,9 +16,6 @@
 # magisk             binary    The magisk binary.
 # magiskboot         binary    A tool to manipulate boot images.
 # init-ld            binary    The library that will be LD_PRELOAD of /init
-
-# chromeos           folder    This folder includes the utility and keys to sign
-#                  (optional)  chromeos boot images. Only used for Pixel C.
 #######################################################################################
 
 ############
@@ -79,7 +76,6 @@ chmod -R 755 .
 # Unpack
 #########
 
-CHROMEOS=false
 VENDORBOOT=false
 
 ui_print "- Unpacking boot image"
@@ -89,7 +85,6 @@ case $? in
   0 ) ;;
   2 )
     ui_print "- ChromeOS boot image detected"
-    CHROMEOS=true
     ;;
   3 )
     ui_print "- Vendor boot image detected"
@@ -252,9 +247,6 @@ fi
 
 ui_print "- Repacking boot image"
 ./magiskboot repack "$BOOTIMAGE" || abort "! Unable to repack boot image"
-
-# Sign chromeos boot
-$CHROMEOS && sign_chromeos
 
 # Restore the original boot partition path
 [ -e "$BOOTNAND" ] && BOOTIMAGE="$BOOTNAND"

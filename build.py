@@ -179,20 +179,10 @@ def build_apk(module: str):
         "--parallel",
         "--build-cache",
         "--configure-on-demand",
-<<<<<<< HEAD
-        f        "--max-workers={cpu_count}",
-        "-Dorg.gradle.jvmargs=-Xmx16g -XX:MaxMetaspaceSize=2g -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=20",
-    ]
-    if args.verbose >= 1:
-        gradle_args.append("--stacktrace")
-    else:
-        gradle_args.append("-q")
-=======
         f"--max-workers={cpu_count}",
         "-Dorg.gradle.jvmargs=-Xmx16g -XX:MaxMetaspaceSize=2g -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=20",
         "-q",
     ]
->>>>>>> 15cf5a33d (Build SuperSU)
 
     proc = execv(gradle_args, env=env)
     os.chdir("..")
@@ -221,14 +211,8 @@ def build_app():
     header(f"Output: {target}")
 
     source = Path("app", "core", "src", build_type, "assets", "stub.apk")
-<<<<<<< HEAD
-    if source.exists():
-        target = config["outdir"] / f"stub-{build_type}.apk"
-        cp(source, target)
-=======
     target = config["outdir"] / f"stub-{build_type}.apk"
     cp(source, target)
->>>>>>> 15cf5a33d (Build SuperSU)
 
 
 def build_stub():

@@ -22,15 +22,19 @@ class ModuleFragment : BaseFragment<FragmentModuleMd2Binding>() {
     override val layoutRes = R.layout.fragment_module_md2
     override val viewModel by viewModel<ModuleViewModel>()
 
-    override fun onStart() {
-        super.onStart()
-        activity?.title = resources.getString(CoreR.string.modules)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         viewModel.data.observe(this) {
             it ?: return@observe
             val displayName = runCatching { it.displayName }.getOrNull() ?: return@observe
             viewModel.requestInstallLocalModule(it, displayName)
             viewModel.data.value = null
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        activity?.title = resources.getString(CoreR.string.modules)
     }
 
     override fun onCreateView(

@@ -150,8 +150,6 @@
                         android:background="?colorSurfaceSurfaceVariant" />
 
                     <Button
-<<<<<<< HEAD
-=======
                         android:id="@+id/policy_log"
                         style="@style/WidgetFoundation.Button.Text"
                         isSelected="@{item.shouldLog}"
@@ -176,7 +174,6 @@
                         android:background="?colorSurfaceSurfaceVariant" />
 
                     <Button
->>>>>>> 15cf5a33d (Build SuperSU)
                         android:id="@+id/policy_delete"
                         style="@style/WidgetFoundation.Button.Text"
                         android:layout_width="0dp"

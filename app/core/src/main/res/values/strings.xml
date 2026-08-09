@@ -2,10 +2,7 @@
 
     <string name="modules">Modules</string>
     <string name="superuser">Superuser</string>
-<<<<<<< HEAD
-=======
     <string name="logs">Logs</string>
->>>>>>> 15cf5a33d (Build SuperSU)
     <string name="settings">Settings</string>
     <string name="install">Install</string>
     <string name="section_home">Home</string>
@@ -25,20 +22,6 @@
     <string name="home_item_source">Source</string>
     <string name="home_installed_version">Installed</string>
     <string name="home_latest_version">Latest</string>
-<<<<<<< HEAD
-    <string name="device_info_title">Device Info</string>
-    <string name="build_prop_title">Build.prop</string>
-    <string name="build_prop_unavailable">Unable to read build.prop. Make sure SuperSU is installed and rooted.</string>
-    <string name="home_more">More</string>
-    <string name="android_version">Android</string>
-    <string name="home_kernel">Kernel</string>
-    <string name="home_ram">RAM</string>
-    <string name="home_model">Model</string>
-    <string name="menuSaveLog">Save log</string>
-    <string name="settings_device_info_summary">View detailed device information</string>
-    <string name="settings_build_prop_summary">View the full build.prop</string>
-=======
->>>>>>> 15cf5a33d (Build SuperSU)
     <string name="invalid_update_channel">Invalid update channel</string>
     <string name="uninstall_magisk_title">Uninstall SuperSU</string>
     <string name="uninstall_magisk_msg">All modules will be disabled/removed!\nRoot will be removed!\nAny internal storage unencrypted through the use of SuperSU will be re-encrypted!</string>
@@ -62,10 +45,10 @@
 
     <string name="su_request_title">Superuser request</string>
     <string name="touch_filtered_warning">Because an app is obscuring a Superuser request, SuperSU can\'t verify your response.</string>
-    <string name="deny">Deny</string>
+    <string name="deny">0</string>
     <string name="prompt">Prompt</string>
     <string name="restrict">Restrict</string>
-    <string name="grant">Grant</string>
+    <string name="grant">1</string>
     <string name="su_warning">Grants full access to your device.\nDeny if you\'re not sure!</string>
     <string name="forever">Forever</string>
     <string name="once">Once</string>
@@ -79,11 +62,8 @@
     <string name="su_snack_deny">Superuser rights of %1$s are denied</string>
     <string name="su_snack_notif_on">Notifications of %1$s are enabled</string>
     <string name="su_snack_notif_off">Notifications of %1$s are disabled</string>
-<<<<<<< HEAD
-=======
     <string name="su_snack_log_on">Logging of %1$s is enabled</string>
     <string name="su_snack_log_off">Logging of %1$s is disabled</string>
->>>>>>> 15cf5a33d (Build SuperSU)
     <string name="su_revoke_title">Revoke?</string>
     <string name="su_revoke_msg">Confirm to revoke %1$s Superuser rights</string>
     <string name="toast">Toast</string>
@@ -92,8 +72,6 @@
     <string name="superuser_toggle_revoke">Revoke</string>
     <string name="superuser_policy_none">No apps have asked for Superuser permission yet.</string>
 
-<<<<<<< HEAD
-=======
     <string name="log_data_none">You\'re log-free. Try using your root apps more.</string>
     <string name="log_data_magisk_none">SuperSU logs are empty, that\'s weird.</string>
     <string name="menuSaveLog">Save log</string>
@@ -105,7 +83,6 @@
     <string name="selinux_context">SELinux context: %s</string>
     <string name="supp_group">Supplementary group: %s</string>
 
->>>>>>> 15cf5a33d (Build SuperSU)
     <string name="show_system_app">Show system apps</string>
     <string name="show_os_app">Show OS apps</string>
     <string name="hide_filter_hint">Filter by name</string>

@@ -3,10 +3,6 @@ package su.android.ui.home
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-<<<<<<< HEAD
-import android.os.Build
-=======
->>>>>>> 15cf5a33d (Build SuperSU)
 import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.databinding.Bindable
@@ -17,27 +13,6 @@ import su.android.arch.AsyncLoadViewModel
 import su.android.arch.ContextExecutor
 import su.android.arch.UIActivity
 import su.android.arch.ViewEvent
-<<<<<<< HEAD
-import su.android.core.AppContext
-import su.android.core.BuildConfig
-import su.android.core.Config
-import su.android.core.Info
-import su.android.core.ktx.await
-import su.android.core.ktx.toast
-import su.android.databinding.bindExtra
-import su.android.databinding.set
-import su.android.dialog.EnvFixDialog
-import su.android.dialog.UninstallDialog
-import su.android.utils.asText
-import su.android.view.InfoDialog
-import com.topjohnwu.superuser.Shell
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import java.io.File
-import su.android.core.R as CoreR
-
-class HomeViewModel : AsyncLoadViewModel() {
-=======
 import su.android.core.BuildConfig
 import su.android.core.Config
 import su.android.core.Info
@@ -60,7 +35,6 @@ import su.android.core.R as CoreR
 class HomeViewModel(
     private val svc: NetworkService
 ) : AsyncLoadViewModel() {
->>>>>>> 15cf5a33d (Build SuperSU)
 
     enum class State {
         LOADING, INVALID, OUTDATED, UP_TO_DATE
@@ -68,11 +42,8 @@ class HomeViewModel(
 
     val magiskTitleBarrierIds =
         intArrayOf(R.id.home_magisk_icon, R.id.home_magisk_title, R.id.home_magisk_button)
-<<<<<<< HEAD
-=======
     val appTitleBarrierIds =
         intArrayOf(R.id.home_manager_icon, R.id.home_manager_title, R.id.home_manager_button)
->>>>>>> 15cf5a33d (Build SuperSU)
 
     @get:Bindable
     var isNoticeVisible = Config.safetyNotice
@@ -86,13 +57,10 @@ class HomeViewModel(
             else -> State.UP_TO_DATE
         }
 
-<<<<<<< HEAD
-=======
     @get:Bindable
     var appState = State.LOADING
         set(value) = set(value, field, { field = it }, BR.appState)
 
->>>>>>> 15cf5a33d (Build SuperSU)
     val magiskInstalledVersion
         get() = Info.env.run {
             if (isActive)
@@ -101,19 +69,6 @@ class HomeViewModel(
                 CoreR.string.not_available.asText()
         }
 
-<<<<<<< HEAD
-    val deviceModel get() = Build.MODEL ?: ""
-    val deviceManufacturer get() = Build.MANUFACTURER ?: ""
-    val androidVersion
-        get() = "Android ${Build.VERSION.RELEASE} (API ${Build.VERSION.SDK_INT})"
-    val kernelVersion
-        get() = System.getProperty("os.version")
-            ?: AppContext.resources.getString(CoreR.string.not_available)
-
-    @get:Bindable
-    var ramInfo = CoreR.string.loading.asText()
-        set(value) = set(value, field, { field = it }, BR.ramInfo)
-=======
     @get:Bindable
     var managerRemoteVersion = CoreR.string.loading.asText()
         set(value) = set(value, field, { field = it }, BR.managerRemoteVersion)
@@ -125,20 +80,11 @@ class HomeViewModel(
     @get:Bindable
     var stateManagerProgress = 0
         set(value) = set(value, field, { field = it }, BR.stateManagerProgress)
->>>>>>> 15cf5a33d (Build SuperSU)
 
     val extraBindings = bindExtra {
         it.put(BR.viewModel, this)
     }
 
-<<<<<<< HEAD
-    override suspend fun doLoadWork() {
-        ramInfo = withContext(Dispatchers.Default) { readRam() }.asText()
-        ensureEnv()
-    }
-
-    override fun onNetworkChanged(network: Boolean) = Unit
-=======
     companion object {
         private var checkedEnv = false
     }
@@ -167,7 +113,6 @@ class HomeViewModel(
         if (subject is App)
             stateManagerProgress = progress.times(100f).roundToInt()
     }
->>>>>>> 15cf5a33d (Build SuperSU)
 
     fun onLinkPressed(link: String) = object : ViewEvent(), ContextExecutor {
         override fun invoke(context: Context) {
@@ -183,8 +128,6 @@ class HomeViewModel(
 
     fun onDeletePressed() = UninstallDialog().show()
 
-<<<<<<< HEAD
-=======
     fun onManagerPressed() = when (appState) {
         State.LOADING -> SnackbarEvent(CoreR.string.loading).publish()
         State.INVALID -> SnackbarEvent(CoreR.string.no_connection).publish()
@@ -195,26 +138,10 @@ class HomeViewModel(
         }
     }
 
->>>>>>> 15cf5a33d (Build SuperSU)
     fun onMagiskPressed() = withExternalRW {
         HomeFragmentDirections.actionHomeFragmentToInstallFragment().navigate()
     }
 
-<<<<<<< HEAD
-    fun onDeviceInfoPressed() = object : ViewEvent(), ActivityExecutor {
-        override fun invoke(activity: UIActivity<*>) {
-            InfoDialog.deviceInfo(activity)
-        }
-    }.publish()
-
-    fun onMorePressed() = object : ViewEvent(), ActivityExecutor {
-        override fun invoke(activity: UIActivity<*>) {
-            InfoDialog.buildProp(activity)
-        }
-    }.publish()
-
-=======
->>>>>>> 15cf5a33d (Build SuperSU)
     fun hideNotice() {
         Config.safetyNotice = false
         isNoticeVisible = false
@@ -230,35 +157,10 @@ class HomeViewModel(
         checkedEnv = true
     }
 
-<<<<<<< HEAD
-    private fun readRam(): String {
-        val unavailable = AppContext.resources.getString(CoreR.string.not_available)
-        return runCatching {
-            val kb = File("/proc/meminfo").readLines()
-                .firstOrNull { it.startsWith("MemTotal") }
-                ?.replace(Regex("\\s+"), " ")
-                ?.split(" ")
-                ?.getOrNull(1)
-                ?.toLongOrNull()
-            if (kb == null) {
-                unavailable
-            } else {
-                val gb = kb / 1048576.0
-                if (gb >= 1) "%.2f GB".format(gb)
-                else "${(kb / 1024)} MB"
-            }
-        }.getOrDefault(unavailable)
-    }
-
-    companion object {
-        private var checkedEnv = false
-    }
-=======
     val showTest = false
     fun onTestPressed() = object : ViewEvent(), ActivityExecutor {
         override fun invoke(activity: UIActivity<*>) {
             /* Entry point to trigger test events within the app */
         }
     }.publish()
->>>>>>> 15cf5a33d (Build SuperSU)
 }

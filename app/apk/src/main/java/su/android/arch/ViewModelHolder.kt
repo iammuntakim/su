@@ -8,10 +8,7 @@ import su.android.core.Info
 import su.android.core.di.ServiceLocator
 import su.android.ui.home.HomeViewModel
 import su.android.ui.install.InstallViewModel
-<<<<<<< HEAD
-=======
 import su.android.ui.log.LogViewModel
->>>>>>> 15cf5a33d (Build SuperSU)
 import su.android.ui.superuser.SuperuserViewModel
 import su.android.ui.surequest.SuRequestViewModel
 
@@ -34,12 +31,8 @@ object VMFactory : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when (modelClass) {
-<<<<<<< HEAD
-            HomeViewModel::class.java -> HomeViewModel()
-=======
             HomeViewModel::class.java -> HomeViewModel(ServiceLocator.networkService)
             LogViewModel::class.java -> LogViewModel(ServiceLocator.logRepo)
->>>>>>> 15cf5a33d (Build SuperSU)
             SuperuserViewModel::class.java -> SuperuserViewModel(ServiceLocator.policyDB)
             InstallViewModel::class.java ->
                 InstallViewModel(ServiceLocator.networkService, ServiceLocator.markwon)

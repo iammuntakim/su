@@ -195,18 +195,3 @@ object Uninstall : BaseSettingsItem.Blank() {
     override val title = CoreR.string.uninstall.asText()
     override val description = CoreR.string.uninstall_summary.asText()
 }
-<<<<<<< HEAD
-
-object DeviceInfo : BaseSettingsItem.Blank() {
-    override val icon: Int? = R.drawable.ic_device_info
-    override val title = CoreR.string.device_info_title.asText()
-    override val description = CoreR.string.settings_device_info_summary.asText()
-}
-
-object BuildProp : BaseSettingsItem.Blank() {
-    override val icon: Int? = R.drawable.ic_code
-    override val title = CoreR.string.build_prop_title.asText()
-    override val description = CoreR.string.settings_build_prop_summary.asText()
-}
-=======
->>>>>>> 15cf5a33d (Build SuperSU)

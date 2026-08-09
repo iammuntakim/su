@@ -80,11 +80,7 @@ class RootUtils(stub: Any?) : RootService() {
         File(module, "module.prop").outputStream().writer().use {
             it.write("""
                 id=hosts
-                name=Systemless Hosts
-                version=1.0
-                versionCode=1
-                author=SuperSU
-                description=SuperSU app built-in systemless hosts module
+                name=Hosts
             """.trimIndent())
         }
         File("/system/etc/hosts").copyTo(hosts)

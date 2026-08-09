@@ -32,7 +32,7 @@ class ModuleViewModel : AsyncLoadViewModel() {
 
     private val itemsInstalled = diffList<LocalModuleRvItem>()
 
-    val items = MergeObservableList<RvItem>()
+    val items = MergeObservableList<RvItem>().insertList(itemsInstalled)
     val extraBindings = bindExtra {
         it.put(BR.viewModel, this)
     }
@@ -49,9 +49,6 @@ class ModuleViewModel : AsyncLoadViewModel() {
                 withContext(Dispatchers.IO) { LocalModule.loaded() }
         if (moduleLoaded) {
             loadInstalled()
-            if (items.isEmpty()) {
-                items.insertList(itemsInstalled)
-            }
         }
         loading = false
         loadUpdateInfo()
