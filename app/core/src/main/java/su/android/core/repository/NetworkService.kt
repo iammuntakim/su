@@ -106,7 +106,7 @@ class NetworkService(
         findRelease { true }.asInfo { it.name == "app-debug.apk" }
 
     private suspend fun fetchCustomUpdate(url: String): UpdateInfo {
-        val info = raw.fetchUpdateJson(url).magisk
+        val info = raw.fetchUpdateJson(url).manager
         return info.let { it.copy(note = raw.fetchString(it.note)) }
     }
 

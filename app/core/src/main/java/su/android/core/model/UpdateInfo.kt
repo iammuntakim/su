@@ -11,7 +11,7 @@ import java.time.Instant
 
 @JsonClass(generateAdapter = true)
 class UpdateJson(
-    val magisk: UpdateInfo = UpdateInfo(),
+    @param:Json(name = "magisk") val manager: UpdateInfo = UpdateInfo(),
 )
 
 @Parcelize

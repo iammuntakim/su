@@ -14,7 +14,7 @@ import androidx.core.view.updatePadding
 import su.android.R
 import su.android.arch.BaseFragment
 import su.android.arch.viewModel
-import su.android.databinding.FragmentLogMd2Binding
+import su.android.databinding.FragmentLogBinding
 import su.android.ui.MainActivity
 import su.android.utils.AccessibilityUtils
 import su.android.utils.MotionRevealHelper
@@ -23,17 +23,17 @@ import rikka.recyclerview.addItemSpacing
 import rikka.recyclerview.fixEdgeEffect
 import su.android.core.R as CoreR
 
-class LogFragment : BaseFragment<FragmentLogMd2Binding>(), MenuProvider {
+class LogFragment : BaseFragment<FragmentLogBinding>(), MenuProvider {
 
-    override val layoutRes = R.layout.fragment_log_md2
+    override val layoutRes = R.layout.fragment_log
     override val viewModel by viewModel<LogViewModel>()
     override val snackbarView: View?
-        get() = if (isMagiskLogVisible) binding.logFilterSuperuser.snackbarContainer
+        get() = if (isLogPanelVisible) binding.logFilterSuperuser.snackbarContainer
                 else super.snackbarView
     override val snackbarAnchorView get() = binding.logFilterToggle
 
     private var actionSave: MenuItem? = null
-    private var isMagiskLogVisible
+    private var isLogPanelVisible
         get() = binding.logFilter.isVisible
         set(value) {
             MotionRevealHelper.withViews(binding.logFilter, binding.logFilterToggle, value)
@@ -61,7 +61,7 @@ class LogFragment : BaseFragment<FragmentLogMd2Binding>(), MenuProvider {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.logFilterToggle.setOnClickListener {
-            isMagiskLogVisible = true
+            isLogPanelVisible = true
         }
 
         binding.logFilterSuperuser.logSuperuser.apply {
@@ -74,33 +74,33 @@ class LogFragment : BaseFragment<FragmentLogMd2Binding>(), MenuProvider {
         binding.logFilterSuperuser.logSuperuser.updatePadding(bottom = extraBottom + 100)
 
         if (!AccessibilityUtils.isAnimationEnabled(requireContext().contentResolver)) {
-            val scrollView = view.findViewById<HorizontalScrollView>(R.id.log_scroll_magisk)
+            val scrollView = view.findViewById<HorizontalScrollView>(R.id.log_scroll_daemon)
             scrollView.setOverScrollMode(View.OVER_SCROLL_NEVER)
         }
     }
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_log_md2, menu)
+        inflater.inflate(R.menu.menu_log, menu)
         actionSave = menu.findItem(R.id.action_save)?.also {
-            it.isVisible = !isMagiskLogVisible
+            it.isVisible = !isLogPanelVisible
         }
     }
 
     override fun onMenuItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_save -> viewModel.saveMagiskLog()
+            R.id.action_save -> viewModel.saveDaemonLog()
             R.id.action_clear ->
-                if (!isMagiskLogVisible) viewModel.clearMagiskLog()
+                if (!isLogPanelVisible) viewModel.clearDaemonLog()
                 else viewModel.clearLog()
         }
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onPreBind(binding: FragmentLogMd2Binding) = Unit
+    override fun onPreBind(binding: FragmentLogBinding) = Unit
 
     override fun onBackPressed(): Boolean {
         if (binding.logFilter.isVisible) {
-            isMagiskLogVisible = false
+            isLogPanelVisible = false
             return true
         }
         return super.onBackPressed()

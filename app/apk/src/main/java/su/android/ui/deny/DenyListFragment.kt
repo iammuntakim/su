@@ -12,15 +12,15 @@ import su.android.R
 import su.android.arch.BaseFragment
 import su.android.arch.viewModel
 import su.android.core.ktx.hideKeyboard
-import su.android.databinding.FragmentDenyMd2Binding
+import su.android.databinding.FragmentDenyBinding
 import rikka.recyclerview.addEdgeSpacing
 import rikka.recyclerview.addItemSpacing
 import rikka.recyclerview.fixEdgeEffect
 import su.android.core.R as CoreR
 
-class DenyListFragment : BaseFragment<FragmentDenyMd2Binding>(), MenuProvider {
+class DenyListFragment : BaseFragment<FragmentDenyBinding>(), MenuProvider {
 
-    override val layoutRes = R.layout.fragment_deny_md2
+    override val layoutRes = R.layout.fragment_deny
     override val viewModel by viewModel<DenyListViewModel>()
 
     private lateinit var searchView: SearchView
@@ -48,7 +48,7 @@ class DenyListFragment : BaseFragment<FragmentDenyMd2Binding>(), MenuProvider {
         }
     }
 
-    override fun onPreBind(binding: FragmentDenyMd2Binding) = Unit
+    override fun onPreBind(binding: FragmentDenyBinding) = Unit
 
     override fun onBackPressed(): Boolean {
         if (::searchView.isInitialized && searchView.isIconfiedByDefault && !searchView.isIconified) {
@@ -59,7 +59,7 @@ class DenyListFragment : BaseFragment<FragmentDenyMd2Binding>(), MenuProvider {
     }
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_deny_md2, menu)
+        inflater.inflate(R.menu.menu_deny, menu)
         searchView = menu.findItem(R.id.action_search).actionView as SearchView
         searchView.queryHint = searchView.context.getString(CoreR.string.hide_filter_hint)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

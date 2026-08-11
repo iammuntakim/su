@@ -7,23 +7,23 @@ import su.android.arch.NavigationActivity
 import su.android.arch.UIActivity
 import su.android.core.R
 import su.android.core.ktx.toast
-import su.android.core.tasks.MagiskInstaller
+import su.android.core.tasks.SystemInstaller
 import su.android.events.DialogBuilder
 import su.android.ui.flash.FlashFragment
-import su.android.view.MagiskDialog
+import su.android.view.MaterialDialog
 import kotlinx.coroutines.launch
 
 class UninstallDialog : DialogBuilder {
 
-    override fun build(dialog: MagiskDialog) {
+    override fun build(dialog: MaterialDialog) {
         dialog.apply {
-            setTitle(R.string.uninstall_magisk_title)
-            setMessage(R.string.uninstall_magisk_msg)
-            setButton(MagiskDialog.ButtonType.POSITIVE) {
+            setTitle(R.string.uninstall_title)
+            setMessage(R.string.uninstall_msg)
+            setButton(MaterialDialog.ButtonType.POSITIVE) {
                 text = R.string.restore_img
                 onClick { restore(dialog.activity) }
             }
-            setButton(MagiskDialog.ButtonType.NEGATIVE) {
+            setButton(MaterialDialog.ButtonType.NEGATIVE) {
                 text = R.string.complete_uninstall
                 onClick { completeUninstall(dialog) }
             }
@@ -38,7 +38,7 @@ class UninstallDialog : DialogBuilder {
         }
 
         activity.lifecycleScope.launch {
-            MagiskInstaller.Restore().exec { success ->
+            SystemInstaller.Restore().exec { success ->
                 dialog.dismiss()
                 if (success) {
                     activity.toast(R.string.restore_done, Toast.LENGTH_SHORT)
@@ -49,7 +49,7 @@ class UninstallDialog : DialogBuilder {
         }
     }
 
-    private fun completeUninstall(dialog: MagiskDialog) {
+    private fun completeUninstall(dialog: MaterialDialog) {
         (dialog.ownerActivity as NavigationActivity<*>)
             .navigation.navigate(FlashFragment.uninstall())
     }

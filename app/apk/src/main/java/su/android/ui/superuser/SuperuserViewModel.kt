@@ -13,9 +13,9 @@ import su.android.core.AppContext
 import su.android.core.Config
 import su.android.core.Info
 import su.android.core.R
-import su.android.core.data.magiskdb.PolicyDao
+import su.android.core.data.policy.PolicyDao
 import su.android.core.ktx.getLabel
-import su.android.core.model.su.SuPolicy
+import su.android.core.model.policy.Policy
 import su.android.databinding.MergeObservableList
 import su.android.databinding.RvItem
 import su.android.databinding.bindExtra
@@ -160,7 +160,7 @@ class SuperuserViewModel(
         val items = itemsPolicies.filter { it.item.uid == item.item.uid }
         fun updateState() {
             viewModelScope.launch {
-                val res = if (policy >= SuPolicy.ALLOW) R.string.su_snack_grant else R.string.su_snack_deny
+                val res = if (policy >= Policy.ALLOW) R.string.su_snack_grant else R.string.su_snack_deny
                 item.item.policy = policy
                 db.update(item.item)
                 items.forEach {

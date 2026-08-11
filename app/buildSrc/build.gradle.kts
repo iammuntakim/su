@@ -9,9 +9,9 @@ repositories {
 
 gradlePlugin {
     plugins {
-        register("MagiskPlugin") {
-            id = "MagiskPlugin"
-            implementationClass = "MagiskPlugin"
+        register("SuperSuPlugin") {
+            id = "SuperSuPlugin"
+            implementationClass = "SuperSuPlugin"
         }
     }
 }

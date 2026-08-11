@@ -15,12 +15,12 @@ import su.android.arch.BaseFragment
 import su.android.arch.viewModel
 import su.android.core.Info
 import su.android.core.download.DownloadEngine
-import su.android.databinding.FragmentHomeMd2Binding
+import su.android.databinding.FragmentHomeBinding
 import su.android.core.R as CoreR
 
-class HomeFragment : BaseFragment<FragmentHomeMd2Binding>(), MenuProvider {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), MenuProvider {
 
-    override val layoutRes = R.layout.fragment_home_md2
+    override val layoutRes = R.layout.fragment_home
     override val viewModel by viewModel<HomeViewModel>()
 
     override fun onStart() {
@@ -48,8 +48,8 @@ class HomeFragment : BaseFragment<FragmentHomeMd2Binding>(), MenuProvider {
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        with(binding.homeMagiskWrapper) {
-            checkTitle(homeMagiskTitle, homeMagiskIcon)
+        with(binding.homeSystemWrapper) {
+            checkTitle(homeSystemTitle, homeSystemIcon)
         }
         with(binding.homeManagerWrapper) {
             checkTitle(homeManagerTitle, homeManagerIcon)
@@ -59,7 +59,7 @@ class HomeFragment : BaseFragment<FragmentHomeMd2Binding>(), MenuProvider {
     }
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_home_md2, menu)
+        inflater.inflate(R.menu.menu_home, menu)
         if (!Info.isRooted)
             menu.removeItem(R.id.action_reboot)
     }

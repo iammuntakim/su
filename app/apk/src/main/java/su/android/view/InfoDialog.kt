@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import su.android.R
 import su.android.core.ktx.toast
-import su.android.view.MagiskDialog.ButtonType
+import su.android.view.MaterialDialog.ButtonType
 import com.topjohnwu.superuser.Shell
 import su.android.core.R as CoreR
 
@@ -30,7 +30,7 @@ object InfoDialog {
 
     fun buildProp(activity: Activity) {
         val container = LinearLayout(activity).apply { orientation = LinearLayout.VERTICAL }
-        val dialog = MagiskDialog(activity).apply {
+        val dialog = MaterialDialog(activity).apply {
             setIcon(R.drawable.ic_code)
             setTitle(activity.getString(CoreR.string.build_prop_title))
             setButton(ButtonType.POSITIVE) {
@@ -49,7 +49,7 @@ object InfoDialog {
     private fun show(activity: Activity, title: CharSequence, rows: List<Pair<String, String>>) {
         val container = LinearLayout(activity).apply { orientation = LinearLayout.VERTICAL }
         populate(container, rows, activity)
-        MagiskDialog(activity).apply {
+        MaterialDialog(activity).apply {
             setIcon(R.drawable.ic_code)
             setTitle(title)
             setButton(ButtonType.POSITIVE) {
@@ -76,7 +76,7 @@ object InfoDialog {
         container.removeAllViews()
         if (rows.isEmpty()) {
             container.addView(TextView(activity).apply {
-                text = CoreR.string.not_available
+                setText(CoreR.string.not_available)
                 setPadding(0, (8 * activity.resources.displayMetrics.density).toInt(), 0, 0)
             })
             return
@@ -97,7 +97,7 @@ object InfoDialog {
                     setTextColor(0xFF757575.toInt())
                 },
                 LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
-                    .apply { setPadding(0, 0, (8 * dp).toInt(), 0) }
+                    .apply { rightMargin = (8 * dp).toInt() }
             )
 
             row.addView(
@@ -108,7 +108,7 @@ object InfoDialog {
                 LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
-                ).apply { setPadding(0, 0, (8 * dp).toInt(), 0) }
+                ).apply { rightMargin = (8 * dp).toInt() }
             )
 
             row.addView(
@@ -165,7 +165,7 @@ object InfoDialog {
             }
         }
         if (out.isBlank()) {
-            activity.runOnUiThread { activity.toast(CoreR.string.build_prop_unavailable, Toast.LENGTH_LONG) }
+            activity.runOnUiThread { activity.toast(activity.getString(CoreR.string.build_prop_unavailable), Toast.LENGTH_LONG) }
         }
         return out.toString().lineSequence()
             .map { it.trim() }

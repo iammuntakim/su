@@ -38,7 +38,7 @@ import com.google.android.material.slider.Slider
 import com.google.android.material.textfield.TextInputLayout
 import su.android.R
 import su.android.core.di.ServiceLocator
-import su.android.core.model.su.SuPolicy
+import su.android.core.model.policy.Policy
 import su.android.utils.TextHolder
 import com.topjohnwu.superuser.internal.UiThreadHandler
 import com.topjohnwu.widget.IndeterminateCheckBox
@@ -329,18 +329,18 @@ fun Slider.setListener(attrChange: InverseBindingListener) {
 @InverseMethod("sliderValueToPolicy")
 fun policyToSliderValue(policy: Int): Float {
     return when (policy) {
-        SuPolicy.DENY -> 1f
-        SuPolicy.RESTRICT -> 2f
-        SuPolicy.ALLOW -> 3f
+        Policy.DENY -> 1f
+        Policy.RESTRICT -> 2f
+        Policy.ALLOW -> 3f
         else -> 1f
     }
 }
 
 fun sliderValueToPolicy(value: Float): Int {
     return when (value) {
-        1f -> SuPolicy.DENY
-        2f -> SuPolicy.RESTRICT
-        3f -> SuPolicy.ALLOW
-        else -> SuPolicy.DENY
+        1f -> Policy.DENY
+        2f -> Policy.RESTRICT
+        3f -> Policy.ALLOW
+        else -> Policy.DENY
     }
 }

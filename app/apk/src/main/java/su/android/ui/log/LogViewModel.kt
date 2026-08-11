@@ -33,27 +33,27 @@ class LogViewModel(
     // --- empty view
 
     val itemEmpty = TextItem(R.string.log_data_none)
-    val itemMagiskEmpty = TextItem(R.string.log_data_magisk_none)
+    val itemDaemonEmpty = TextItem(R.string.log_data_daemon_none)
 
     // --- su log
 
-    val items = diffList<SuLogRvItem>()
+    val items = diffList<LogEntryItem>()
     val extraBindings = bindExtra {
         it.put(BR.viewModel, this)
     }
 
-    // --- magisk log
+    // --- daemon log
     val logs = diffList<LogRvItem>()
-    var magiskLogRaw = " "
+    var daemonLogRaw = " "
 
     override suspend fun doLoadWork() {
         loading = true
 
         val (suLogs, suDiff) = withContext(Dispatchers.Default) {
-            magiskLogRaw = repo.fetchMagiskLogs()
-            val newLogs = magiskLogRaw.split('\n').map { LogRvItem(it) }
+            daemonLogRaw = repo.fetchDaemonLogs()
+            val newLogs = daemonLogRaw.split('\n').map { LogRvItem(it) }
             logs.update(newLogs)
-            val suLogs = repo.fetchSuLogs().map { SuLogRvItem(it) }
+            val suLogs = repo.fetchLogEntries().map { LogEntryItem(it) }
             suLogs to items.calculateDiff(suLogs)
         }
 
@@ -65,7 +65,7 @@ class LogViewModel(
         loading = false
     }
 
-    fun saveMagiskLog() = withExternalRW {
+    fun saveDaemonLog() = withExternalRW {
         viewModelScope.launch(Dispatchers.IO) {
             val filename = "supersu%s.log".format(
                 System.currentTimeMillis().toTime(timeFormatStandard))
@@ -88,9 +88,9 @@ class LogViewModel(
                 file.write("\n\n---System MountInfo---\n\n")
                 FileInputStream("/proc/self/mountinfo").reader().use { it.copyTo(file) }
 
-                file.write("\n---Magisk Logs---\n")
+                file.write("\n---Daemon Logs---\n")
                 file.write("${Info.env.versionString} (${Info.env.versionCode})\n\n")
-                if (Info.env.isActive) file.write(magiskLogRaw)
+                if (Info.env.isActive) file.write(daemonLogRaw)
 
                 file.write("\n---Manager Logs---\n")
                 file.write("${BuildConfig.APP_VERSION_NAME} (${BuildConfig.APP_VERSION_CODE})\n\n")
@@ -101,7 +101,7 @@ class LogViewModel(
         }
     }
 
-    fun clearMagiskLog() = repo.clearMagiskLogs {
+    fun clearDaemonLog() = repo.clearDaemonLogs {
         SnackbarEvent(R.string.logs_cleared).publish()
         startLoading()
     }

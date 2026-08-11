@@ -17,7 +17,7 @@ import su.android.core.ktx.synchronized
 import su.android.core.ktx.timeFormatStandard
 import su.android.core.ktx.toTime
 import su.android.core.tasks.FlashZip
-import su.android.core.tasks.MagiskInstaller
+import su.android.core.tasks.SystemInstaller
 import su.android.core.utils.MediaStoreUtils
 import su.android.core.utils.MediaStoreUtils.outputStream
 import su.android.databinding.set
@@ -63,22 +63,22 @@ class FlashViewModel : BaseViewModel() {
                 }
                 Const.Value.UNINSTALL -> {
                     showReboot = false
-                    MagiskInstaller.Uninstall(outItems, logItems).exec()
+                    SystemInstaller.Uninstall(outItems, logItems).exec()
                 }
-                Const.Value.FLASH_MAGISK -> {
+                Const.Value.FLASH_DIRECT -> {
                     if (Info.isEmulator)
-                        MagiskInstaller.Emulator(outItems, logItems).exec()
+                        SystemInstaller.Emulator(outItems, logItems).exec()
                     else
-                        MagiskInstaller.Direct(outItems, logItems).exec()
+                        SystemInstaller.Direct(outItems, logItems).exec()
                 }
                 Const.Value.FLASH_INACTIVE_SLOT -> {
                     showReboot = false
-                    MagiskInstaller.SecondSlot(outItems, logItems).exec()
+                    SystemInstaller.SecondSlot(outItems, logItems).exec()
                 }
                 Const.Value.PATCH_FILE -> {
                     uri ?: return@launch
                     showReboot = false
-                    MagiskInstaller.Patch(uri, outItems, logItems).exec()
+                    SystemInstaller.Patch(uri, outItems, logItems).exec()
                 }
                 else -> {
                     back()

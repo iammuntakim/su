@@ -10,7 +10,7 @@ import su.android.ui.home.HomeViewModel
 import su.android.ui.install.InstallViewModel
 import su.android.ui.log.LogViewModel
 import su.android.ui.superuser.SuperuserViewModel
-import su.android.ui.surequest.SuRequestViewModel
+import su.android.ui.surequest.RequestViewModel
 
 interface ViewModelHolder : LifecycleOwner, ViewModelStoreOwner {
 
@@ -36,8 +36,8 @@ object VMFactory : ViewModelProvider.Factory {
             SuperuserViewModel::class.java -> SuperuserViewModel(ServiceLocator.policyDB)
             InstallViewModel::class.java ->
                 InstallViewModel(ServiceLocator.networkService, ServiceLocator.markwon)
-            SuRequestViewModel::class.java ->
-                SuRequestViewModel(ServiceLocator.policyDB, ServiceLocator.timeoutPrefs)
+            RequestViewModel::class.java ->
+                RequestViewModel(ServiceLocator.policyDB, ServiceLocator.timeoutPrefs)
             else -> modelClass.newInstance()
         } as T
     }

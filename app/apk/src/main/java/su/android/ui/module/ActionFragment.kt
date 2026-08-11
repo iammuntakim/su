@@ -16,12 +16,12 @@ import su.android.R
 import su.android.arch.BaseFragment
 import su.android.arch.viewModel
 import su.android.core.ktx.toast
-import su.android.databinding.FragmentActionMd2Binding
+import su.android.databinding.FragmentActionBinding
 import su.android.core.R as CoreR
 
-class ActionFragment : BaseFragment<FragmentActionMd2Binding>(), MenuProvider {
+class ActionFragment : BaseFragment<FragmentActionBinding>(), MenuProvider {
 
-    override val layoutRes = R.layout.fragment_action_md2
+    override val layoutRes = R.layout.fragment_action
     override val viewModel by viewModel<ActionViewModel>()
     override val snackbarView: View get() = binding.snackbarContainer
 
@@ -104,5 +104,5 @@ class ActionFragment : BaseFragment<FragmentActionMd2Binding>(), MenuProvider {
         return super.onBackPressed()
     }
 
-    override fun onPreBind(binding: FragmentActionMd2Binding) = Unit
+    override fun onPreBind(binding: FragmentActionBinding) = Unit
 }

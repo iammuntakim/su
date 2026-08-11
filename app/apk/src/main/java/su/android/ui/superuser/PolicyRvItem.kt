@@ -5,7 +5,7 @@ import androidx.databinding.Bindable
 import su.android.BR
 import su.android.R
 import su.android.core.Config
-import su.android.core.model.su.SuPolicy
+import su.android.core.model.policy.Policy
 import su.android.databinding.DiffItem
 import su.android.databinding.ItemWrapper
 import su.android.databinding.ObservableRvItem
@@ -14,14 +14,14 @@ import su.android.core.R as CoreR
 
 class PolicyRvItem(
     private val viewModel: SuperuserViewModel,
-    override val item: SuPolicy,
+    override val item: Policy,
     val packageName: String,
     private val isSharedUid: Boolean,
     val icon: Drawable,
     val appName: String
-) : ObservableRvItem(), DiffItem<PolicyRvItem>, ItemWrapper<SuPolicy> {
+) : ObservableRvItem(), DiffItem<PolicyRvItem>, ItemWrapper<Policy> {
 
-    override val layoutRes = R.layout.item_policy_md2
+    override val layoutRes = R.layout.item_policy
 
     val title get() = if (isSharedUid) "[SharedUID] $appName" else appName
 
@@ -35,14 +35,14 @@ class PolicyRvItem(
     var isExpanded = false
         set(value) = set(value, field, { field = it }, BR.expanded)
 
-    val showSlider = Config.suRestrict || item.policy == SuPolicy.RESTRICT
+    val showSlider = Config.suRestrict || item.policy == Policy.RESTRICT
 
     @get:Bindable
     var isEnabled
-        get() = item.policy >= SuPolicy.ALLOW
+        get() = item.policy >= Policy.ALLOW
         set(value) = setImpl(value, isEnabled) {
             notifyPropertyChanged(BR.enabled)
-            viewModel.updatePolicy(this, if (it) SuPolicy.ALLOW else SuPolicy.DENY)
+            viewModel.updatePolicy(this, if (it) Policy.ALLOW else Policy.DENY)
         }
 
     @get:Bindable

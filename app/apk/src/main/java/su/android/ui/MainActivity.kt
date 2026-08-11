@@ -33,9 +33,9 @@ import su.android.core.isRunningAsStub
 import su.android.core.ktx.toast
 import su.android.core.model.module.LocalModule
 import su.android.core.tasks.AppMigration
-import su.android.databinding.ActivityMainMd2Binding
+import su.android.databinding.ActivityMainBinding
 import su.android.ui.theme.Theme
-import su.android.view.MagiskDialog
+import su.android.view.MaterialDialog
 import su.android.view.Shortcuts
 import kotlinx.coroutines.launch
 import java.io.File
@@ -43,9 +43,9 @@ import su.android.core.R as CoreR
 
 class MainViewModel : BaseViewModel()
 
-class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenHost {
+class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost {
 
-    override val layoutRes = R.layout.activity_main_md2
+    override val layoutRes = R.layout.activity_main
     override val viewModel by viewModel<MainViewModel>()
     override val navHostId: Int = R.id.main_nav_host
     override val splashController = SplashController(this)
@@ -150,7 +150,7 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
     fun setDisplayHomeAsUpEnabled(isEnabled: Boolean) {
         binding.mainToolbar.startAnimations()
         when {
-            isEnabled -> binding.mainToolbar.setNavigationIcon(R.drawable.ic_back_md2)
+            isEnabled -> binding.mainToolbar.setNavigationIcon(R.drawable.ic_back)
             else -> binding.mainToolbar.navigationIcon = null
         }
     }
@@ -191,10 +191,10 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
 
     @SuppressLint("InlinedApi")
     override fun showInvalidStateMessage(): Unit = runOnUiThread {
-        MagiskDialog(this).apply {
+        MaterialDialog(this).apply {
             setTitle(CoreR.string.unsupport_nonroot_stub_title)
             setMessage(CoreR.string.unsupport_nonroot_stub_msg)
-            setButton(MagiskDialog.ButtonType.POSITIVE) {
+            setButton(MaterialDialog.ButtonType.POSITIVE) {
                 text = CoreR.string.install
                 onClick {
                     withPermission(REQUEST_INSTALL_PACKAGES) {
@@ -216,10 +216,10 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
 
     private fun showUnsupportedMessage() {
         if (Info.env.isUnsupported) {
-            MagiskDialog(this).apply {
-                setTitle(CoreR.string.unsupport_magisk_title)
-                setMessage(CoreR.string.unsupport_magisk_msg, Const.Version.MIN_VERSION)
-                setButton(MagiskDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
+            MaterialDialog(this).apply {
+                setTitle(CoreR.string.unsupported_root_title)
+                setMessage(CoreR.string.unsupported_root_msg, Const.Version.MIN_VERSION)
+                setButton(MaterialDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
                 setCancelable(false)
             }.show()
         }
@@ -228,28 +228,28 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
                 ?.split(':')
                 ?.filterNot { File("$it/magisk").exists() }
                 ?.any { File("$it/su").exists() } == true) {
-            MagiskDialog(this).apply {
+            MaterialDialog(this).apply {
                 setTitle(CoreR.string.unsupport_general_title)
                 setMessage(CoreR.string.unsupport_other_su_msg)
-                setButton(MagiskDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
+                setButton(MaterialDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
                 setCancelable(false)
             }.show()
         }
 
         if (applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0) {
-            MagiskDialog(this).apply {
+            MaterialDialog(this).apply {
                 setTitle(CoreR.string.unsupport_general_title)
                 setMessage(CoreR.string.unsupport_system_app_msg)
-                setButton(MagiskDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
+                setButton(MaterialDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
                 setCancelable(false)
             }.show()
         }
 
         if (applicationInfo.flags and ApplicationInfo.FLAG_EXTERNAL_STORAGE != 0) {
-            MagiskDialog(this).apply {
+            MaterialDialog(this).apply {
                 setTitle(CoreR.string.unsupport_general_title)
                 setMessage(CoreR.string.unsupport_external_storage_msg)
-                setButton(MagiskDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
+                setButton(MaterialDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
                 setCancelable(false)
             }.show()
         }
@@ -259,13 +259,13 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
         if (isRunningAsStub && !Config.askedHome &&
             ShortcutManagerCompat.isRequestPinShortcutSupported(this)) {
             Config.askedHome = true
-            MagiskDialog(this).apply {
+            MaterialDialog(this).apply {
                 setTitle(CoreR.string.add_shortcut_title)
                 setMessage(CoreR.string.add_shortcut_msg)
-                setButton(MagiskDialog.ButtonType.NEGATIVE) {
+                setButton(MaterialDialog.ButtonType.NEGATIVE) {
                     text = android.R.string.cancel
                 }
-                setButton(MagiskDialog.ButtonType.POSITIVE) {
+                setButton(MaterialDialog.ButtonType.POSITIVE) {
                     text = android.R.string.ok
                     onClick {
                         Shortcuts.addHomeIcon(this@MainActivity)

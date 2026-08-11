@@ -13,7 +13,7 @@ import su.android.core.ktx.cachedFile
 import su.android.core.model.module.LocalModule
 import su.android.core.tasks.AppMigration
 import su.android.core.tasks.FlashZip
-import su.android.core.tasks.MagiskInstaller
+import su.android.core.tasks.SystemInstaller
 import su.android.core.utils.RootUtils
 import com.topjohnwu.superuser.CallbackList
 import com.topjohnwu.superuser.Shell
@@ -196,7 +196,7 @@ class Environment : BaseTest {
         runBlocking {
             assertTrue(
                 "SuperSU setup failed",
-                MagiskInstaller.Emulator(TimberLog, TimberLog).exec()
+                SystemInstaller.Emulator(TimberLog, TimberLog).exec()
             )
         }
 

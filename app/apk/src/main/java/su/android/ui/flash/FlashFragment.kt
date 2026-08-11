@@ -19,13 +19,13 @@ import su.android.arch.BaseFragment
 import su.android.arch.viewModel
 import su.android.core.Const
 import su.android.core.cmp
-import su.android.databinding.FragmentFlashMd2Binding
+import su.android.databinding.FragmentFlashBinding
 import su.android.ui.MainActivity
 import su.android.core.R as CoreR
 
-class FlashFragment : BaseFragment<FragmentFlashMd2Binding>(), MenuProvider {
+class FlashFragment : BaseFragment<FragmentFlashBinding>(), MenuProvider {
 
-    override val layoutRes = R.layout.fragment_flash_md2
+    override val layoutRes = R.layout.fragment_flash
     override val viewModel by viewModel<FlashViewModel>()
     override val snackbarView: View get() = binding.snackbarContainer
     override val snackbarAnchorView: View?
@@ -99,7 +99,7 @@ class FlashFragment : BaseFragment<FragmentFlashMd2Binding>(), MenuProvider {
         return super.onBackPressed()
     }
 
-    override fun onPreBind(binding: FragmentFlashMd2Binding) = Unit
+    override fun onPreBind(binding: FragmentFlashBinding) = Unit
 
     companion object {
 
@@ -112,7 +112,7 @@ class FlashFragment : BaseFragment<FragmentFlashMd2Binding>(), MenuProvider {
                 .createPendingIntent()
 
         private fun flashType(isSecondSlot: Boolean) =
-            if (isSecondSlot) Const.Value.FLASH_INACTIVE_SLOT else Const.Value.FLASH_MAGISK
+            if (isSecondSlot) Const.Value.FLASH_INACTIVE_SLOT else Const.Value.FLASH_DIRECT
 
         fun flash(isSecondSlot: Boolean) = MainDirections.actionFlashFragment(
             action = flashType(isSecondSlot)

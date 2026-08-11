@@ -3,22 +3,22 @@
 
     <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/ic_home_md2"
+        android:icon="@drawable/ic_home"
         android:title="@string/section_home" />
 
     <item
         android:id="@+id/superuserFragment"
-        android:icon="@drawable/ic_superuser_md2"
+        android:icon="@drawable/ic_superuser"
         android:title="@string/superuser" />
 
     <item
         android:id="@+id/modulesFragment"
-        android:icon="@drawable/ic_module_md2"
+        android:icon="@drawable/ic_module"
         android:title="@string/modules" />
 
     <item
         android:id="@+id/settingsFragment"
-        android:icon="@drawable/ic_settings_md2"
+        android:icon="@drawable/ic_settings"
         android:title="@string/settings" />
 
 </menu>

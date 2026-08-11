@@ -10,16 +10,16 @@ import su.android.R
 import su.android.arch.BaseFragment
 import su.android.arch.viewModel
 import su.android.core.utils.MediaStoreUtils.displayName
-import su.android.databinding.FragmentModuleMd2Binding
+import su.android.databinding.FragmentModuleBinding
 import rikka.recyclerview.addEdgeSpacing
 import rikka.recyclerview.addInvalidateItemDecorationsObserver
 import rikka.recyclerview.addItemSpacing
 import rikka.recyclerview.fixEdgeEffect
 import su.android.core.R as CoreR
 
-class ModuleFragment : BaseFragment<FragmentModuleMd2Binding>() {
+class ModuleFragment : BaseFragment<FragmentModuleBinding>() {
 
-    override val layoutRes = R.layout.fragment_module_md2
+    override val layoutRes = R.layout.fragment_module
     override val viewModel by viewModel<ModuleViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,6 +64,6 @@ class ModuleFragment : BaseFragment<FragmentModuleMd2Binding>() {
         }
     }
 
-    override fun onPreBind(binding: FragmentModuleMd2Binding) = Unit
+    override fun onPreBind(binding: FragmentModuleBinding) = Unit
 
 }

@@ -33,11 +33,11 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
         resultList.add(SettingsGroupItem.CardGroup(children = generalList))
 
         if (Info.env.isActive) {
-            val magiskList = mutableListOf<BaseSettingsItem>(SystemlessHosts)
+            val systemList = mutableListOf<BaseSettingsItem>(SystemlessHosts)
             if (Const.Version.atLeast_24_0()) {
-                magiskList.addAll(listOf(Zygisk, DenyList, DenyListConfig))
+                systemList.addAll(listOf(Zygisk, DenyList, DenyListConfig))
             }
-            resultList.add(SettingsGroupItem.CardGroup(children = magiskList))
+            resultList.add(SettingsGroupItem.CardGroup(children = systemList))
         }
 
         if (Info.showSuperUser) {

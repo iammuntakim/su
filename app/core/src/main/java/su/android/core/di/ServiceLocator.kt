@@ -6,10 +6,10 @@ import android.text.method.LinkMovementMethod
 import androidx.room.Room
 import su.android.core.AppContext
 import su.android.core.Const
-import su.android.core.data.SuLogDatabase
-import su.android.core.data.magiskdb.PolicyDao
-import su.android.core.data.magiskdb.SettingsDao
-import su.android.core.data.magiskdb.StringDao
+import su.android.core.data.LogDatabase
+import su.android.core.data.policy.PolicyDao
+import su.android.core.data.policy.SettingsDao
+import su.android.core.data.policy.StringDao
 import su.android.core.ktx.deviceProtectedContext
 import su.android.core.repository.LogRepository
 import su.android.core.repository.NetworkService
@@ -26,7 +26,7 @@ object ServiceLocator {
     val policyDB = PolicyDao()
     val settingsDB = SettingsDao()
     val stringDB = StringDao()
-    val sulogDB by lazy { createSuLogDatabase(deContext).suLogDao() }
+    val sulogDB by lazy { createLogDatabase(deContext).logDao() }
     val logRepo by lazy { LogRepository(sulogDB) }
 
     // Networking
@@ -41,9 +41,9 @@ object ServiceLocator {
     }
 }
 
-private fun createSuLogDatabase(context: Context) =
-    Room.databaseBuilder(context, SuLogDatabase::class.java, "sulogs.db")
-        .addMigrations(SuLogDatabase.MIGRATION_1_2)
+private fun createLogDatabase(context: Context) =
+    Room.databaseBuilder(context, LogDatabase::class.java, "sulogs.db")
+        .addMigrations(LogDatabase.MIGRATION_1_2)
         .fallbackToDestructiveMigration(true)
         .build()
 

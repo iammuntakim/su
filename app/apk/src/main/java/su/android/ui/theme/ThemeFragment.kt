@@ -10,13 +10,13 @@ import su.android.BR
 import su.android.R
 import su.android.arch.BaseFragment
 import su.android.arch.viewModel
-import su.android.databinding.FragmentThemeMd2Binding
+import su.android.databinding.FragmentThemeBinding
 import su.android.databinding.ItemThemeBindingImpl
 import su.android.core.R as CoreR
 
-class ThemeFragment : BaseFragment<FragmentThemeMd2Binding>() {
+class ThemeFragment : BaseFragment<FragmentThemeBinding>() {
 
-    override val layoutRes = R.layout.fragment_theme_md2
+    override val layoutRes = R.layout.fragment_theme
     override val viewModel by viewModel<ThemeViewModel>()
 
     private fun <T> Array<T>.paired(): List<Pair<T, T?>> {

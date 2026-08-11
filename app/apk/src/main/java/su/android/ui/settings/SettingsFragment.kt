@@ -13,14 +13,14 @@ import androidx.databinding.DataBindingUtil
 import su.android.R
 import su.android.arch.BaseFragment
 import su.android.arch.viewModel
-import su.android.databinding.FragmentSettingsMd2Binding
+import su.android.databinding.FragmentSettingsBinding
 import su.android.databinding.ItemSettingsBinding
 import su.android.databinding.ItemSettingsCardBinding
 import su.android.core.R as CoreR
 
-class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
+class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
 
-    override val layoutRes = R.layout.fragment_settings_md2
+    override val layoutRes = R.layout.fragment_settings
     override val viewModel by viewModel<SettingsViewModel>()
     override val snackbarView: View get() = binding.snackbarContainer
 
@@ -115,5 +115,5 @@ class SettingsFragment : BaseFragment<FragmentSettingsMd2Binding>() {
         }
     }
 
-    override fun onPreBind(binding: FragmentSettingsMd2Binding) = Unit
+    override fun onPreBind(binding: FragmentSettingsBinding) = Unit
 }

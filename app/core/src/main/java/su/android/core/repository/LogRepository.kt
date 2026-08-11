@@ -2,17 +2,17 @@ package su.android.core.repository
 
 import su.android.core.Const
 import su.android.core.Info
-import su.android.core.data.SuLogDao
+import su.android.core.data.LogDao
 import su.android.core.ktx.await
-import su.android.core.model.su.SuLog
+import su.android.core.model.policy.LogEntry
 import com.topjohnwu.superuser.Shell
 class LogRepository(
-    private val logDao: SuLogDao
+    private val logDao: LogDao
 ) {
 
-    suspend fun fetchSuLogs() = logDao.fetchAll()
+    suspend fun fetchLogEntries() = logDao.fetchAll()
 
-    suspend fun fetchMagiskLogs(): String {
+    suspend fun fetchDaemonLogs(): String {
         val list = object : AbstractMutableList<String>() {
             val buf = StringBuilder()
             override val size get() = 0
@@ -27,7 +27,7 @@ class LogRepository(
             }
         }
         if (Info.env.isActive) {
-            Shell.cmd("cat ${Const.MAGISK_LOG} || logcat -d -s Magisk").to(list).await()
+            Shell.cmd("cat ${Const.DAEMON_LOG} || logcat -d -s Magisk").to(list).await()
         } else {
             Shell.cmd("logcat -d").to(list).await()
         }
@@ -36,9 +36,9 @@ class LogRepository(
 
     suspend fun clearLogs() = logDao.deleteAll()
 
-    fun clearMagiskLogs(cb: (Shell.Result) -> Unit) =
-        Shell.cmd("echo -n > ${Const.MAGISK_LOG}").submit(cb)
+    fun clearDaemonLogs(cb: (Shell.Result) -> Unit) =
+        Shell.cmd("echo -n > ${Const.DAEMON_LOG}").submit(cb)
 
-    suspend fun insert(log: SuLog) = logDao.insert(log)
+    suspend fun insert(log: LogEntry) = logDao.insert(log)
 
 }
