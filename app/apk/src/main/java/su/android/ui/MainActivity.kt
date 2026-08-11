@@ -45,9 +45,9 @@ class MainViewModel : BaseViewModel()
 
 class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost {
 
-    override val layoutRes = R.layout.activity_main
+    override val layoutRes = R.layout.ActivityMain
     override val viewModel by viewModel<MainViewModel>()
-    override val navHostId: Int = R.id.main_nav_host
+    override val navHostId: Int = R.id.MainNavHost
     override val splashController = SplashController(this)
     override val snackbarView: View
         get() {
@@ -95,7 +95,7 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
         navigation.addOnDestinationChangedListener { _, destination, _ ->
             isRootFragment = when (destination.id) {
                 R.id.homeFragment,
-                R.id.modulesFragment,
+                R.id.ModulesFragment,
                 R.id.superuserFragment,
                 R.id.logFragment,
                 R.id.settingsFragment -> true
@@ -123,7 +123,7 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
         binding.mainNavigation.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
         binding.mainNavigation.menu.apply {
             findItem(R.id.superuserFragment)?.isEnabled = Info.showSuperUser
-            findItem(R.id.modulesFragment)?.isEnabled = Info.env.isActive && LocalModule.loaded()
+            findItem(R.id.ModulesFragment)?.isEnabled = Info.env.isActive && LocalModule.loaded()
         }
 
         val section =
@@ -150,7 +150,7 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
     fun setDisplayHomeAsUpEnabled(isEnabled: Boolean) {
         binding.mainToolbar.startAnimations()
         when {
-            isEnabled -> binding.mainToolbar.setNavigationIcon(R.drawable.ic_back)
+            isEnabled -> binding.mainToolbar.setNavigationIcon(R.drawable.Back)
             else -> binding.mainToolbar.navigationIcon = null
         }
     }
@@ -181,7 +181,7 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
     private fun getScreen(id: Int): NavDirections? {
         return when (id) {
             R.id.homeFragment -> MainDirections.actionHomeFragment()
-            R.id.modulesFragment -> MainDirections.actionModuleFragment()
+            R.id.ModulesFragment -> MainDirections.actionModuleFragment()
             R.id.superuserFragment -> MainDirections.actionSuperuserFragment()
             R.id.logFragment -> MainDirections.actionLogFragment()
             R.id.settingsFragment -> MainDirections.actionGlobalSettingsFragment()

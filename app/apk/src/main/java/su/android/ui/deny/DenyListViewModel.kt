@@ -2,7 +2,7 @@ package su.android.ui.deny
 
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager.MATCH_UNINSTALLED_PACKAGES
-import androidx.databinding.Bindable
+import su.android.databinding.Bindable
 import androidx.lifecycle.viewModelScope
 import su.android.BR
 import su.android.arch.AsyncLoadViewModel

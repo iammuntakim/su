@@ -3,7 +3,7 @@ package su.android.ui.settings
 import android.content.Context
 import android.content.res.Resources
 import android.view.View
-import androidx.databinding.Bindable
+import su.android.databinding.Bindable
 import su.android.BR
 import su.android.R
 import su.android.core.ktx.activity
@@ -19,7 +19,7 @@ sealed class BaseSettingsItem : ObservableRvItem() {
         fun onItemAction(view: View, item: BaseSettingsItem)
     }
 
-    override val layoutRes get() = R.layout.item_settings
+    override val layoutRes get() = R.layout.ItemSettings
 
     open val icon: Int? get() = null
     open val title: TextHolder get() = TextHolder.EMPTY
@@ -132,6 +132,6 @@ sealed class BaseSettingsItem : ObservableRvItem() {
     abstract class Blank : BaseSettingsItem()
 
     abstract class Section : BaseSettingsItem() {
-        override val layoutRes = R.layout.item_settings_section
+        override val layoutRes = R.layout.ItemSettingsSection
     }
 }

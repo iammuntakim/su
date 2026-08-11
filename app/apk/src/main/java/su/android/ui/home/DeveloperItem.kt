@@ -43,10 +43,10 @@ sealed class IconLink : RvItem() {
     abstract val title: Int
     abstract val link: String
 
-    override val layoutRes get() = R.layout.item_icon_link
+    override val layoutRes get() = R.layout.ItemIconLink
 
     abstract class Github : IconLink() {
-        override val icon get() = CoreR.drawable.ic_github
+        override val icon get() = CoreR.drawable.Github
         override val title get() = CoreR.string.github
 
         abstract class User : Github(), Dev {
@@ -55,7 +55,7 @@ sealed class IconLink : RvItem() {
     }
 
     object Source : IconLink() {
-        override val icon get() = R.drawable.ic_code
+        override val icon get() = R.drawable.Code
         override val title get() = CoreR.string.github
         override val link get() = "https://github.com/iammuntakim/su"
     }

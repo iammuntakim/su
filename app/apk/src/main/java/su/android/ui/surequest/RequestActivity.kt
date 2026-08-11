@@ -22,7 +22,7 @@ import kotlinx.coroutines.withContext
 
 open class RequestActivity : UIActivity<ActivityRequestBinding>(), UntrackedActivity {
 
-    override val layoutRes: Int = R.layout.activity_request
+    override val layoutRes: Int = R.layout.ActivityRequest
     override val viewModel: RequestViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {

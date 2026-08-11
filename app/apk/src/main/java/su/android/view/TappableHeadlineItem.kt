@@ -10,7 +10,7 @@ sealed class TappableHeadlineItem : RvItem(), DiffItem<TappableHeadlineItem> {
     abstract val title: Int
     abstract val icon: Int
 
-    override val layoutRes = R.layout.item_tappable_headline
+    override val layoutRes = R.layout.ItemTappableHeadline
 
     // --- listener
 
@@ -24,7 +24,7 @@ sealed class TappableHeadlineItem : RvItem(), DiffItem<TappableHeadlineItem> {
 
     object ThemeMode : TappableHeadlineItem() {
         override val title = CoreR.string.settings_dark_mode_title
-        override val icon = R.drawable.ic_day_night
+        override val icon = R.drawable.DayNight
     }
 
 }

@@ -14,7 +14,7 @@ import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import android.view.accessibility.AccessibilityNodeProvider
 import android.widget.Toast
-import androidx.databinding.Bindable
+import su.android.databinding.Bindable
 import androidx.lifecycle.viewModelScope
 import su.android.BR
 import su.android.arch.BaseViewModel

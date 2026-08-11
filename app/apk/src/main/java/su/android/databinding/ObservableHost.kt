@@ -1,14 +1,12 @@
 package su.android.databinding
 
-import androidx.databinding.Observable
-import androidx.databinding.PropertyChangeRegistry
-
 /**
  * Modified from https://github.com/skoumalcz/teanity/blob/1.2/core/src/main/java/com/skoumal/teanity/observable/Notifyable.kt
  *
- * Interface that allows user to be observed via DataBinding or manually by assigning listeners.
+ * Interface that allows user to be observed via observable machinery or manually by assigning
+ * listeners.
  *
- * @see [androidx.databinding.Observable]
+ * @see Observable
  * */
 interface ObservableHost : Observable {
 
@@ -66,7 +64,7 @@ fun ObservableHost.addOnPropertyChangedCallback(
 }
 
 /**
- * Injects boilerplate implementation for {@literal @}[androidx.databinding.Bindable] field setters.
+ * Injects boilerplate implementation for {@literal @}[Bindable] field setters.
  *
  * # Examples:
  * ```kotlin

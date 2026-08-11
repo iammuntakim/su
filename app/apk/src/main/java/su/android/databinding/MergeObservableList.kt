@@ -1,8 +1,5 @@
 package su.android.databinding
 
-import androidx.databinding.ListChangeRegistry
-import androidx.databinding.ObservableList
-import androidx.databinding.ObservableList.OnListChangedCallback
 import java.util.AbstractList
 
 @Suppress("UNCHECKED_CAST")
@@ -10,7 +7,7 @@ class MergeObservableList<T> : AbstractList<T>(), ObservableList<T> {
 
     private val lists: MutableList<List<T>> = mutableListOf()
     private val listeners = ListChangeRegistry()
-    private val callback = Callback<T>()
+    private val callback = Callback()
 
     override fun addOnListChangedCallback(callback: OnListChangedCallback<out ObservableList<T>>) {
         listeners.add(callback)
@@ -36,6 +33,7 @@ class MergeObservableList<T> : AbstractList<T>(), ObservableList<T> {
 
     override val size: Int
         get() = lists.fold(0) { i, it -> i + it.size }
+
     fun insertItem(obj: T): MergeObservableList<T> {
         val idx = size
         lists.add(listOf(obj))
@@ -111,7 +109,7 @@ class MergeObservableList<T> : AbstractList<T>(), ObservableList<T> {
         throw IllegalArgumentException()
     }
 
-    inner class Callback<T> : OnListChangedCallback<ObservableList<T>>() {
+    private inner class Callback : OnListChangedCallback<ObservableList<T>> {
         override fun onChanged(sender: ObservableList<T>) {
             ++modCount
             listeners.notifyChanged(this@MergeObservableList)

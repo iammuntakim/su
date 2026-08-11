@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.MATCH_UNINSTALLED_PACKAGES
 import android.os.Process
-import androidx.databinding.Bindable
-import androidx.databinding.ObservableArrayList
+import su.android.databinding.Bindable
+import su.android.databinding.ObservableArrayList
 import androidx.lifecycle.viewModelScope
 import su.android.BR
 import su.android.arch.AsyncLoadViewModel

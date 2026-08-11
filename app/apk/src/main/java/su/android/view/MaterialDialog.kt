@@ -13,8 +13,8 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDialog
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.databinding.Bindable
-import androidx.databinding.PropertyChangeRegistry
+import su.android.databinding.Bindable
+import su.android.databinding.PropertyChangeRegistry
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.color.MaterialColors
@@ -174,7 +174,7 @@ class MaterialDialog(
         override val item: CharSequence,
         val position: Int
     ) : RvItem(), DiffItem<DialogItem>, ItemWrapper<CharSequence> {
-        override val layoutRes = R.layout.item_list_single_line
+        override val layoutRes = R.layout.ItemListSingleLine
     }
 
     fun interface DialogClickListener {

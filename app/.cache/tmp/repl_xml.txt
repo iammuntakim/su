@@ -1,0 +1,474 @@
+@+id/action_clear|@+id/ActionClear
+@id/action_clear|@id/ActionClear
+<item name="action_clear" type="id"|<item name="ActionClear" type="id"
+@+id/action_reboot|@+id/ActionReboot
+@id/action_reboot|@id/ActionReboot
+<item name="action_reboot" type="id"|<item name="ActionReboot" type="id"
+@+id/action_reboot_bootloader|@+id/ActionRebootBootloader
+@id/action_reboot_bootloader|@id/ActionRebootBootloader
+<item name="action_reboot_bootloader" type="id"|<item name="ActionRebootBootloader" type="id"
+@+id/action_reboot_download|@+id/ActionRebootDownload
+@id/action_reboot_download|@id/ActionRebootDownload
+<item name="action_reboot_download" type="id"|<item name="ActionRebootDownload" type="id"
+@+id/action_reboot_edl|@+id/ActionRebootEdl
+@id/action_reboot_edl|@id/ActionRebootEdl
+<item name="action_reboot_edl" type="id"|<item name="ActionRebootEdl" type="id"
+@+id/action_reboot_normal|@+id/ActionRebootNormal
+@id/action_reboot_normal|@id/ActionRebootNormal
+<item name="action_reboot_normal" type="id"|<item name="ActionRebootNormal" type="id"
+@+id/action_reboot_recovery|@+id/ActionRebootRecovery
+@id/action_reboot_recovery|@id/ActionRebootRecovery
+<item name="action_reboot_recovery" type="id"|<item name="ActionRebootRecovery" type="id"
+@+id/action_reboot_safe_mode|@+id/ActionRebootSafeMode
+@id/action_reboot_safe_mode|@id/ActionRebootSafeMode
+<item name="action_reboot_safe_mode" type="id"|<item name="ActionRebootSafeMode" type="id"
+@+id/action_reboot_userspace|@+id/ActionRebootUserspace
+@id/action_reboot_userspace|@id/ActionRebootUserspace
+<item name="action_reboot_userspace" type="id"|<item name="ActionRebootUserspace" type="id"
+@+id/action_save|@+id/ActionSave
+@id/action_save|@id/ActionSave
+<item name="action_save" type="id"|<item name="ActionSave" type="id"
+@+id/action_search|@+id/ActionSearch
+@id/action_search|@id/ActionSearch
+<item name="action_search" type="id"|<item name="ActionSearch" type="id"
+@+id/action_show_OS|@+id/ActionShowOS
+@id/action_show_OS|@id/ActionShowOS
+<item name="action_show_OS" type="id"|<item name="ActionShowOS" type="id"
+@+id/action_show_system|@+id/ActionShowSystem
+@id/action_show_system|@id/ActionShowSystem
+<item name="action_show_system" type="id"|<item name="ActionShowSystem" type="id"
+@+id/app_icon|@+id/AppIcon
+@id/app_icon|@id/AppIcon
+<item name="app_icon" type="id"|<item name="AppIcon" type="id"
+@+id/app_list|@+id/AppList
+@id/app_list|@id/AppList
+<item name="app_list" type="id"|<item name="AppList" type="id"
+@+id/app_name|@+id/AppName
+@id/app_name|@id/AppName
+<item name="app_name" type="id"|<item name="AppName" type="id"
+@+id/bottom_bar_barrier|@+id/BottomBarBarrier
+@id/bottom_bar_barrier|@id/BottomBarBarrier
+<item name="bottom_bar_barrier" type="id"|<item name="BottomBarBarrier" type="id"
+@+id/card_container|@+id/CardContainer
+@id/card_container|@id/CardContainer
+<item name="card_container" type="id"|<item name="CardContainer" type="id"
+@+id/checked|@+id/Checked
+@id/checked|@id/Checked
+<item name="checked" type="id"|<item name="Checked" type="id"
+@+id/close_btn|@+id/CloseBtn
+@id/close_btn|@id/CloseBtn
+<item name="close_btn" type="id"|<item name="CloseBtn" type="id"
+@+id/deny_btn|@+id/DenyBtn
+@id/deny_btn|@id/DenyBtn
+<item name="deny_btn" type="id"|<item name="DenyBtn" type="id"
+@+id/developer_link|@+id/DeveloperLink
+@id/developer_link|@id/DeveloperLink
+<item name="developer_link" type="id"|<item name="DeveloperLink" type="id"
+@+id/dialog_base_container|@+id/DialogBaseContainer
+@id/dialog_base_container|@id/DialogBaseContainer
+<item name="dialog_base_container" type="id"|<item name="DialogBaseContainer" type="id"
+@+id/fab_install|@+id/FabInstall
+@id/fab_install|@id/FabInstall
+<item name="fab_install" type="id"|<item name="FabInstall" type="id"
+@+id/flash_content|@+id/FlashContent
+@id/flash_content|@id/FlashContent
+<item name="flash_content" type="id"|<item name="FlashContent" type="id"
+@+id/grant_btn|@+id/GrantBtn
+@id/grant_btn|@id/GrantBtn
+<item name="grant_btn" type="id"|<item name="GrantBtn" type="id"
+@+id/headline_icon_pointer|@+id/HeadlineIconPointer
+@id/headline_icon_pointer|@id/HeadlineIconPointer
+<item name="headline_icon_pointer" type="id"|<item name="HeadlineIconPointer" type="id"
+@+id/hide_expand|@+id/HideExpand
+@id/hide_expand|@id/HideExpand
+<item name="hide_expand" type="id"|<item name="HideExpand" type="id"
+@+id/hide_expand_icon|@+id/HideExpandIcon
+@id/hide_expand_icon|@id/HideExpandIcon
+<item name="hide_expand_icon" type="id"|<item name="HideExpandIcon" type="id"
+@+id/hide_icon|@+id/HideIcon
+@id/hide_icon|@id/HideIcon
+<item name="hide_icon" type="id"|<item name="HideIcon" type="id"
+@+id/hide_name|@+id/HideName
+@id/hide_name|@id/HideName
+<item name="hide_name" type="id"|<item name="HideName" type="id"
+@+id/hide_package|@+id/HidePackage
+@id/hide_package|@id/HidePackage
+<item name="hide_package" type="id"|<item name="HidePackage" type="id"
+@+id/hide_process_checkbox|@+id/HideProcessCheckbox
+@id/hide_process_checkbox|@id/HideProcessCheckbox
+<item name="hide_process_checkbox" type="id"|<item name="HideProcessCheckbox" type="id"
+@+id/home_device_details_ramdisk|@+id/HomeDeviceDetailsRamdisk
+@id/home_device_details_ramdisk|@id/HomeDeviceDetailsRamdisk
+<item name="home_device_details_ramdisk" type="id"|<item name="HomeDeviceDetailsRamdisk" type="id"
+@+id/home_device_details_zygisk|@+id/HomeDeviceDetailsZygisk
+@id/home_device_details_zygisk|@id/HomeDeviceDetailsZygisk
+<item name="home_device_details_zygisk" type="id"|<item name="HomeDeviceDetailsZygisk" type="id"
+@+id/home_device_wrapper|@+id/HomeDeviceWrapper
+@id/home_device_wrapper|@id/HomeDeviceWrapper
+<item name="home_device_wrapper" type="id"|<item name="HomeDeviceWrapper" type="id"
+@+id/home_manager_button|@+id/HomeManagerButton
+@id/home_manager_button|@id/HomeManagerButton
+<item name="home_manager_button" type="id"|<item name="HomeManagerButton" type="id"
+@+id/home_manager_extra_connection_value|@+id/HomeManagerExtraConnectionValue
+@id/home_manager_extra_connection_value|@id/HomeManagerExtraConnectionValue
+<item name="home_manager_extra_connection_value" type="id"|<item name="HomeManagerExtraConnectionValue" type="id"
+@+id/home_manager_icon|@+id/HomeManagerIcon
+@id/home_manager_icon|@id/HomeManagerIcon
+<item name="home_manager_icon" type="id"|<item name="HomeManagerIcon" type="id"
+@+id/home_manager_installed_version|@+id/HomeManagerInstalledVersion
+@id/home_manager_installed_version|@id/HomeManagerInstalledVersion
+<item name="home_manager_installed_version" type="id"|<item name="HomeManagerInstalledVersion" type="id"
+@+id/home_manager_internal_connection|@+id/HomeManagerInternalConnection
+@id/home_manager_internal_connection|@id/HomeManagerInternalConnection
+<item name="home_manager_internal_connection" type="id"|<item name="HomeManagerInternalConnection" type="id"
+@+id/home_manager_latest_version|@+id/HomeManagerLatestVersion
+@id/home_manager_latest_version|@id/HomeManagerLatestVersion
+<item name="home_manager_latest_version" type="id"|<item name="HomeManagerLatestVersion" type="id"
+@+id/home_manager_title|@+id/HomeManagerTitle
+@id/home_manager_title|@id/HomeManagerTitle
+<item name="home_manager_title" type="id"|<item name="HomeManagerTitle" type="id"
+@+id/home_manager_title_barrier|@+id/HomeManagerTitleBarrier
+@id/home_manager_title_barrier|@id/HomeManagerTitleBarrier
+<item name="home_manager_title_barrier" type="id"|<item name="HomeManagerTitleBarrier" type="id"
+@+id/home_manager_wrapper|@+id/HomeManagerWrapper
+@id/home_manager_wrapper|@id/HomeManagerWrapper
+<item name="home_manager_wrapper" type="id"|<item name="HomeManagerWrapper" type="id"
+@+id/home_notice_content|@+id/HomeNoticeContent
+@id/home_notice_content|@id/HomeNoticeContent
+<item name="home_notice_content" type="id"|<item name="HomeNoticeContent" type="id"
+@+id/home_notice_hide|@+id/HomeNoticeHide
+@id/home_notice_hide|@id/HomeNoticeHide
+<item name="home_notice_hide" type="id"|<item name="HomeNoticeHide" type="id"
+@+id/home_system_button|@+id/HomeSystemButton
+@id/home_system_button|@id/HomeSystemButton
+<item name="home_system_button" type="id"|<item name="HomeSystemButton" type="id"
+@+id/home_system_icon|@+id/HomeSystemIcon
+@id/home_system_icon|@id/HomeSystemIcon
+<item name="home_system_icon" type="id"|<item name="HomeSystemIcon" type="id"
+@+id/home_system_installed_version|@+id/HomeSystemInstalledVersion
+@id/home_system_installed_version|@id/HomeSystemInstalledVersion
+<item name="home_system_installed_version" type="id"|<item name="HomeSystemInstalledVersion" type="id"
+@+id/home_system_title|@+id/HomeSystemTitle
+@id/home_system_title|@id/HomeSystemTitle
+<item name="home_system_title" type="id"|<item name="HomeSystemTitle" type="id"
+@+id/home_system_title_barrier|@+id/HomeSystemTitleBarrier
+@id/home_system_title_barrier|@id/HomeSystemTitleBarrier
+<item name="home_system_title_barrier" type="id"|<item name="HomeSystemTitleBarrier" type="id"
+@+id/home_system_wrapper|@+id/HomeSystemWrapper
+@id/home_system_wrapper|@id/HomeSystemWrapper
+<item name="home_system_wrapper" type="id"|<item name="HomeSystemWrapper" type="id"
+@+id/icon|@+id/Icon
+@id/icon|@id/Icon
+<item name="icon" type="id"|<item name="Icon" type="id"
+@+id/left|@+id/Left
+@id/left|@id/Left
+<item name="left" type="id"|<item name="Left" type="id"
+@+id/log_app_name|@+id/LogAppName
+@id/log_app_name|@id/LogAppName
+<item name="log_app_name" type="id"|<item name="LogAppName" type="id"
+@+id/log_daemon|@+id/LogDaemon
+@id/log_daemon|@id/LogDaemon
+<item name="log_daemon" type="id"|<item name="LogDaemon" type="id"
+@+id/log_filter|@+id/LogFilter
+@id/log_filter|@id/LogFilter
+<item name="log_filter" type="id"|<item name="LogFilter" type="id"
+@+id/log_filter_daemon|@+id/LogFilterDaemon
+@id/log_filter_daemon|@id/LogFilterDaemon
+<item name="log_filter_daemon" type="id"|<item name="LogFilterDaemon" type="id"
+@+id/log_filter_superuser|@+id/LogFilterSuperuser
+@id/log_filter_superuser|@id/LogFilterSuperuser
+<item name="log_filter_superuser" type="id"|<item name="LogFilterSuperuser" type="id"
+@+id/log_filter_toggle|@+id/LogFilterToggle
+@id/log_filter_toggle|@id/LogFilterToggle
+<item name="log_filter_toggle" type="id"|<item name="LogFilterToggle" type="id"
+@+id/log_info|@+id/LogInfo
+@id/log_info|@id/LogInfo
+<item name="log_info" type="id"|<item name="LogInfo" type="id"
+@+id/log_scroll_daemon|@+id/LogScrollDaemon
+@id/log_scroll_daemon|@id/LogScrollDaemon
+<item name="log_scroll_daemon" type="id"|<item name="LogScrollDaemon" type="id"
+@+id/log_superuser|@+id/LogSuperuser
+@id/log_superuser|@id/LogSuperuser
+<item name="log_superuser" type="id"|<item name="LogSuperuser" type="id"
+@+id/log_track_container|@+id/LogTrackContainer
+@id/log_track_container|@id/LogTrackContainer
+<item name="log_track_container" type="id"|<item name="LogTrackContainer" type="id"
+@+id/main_nav_host|@+id/MainNavHost
+@id/main_nav_host|@id/MainNavHost
+<item name="main_nav_host" type="id"|<item name="MainNavHost" type="id"
+@+id/main_navigation|@+id/MainNavigation
+@id/main_navigation|@id/MainNavigation
+<item name="main_navigation" type="id"|<item name="MainNavigation" type="id"
+@+id/main_toolbar|@+id/MainToolbar
+@id/main_toolbar|@id/MainToolbar
+<item name="main_toolbar" type="id"|<item name="MainToolbar" type="id"
+@+id/main_toolbar_wrapper|@+id/MainToolbarWrapper
+@id/main_toolbar_wrapper|@id/MainToolbarWrapper
+<item name="main_toolbar_wrapper" type="id"|<item name="MainToolbarWrapper" type="id"
+@+id/md_txt|@+id/MdTxt
+@id/md_txt|@id/MdTxt
+<item name="md_txt" type="id"|<item name="MdTxt" type="id"
+@+id/method_direct|@+id/MethodDirect
+@id/method_direct|@id/MethodDirect
+<item name="method_direct" type="id"|<item name="MethodDirect" type="id"
+@+id/method_inactive_slot|@+id/MethodInactiveSlot
+@id/method_inactive_slot|@id/MethodInactiveSlot
+<item name="method_inactive_slot" type="id"|<item name="MethodInactiveSlot" type="id"
+@+id/method_patch|@+id/MethodPatch
+@id/method_patch|@id/MethodPatch
+<item name="method_patch" type="id"|<item name="MethodPatch" type="id"
+@+id/module|@+id/Module
+@id/module|@id/Module
+<item name="module" type="id"|<item name="Module" type="id"
+@+id/module_config|@+id/ModuleConfig
+@id/module_config|@id/ModuleConfig
+<item name="module_config" type="id"|<item name="ModuleConfig" type="id"
+@+id/module_description|@+id/ModuleDescription
+@id/module_description|@id/ModuleDescription
+<item name="module_description" type="id"|<item name="ModuleDescription" type="id"
+@+id/module_divider|@+id/ModuleDivider
+@id/module_divider|@id/ModuleDivider
+<item name="module_divider" type="id"|<item name="ModuleDivider" type="id"
+@+id/module_indicator|@+id/ModuleIndicator
+@id/module_indicator|@id/ModuleIndicator
+<item name="module_indicator" type="id"|<item name="ModuleIndicator" type="id"
+@+id/module_list|@+id/ModuleList
+@id/module_list|@id/ModuleList
+<item name="module_list" type="id"|<item name="ModuleList" type="id"
+@+id/module_notice_text|@+id/ModuleNoticeText
+@id/module_notice_text|@id/ModuleNoticeText
+<item name="module_notice_text" type="id"|<item name="ModuleNoticeText" type="id"
+@+id/module_remove|@+id/ModuleRemove
+@id/module_remove|@id/ModuleRemove
+<item name="module_remove" type="id"|<item name="ModuleRemove" type="id"
+@+id/module_state_icon|@+id/ModuleStateIcon
+@id/module_state_icon|@id/ModuleStateIcon
+<item name="module_state_icon" type="id"|<item name="ModuleStateIcon" type="id"
+@+id/module_title|@+id/ModuleTitle
+@id/module_title|@id/ModuleTitle
+<item name="module_title" type="id"|<item name="ModuleTitle" type="id"
+@+id/module_update|@+id/ModuleUpdate
+@id/module_update|@id/ModuleUpdate
+<item name="module_update" type="id"|<item name="ModuleUpdate" type="id"
+@+id/module_version_author|@+id/ModuleVersionAuthor
+@id/module_version_author|@id/ModuleVersionAuthor
+<item name="module_version_author" type="id"|<item name="ModuleVersionAuthor" type="id"
+@+id/package_name|@+id/PackageName
+@id/package_name|@id/PackageName
+<item name="package_name" type="id"|<item name="PackageName" type="id"
+@+id/policy|@+id/Policy
+@id/policy|@id/Policy
+<item name="policy" type="id"|<item name="Policy" type="id"
+@+id/policy_app_icon|@+id/PolicyAppIcon
+@id/policy_app_icon|@id/PolicyAppIcon
+<item name="policy_app_icon" type="id"|<item name="PolicyAppIcon" type="id"
+@+id/policy_app_name|@+id/PolicyAppName
+@id/policy_app_name|@id/PolicyAppName
+<item name="policy_app_name" type="id"|<item name="PolicyAppName" type="id"
+@+id/policy_delete|@+id/PolicyDelete
+@id/policy_delete|@id/PolicyDelete
+<item name="policy_delete" type="id"|<item name="PolicyDelete" type="id"
+@+id/policy_expand_container|@+id/PolicyExpandContainer
+@id/policy_expand_container|@id/PolicyExpandContainer
+<item name="policy_expand_container" type="id"|<item name="PolicyExpandContainer" type="id"
+@+id/policy_indicator|@+id/PolicyIndicator
+@id/policy_indicator|@id/PolicyIndicator
+<item name="policy_indicator" type="id"|<item name="PolicyIndicator" type="id"
+@+id/policy_log|@+id/PolicyLog
+@id/policy_log|@id/PolicyLog
+<item name="policy_log" type="id"|<item name="PolicyLog" type="id"
+@+id/policy_notify|@+id/PolicyNotify
+@id/policy_notify|@id/PolicyNotify
+<item name="policy_notify" type="id"|<item name="PolicyNotify" type="id"
+@+id/policy_package_name|@+id/PolicyPackageName
+@id/policy_package_name|@id/PolicyPackageName
+<item name="policy_package_name" type="id"|<item name="PolicyPackageName" type="id"
+@+id/recyclerScrollListener|@+id/RecyclerScrollListener
+@id/recyclerScrollListener|@id/RecyclerScrollListener
+<item name="recyclerScrollListener" type="id"|<item name="RecyclerScrollListener" type="id"
+@+id/release_notes|@+id/ReleaseNotes
+@id/release_notes|@id/ReleaseNotes
+<item name="release_notes" type="id"|<item name="ReleaseNotes" type="id"
+@+id/request_title|@+id/RequestTitle
+@id/request_title|@id/RequestTitle
+<item name="request_title" type="id"|<item name="RequestTitle" type="id"
+@+id/restart_btn|@+id/RestartBtn
+@id/restart_btn|@id/RestartBtn
+<item name="restart_btn" type="id"|<item name="RestartBtn" type="id"
+@+id/right|@+id/Right
+@id/right|@id/Right
+<item name="right" type="id"|<item name="Right" type="id"
+@+id/root_layout|@+id/RootLayout
+@id/root_layout|@id/RootLayout
+<item name="root_layout" type="id"|<item name="RootLayout" type="id"
+@+id/selector_indicator|@+id/SelectorIndicator
+@id/selector_indicator|@id/SelectorIndicator
+<item name="selector_indicator" type="id"|<item name="SelectorIndicator" type="id"
+@+id/settings_container|@+id/SettingsContainer
+@id/settings_container|@id/SettingsContainer
+<item name="settings_container" type="id"|<item name="SettingsContainer" type="id"
+@+id/settings_scroll_view|@+id/SettingsScrollView
+@id/settings_scroll_view|@id/SettingsScrollView
+<item name="settings_scroll_view" type="id"|<item name="SettingsScrollView" type="id"
+@+id/snackbar_container|@+id/SnackbarContainer
+@id/snackbar_container|@id/SnackbarContainer
+<item name="snackbar_container" type="id"|<item name="SnackbarContainer" type="id"
+@+id/su_popup|@+id/SuPopup
+@id/su_popup|@id/SuPopup
+<item name="su_popup" type="id"|<item name="SuPopup" type="id"
+@+id/superuser_list|@+id/SuperuserList
+@id/superuser_list|@id/SuperuserList
+<item name="superuser_list" type="id"|<item name="SuperuserList" type="id"
+@+id/tappable_icon|@+id/TappableIcon
+@id/tappable_icon|@id/TappableIcon
+<item name="tappable_icon" type="id"|<item name="TappableIcon" type="id"
+@+id/theme_card_dark|@+id/ThemeCardDark
+@id/theme_card_dark|@id/ThemeCardDark
+<item name="theme_card_dark" type="id"|<item name="ThemeCardDark" type="id"
+@+id/theme_container|@+id/ThemeContainer
+@id/theme_container|@id/ThemeContainer
+<item name="theme_container" type="id"|<item name="ThemeContainer" type="id"
+@+id/timeout|@+id/Timeout
+@id/timeout|@id/Timeout
+<item name="timeout" type="id"|<item name="Timeout" type="id"
+@+id/track_bottom|@+id/TrackBottom
+@id/track_bottom|@id/TrackBottom
+<item name="track_bottom" type="id"|<item name="TrackBottom" type="id"
+@+id/track_bullet|@+id/TrackBullet
+@id/track_bullet|@id/TrackBullet
+<item name="track_bullet" type="id"|<item name="TrackBullet" type="id"
+@+id/track_top|@+id/TrackTop
+@id/track_top|@id/TrackTop
+<item name="track_top" type="id"|<item name="TrackTop" type="id"
+@+id/unchecked|@+id/Unchecked
+@id/unchecked|@id/Unchecked
+<item name="unchecked" type="id"|<item name="Unchecked" type="id"
+@+id/warning|@+id/Warning
+@id/warning|@id/Warning
+<item name="warning" type="id"|<item name="Warning" type="id"
+@layout/activity_main|@layout/ActivityMain
+@layout/activity_request|@layout/ActivityRequest
+@drawable/avd_circle_check_from_filled|@drawable/CircleCheckFromFilled
+@drawable/avd_circle_check_to_filled|@drawable/CircleCheckToFilled
+@drawable/bg_line_bottom_rounded|@drawable/BgLineBottomRounded
+@drawable/bg_line_top_rounded|@drawable/BgLineTopRounded
+@drawable/bg_selection_circle_green|@drawable/BgSelectionCircleGreen
+@xml/color_card_background_color_selector|@xml/ColorCardBackgroundColorSelector
+@xml/color_error_transient|@xml/ColorErrorTransient
+@menu/color_menu_tint|@menu/ColorMenuTint
+@xml/color_on_primary_transient|@xml/ColorOnPrimaryTransient
+@xml/color_primary_error_transient|@xml/ColorPrimaryErrorTransient
+@xml/color_primary_transient|@xml/ColorPrimaryTransient
+@xml/color_state_primary_transient|@xml/ColorStatePrimaryTransient
+@xml/color_text_transient|@xml/ColorTextTransient
+@layout/dialog_base|@layout/DialogBase
+@layout/dialog_settings_download_path|@layout/DialogSettingsDownloadPath
+@layout/fragment_action|@layout/FragmentAction
+@layout/fragment_deny|@layout/FragmentDeny
+@anim/fragment_enter|@anim/FragmentEnter
+@anim/fragment_enter_pop|@anim/FragmentEnterPop
+@anim/fragment_exit|@anim/FragmentExit
+@anim/fragment_exit_pop|@anim/FragmentExitPop
+@layout/fragment_flash|@layout/FragmentFlash
+@layout/fragment_home|@layout/FragmentHome
+@layout/fragment_install|@layout/FragmentInstall
+@layout/fragment_log|@layout/FragmentLog
+@layout/fragment_module|@layout/FragmentModule
+@layout/fragment_settings|@layout/FragmentSettings
+@layout/fragment_superuser|@layout/FragmentSuperuser
+@layout/fragment_theme|@layout/FragmentTheme
+@drawable/ic_action|@drawable/Action
+@drawable/ic_app_logo|@drawable/AppLogo
+@drawable/ic_app_logo_outline|@drawable/AppLogoOutline
+@drawable/ic_app_logo_padded|@drawable/AppLogoPadded
+@drawable/ic_authenication|@drawable/Authentication
+@drawable/ic_back|@drawable/Back
+@drawable/ic_bug|@drawable/Bug
+@drawable/ic_bug_filled|@drawable/BugFilled
+@drawable/ic_bug_outlined|@drawable/BugOutlined
+@drawable/ic_check|@drawable/Check
+@drawable/ic_check_circle|@drawable/CheckCircle
+@drawable/ic_check_circle_checked|@drawable/CheckCircleChecked
+@drawable/ic_check_circle_unchecked|@drawable/CheckCircleUnchecked
+@drawable/ic_close|@drawable/Close
+@drawable/ic_code|@drawable/Code
+@drawable/ic_day|@drawable/Day
+@drawable/ic_day_night|@drawable/DayNight
+@drawable/ic_delete|@drawable/Delete
+@drawable/ic_device_info|@drawable/DeviceInfo
+@drawable/ic_dns|@drawable/Dns
+@drawable/ic_download|@drawable/Download
+@drawable/ic_equal|@drawable/Equal
+@drawable/ic_extension|@drawable/Extension
+@drawable/ic_fingerprint|@drawable/Fingerprint
+@drawable/ic_folder_list|@drawable/FolderList
+@drawable/ic_forth|@drawable/Forth
+@drawable/ic_github|@drawable/Github
+@drawable/ic_home|@drawable/Home
+@drawable/ic_home_filled|@drawable/HomeFilled
+@drawable/ic_home_outlined|@drawable/HomeOutlined
+@drawable/ic_install|@drawable/Install
+@drawable/ic_launcher|@drawable/LauncherIcon
+@color/ic_launcher_background|@color/LauncherIconBackground
+@drawable/ic_logo|@drawable/Logo
+@drawable/ic_manager|@drawable/Manager
+@drawable/ic_module|@drawable/Module
+@drawable/ic_module_filled|@drawable/ModuleFilled
+@drawable/ic_module_outlined|@drawable/ModuleOutlined
+@drawable/ic_module_storage|@drawable/ModuleStorage
+@drawable/ic_more|@drawable/More
+@drawable/ic_more_vert|@drawable/MoreVert
+@drawable/ic_night|@drawable/Night
+@drawable/ic_notifications|@drawable/Notifications
+@drawable/ic_paypal|@drawable/Paypal
+@drawable/ic_restart|@drawable/Restart
+@drawable/ic_restrict|@drawable/Restrict
+@drawable/ic_save|@drawable/Save
+@drawable/ic_search|@drawable/Search
+@drawable/ic_settings|@drawable/Settings
+@drawable/ic_settings_filled|@drawable/SettingsFilled
+@drawable/ic_settings_outlined|@drawable/SettingsOutlined
+@drawable/ic_superuser|@drawable/Superuser
+@drawable/ic_superuser_filled|@drawable/SuperuserFilled
+@drawable/ic_superuser_outlined|@drawable/SuperuserOutlined
+@drawable/ic_timer|@drawable/Timer
+@drawable/ic_update|@drawable/Update
+@drawable/ic_zygisk|@drawable/Zygisk
+@layout/include_home_manager|@layout/IncludeHomeManager
+@layout/include_home_system|@layout/IncludeHomeSystem
+@layout/include_log_daemon|@layout/IncludeLogDaemon
+@layout/include_log_superuser|@layout/IncludeLogSuperuser
+@layout/item_console|@layout/ItemConsole
+@layout/item_developer|@layout/ItemDeveloper
+@layout/item_hide|@layout/ItemHide
+@layout/item_hide_process|@layout/ItemHideProcess
+@layout/item_icon_link|@layout/ItemIconLink
+@layout/item_list_single_line|@layout/ItemListSingleLine
+@layout/item_log_access|@layout/ItemLogAccess
+@layout/item_log_textview|@layout/ItemLogTextview
+@layout/item_log_track|@layout/ItemLogTrack
+@layout/item_module|@layout/ItemModule
+@layout/item_module_download|@layout/ItemModuleDownload
+@layout/item_policy|@layout/ItemPolicy
+@layout/item_settings|@layout/ItemSettings
+@layout/item_settings_card|@layout/ItemSettingsCard
+@layout/item_settings_section|@layout/ItemSettingsSection
+@layout/item_spinner|@layout/ItemSpinner
+@layout/item_tappable_headline|@layout/ItemTappableHeadline
+@layout/item_text|@layout/ItemText
+@layout/item_theme|@layout/ItemTheme
+@layout/item_theme_container|@layout/ItemThemeContainer
+@drawable/launcher_bg|@drawable/Background
+@xml/locale_config|@xml/LocaleConfig
+@navigation/main|@navigation/Main
+@layout/markdown_window|@layout/MarkdownWindow
+@menu/menu_bottom_nav|@menu/MenuBottomNav
+@menu/menu_deny|@menu/MenuDeny
+@menu/menu_flash|@menu/MenuFlash
+@menu/menu_home|@menu/MenuHome
+@menu/menu_log|@menu/MenuLog
+@menu/menu_reboot|@menu/MenuReboot
+@drawable/sc_extension|@drawable/ShortcutExtension
+@drawable/sc_superuser|@drawable/ShortcutSuperuser
+<drawable name="ic_launcher">|<drawable name="LauncherIcon">
+<color name="ic_launcher_background">|<color name="LauncherIconBackground">

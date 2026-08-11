@@ -1,7 +1,7 @@
 package su.android.ui.module
 
 import android.view.MenuItem
-import androidx.databinding.ObservableArrayList
+import su.android.databinding.ObservableArrayList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -62,7 +62,7 @@ class ActionViewModel : BaseViewModel() {
 
     fun onMenuItemClicked(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_save -> savePressed()
+            R.id.ActionSave -> savePressed()
         }
         return true
     }

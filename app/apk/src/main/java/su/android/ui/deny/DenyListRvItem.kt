@@ -2,7 +2,7 @@ package su.android.ui.deny
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.Bindable
+import su.android.databinding.Bindable
 import su.android.BR
 import su.android.R
 import su.android.arch.startAnimations
@@ -17,7 +17,7 @@ class DenyListRvItem(
     val info: AppProcessInfo
 ) : ObservableRvItem(), DiffItem<DenyListRvItem>, Comparable<DenyListRvItem> {
 
-    override val layoutRes get() = R.layout.item_hide
+    override val layoutRes get() = R.layout.ItemHide
 
     val processes = info.processes.map { ProcessRvItem(it) }
 
@@ -102,7 +102,7 @@ class ProcessRvItem(
     val process: ProcessInfo
 ) : ObservableRvItem(), DiffItem<ProcessRvItem> {
 
-    override val layoutRes get() = R.layout.item_hide_process
+    override val layoutRes get() = R.layout.ItemHideProcess
 
     val displayName = if (process.isIsolated) "(isolated) ${process.name}" else process.name
 

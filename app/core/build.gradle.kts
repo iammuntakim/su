@@ -39,7 +39,6 @@ dependencies {
     coreLibraryDesugaring(libs.jdk.libs)
 
     api(libs.timber)
-    api(libs.markwon.core)
     implementation(libs.bcpkix)
     implementation(libs.commons.compress)
 

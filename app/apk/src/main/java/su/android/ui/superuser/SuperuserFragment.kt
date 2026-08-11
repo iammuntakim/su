@@ -16,7 +16,7 @@ import su.android.core.R as CoreR
 
 class SuperuserFragment : BaseFragment<FragmentSuperuserBinding>() {
 
-    override val layoutRes = R.layout.fragment_superuser
+    override val layoutRes = R.layout.FragmentSuperuser
     override val viewModel by viewModel<SuperuserViewModel>()
 
     override fun onStart() {

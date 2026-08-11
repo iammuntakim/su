@@ -2,7 +2,6 @@ package su.android.core.di
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.text.method.LinkMovementMethod
 import androidx.room.Room
 import su.android.core.AppContext
 import su.android.core.Const
@@ -13,8 +12,6 @@ import su.android.core.data.policy.StringDao
 import su.android.core.ktx.deviceProtectedContext
 import su.android.core.repository.LogRepository
 import su.android.core.repository.NetworkService
-import io.noties.markwon.Markwon
-import io.noties.markwon.utils.NoCopySpannableFactory
 
 @SuppressLint("StaticFieldLeak")
 object ServiceLocator {
@@ -32,7 +29,6 @@ object ServiceLocator {
     // Networking
     val okhttp by lazy { createOkHttpClient(AppContext) }
     val retrofit by lazy { createRetrofit(okhttp) }
-    val markwon by lazy { createMarkwon(AppContext) }
     val networkService by lazy {
         NetworkService(
             createApiService(retrofit, Const.Url.INVALID_URL),
@@ -46,13 +42,3 @@ private fun createLogDatabase(context: Context) =
         .addMigrations(LogDatabase.MIGRATION_1_2)
         .fallbackToDestructiveMigration(true)
         .build()
-
-private fun createMarkwon(context: Context) =
-    Markwon.builder(context).textSetter { textView, spanned, bufferType, onComplete ->
-        textView.apply {
-            movementMethod = LinkMovementMethod.getInstance()
-            setSpannableFactory(NoCopySpannableFactory.getInstance())
-            setText(spanned, bufferType)
-            onComplete.run()
-        }
-    }.build()

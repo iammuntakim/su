@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@id/homeFragment">
+
+    <action
+        android:id="@+id/action_global_settingsFragment"
+        app:destination="@id/settingsFragment"
+        app:enterAnim="@anim/FragmentEnter"
+        app:exitAnim="@anim/FragmentExit"
+        app:popEnterAnim="@anim/FragmentEnterPop"
+        app:popExitAnim="@anim/FragmentExitPop" />
+
+    <fragment
+        android:id="@+id/denyFragment"
+        android:name="su.android.ui.deny.DenyListFragment"
+        android:label="DenyListFragment"
+        tools:layout="@layout/FragmentDeny" />
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="su.android.ui.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/FragmentHome">
+
+        <action
+            android:id="@+id/action_homeFragment_to_installFragment"
+            app:destination="@id/installFragment"
+            app:enterAnim="@anim/FragmentEnter"
+            app:exitAnim="@anim/FragmentExit"
+            app:popEnterAnim="@anim/FragmentEnterPop"
+            app:popExitAnim="@anim/FragmentExitPop" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/flashFragment"
+        android:name="su.android.ui.flash.FlashFragment"
+        android:label="FlashFragment"
+        tools:layout="@layout/FragmentFlash">
+
+        <argument
+            android:name="action"
+            app:argType="string" />
+
+        <argument
+            android:name="additional_data"
+            android:defaultValue="@null"
+            app:argType="android.net.Uri"
+            app:nullable="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/actionFragment"
+        android:name="su.android.ui.module.ActionFragment"
+        android:label="ActionFragment"
+        tools:layout="@layout/FragmentAction">
+
+        <argument
+            android:name="id"
+            app:argType="string" />
+
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/installFragment"
+        android:name="su.android.ui.install.InstallFragment"
+        android:label="InstallFragment"
+        tools:layout="@layout/FragmentInstall" />
+
+    <fragment
+        android:id="@+id/logFragment"
+        android:name="su.android.ui.log.LogFragment"
+        android:label="LogFragment"
+        tools:layout="@layout/FragmentLog" />
+
+    <fragment
+        android:id="@+id/ModulesFragment"
+        android:name="su.android.ui.module.ModuleFragment"
+        android:label="ModuleFragment"
+        tools:layout="@layout/FragmentModule" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="su.android.ui.settings.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/FragmentSettings">
+
+        <action
+            android:id="@+id/action_settingsFragment_to_denyFragment"
+            app:destination="@id/denyFragment"
+            app:enterAnim="@anim/FragmentEnter"
+            app:exitAnim="@anim/FragmentExit"
+            app:popEnterAnim="@anim/FragmentEnterPop"
+            app:popExitAnim="@anim/FragmentExitPop" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/superuserFragment"
+        android:name="su.android.ui.superuser.SuperuserFragment"
+        android:label="SuperuserFragment"
+        tools:layout="@layout/FragmentSuperuser" />
+
+    <action
+        android:id="@+id/action_homeFragment"
+        app:destination="@id/homeFragment"
+        app:enterAnim="@anim/FragmentEnter"
+        app:exitAnim="@anim/FragmentExit"
+        app:popEnterAnim="@anim/FragmentEnterPop"
+        app:popExitAnim="@anim/FragmentExitPop"
+        app:popUpTo="@id/homeFragment"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_superuserFragment"
+        app:destination="@id/superuserFragment"
+        app:enterAnim="@anim/FragmentEnter"
+        app:exitAnim="@anim/FragmentExit"
+        app:popEnterAnim="@anim/FragmentEnterPop"
+        app:popExitAnim="@anim/FragmentExitPop"
+        app:popUpTo="@id/homeFragment" />
+
+    <action
+        android:id="@+id/action_logFragment"
+        app:destination="@id/logFragment"
+        app:enterAnim="@anim/FragmentEnter"
+        app:exitAnim="@anim/FragmentExit"
+        app:popEnterAnim="@anim/FragmentEnterPop"
+        app:popExitAnim="@anim/FragmentExitPop"
+        app:popUpTo="@id/homeFragment" />
+
+    <action
+        android:id="@+id/action_moduleFragment"
+        app:destination="@id/ModulesFragment"
+        app:enterAnim="@anim/FragmentEnter"
+        app:exitAnim="@anim/FragmentExit"
+        app:popEnterAnim="@anim/FragmentEnterPop"
+        app:popExitAnim="@anim/FragmentExitPop"
+        app:popUpTo="@id/homeFragment" />
+
+    <action
+        android:id="@+id/action_flashFragment"
+        app:destination="@id/flashFragment"
+        app:enterAnim="@anim/FragmentEnter"
+        app:exitAnim="@anim/FragmentExit"
+        app:popEnterAnim="@anim/FragmentEnterPop"
+        app:popExitAnim="@anim/FragmentExitPop" />
+
+    <action
+        android:id="@+id/action_actionFragment"
+        app:destination="@id/actionFragment"
+        app:enterAnim="@anim/FragmentEnter"
+        app:exitAnim="@anim/FragmentExit"
+        app:popEnterAnim="@anim/FragmentEnterPop"
+        app:popExitAnim="@anim/FragmentExitPop" />
+
+</navigation>

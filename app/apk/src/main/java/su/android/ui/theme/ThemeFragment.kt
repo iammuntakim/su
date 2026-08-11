@@ -16,7 +16,7 @@ import su.android.core.R as CoreR
 
 class ThemeFragment : BaseFragment<FragmentThemeBinding>() {
 
-    override val layoutRes = R.layout.fragment_theme
+    override val layoutRes = R.layout.FragmentTheme
     override val viewModel by viewModel<ThemeViewModel>()
 
     private fun <T> Array<T>.paired(): List<Pair<T, T?>> {
@@ -39,9 +39,9 @@ class ThemeFragment : BaseFragment<FragmentThemeBinding>() {
         super.onCreateView(inflater, container, savedInstanceState)
 
         for ((a, b) in Theme.values().paired()) {
-            val c = inflater.inflate(R.layout.item_theme_container, null, false)
-            val left = c.findViewById<FrameLayout>(R.id.left)
-            val right = c.findViewById<FrameLayout>(R.id.right)
+            val c = inflater.inflate(R.layout.ItemThemeContainer, null, false)
+            val left = c.findViewById<FrameLayout>(R.id.Left)
+            val right = c.findViewById<FrameLayout>(R.id.Right)
 
             for ((theme, view) in listOf(a to left, b to right)) {
                 theme ?: continue

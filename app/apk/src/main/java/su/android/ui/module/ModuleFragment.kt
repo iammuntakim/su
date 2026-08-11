@@ -19,7 +19,7 @@ import su.android.core.R as CoreR
 
 class ModuleFragment : BaseFragment<FragmentModuleBinding>() {
 
-    override val layoutRes = R.layout.fragment_module
+    override val layoutRes = R.layout.FragmentModule
     override val viewModel by viewModel<ModuleViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {

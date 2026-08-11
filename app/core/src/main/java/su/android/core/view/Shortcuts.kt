@@ -31,7 +31,7 @@ object Shortcuts {
         val info = ShortcutInfoCompat.Builder(context, Const.Nav.HOME)
             .setShortLabel(context.getString(R.string.supersu))
             .setIntent(intent)
-            .setIcon(context.getIconCompat(R.drawable.ic_launcher))
+            .setIcon(context.getIconCompat(R.drawable.LauncherIcon))
             .build()
         ShortcutManagerCompat.requestPinShortcut(context, info, null)
     }
@@ -73,7 +73,7 @@ object Shortcuts {
                     .setIntent(
                         Intent(intent).putExtra(Const.Key.OPEN_SECTION, Const.Nav.SUPERUSER)
                     )
-                    .setIcon(context.getIcon(R.drawable.sc_superuser))
+                    .setIcon(context.getIcon(R.drawable.ShortcutSuperuser))
                     .setRank(0)
                     .build()
             )
@@ -85,7 +85,7 @@ object Shortcuts {
                     .setIntent(
                         Intent(intent).putExtra(Const.Key.OPEN_SECTION, Const.Nav.MODULES)
                     )
-                    .setIcon(context.getIcon(R.drawable.sc_extension))
+                    .setIcon(context.getIcon(R.drawable.ShortcutExtension))
                     .setRank(1)
                     .build()
             )

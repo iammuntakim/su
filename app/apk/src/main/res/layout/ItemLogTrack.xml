@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="isTop"
+            type="Boolean" />
+
+        <variable
+            name="isBottom"
+            type="Boolean" />
+
+        <variable
+            name="bullet"
+            type="Integer" />
+
+        <variable
+            name="isSelected"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_gravity="center"
+        tools:minHeight="?listPreferredItemHeightSmall">
+
+        <ImageView
+            android:id="@+id/TrackTop"
+            invisible="@{isTop}"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="2dp"
+            android:alpha=".3"
+            app:tint="?colorSecondary"
+            app:srcCompat="@drawable/BgLineBottomRounded"
+            app:layout_constraintBottom_toTopOf="@+id/TrackBullet"
+            app:layout_constraintEnd_toEndOf="@+id/TrackBullet"
+            app:layout_constraintStart_toStartOf="@+id/TrackBullet"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/TrackBullet"
+            style="@style/WidgetFoundation.Image.Small"
+            isSelected="@{isSelected}"
+            srcCompat="@{bullet}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/color_primary_error_transient"
+            tools:srcCompat="@drawable/Check" />
+
+        <ImageView
+            android:id="@+id/TrackBottom"
+            invisible="@{isBottom}"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="2dp"
+            android:alpha=".3"
+            app:tint="?colorSecondary"
+            app:srcCompat="@drawable/BgLineTopRounded"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/TrackBullet"
+            app:layout_constraintStart_toStartOf="@+id/TrackBullet"
+            app:layout_constraintTop_toBottomOf="@+id/TrackBullet" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

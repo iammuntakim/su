@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.core.net.toUri
-import androidx.databinding.Bindable
+import su.android.databinding.Bindable
 import su.android.BR
 import su.android.R
 import su.android.arch.ActivityExecutor
@@ -41,9 +41,9 @@ class HomeViewModel(
     }
 
     val systemTitleBarrierIds =
-        intArrayOf(R.id.home_system_icon, R.id.home_system_title, R.id.home_system_button)
+        intArrayOf(R.id.HomeSystemIcon, R.id.HomeSystemTitle, R.id.HomeSystemButton)
     val appTitleBarrierIds =
-        intArrayOf(R.id.home_manager_icon, R.id.home_manager_title, R.id.home_manager_button)
+        intArrayOf(R.id.HomeManagerIcon, R.id.HomeManagerTitle, R.id.HomeManagerButton)
 
     @get:Bindable
     var isNoticeVisible = Config.safetyNotice

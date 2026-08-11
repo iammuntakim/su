@@ -18,17 +18,17 @@ class DarkThemeDialog : DialogBuilder {
             setMessage(CoreR.string.settings_dark_mode_message)
             setButton(MaterialDialog.ButtonType.POSITIVE) {
                 text = CoreR.string.settings_dark_mode_light
-                icon = R.drawable.ic_day
+                icon = R.drawable.Day
                 onClick { selectTheme(AppCompatDelegate.MODE_NIGHT_NO, activity) }
             }
             setButton(MaterialDialog.ButtonType.NEUTRAL) {
                 text = CoreR.string.settings_dark_mode_system
-                icon = R.drawable.ic_day_night
+                icon = R.drawable.DayNight
                 onClick { selectTheme(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM, activity) }
             }
             setButton(MaterialDialog.ButtonType.NEGATIVE) {
                 text = CoreR.string.settings_dark_mode_dark
-                icon = R.drawable.ic_night
+                icon = R.drawable.Night
                 onClick { selectTheme(AppCompatDelegate.MODE_NIGHT_YES, activity) }
             }
         }

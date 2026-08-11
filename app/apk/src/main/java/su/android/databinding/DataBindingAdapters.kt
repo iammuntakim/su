@@ -5,6 +5,7 @@ import android.content.res.ColorStateList
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.text.Spanned
+import android.text.method.LinkMovementMethod
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
@@ -37,7 +38,6 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.slider.Slider
 import com.google.android.material.textfield.TextInputLayout
 import su.android.R
-import su.android.core.di.ServiceLocator
 import su.android.core.model.policy.Policy
 import su.android.utils.TextHolder
 import com.topjohnwu.superuser.internal.UiThreadHandler
@@ -66,7 +66,8 @@ fun setInvisibleUnless(view: View, invisibleUnless: Boolean) {
 
 @BindingAdapter("markdownText")
 fun setMarkdownText(tv: TextView, markdown: Spanned) {
-    ServiceLocator.markwon.setParsedMarkdown(tv, markdown)
+    tv.movementMethod = LinkMovementMethod.getInstance()
+    tv.text = markdown
 }
 
 @BindingAdapter("onNavigationClick")
@@ -107,12 +108,12 @@ fun setScrollToLast(view: RecyclerView, shouldScrollToLast: Boolean) {
             }
         }
         registerAdapterDataObserver(observer)
-        view.setTag(R.id.recyclerScrollListener, observer)
+        view.setTag(R.id.RecyclerScrollListener, observer)
     }
 
     fun RecyclerView.Adapter<*>.removeListener() {
         val observer =
-            view.getTag(R.id.recyclerScrollListener) as? RecyclerView.AdapterDataObserver ?: return
+            view.getTag(R.id.RecyclerScrollListener) as? RecyclerView.AdapterDataObserver ?: return
         unregisterAdapterDataObserver(observer)
     }
 

@@ -8,7 +8,7 @@ import su.android.core.R as CoreR
 
 class InstallFragment : BaseFragment<FragmentInstallBinding>() {
 
-    override val layoutRes = R.layout.fragment_install
+    override val layoutRes = R.layout.FragmentInstall
     override val viewModel by viewModel<InstallViewModel>()
 
     override fun onStart() {

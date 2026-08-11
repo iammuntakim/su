@@ -1,7 +1,7 @@
 package su.android.ui.log
 
 import android.system.Os
-import androidx.databinding.Bindable
+import su.android.databinding.Bindable
 import androidx.lifecycle.viewModelScope
 import su.android.BR
 import su.android.arch.AsyncLoadViewModel

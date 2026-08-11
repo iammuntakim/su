@@ -1,7 +1,7 @@
 package su.android.ui.superuser
 
 import android.graphics.drawable.Drawable
-import androidx.databinding.Bindable
+import su.android.databinding.Bindable
 import su.android.BR
 import su.android.R
 import su.android.core.Config
@@ -21,7 +21,7 @@ class PolicyRvItem(
     val appName: String
 ) : ObservableRvItem(), DiffItem<PolicyRvItem>, ItemWrapper<Policy> {
 
-    override val layoutRes = R.layout.item_policy
+    override val layoutRes = R.layout.ItemPolicy
 
     val title get() = if (isSharedUid) "[SharedUID] $appName" else appName
 

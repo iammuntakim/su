@@ -6,7 +6,7 @@ import android.os.Parcelable
 import android.text.Spanned
 import android.text.SpannedString
 import android.widget.Toast
-import androidx.databinding.Bindable
+import su.android.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -24,7 +24,6 @@ import su.android.databinding.set
 import su.android.dialog.SecondSlotWarningDialog
 import su.android.events.GetContentEvent
 import su.android.ui.flash.FlashFragment
-import io.noties.markwon.Markwon
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -34,7 +33,7 @@ import java.io.File
 import java.io.IOException
 import su.android.core.R as CoreR
 
-class InstallViewModel(svc: NetworkService, markwon: Markwon) : BaseViewModel() {
+class InstallViewModel(svc: NetworkService) : BaseViewModel() {
 
     val isRooted get() = Info.isRooted
     val skipOptions = Info.isEmulator || (Info.isSAR && !Info.isFDE && Info.ramdisk)
@@ -51,10 +50,10 @@ class InstallViewModel(svc: NetworkService, markwon: Markwon) : BaseViewModel() 
         get() = methodId
         set(value) = set(value, methodId, { methodId = it }, BR.method) {
             when (it) {
-                R.id.method_patch -> {
+                R.id.MethodPatch -> {
                     GetContentEvent("*/*", UriCallback()).publish()
                 }
-                R.id.method_inactive_slot -> {
+                R.id.MethodInactiveSlot -> {
                     SecondSlotWarningDialog().show()
                 }
             }
@@ -79,7 +78,7 @@ class InstallViewModel(svc: NetworkService, markwon: Markwon) : BaseViewModel() 
                         note
                     }
                 }
-                val spanned = markwon.toMarkdown(noteText)
+                val spanned: Spanned = SpannedString(noteText)
                 withContext(Dispatchers.Main) {
                     notes = spanned
                 }
@@ -91,9 +90,9 @@ class InstallViewModel(svc: NetworkService, markwon: Markwon) : BaseViewModel() 
 
     fun install() {
         when (method) {
-            R.id.method_patch -> FlashFragment.patch(data.value!!).navigate(true)
-            R.id.method_direct -> FlashFragment.flash(false).navigate(true)
-            R.id.method_inactive_slot -> FlashFragment.flash(true).navigate(true)
+            R.id.MethodPatch -> FlashFragment.patch(data.value!!).navigate(true)
+            R.id.MethodDirect -> FlashFragment.flash(false).navigate(true)
+            R.id.MethodInactiveSlot -> FlashFragment.flash(true).navigate(true)
             else -> error("Unknown value")
         }
     }

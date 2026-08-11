@@ -136,7 +136,7 @@ interface LocaleSetting {
                 }
             } else {
                 // Manually parse locale_config.xml
-                val parser = AppContext.resources.getXml(R.xml.locale_config)
+                val parser = AppContext.resources.getXml(R.xml.LocaleConfig)
                 while (true) {
                     when (parser.next()) {
                         XmlPullParser.START_TAG -> {

@@ -1,7 +1,6 @@
 package su.android.databinding
 
-import androidx.databinding.PropertyChangeRegistry
-import androidx.databinding.ViewDataBinding
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class RvItem {
@@ -17,7 +16,7 @@ interface ItemWrapper<E> {
 }
 
 interface ViewAwareItem {
-    fun onBind(binding: ViewDataBinding, recyclerView: RecyclerView)
+    fun onBind(view: View, recyclerView: RecyclerView)
 }
 
 interface DiffItem<T : Any> {

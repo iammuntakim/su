@@ -1,7 +1,7 @@
 package su.android.ui.module
 
 import android.net.Uri
-import androidx.databinding.Bindable
+import su.android.databinding.Bindable
 import androidx.lifecycle.MutableLiveData
 import su.android.BR
 import su.android.MainDirections
@@ -28,7 +28,7 @@ import su.android.core.R as CoreR
 
 class ModuleViewModel : AsyncLoadViewModel() {
 
-    val bottomBarBarrierIds = intArrayOf(R.id.module_update, R.id.module_remove)
+    val bottomBarBarrierIds = intArrayOf(R.id.ModuleUpdate, R.id.ModuleRemove)
 
     private val itemsInstalled = diffList<LocalModuleRvItem>()
 

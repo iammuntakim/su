@@ -1,6 +1,6 @@
 package su.android.ui.log
 
-import androidx.databinding.Bindable
+import su.android.databinding.Bindable
 import su.android.BR
 import su.android.R
 import su.android.core.AppContext
@@ -14,7 +14,7 @@ import su.android.core.R as CoreR
 
 class LogEntryItem(val log: LogEntry) : ObservableRvItem(), DiffItem<LogEntryItem> {
 
-    override val layoutRes = R.layout.item_log_access
+    override val layoutRes = R.layout.ItemLogAccess
 
     val info = genInfo()
 

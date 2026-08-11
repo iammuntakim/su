@@ -21,7 +21,7 @@ import su.android.core.R as CoreR
 
 class ActionFragment : BaseFragment<FragmentActionBinding>(), MenuProvider {
 
-    override val layoutRes = R.layout.fragment_action
+    override val layoutRes = R.layout.FragmentAction
     override val viewModel by viewModel<ActionViewModel>()
     override val snackbarView: View get() = binding.snackbarContainer
 
@@ -66,7 +66,7 @@ class ActionFragment : BaseFragment<FragmentActionBinding>(), MenuProvider {
     }
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_flash, menu)
+        inflater.inflate(R.menu.MenuFlash, menu)
     }
 
     override fun onMenuItemSelected(item: MenuItem): Boolean {

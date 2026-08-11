@@ -20,7 +20,7 @@ import su.android.core.R as CoreR
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), MenuProvider {
 
-    override val layoutRes = R.layout.fragment_home
+    override val layoutRes = R.layout.FragmentHome
     override val viewModel by viewModel<HomeViewModel>()
 
     override fun onStart() {
@@ -59,14 +59,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MenuProvider {
     }
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_home, menu)
+        inflater.inflate(R.menu.MenuHome, menu)
         if (!Info.isRooted)
-            menu.removeItem(R.id.action_reboot)
+            menu.removeItem(R.id.ActionReboot)
     }
 
     override fun onMenuItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_reboot -> activity?.let { RebootMenu.inflate(it).show() }
+            R.id.ActionReboot -> activity?.let { RebootMenu.inflate(it).show() }
             else -> return super.onOptionsItemSelected(item)
         }
         return true

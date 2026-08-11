@@ -179,7 +179,6 @@ fun Project.setupCoreLib() {
                 it.addGeneratedSourceDirectory(syncResources, SyncWithDir::outputFolder)
             }
 
-            val stubTask = tasks.getByPath(":stub:comment$variantCapped")
             val syncAssets = tasks.register("sync${variantCapped}Assets", SyncWithDir::class) {
                 outputFolder.set(layout.buildDirectory.dir("$variantName/assets"))
                 into(outputFolder)
@@ -191,8 +190,7 @@ fun Project.setupCoreLib() {
                         "app_functions.sh", "uninstaller.sh", "module_installer.sh")
                 }
                 from(rootFile("tools/bootctl"))
-                from(stubTask) {
-                    include { it.name.endsWith(".apk") }
+                from(rootFile("tools/stub.apk")) {
                     rename { "stub.apk" }
                 }
                 filesMatching("**/util_functions.sh") {

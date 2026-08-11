@@ -1,6 +1,6 @@
 package su.android.ui.module
 
-import androidx.databinding.Bindable
+import su.android.databinding.Bindable
 import su.android.BR
 import su.android.R
 import su.android.core.Info
@@ -15,14 +15,14 @@ import su.android.utils.asText
 import su.android.core.R as CoreR
 
 object InstallModule : RvItem(), DiffItem<InstallModule> {
-    override val layoutRes = R.layout.item_module_download
+    override val layoutRes = R.layout.ItemModuleDownload
 }
 
 class LocalModuleRvItem(
     override val item: LocalModule
 ) : ObservableRvItem(), DiffItem<LocalModuleRvItem>, ItemWrapper<LocalModule> {
 
-    override val layoutRes = R.layout.item_module
+    override val layoutRes = R.layout.ItemModule
 
     val showNotice: Boolean
     val showAction: Boolean

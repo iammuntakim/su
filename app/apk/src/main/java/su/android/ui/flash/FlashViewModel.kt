@@ -1,8 +1,8 @@
 package su.android.ui.flash
 
 import android.view.MenuItem
-import androidx.databinding.Bindable
-import androidx.databinding.ObservableArrayList
+import su.android.databinding.Bindable
+import su.android.databinding.ObservableArrayList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
@@ -95,7 +95,7 @@ class FlashViewModel : BaseViewModel() {
 
     fun onMenuItemClicked(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_save -> savePressed()
+            R.id.ActionSave -> savePressed()
         }
         return true
     }

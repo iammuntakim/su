@@ -20,7 +20,7 @@ import su.android.core.R as CoreR
 
 class DenyListFragment : BaseFragment<FragmentDenyBinding>(), MenuProvider {
 
-    override val layoutRes = R.layout.fragment_deny
+    override val layoutRes = R.layout.FragmentDeny
     override val viewModel by viewModel<DenyListViewModel>()
 
     private lateinit var searchView: SearchView
@@ -59,8 +59,8 @@ class DenyListFragment : BaseFragment<FragmentDenyBinding>(), MenuProvider {
     }
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_deny, menu)
-        searchView = menu.findItem(R.id.action_search).actionView as SearchView
+        inflater.inflate(R.menu.MenuDeny, menu)
+        searchView = menu.findItem(R.id.ActionSearch).actionView as SearchView
         searchView.queryHint = searchView.context.getString(CoreR.string.hide_filter_hint)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -77,13 +77,13 @@ class DenyListFragment : BaseFragment<FragmentDenyBinding>(), MenuProvider {
 
     override fun onMenuItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_show_system -> {
+            R.id.ActionShowSystem -> {
                 val check = !item.isChecked
                 viewModel.isShowSystem = check
                 item.isChecked = check
                 return true
             }
-            R.id.action_show_OS -> {
+            R.id.ActionShowOS -> {
                 val check = !item.isChecked
                 viewModel.isShowOS = check
                 item.isChecked = check
@@ -94,8 +94,8 @@ class DenyListFragment : BaseFragment<FragmentDenyBinding>(), MenuProvider {
     }
 
     override fun onPrepareMenu(menu: Menu) {
-        val showSystem = menu.findItem(R.id.action_show_system)
-        val showOS = menu.findItem(R.id.action_show_OS)
+        val showSystem = menu.findItem(R.id.ActionShowSystem)
+        val showOS = menu.findItem(R.id.ActionShowOS)
         if (showSystem != null && showOS != null) {
             showOS.isEnabled = showSystem.isChecked
         }

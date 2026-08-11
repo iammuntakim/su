@@ -2,8 +2,6 @@ package su.android.databinding
 
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
-import androidx.databinding.ListChangeRegistry
-import androidx.databinding.ObservableList
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListUpdateCallback
 import kotlinx.coroutines.CoroutineScope
