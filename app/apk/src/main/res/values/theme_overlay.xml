@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="theme_overlay_button_text_secondary" parent="">
+        <item name="colorPrimary">?colorSecondary</item>
+    </style>
+
+</resources>

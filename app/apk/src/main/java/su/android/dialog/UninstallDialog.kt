@@ -5,7 +5,7 @@ import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import su.android.arch.NavigationActivity
 import su.android.arch.UIActivity
-import su.android.core.R
+import su.android.R
 import su.android.core.ktx.toast
 import su.android.core.tasks.SystemInstaller
 import su.android.events.DialogBuilder

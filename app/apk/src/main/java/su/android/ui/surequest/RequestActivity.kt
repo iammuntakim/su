@@ -22,7 +22,7 @@ import kotlinx.coroutines.withContext
 
 open class RequestActivity : UIActivity<ActivityRequestBinding>(), UntrackedActivity {
 
-    override val layoutRes: Int = R.layout.ActivityRequest
+    override val layoutRes: Int = R.layout.activity_request
     override val viewModel: RequestViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +55,7 @@ open class RequestActivity : UIActivity<ActivityRequestBinding>(), UntrackedActi
 
     override fun getTheme(): Resources.Theme {
         val theme = super.getTheme()
-        theme.applyStyle(R.style.Foundation_Floating, true)
+        theme.applyStyle(R.style.foundation_floating, true)
         return theme
     }
 

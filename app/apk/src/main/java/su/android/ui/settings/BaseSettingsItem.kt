@@ -19,7 +19,7 @@ sealed class BaseSettingsItem : ObservableRvItem() {
         fun onItemAction(view: View, item: BaseSettingsItem)
     }
 
-    override val layoutRes get() = R.layout.ItemSettings
+    override val layoutRes get() = R.layout.item_settings
 
     open val icon: Int? get() = null
     open val title: TextHolder get() = TextHolder.EMPTY
@@ -132,6 +132,6 @@ sealed class BaseSettingsItem : ObservableRvItem() {
     abstract class Blank : BaseSettingsItem()
 
     abstract class Section : BaseSettingsItem() {
-        override val layoutRes = R.layout.ItemSettingsSection
+        override val layoutRes = R.layout.item_settings_section
     }
 }

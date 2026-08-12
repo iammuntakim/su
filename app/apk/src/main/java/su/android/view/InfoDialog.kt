@@ -18,7 +18,7 @@ import su.android.R
 import su.android.core.ktx.toast
 import su.android.view.MaterialDialog.ButtonType
 import com.topjohnwu.superuser.Shell
-import su.android.core.R as CoreR
+import su.android.R as CoreR
 
 object InfoDialog {
 
@@ -31,7 +31,7 @@ object InfoDialog {
     fun buildProp(activity: Activity) {
         val container = LinearLayout(activity).apply { orientation = LinearLayout.VERTICAL }
         val dialog = MaterialDialog(activity).apply {
-            setIcon(R.drawable.Code)
+            setIcon(R.drawable.ic_code)
             setTitle(activity.getString(CoreR.string.build_prop_title))
             setButton(ButtonType.POSITIVE) {
                 text = android.R.string.ok
@@ -50,7 +50,7 @@ object InfoDialog {
         val container = LinearLayout(activity).apply { orientation = LinearLayout.VERTICAL }
         populate(container, rows, activity)
         MaterialDialog(activity).apply {
-            setIcon(R.drawable.Code)
+            setIcon(R.drawable.ic_code)
             setTitle(title)
             setButton(ButtonType.POSITIVE) {
                 text = android.R.string.ok
@@ -102,7 +102,7 @@ object InfoDialog {
 
             row.addView(
                 ImageView(activity).apply {
-                    setImageResource(R.drawable.Equal)
+                    setImageResource(R.drawable.ic_equal)
                     contentDescription = "="
                 },
                 LinearLayout.LayoutParams(

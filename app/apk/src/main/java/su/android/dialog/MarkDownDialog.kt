@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.io.IOException
-import su.android.core.R as CoreR
+import su.android.R as CoreR
 
 abstract class MarkDownDialog : DialogBuilder {
 
@@ -23,9 +23,9 @@ abstract class MarkDownDialog : DialogBuilder {
     @CallSuper
     override fun build(dialog: MaterialDialog) {
         with(dialog) {
-            val view = LayoutInflater.from(context).inflate(R.layout.MarkdownWindow, null)
+            val view = LayoutInflater.from(context).inflate(R.layout.markdown_window, null)
             setView(view)
-            val tv = view.findViewById<TextView>(R.id.MdTxt)
+            val tv = view.findViewById<TextView>(R.id.md_txt)
             tv.movementMethod = LinkMovementMethod.getInstance()
             activity.lifecycleScope.launch {
                 try {

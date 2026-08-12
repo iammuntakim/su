@@ -10,7 +10,7 @@ import su.android.databinding.DiffItem
 import su.android.databinding.ItemWrapper
 import su.android.databinding.ObservableRvItem
 import su.android.databinding.set
-import su.android.core.R as CoreR
+import su.android.R as CoreR
 
 class PolicyRvItem(
     private val viewModel: SuperuserViewModel,
@@ -21,7 +21,7 @@ class PolicyRvItem(
     val appName: String
 ) : ObservableRvItem(), DiffItem<PolicyRvItem>, ItemWrapper<Policy> {
 
-    override val layoutRes = R.layout.ItemPolicy
+    override val layoutRes = R.layout.item_policy
 
     val title get() = if (isSharedUid) "[SharedUID] $appName" else appName
 

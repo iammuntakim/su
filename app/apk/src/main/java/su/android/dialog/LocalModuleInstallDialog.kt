@@ -3,7 +3,7 @@ package su.android.dialog
 import android.net.Uri
 import su.android.MainDirections
 import su.android.core.Const
-import su.android.core.R
+import su.android.R
 import su.android.events.DialogBuilder
 import su.android.ui.module.ModuleViewModel
 import su.android.view.MaterialDialog

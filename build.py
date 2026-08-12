@@ -210,29 +210,6 @@ def build_app():
     mv(source, target)
     header(f"Output: {target}")
 
-    source = Path("app", "core", "src", build_type, "assets", "stub.apk")
-    target = config["outdir"] / f"stub-{build_type}.apk"
-    cp(source, target)
-
-
-def build_stub():
-    header("* Building the stub app")
-    apk = build_apk(":stub")
-    header(f"Output: {apk}")
-
-
-def build_test():
-    old_release = args.release
-    args.release = True
-    try:
-        header("* Building the test app")
-        source = build_apk(":test")
-        target = source.parent / "test.apk"
-        mv(source, target)
-        header(f"Output: {target}")
-    finally:
-        args.release = old_release
-
 
 def cleanup():
     ensure_paths()
@@ -245,7 +222,6 @@ def cleanup():
 
 def build_all():
     build_app()
-    build_test()
 
 
 def ensure_paths():
@@ -343,14 +319,10 @@ def parse_args():
 
     all_parser = subparsers.add_parser("all", help="build everything")
     app_parser = subparsers.add_parser("app", help="build the SuperSU app")
-    stub_parser = subparsers.add_parser("stub", help="build the stub app")
-    test_parser = subparsers.add_parser("test", help="build the test app")
     clean_parser = subparsers.add_parser("clean", help="cleanup")
 
     all_parser.set_defaults(func=build_all)
     app_parser.set_defaults(func=build_app)
-    stub_parser.set_defaults(func=build_stub)
-    test_parser.set_defaults(func=build_test)
     clean_parser.set_defaults(func=cleanup)
 
     if len(sys.argv) == 1:

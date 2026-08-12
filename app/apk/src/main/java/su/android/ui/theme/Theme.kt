@@ -10,7 +10,7 @@ enum class Theme(
 
     Azure(
         themeName = "Azure",
-        themeRes = R.style.ThemeFoundationMD2_Azure
+        themeRes = R.style.theme_foundation_md2_azure
     );
 
     val isSelected get() = Config.themeOrdinal == ordinal

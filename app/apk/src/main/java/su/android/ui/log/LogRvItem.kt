@@ -13,7 +13,7 @@ class LogRvItem(
     override val item: String
 ) : ObservableRvItem(), DiffItem<LogRvItem>, ItemWrapper<String>, ViewAwareItem {
 
-    override val layoutRes = R.layout.ItemLogTextview
+    override val layoutRes = R.layout.item_log_textview
 
     override fun onBind(view: View, recyclerView: RecyclerView) {
         val textView = view as MaterialTextView

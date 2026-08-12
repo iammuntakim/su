@@ -16,11 +16,11 @@ import su.android.arch.viewModel
 import su.android.core.Info
 import su.android.core.download.DownloadEngine
 import su.android.databinding.FragmentHomeBinding
-import su.android.core.R as CoreR
+import su.android.R as CoreR
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), MenuProvider {
 
-    override val layoutRes = R.layout.FragmentHome
+    override val layoutRes = R.layout.fragment_home
     override val viewModel by viewModel<HomeViewModel>()
 
     override fun onStart() {
@@ -59,14 +59,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MenuProvider {
     }
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.MenuHome, menu)
+        inflater.inflate(R.menu.menu_home, menu)
         if (!Info.isRooted)
-            menu.removeItem(R.id.ActionReboot)
+            menu.removeItem(R.id.action_reboot)
     }
 
     override fun onMenuItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.ActionReboot -> activity?.let { RebootMenu.inflate(it).show() }
+            R.id.action_reboot -> activity?.let { RebootMenu.inflate(it).show() }
             else -> return super.onOptionsItemSelected(item)
         }
         return true

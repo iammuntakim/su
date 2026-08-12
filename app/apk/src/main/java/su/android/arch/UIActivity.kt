@@ -22,7 +22,6 @@ import su.android.R
 import su.android.core.Config
 import su.android.core.base.ActivityExtension
 import su.android.core.base.IActivityExtension
-import su.android.core.isRunningAsStub
 import su.android.core.ktx.reflectField
 import su.android.core.wrap
 import rikka.insets.WindowInsetsHelper
@@ -53,13 +52,6 @@ abstract class UIActivity<Binding : ViewDataBinding>
             .addOnViewCreatedListener(WindowInsetsHelper.LISTENER)
 
         extension.onCreate(savedInstanceState)
-        if (isRunningAsStub) {
-            // Overwrite private members to avoid nasty "false" stack traces being logged
-            val delegate = delegate
-            val clz = delegate.javaClass
-            clz.reflectField("mActivityHandlesConfigFlagsChecked").set(delegate, true)
-            clz.reflectField("mActivityHandlesConfigFlags").set(delegate, 0)
-        }
 
         super.onCreate(savedInstanceState)
 
@@ -133,7 +125,7 @@ fun ViewGroup.startAnimations() {
     val transition = AutoTransition()
         .setInterpolator(FastOutSlowInInterpolator())
         .setDuration(400)
-        .excludeTarget(R.id.MainToolbar, true)
+        .excludeTarget(R.id.main_toolbar, true)
     TransitionManager.beginDelayedTransition(
         this,
         transition

@@ -2,7 +2,7 @@ package su.android.dialog
 
 import su.android.core.AppContext
 import su.android.core.Info
-import su.android.core.R
+import su.android.R
 import su.android.core.download.DownloadEngine
 import su.android.core.download.Subject
 import su.android.view.MaterialDialog

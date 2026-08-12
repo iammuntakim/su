@@ -29,25 +29,23 @@ import su.android.core.Const
 import su.android.core.Info
 import su.android.core.base.SplashController
 import su.android.core.base.SplashScreenHost
-import su.android.core.isRunningAsStub
 import su.android.core.ktx.toast
 import su.android.core.model.module.LocalModule
-import su.android.core.tasks.AppMigration
 import su.android.databinding.ActivityMainBinding
 import su.android.ui.theme.Theme
 import su.android.view.MaterialDialog
 import su.android.view.Shortcuts
 import kotlinx.coroutines.launch
 import java.io.File
-import su.android.core.R as CoreR
+import su.android.R as CoreR
 
 class MainViewModel : BaseViewModel()
 
 class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost {
 
-    override val layoutRes = R.layout.ActivityMain
+    override val layoutRes = R.layout.activity_main
     override val viewModel by viewModel<MainViewModel>()
-    override val navHostId: Int = R.id.MainNavHost
+    override val navHostId: Int = R.id.main_nav_host
     override val splashController = SplashController(this)
     override val snackbarView: View
         get() {
@@ -68,7 +66,6 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(Theme.selected.themeRes)
-        splashController.preOnCreate()
         super.onCreate(savedInstanceState)
         splashController.onCreate(savedInstanceState)
     }
@@ -94,11 +91,11 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
 
         navigation.addOnDestinationChangedListener { _, destination, _ ->
             isRootFragment = when (destination.id) {
-                R.id.homeFragment,
-                R.id.ModulesFragment,
-                R.id.superuserFragment,
-                R.id.logFragment,
-                R.id.settingsFragment -> true
+                R.id.home_fragment,
+                R.id.modules_fragment,
+                R.id.superuser_fragment,
+                R.id.log_fragment,
+                R.id.settings_fragment -> true
                 else -> false
             }
 
@@ -122,8 +119,8 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
         }
         binding.mainNavigation.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
         binding.mainNavigation.menu.apply {
-            findItem(R.id.superuserFragment)?.isEnabled = Info.showSuperUser
-            findItem(R.id.ModulesFragment)?.isEnabled = Info.env.isActive && LocalModule.loaded()
+            findItem(R.id.superuser_fragment)?.isEnabled = Info.showSuperUser
+            findItem(R.id.modules_fragment)?.isEnabled = Info.env.isActive && LocalModule.loaded()
         }
 
         val section =
@@ -150,7 +147,7 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
     fun setDisplayHomeAsUpEnabled(isEnabled: Boolean) {
         binding.mainToolbar.startAnimations()
         when {
-            isEnabled -> binding.mainToolbar.setNavigationIcon(R.drawable.Back)
+            isEnabled -> binding.mainToolbar.setNavigationIcon(R.drawable.ic_back)
             else -> binding.mainToolbar.navigationIcon = null
         }
     }
@@ -180,37 +177,12 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
 
     private fun getScreen(id: Int): NavDirections? {
         return when (id) {
-            R.id.homeFragment -> MainDirections.actionHomeFragment()
-            R.id.ModulesFragment -> MainDirections.actionModuleFragment()
-            R.id.superuserFragment -> MainDirections.actionSuperuserFragment()
-            R.id.logFragment -> MainDirections.actionLogFragment()
-            R.id.settingsFragment -> MainDirections.actionGlobalSettingsFragment()
+            R.id.home_fragment -> MainDirections.actionHomeFragment()
+            R.id.modules_fragment -> MainDirections.actionModuleFragment()
+            R.id.superuser_fragment -> MainDirections.actionSuperuserFragment()
+            R.id.log_fragment -> MainDirections.actionLogFragment()
+            R.id.settings_fragment -> MainDirections.actionGlobalSettingsFragment()
             else -> null
-        }
-    }
-
-    @SuppressLint("InlinedApi")
-    override fun showInvalidStateMessage(): Unit = runOnUiThread {
-        MaterialDialog(this).apply {
-            setTitle(CoreR.string.unsupport_nonroot_stub_title)
-            setMessage(CoreR.string.unsupport_nonroot_stub_msg)
-            setButton(MaterialDialog.ButtonType.POSITIVE) {
-                text = CoreR.string.install
-                onClick {
-                    withPermission(REQUEST_INSTALL_PACKAGES) {
-                        if (!it) {
-                            toast(CoreR.string.install_unknown_denied, Toast.LENGTH_SHORT)
-                            showInvalidStateMessage()
-                        } else {
-                            lifecycleScope.launch {
-                                AppMigration.restore(this@MainActivity)
-                            }
-                        }
-                    }
-                }
-            }
-            setCancelable(false)
-            show()
         }
     }
 
@@ -256,7 +228,7 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
     }
 
     private fun askForHomeShortcut() {
-        if (isRunningAsStub && !Config.askedHome &&
+        if (!Config.askedHome &&
             ShortcutManagerCompat.isRequestPinShortcutSupported(this)) {
             Config.askedHome = true
             MaterialDialog(this).apply {

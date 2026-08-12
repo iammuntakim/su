@@ -7,7 +7,7 @@ import su.android.arch.UIActivity
 import su.android.core.Config
 import su.android.events.DialogBuilder
 import su.android.view.MaterialDialog
-import su.android.core.R as CoreR
+import su.android.R as CoreR
 
 class DarkThemeDialog : DialogBuilder {
 
@@ -18,17 +18,17 @@ class DarkThemeDialog : DialogBuilder {
             setMessage(CoreR.string.settings_dark_mode_message)
             setButton(MaterialDialog.ButtonType.POSITIVE) {
                 text = CoreR.string.settings_dark_mode_light
-                icon = R.drawable.Day
+                icon = R.drawable.ic_day
                 onClick { selectTheme(AppCompatDelegate.MODE_NIGHT_NO, activity) }
             }
             setButton(MaterialDialog.ButtonType.NEUTRAL) {
                 text = CoreR.string.settings_dark_mode_system
-                icon = R.drawable.DayNight
+                icon = R.drawable.ic_day_night
                 onClick { selectTheme(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM, activity) }
             }
             setButton(MaterialDialog.ButtonType.NEGATIVE) {
                 text = CoreR.string.settings_dark_mode_dark
-                icon = R.drawable.Night
+                icon = R.drawable.ic_night
                 onClick { selectTheme(AppCompatDelegate.MODE_NIGHT_YES, activity) }
             }
         }

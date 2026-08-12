@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/w_theme_container">
+
+    <FrameLayout
+        android:id="@+id/left"
+        style="@style/w_theme_left" />
+
+    <FrameLayout
+        android:id="@+id/right"
+        style="@style/w_theme_right" />
+
+</LinearLayout>

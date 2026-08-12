@@ -3,8 +3,11 @@ plugins {
     kotlin("plugin.parcelize")
     id("com.android.legacy-kapt")
     id("androidx.navigation.safeargs.kotlin")
+    id("dev.zacsweers.moshix")
+    id("com.google.devtools.ksp")
 }
 
+setupCoreLib()
 setupMainApk()
 
 kapt {
@@ -16,9 +19,15 @@ kapt {
     }
 }
 
+ksp {
+    arg("room.generateKotlin", "true")
+}
+
 android {
     buildFeatures {
         dataBinding = true
+        aidl = true
+        buildConfig = true
     }
 
     compileOptions {
@@ -27,6 +36,9 @@ android {
 
     defaultConfig {
         proguardFile("proguard-rules.pro")
+        buildConfigField("String", "APP_PACKAGE_NAME", "\"su.android\"")
+        buildConfigField("int", "APP_VERSION_CODE", "${Config.versionCode}")
+        buildConfigField("String", "APP_VERSION_NAME", "\"${Config.version}\"")
     }
 
     buildTypes {
@@ -38,7 +50,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
+    implementation(files("../lib/native.jar"))
     coreLibraryDesugaring(libs.jdk.libs)
 
     implementation(libs.indeterminate.checkbox)
@@ -57,6 +69,36 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
 
+    implementation(libs.timber)
+    implementation(libs.bcpkix)
+    implementation(libs.commons.compress)
+
+    api(libs.libsu.core)
+    api(libs.libsu.service)
+    api(libs.libsu.nio)
+
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.moshi)
+    implementation(libs.retrofit.scalars)
+
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
+    implementation(libs.okhttp.dnsoverhttps)
+
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+
+    implementation(libs.core.splashscreen)
+    implementation(libs.core.ktx)
+    implementation(libs.activity)
+    implementation(libs.collection.ktx)
+    implementation(libs.profileinstaller)
+
     // Make sure kapt runs with a proper kotlin-stdlib
     kapt(kotlin("stdlib"))
+}
+
+tasks.matching { it.name.contains("JniLibs") }.configureEach {
+    enabled = false
 }

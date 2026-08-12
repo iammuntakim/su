@@ -3,9 +3,9 @@ package su.android.dialog
 import android.widget.Toast
 import androidx.core.os.postDelayed
 import androidx.lifecycle.lifecycleScope
-import su.android.core.BuildConfig
+import su.android.BuildConfig
 import su.android.core.Info
-import su.android.core.R
+import su.android.R
 import su.android.core.ktx.reboot
 import su.android.core.ktx.toast
 import su.android.core.tasks.SystemInstaller

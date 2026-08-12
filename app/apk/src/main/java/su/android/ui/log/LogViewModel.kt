@@ -5,9 +5,9 @@ import su.android.databinding.Bindable
 import androidx.lifecycle.viewModelScope
 import su.android.BR
 import su.android.arch.AsyncLoadViewModel
-import su.android.core.BuildConfig
+import su.android.BuildConfig
 import su.android.core.Info
-import su.android.core.R
+import su.android.R
 import su.android.core.ktx.timeFormatStandard
 import su.android.core.ktx.toTime
 import su.android.core.repository.LogRepository

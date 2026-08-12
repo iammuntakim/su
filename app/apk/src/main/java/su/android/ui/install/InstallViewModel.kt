@@ -14,7 +14,7 @@ import su.android.BR
 import su.android.R
 import su.android.arch.BaseViewModel
 import su.android.core.AppContext
-import su.android.core.BuildConfig.APP_VERSION_CODE
+import su.android.BuildConfig.APP_VERSION_CODE
 import su.android.core.Config
 import su.android.core.Info
 import su.android.core.base.ContentResultCallback
@@ -31,7 +31,7 @@ import kotlinx.parcelize.Parcelize
 import timber.log.Timber
 import java.io.File
 import java.io.IOException
-import su.android.core.R as CoreR
+import su.android.R as CoreR
 
 class InstallViewModel(svc: NetworkService) : BaseViewModel() {
 
@@ -50,10 +50,10 @@ class InstallViewModel(svc: NetworkService) : BaseViewModel() {
         get() = methodId
         set(value) = set(value, methodId, { methodId = it }, BR.method) {
             when (it) {
-                R.id.MethodPatch -> {
+                R.id.method_patch -> {
                     GetContentEvent("*/*", UriCallback()).publish()
                 }
-                R.id.MethodInactiveSlot -> {
+                R.id.method_inactive_slot -> {
                     SecondSlotWarningDialog().show()
                 }
             }
@@ -90,9 +90,9 @@ class InstallViewModel(svc: NetworkService) : BaseViewModel() {
 
     fun install() {
         when (method) {
-            R.id.MethodPatch -> FlashFragment.patch(data.value!!).navigate(true)
-            R.id.MethodDirect -> FlashFragment.flash(false).navigate(true)
-            R.id.MethodInactiveSlot -> FlashFragment.flash(true).navigate(true)
+            R.id.method_patch -> FlashFragment.patch(data.value!!).navigate(true)
+            R.id.method_direct -> FlashFragment.flash(false).navigate(true)
+            R.id.method_inactive_slot -> FlashFragment.flash(true).navigate(true)
             else -> error("Unknown value")
         }
     }

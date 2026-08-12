@@ -21,11 +21,11 @@ import su.android.core.Const
 import su.android.core.cmp
 import su.android.databinding.FragmentFlashBinding
 import su.android.ui.MainActivity
-import su.android.core.R as CoreR
+import su.android.R as CoreR
 
 class FlashFragment : BaseFragment<FragmentFlashBinding>(), MenuProvider {
 
-    override val layoutRes = R.layout.FragmentFlash
+    override val layoutRes = R.layout.fragment_flash
     override val viewModel by viewModel<FlashViewModel>()
     override val snackbarView: View get() = binding.snackbarContainer
     override val snackbarAnchorView: View?
@@ -60,7 +60,7 @@ class FlashFragment : BaseFragment<FragmentFlashBinding>(), MenuProvider {
     }
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.MenuFlash, menu)
+        inflater.inflate(R.menu.menu_flash, menu)
     }
 
     override fun onMenuItemSelected(item: MenuItem): Boolean {
@@ -105,9 +105,9 @@ class FlashFragment : BaseFragment<FragmentFlashBinding>(), MenuProvider {
 
         private fun createIntent(context: Context, args: FlashFragmentArgs) =
             NavDeepLinkBuilder(context)
-                .setGraph(R.navigation.Main)
+                .setGraph(R.navigation.main)
                 .setComponentName(MainActivity::class.java.cmp(context.packageName))
-                .setDestination(R.id.flashFragment)
+                .setDestination(R.id.flash_fragment)
                 .setArguments(args.toBundle())
                 .createPendingIntent()
 

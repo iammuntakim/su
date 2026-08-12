@@ -3,14 +3,14 @@ package su.android.view
 import su.android.R
 import su.android.databinding.DiffItem
 import su.android.databinding.RvItem
-import su.android.core.R as CoreR
+import su.android.R as CoreR
 
 sealed class TappableHeadlineItem : RvItem(), DiffItem<TappableHeadlineItem> {
 
     abstract val title: Int
     abstract val icon: Int
 
-    override val layoutRes = R.layout.ItemTappableHeadline
+    override val layoutRes = R.layout.item_tappable_headline
 
     // --- listener
 
@@ -24,7 +24,7 @@ sealed class TappableHeadlineItem : RvItem(), DiffItem<TappableHeadlineItem> {
 
     object ThemeMode : TappableHeadlineItem() {
         override val title = CoreR.string.settings_dark_mode_title
-        override val icon = R.drawable.DayNight
+        override val icon = R.drawable.ic_day_night
     }
 
 }

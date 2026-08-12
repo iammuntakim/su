@@ -10,7 +10,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
-import su.android.core.R
+import su.android.R
 import su.android.databinding.ObservableHost
 import su.android.events.BackPressEvent
 import su.android.events.DialogBuilder

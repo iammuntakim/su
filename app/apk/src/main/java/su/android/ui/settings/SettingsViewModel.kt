@@ -11,7 +11,7 @@ import su.android.core.AppContext
 import su.android.core.Config
 import su.android.core.Const
 import su.android.core.Info
-import su.android.core.R
+import su.android.R
 import su.android.core.ktx.toast
 import su.android.core.utils.RootUtils
 import su.android.databinding.bindExtra

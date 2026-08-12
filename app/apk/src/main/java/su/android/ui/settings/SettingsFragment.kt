@@ -16,11 +16,11 @@ import su.android.arch.viewModel
 import su.android.databinding.FragmentSettingsBinding
 import su.android.databinding.ItemSettingsBinding
 import su.android.databinding.ItemSettingsCardBinding
-import su.android.core.R as CoreR
+import su.android.R as CoreR
 
 class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
 
-    override val layoutRes = R.layout.FragmentSettings
+    override val layoutRes = R.layout.fragment_settings
     override val viewModel by viewModel<SettingsViewModel>()
     override val snackbarView: View get() = binding.snackbarContainer
 
@@ -72,7 +72,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
             if (group is SettingsGroupItem.CardGroup) {
                 val cardBinding = DataBindingUtil.inflate<ItemSettingsCardBinding>(
                     layoutInflater,
-                    R.layout.ItemSettingsCard,
+                    R.layout.item_settings_card,
                     rootContainer,
                     false
                 )
@@ -80,7 +80,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
                 group.children.forEach { childItem ->
                     val itemBinding = DataBindingUtil.inflate<ItemSettingsBinding>(
                         layoutInflater,
-                        R.layout.ItemSettings,
+                        R.layout.item_settings,
                         cardBinding.cardContainer,
                         false
                     )

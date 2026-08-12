@@ -1,6 +1,6 @@
 package su.android.dialog
 
-import su.android.core.R
+import su.android.R
 import su.android.events.DialogBuilder
 import su.android.view.MaterialDialog
 

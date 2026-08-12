@@ -24,11 +24,11 @@ import su.android.events.SnackbarEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.parcelize.Parcelize
-import su.android.core.R as CoreR
+import su.android.R as CoreR
 
 class ModuleViewModel : AsyncLoadViewModel() {
 
-    val bottomBarBarrierIds = intArrayOf(R.id.ModuleUpdate, R.id.ModuleRemove)
+    val bottomBarBarrierIds = intArrayOf(R.id.module_update, R.id.module_remove)
 
     private val itemsInstalled = diffList<LocalModuleRvItem>()
 

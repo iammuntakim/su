@@ -1,0 +1,55 @@
+<resources>
+
+    <style name="base_v23_theme_foundation_light" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowBackground">?attr/colorSurface</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="dialogTheme">@style/theme_overlay_foundation_dialog</item>
+        <item name="android:statusBarColor">#40bdbdbd</item>
+        <item name="android:navigationBarColor">#38000000</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="colorPrimary">#007AFF</item>
+        <item name="colorSecondary">#007AFF</item>
+        <item name="colorTertiary">#007AFF</item>
+        <item name="materialCardViewStyle">@style/widget_foundation_card_view</item>
+    </style>
+
+    <style name="base_v23_theme_foundation" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">?attr/colorSurface</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="dialogTheme">@style/theme_overlay_foundation_dialog</item>
+        <item name="android:statusBarColor">#60000000</item>
+        <item name="android:navigationBarColor">#60000000</item>
+        <item name="colorPrimary">#007AFF</item>
+        <item name="colorSecondary">#007AFF</item>
+        <item name="colorTertiary">#007AFF</item>
+        <item name="materialCardViewStyle">@style/widget_foundation_card_view</item>
+    </style>
+
+    <style name="theme_foundation_light" parent="base_v23_theme_foundation_light" />
+
+    <style name="theme_foundation" parent="base_v23_theme_foundation" />
+
+    <style name="base_v23_theme_overlay_foundation_dialog" parent="ThemeOverlay.Material3.Dialog">
+        <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+        <item name="shapeAppearanceMediumComponent">@style/shape_appearance_foundation_card</item>
+    </style>
+
+    <style name="theme_overlay_foundation_dialog" parent="base_v23_theme_overlay_foundation_dialog" />
+
+    <style name="widget_foundation_card_view" parent="Widget.Material3.CardView.Elevated">
+        <item name="shapeAppearanceOverlay">@style/shape_appearance_foundation_card</item>
+    </style>
+
+    <style name="shape_appearance_foundation_card" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
+
+    <style name="splash_theme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#FFFFFF</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_app_logo</item>
+        <item name="postSplashScreenTheme">@style/theme_foundation</item>
+    </style>
+
+</resources>

@@ -5,12 +5,6 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.provideDelegate
 import java.io.File
 import java.util.Properties
-import java.util.Random
-
-// Set non-zero value here to fix the random seed for reproducible builds
-// CI builds are always reproducible
-val RAND_SEED = if (System.getenv("CI") != null) 42 else 0
-lateinit var RANDOM: Random
 
 private val props = Properties()
 private var commitHash = ""
@@ -27,7 +21,6 @@ object Config {
 
     val version: String get() = get("version") ?: commitHash
     val versionCode: Int get() = get("supersu.versionCode")!!.toInt()
-    val stubVersion: String get() = get("supersu.stubVersion")!!
     val abiList: Set<String> get() {
         val abiList = get("abiList") ?: return defaultAbis
         return abiList.split(Regex("\\s*,\\s*")).toSet() intersect supportAbis
@@ -44,7 +37,6 @@ class SuperSuPlugin : Plugin<Project> {
     override fun apply(project: Project) = project.applyPlugin()
 
     private fun Project.applyPlugin() {
-        initRandom(rootProject.file("dict.txt"))
         props.clear()
 
         // Get gradle properties relevant to the root solution

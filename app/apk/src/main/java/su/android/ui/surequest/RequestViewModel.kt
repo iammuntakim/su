@@ -20,7 +20,7 @@ import su.android.BR
 import su.android.arch.BaseViewModel
 import su.android.core.AppContext
 import su.android.core.Config
-import su.android.core.R
+import su.android.R
 import su.android.core.data.policy.PolicyDao
 import su.android.core.ktx.getLabel
 import su.android.core.ktx.toast

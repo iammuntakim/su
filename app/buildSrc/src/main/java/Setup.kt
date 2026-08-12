@@ -291,8 +291,7 @@ fun Project.setupAppCommon() {
                 this.transformationRequest = transformationRequest
                 this.signingConfig = signingConfig
                 this.comment = "version=${Config.version}\n" +
-                               "versionCode=${Config.versionCode}\n" +
-                               "stubVersion=${Config.stubVersion}\n"
+                               "versionCode=${Config.versionCode}\n"
                 this.outFolder.set(layout.buildDirectory.dir("outputs/apk/${variant.name}"))
             }
         }
@@ -323,43 +322,6 @@ fun Project.setupMainApk() {
                 setAsmFramesComputationMode(COMPUTE_FRAMES_FOR_INSTRUMENTED_METHODS)
                 transformClassesWith(
                     DesugarClassVisitorFactory::class.java, InstrumentationScope.ALL) {}
-            }
-        }
-    }
-}
-
-const val LSPOSED_DOWNLOAD_URL =
-    "https://github.com/LSPosed/LSPosed/releases/download/v1.9.2/LSPosed-v1.9.2-7024-zygisk-release.zip"
-const val LSPOSED_CHECKSUM =
-    "0ebc6bcb465d1c4b44b7220ab5f0252e6b4eb7fe43da74650476d2798bb29622"
-
-const val SHAMIKO_DOWNLOAD_URL =
-    "https://github.com/LSPosed/LSPosed.github.io/releases/download/shamiko-383/Shamiko-v1.2.1-383-release.zip"
-const val SHAMIKO_CHECKSUM =
-    "93754a038c2d8f0e985bad45c7303b96f70a93d8335060e50146f028d3a9b13f"
-
-fun Project.setupTestApk() {
-    setupAppCommon()
-
-    androidComponents {
-        onVariants { variant ->
-            val variantName = variant.name
-            val variantCapped = variantName.replaceFirstChar { it.uppercase() }
-
-            val dlTask = tasks.register("download${variantCapped}Lsposed", SyncWithDir::class) {
-                outputFolder.set(layout.buildDirectory.dir("$variantName/lsposed"))
-                into(outputFolder)
-
-                from(downloadFile(LSPOSED_DOWNLOAD_URL, LSPOSED_CHECKSUM)) {
-                    rename { "lsposed.zip" }
-                }
-                from(downloadFile(SHAMIKO_DOWNLOAD_URL, SHAMIKO_CHECKSUM)) {
-                    rename { "shamiko.zip" }
-                }
-            }
-
-            variant.sources.assets?.let {
-                it.addGeneratedSourceDirectory(dlTask, SyncWithDir::outputFolder)
             }
         }
     }

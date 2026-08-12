@@ -12,11 +12,11 @@ import su.android.databinding.FragmentSuperuserBinding
 import rikka.recyclerview.addEdgeSpacing
 import rikka.recyclerview.addItemSpacing
 import rikka.recyclerview.fixEdgeEffect
-import su.android.core.R as CoreR
+import su.android.R as CoreR
 
 class SuperuserFragment : BaseFragment<FragmentSuperuserBinding>() {
 
-    override val layoutRes = R.layout.FragmentSuperuser
+    override val layoutRes = R.layout.fragment_superuser
     override val viewModel by viewModel<SuperuserViewModel>()
 
     override fun onStart() {

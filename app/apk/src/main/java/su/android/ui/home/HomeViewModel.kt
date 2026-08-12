@@ -13,7 +13,7 @@ import su.android.arch.AsyncLoadViewModel
 import su.android.arch.ContextExecutor
 import su.android.arch.UIActivity
 import su.android.arch.ViewEvent
-import su.android.core.BuildConfig
+import su.android.BuildConfig
 import su.android.core.Config
 import su.android.core.Info
 import su.android.core.download.Subject
@@ -30,7 +30,7 @@ import su.android.events.SnackbarEvent
 import su.android.utils.asText
 import com.topjohnwu.superuser.Shell
 import kotlin.math.roundToInt
-import su.android.core.R as CoreR
+import su.android.R as CoreR
 
 class HomeViewModel(
     private val svc: NetworkService
@@ -41,9 +41,9 @@ class HomeViewModel(
     }
 
     val systemTitleBarrierIds =
-        intArrayOf(R.id.HomeSystemIcon, R.id.HomeSystemTitle, R.id.HomeSystemButton)
+        intArrayOf(R.id.home_system_icon, R.id.home_system_title, R.id.home_system_button)
     val appTitleBarrierIds =
-        intArrayOf(R.id.HomeManagerIcon, R.id.HomeManagerTitle, R.id.HomeManagerButton)
+        intArrayOf(R.id.home_manager_icon, R.id.home_manager_title, R.id.home_manager_button)
 
     @get:Bindable
     var isNoticeVisible = Config.safetyNotice

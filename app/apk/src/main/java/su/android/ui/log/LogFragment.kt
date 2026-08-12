@@ -21,11 +21,11 @@ import su.android.utils.MotionRevealHelper
 import rikka.recyclerview.addEdgeSpacing
 import rikka.recyclerview.addItemSpacing
 import rikka.recyclerview.fixEdgeEffect
-import su.android.core.R as CoreR
+import su.android.R as CoreR
 
 class LogFragment : BaseFragment<FragmentLogBinding>(), MenuProvider {
 
-    override val layoutRes = R.layout.FragmentLog
+    override val layoutRes = R.layout.fragment_log
     override val viewModel by viewModel<LogViewModel>()
     override val snackbarView: View?
         get() = if (isLogPanelVisible) binding.logFilterSuperuser.snackbarContainer
@@ -74,22 +74,22 @@ class LogFragment : BaseFragment<FragmentLogBinding>(), MenuProvider {
         binding.logFilterSuperuser.logSuperuser.updatePadding(bottom = extraBottom + 100)
 
         if (!AccessibilityUtils.isAnimationEnabled(requireContext().contentResolver)) {
-            val scrollView = view.findViewById<HorizontalScrollView>(R.id.LogScrollDaemon)
+            val scrollView = view.findViewById<HorizontalScrollView>(R.id.log_scroll_daemon)
             scrollView.setOverScrollMode(View.OVER_SCROLL_NEVER)
         }
     }
 
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.MenuLog, menu)
-        actionSave = menu.findItem(R.id.ActionSave)?.also {
+        inflater.inflate(R.menu.menu_log, menu)
+        actionSave = menu.findItem(R.id.action_save)?.also {
             it.isVisible = !isLogPanelVisible
         }
     }
 
     override fun onMenuItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.ActionSave -> viewModel.saveDaemonLog()
-            R.id.ActionClear ->
+            R.id.action_save -> viewModel.saveDaemonLog()
+            R.id.action_clear ->
                 if (!isLogPanelVisible) viewModel.clearDaemonLog()
                 else viewModel.clearLog()
         }

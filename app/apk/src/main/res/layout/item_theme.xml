@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="su.android.ui.theme.ThemeViewModel" />
+
+        <variable
+            name="theme"
+            type="su.android.ui.theme.Theme" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/widget_foundation_card"
+        isSelected="@{theme.isSelected}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{() -> viewModel.saveTheme(theme)}"
+        app:strokeColor="@{theme.isSelected ? @color/color_primary_transient : @android:color/transparent}"
+        app:strokeWidth="@{theme.isSelected ? 2f : 0f}"
+        tools:layout_gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/l1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{theme.themeName}"
+                android:textAppearance="@style/appearance_foundation_body"
+                android:textStyle="bold"
+                tools:text="Azure" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

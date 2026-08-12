@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="su.android.ui.deny.DenyListViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/app_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/internal_action_bar_size"
+            app:extraBindings="@{viewModel.extraBindings}"
+            app:fitsSystemWindowsInsets="top|bottom"
+            app:invisible="@{viewModel.loading}"
+            app:items="@{viewModel.items}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_hide"
+            tools:paddingTop="40dp" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="@{viewModel.loading ? android.view.View.VISIBLE : android.view.View.GONE}"
+            app:indicatorSize="48dp"
+            app:trackCornerRadius="8dp"
+            tools:visibility="visible" />
+
+    </FrameLayout>
+
+</layout>

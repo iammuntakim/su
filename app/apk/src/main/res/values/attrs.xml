@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="color_control" format="reference" />
+
+    <!--region Colors-->
+
+    <!--Static-->
+    <attr name="color_disabled" format="color" />
+    <attr name="color_disabled_variant" format="color" />
+    <attr name="color_surface_variant" format="color" />
+    <attr name="color_on_primary_variant" format="color" />
+    <attr name="color_on_surface_variant" format="color" />
+    <attr name="color_surface_surface_variant" format="color" />
+
+    <!--endregion-->
+
+
+
+</resources>

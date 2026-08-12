@@ -131,7 +131,7 @@ class MaterialDialog(
         super.setContentView(binding.root)
 
         val default = MaterialColors.getColor(context, com.google.android.material.R.attr.colorSurface, javaClass.canonicalName)
-        val surfaceColor = MaterialColors.getColor(context, R.attr.colorSurfaceSurfaceVariant, default)
+        val surfaceColor = MaterialColors.getColor(context, R.attr.color_surface_surface_variant, default)
         val materialShapeDrawable = MaterialShapeDrawable(context, null, androidx.appcompat.R.attr.alertDialogStyle, com.google.android.material.R.style.MaterialAlertDialog_MaterialComponents)
         materialShapeDrawable.initializeElevationOverlay(context)
         materialShapeDrawable.fillColor = ColorStateList.valueOf(surfaceColor)
@@ -174,7 +174,7 @@ class MaterialDialog(
         override val item: CharSequence,
         val position: Int
     ) : RvItem(), DiffItem<DialogItem>, ItemWrapper<CharSequence> {
-        override val layoutRes = R.layout.ItemListSingleLine
+        override val layoutRes = R.layout.item_list_single_line
     }
 
     fun interface DialogClickListener {

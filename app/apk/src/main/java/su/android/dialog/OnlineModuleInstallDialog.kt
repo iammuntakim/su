@@ -1,7 +1,7 @@
 package su.android.dialog
 
 import android.content.Context
-import su.android.core.R
+import su.android.R
 import su.android.core.di.ServiceLocator
 import su.android.core.download.DownloadEngine
 import su.android.core.download.Subject

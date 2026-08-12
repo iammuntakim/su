@@ -62,7 +62,7 @@ class ActionViewModel : BaseViewModel() {
 
     fun onMenuItemClicked(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.ActionSave -> savePressed()
+            R.id.action_save -> savePressed()
         }
         return true
     }
