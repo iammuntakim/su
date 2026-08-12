@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     kotlin("plugin.parcelize")
-    id("com.android.legacy-kapt")
     id("androidx.navigation.safeargs.kotlin")
     id("dev.zacsweers.moshix")
     id("com.google.devtools.ksp")
@@ -9,15 +8,6 @@ plugins {
 
 setupCoreLib()
 setupMainApk()
-
-kapt {
-    correctErrorTypes = true
-    useBuildCache = true
-    mapDiagnosticLocations = true
-    javacOptions {
-        option("-Xmaxerrs", "1000")
-    }
-}
 
 ksp {
     arg("room.generateKotlin", "true")
@@ -94,9 +84,6 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.collection.ktx)
     implementation(libs.profileinstaller)
-
-    // Make sure kapt runs with a proper kotlin-stdlib
-    kapt(kotlin("stdlib"))
 }
 
 tasks.matching { it.name.contains("JniLibs") }.configureEach {
