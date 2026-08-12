@@ -17,6 +17,7 @@ import su.android.core.utils.LocaleSetting
 import su.android.core.utils.NetworkObserver
 import su.android.core.utils.RootUtils
 import su.android.core.utils.ShellInit
+import su.android.BuildConfig
 import com.topjohnwu.superuser.Shell
 import com.topjohnwu.superuser.internal.UiThreadHandler
 import com.topjohnwu.superuser.ipc.RootService

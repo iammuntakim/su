@@ -14,6 +14,7 @@ import su.android.core.download.DownloadEngine
 import su.android.core.download.DownloadSession
 import su.android.core.download.Subject
 import su.android.view.Notifications
+import su.android.BuildConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
