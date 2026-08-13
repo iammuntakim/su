@@ -17,7 +17,7 @@
 
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <su.android.material.widgets.Card
         style="@style/widget_foundation_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -116,6 +116,6 @@
             android:layout_gravity="top"
             android:progress="@{item.checkedPercent}" />
 
-    </com.google.android.material.card.MaterialCardView>
+    </su.android.material.widgets.Card>
 
 </layout>

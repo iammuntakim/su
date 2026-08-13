@@ -15,7 +15,7 @@
 
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <su.android.material.widgets.Card
         style="@style/widget_foundation_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -169,6 +169,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+    </su.android.material.widgets.Card>
 
 </layout>

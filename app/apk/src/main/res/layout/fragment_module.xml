@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.card.MaterialCardView
+        <su.android.material.widgets.Card
             gone="@{viewModel.loading}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -36,7 +36,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_module" />
 
-        </com.google.android.material.card.MaterialCardView>
+        </su.android.material.widgets.Card>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_install"

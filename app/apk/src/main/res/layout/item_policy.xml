@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center">
 
-        <com.google.android.material.card.MaterialCardView
+        <su.android.material.widgets.Card
             android:id="@+id/policy"
             style="@style/widget_foundation_card"
             android:layout_width="match_parent"
@@ -97,7 +97,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <com.google.android.material.materialswitch.MaterialSwitch
+                        <su.android.material.widgets.Switch
                             gone="@{item.showSlider}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -193,7 +193,7 @@
 
             </LinearLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+        </su.android.material.widgets.Card>
 
     </FrameLayout>
 

@@ -15,7 +15,7 @@
 
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <su.android.material.widgets.Card
         style="?attr/materialCardViewFilledStyle"
         isEnabled="@{item.enabled}"
         android:layout_width="match_parent"
@@ -76,7 +76,7 @@
 
             </LinearLayout>
 
-            <com.google.android.material.materialswitch.MaterialSwitch
+            <su.android.material.widgets.Switch
                 android:id="@+id/selector_indicator"
                 goneUnless="@{item.showSwitch}"
                 isEnabled="@{item.enabled}"
@@ -88,6 +88,6 @@
 
         </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+    </su.android.material.widgets.Card>
 
 </layout>

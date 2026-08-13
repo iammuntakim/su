@@ -4,9 +4,10 @@
         <item name="android:windowBackground">?attr/colorSurface</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="dialogTheme">@style/theme_overlay_foundation_dialog</item>
-        <item name="android:statusBarColor">#40bdbdbd</item>
-        <item name="android:navigationBarColor">#38000000</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:navigationBarColor">#38000000</item>
         <item name="colorPrimary">#007AFF</item>
         <item name="colorSecondary">#007AFF</item>
         <item name="colorTertiary">#007AFF</item>
@@ -17,7 +18,8 @@
         <item name="android:windowBackground">?attr/colorSurface</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="dialogTheme">@style/theme_overlay_foundation_dialog</item>
-        <item name="android:statusBarColor">#60000000</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:navigationBarColor">#60000000</item>
         <item name="colorPrimary">#007AFF</item>
         <item name="colorSecondary">#007AFF</item>

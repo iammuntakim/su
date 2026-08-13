@@ -5,12 +5,15 @@ import android.Manifest.permission.REQUEST_INSTALL_PACKAGES
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ApplicationInfo
+import android.os.Build
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.content.pm.ShortcutManagerCompat
+import androidx.core.graphics.ColorUtils
 import androidx.core.view.forEach
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
@@ -80,6 +83,18 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
         setContentView()
         showUnsupportedMessage()
         askForHomeShortcut()
+
+        // iOS style: frosted translucent appbar over scrolling content
+        val tv = TypedValue()
+        if (theme.resolveAttribute(R.attr.colorSurface, tv, true)) {
+            binding.mainToolbar.setBackgroundColor(ColorUtils.setAlphaComponent(tv.data, 226))
+        }
+        if (theme.resolveAttribute(R.attr.colorOnSurface, tv, true)) {
+            binding.mainHairline.setBackgroundColor(ColorUtils.setAlphaComponent(tv.data, 40))
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            window.setBackgroundBlurRadius((48 * resources.displayMetrics.density).toInt())
+        }
 
         if (Config.checkUpdate) {
             withPermission(Manifest.permission.POST_NOTIFICATIONS) {

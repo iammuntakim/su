@@ -33,16 +33,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.card.MaterialCardView
 import com.google.android.material.chip.Chip
 import com.google.android.material.slider.Slider
 import com.google.android.material.textfield.TextInputLayout
 import su.android.R
 import su.android.core.model.policy.Policy
+import su.android.material.widgets.Card
 import su.android.utils.TextHolder
 import com.topjohnwu.superuser.internal.UiThreadHandler
 import com.topjohnwu.widget.IndeterminateCheckBox
-import kotlin.math.roundToInt
 
 @BindingAdapter("gone")
 fun setGone(view: View, gone: Boolean) {
@@ -200,8 +199,8 @@ fun Button.setIcon(drawable: Drawable) {
 }
 
 @BindingAdapter("strokeWidth")
-fun MaterialCardView.setCardStrokeWidthBound(stroke: Float) {
-    strokeWidth = stroke.roundToInt()
+fun Card.setCardStrokeWidthBound(stroke: Float) {
+    setStrokeWidth(stroke)
 }
 
 @BindingAdapter("onMenuClick")

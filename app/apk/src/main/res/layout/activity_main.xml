@@ -19,22 +19,29 @@
             app:defaultNavHost="true"
             app:navGraph="@navigation/main" />
 
-        <com.google.android.material.appbar.AppBarLayout
+        <FrameLayout
             android:id="@+id/main_toolbar_wrapper"
-            style="@style/Widget.Material3.AppBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             app:fitsSystemWindowsInsets="top">
 
-            <com.google.android.material.appbar.MaterialToolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/main_toolbar"
-                style="@style/Widget.Material3.Toolbar.Surface"
+                style="@style/widget_foundation_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_scrollFlags="noScroll"
+                android:background="@android:color/transparent"
                 tools:title="Home" />
 
-        </com.google.android.material.appbar.AppBarLayout>
+            <View
+                android:id="@+id/main_hairline"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="bottom"
+                android:background="@android:color/transparent" />
+
+        </FrameLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/main_navigation"

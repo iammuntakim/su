@@ -115,6 +115,10 @@
     <string name="settings_dark_mode_light">Always light</string>
     <string name="settings_dark_mode_system">Follow system</string>
     <string name="settings_dark_mode_dark">Always dark</string>
+    <string name="settings_theme_title">Theme</string>
+    <string name="settings_theme_summary">Modify themes and colors</string>
+    <string name="settings_language_title">Language</string>
+    <string name="settings_language_summary">Change the language of the app</string>
     <string name="settings_download_path_title">Download path</string>
     <string name="settings_download_path_message">Files will be saved to %1$s</string>
     <string name="system_default">(System default)</string>

@@ -1,6 +1,7 @@
 package su.android.ui.settings
 
 import android.content.Context
+import android.content.res.Resources
 import android.os.Build
 import android.view.LayoutInflater
 import su.android.databinding.Bindable
@@ -9,6 +10,7 @@ import su.android.R
 import su.android.core.Config
 import su.android.core.Const
 import su.android.core.Info
+import su.android.core.utils.LocaleSetting
 import su.android.core.utils.MediaStoreUtils
 import su.android.databinding.DialogSettingsDownloadPathBinding
 import su.android.databinding.set
@@ -43,6 +45,29 @@ object DownloadPath : BaseSettingsItem.Input() {
 
     override fun getView(context: Context) = DialogSettingsDownloadPathBinding
         .inflate(LayoutInflater.from(context)).also { it.data = this }.root
+}
+
+object SettingsTheme : BaseSettingsItem.Blank() {
+    override val icon: Int? = R.drawable.ic_palette
+    override val title = CoreR.string.settings_theme_title.asText()
+    override val description = CoreR.string.settings_theme_summary.asText()
+}
+
+object SettingsLanguage : BaseSettingsItem.Selector() {
+    override val icon: Int? = R.drawable.ic_language
+    override val title = CoreR.string.settings_language_title.asText()
+
+    override var value: Int
+        get() = LocaleSetting.available.tags
+            .indexOfFirst { it == Config.locale }
+            .coerceAtLeast(0)
+        set(value) {
+            Config.locale = LocaleSetting.available.tags[value]
+            notifyPropertyChanged(BR.description)
+        }
+
+    override fun entries(res: Resources) = LocaleSetting.available.names
+    override fun descriptions(res: Resources) = LocaleSetting.available.names
 }
 
 object DoHToggle : BaseSettingsItem.Toggle() {

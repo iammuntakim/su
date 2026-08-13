@@ -29,7 +29,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
     private fun createItems(): List<BaseSettingsItem> {
         val resultList = mutableListOf<BaseSettingsItem>()
 
-        val generalList = mutableListOf<BaseSettingsItem>(DoHToggle, DownloadPath)
+        val generalList = mutableListOf<BaseSettingsItem>(SettingsTheme, SettingsLanguage, DoHToggle, DownloadPath)
         resultList.add(SettingsGroupItem.CardGroup(children = generalList))
 
         if (Info.env.isActive) {
@@ -76,6 +76,7 @@ class SettingsViewModel : BaseViewModel(), BaseSettingsItem.Handler {
 
     override fun onItemAction(view: View, item: BaseSettingsItem) {
         when (item) {
+            SettingsTheme -> SettingsFragmentDirections.actionSettingsFragmentToThemeFragment().navigate()
             SystemlessHosts -> createHosts()
             DenyListConfig -> SettingsFragmentDirections.actionSettingsFragmentToDenyFragment().navigate()
             Zygisk -> if (Zygisk.mismatch) SnackbarEvent(R.string.reboot_apply_change).publish()

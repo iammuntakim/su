@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.google.android.material.card.MaterialCardView
+        <su.android.material.widgets.Card
             android:id="@+id/module"
             style="@style/widget_foundation_card"
             isEnabled="@{!item.removed &amp;&amp; item.enabled &amp;&amp; !item.showNotice}"
@@ -89,7 +89,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/module_title"
                     tools:text="@tools:sample/lorem" />
 
-                <com.google.android.material.materialswitch.MaterialSwitch
+                <su.android.material.widgets.Switch
                     android:id="@+id/module_indicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -214,7 +214,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+        </su.android.material.widgets.Card>
 
     </FrameLayout>
 
