@@ -5,8 +5,4 @@
     <color name="light">#e0e0e0</color>
     <color name="su_request_background">#e0e0e0</color>
     <color name="splash_background">@color/launcher_icon_background</color>
-    <color name="color_primary_transient">#66007AFF</color>
-    <color name="color_error_transient">#66B3261E</color>
-    <color name="color_text_transient">#66000000</color>
-    <color name="color_on_primary_transient">#66FFFFFF</color>
 </resources>
