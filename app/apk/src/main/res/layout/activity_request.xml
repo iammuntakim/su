@@ -125,7 +125,7 @@
                 android:paddingStart="@dimen/l2"
                 android:paddingEnd="@dimen/l2">
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/deny_btn"
                     style="@style/widget_foundation_button_text"
                     android:layout_width="0dp"
@@ -136,7 +136,7 @@
                     android:textColor="?color_on_surface_variant"
                     tools:text="@string/deny" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/grant_btn"
                     style="@style/widget_foundation_button_text"
                     onTouch="@{viewModel.grantTouchListener}"

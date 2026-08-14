@@ -61,7 +61,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/home_system_title"
                 app:layout_constraintTop_toTopOf="@+id/home_system_title">
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     style="@style/widget_foundation_button"
                     gone="@{viewModel.systemState != State.OUTDATED}"
                     android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
                     android:layout_gravity="end"
                     app:icon="@drawable/ic_update" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     style="@style/widget_foundation_button_text"
                     gone="@{viewModel.systemState == State.OUTDATED}"
                     android:layout_width="wrap_content"

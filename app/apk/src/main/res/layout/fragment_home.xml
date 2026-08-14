@@ -35,7 +35,7 @@
             android:orientation="vertical"
             android:paddingTop="@dimen/l1">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 style="@style/Widget.Material3.Button"
                 gone="@{!viewModel.showTest}"
                 android:layout_width="wrap_content"
@@ -76,7 +76,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/home_notice_hide"
                         style="@style/Widget.Material3.Button.TextButton"
                         android:layout_width="wrap_content"
