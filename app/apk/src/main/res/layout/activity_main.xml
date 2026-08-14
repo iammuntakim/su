@@ -24,22 +24,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
+            android:paddingStart="@dimen/l1"
+            android:paddingTop="@dimen/l_50"
+            android:paddingEnd="@dimen/l1"
             app:fitsSystemWindowsInsets="top">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/main_toolbar"
-                style="@style/widget_foundation_toolbar"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/main_toolbar_card"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@android:color/transparent"
-                tools:title="Home" />
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="28dp"
+                app:cardElevation="6dp"
+                app:strokeWidth="0dp">
 
-            <View
-                android:id="@+id/main_hairline"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_gravity="bottom"
-                android:background="@android:color/transparent" />
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/main_toolbar"
+                    style="@style/widget_foundation_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@android:color/transparent"
+                    tools:title="Home" />
+
+            </com.google.android.material.card.MaterialCardView>
 
         </FrameLayout>
 
@@ -54,11 +61,25 @@
             android:layout_marginBottom="0dp"
             app:elevation="8dp"
             app:itemActiveIndicatorStyle="@style/Widget.Material3.BottomNavigationView.ActiveIndicator"
-            app:itemIconTint="@color/color_menu_tint"
-            app:itemTextColor="@color/color_menu_tint"
+            app:itemIconTint="?attr/colorOnSurfaceVariant"
+            app:itemTextColor="?attr/colorOnSurfaceVariant"
             app:labelVisibilityMode="selected"
             app:fitsSystemWindowsInsets="start|end|bottom"
             app:menu="@menu/menu_bottom_nav" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/main_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/l1"
+            android:layout_marginBottom="84dp"
+            android:contentDescription="@string/scroll_to_top"
+            android:visibility="gone"
+            android:src="@drawable/ic_scroll_top"
+            app:backgroundTint="?colorPrimary"
+            app:elevation="8dp"
+            app:tint="?colorOnPrimary" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

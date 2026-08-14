@@ -84,16 +84,19 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
         showUnsupportedMessage()
         askForHomeShortcut()
 
-        // iOS style: frosted translucent appbar over scrolling content
+        // iOS style: floating frosted appbar over scrolling content
         val tv = TypedValue()
         if (theme.resolveAttribute(com.google.android.material.R.attr.colorSurface, tv, true)) {
-            binding.mainToolbar.setBackgroundColor(ColorUtils.setAlphaComponent(tv.data, 226))
-        }
-        if (theme.resolveAttribute(com.google.android.material.R.attr.colorOnSurface, tv, true)) {
-            binding.mainHairline.setBackgroundColor(ColorUtils.setAlphaComponent(tv.data, 40))
+            binding.mainToolbarCard.setCardBackgroundColor(ColorUtils.setAlphaComponent(tv.data, 226))
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             window.setBackgroundBlurRadius((48 * resources.displayMetrics.density).toInt())
+        }
+
+        binding.mainFab.setOnClickListener {
+            currentFragment?.view
+                ?.findViewById<androidx.core.widget.NestedScrollView>(R.id.home_scroll)
+                ?.smoothScrollTo(0, 0)
         }
 
         if (Config.checkUpdate) {
@@ -113,6 +116,8 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
                 R.id.settings_fragment -> true
                 else -> false
             }
+
+            binding.mainFab.isVisible = destination.id == R.id.home_fragment
 
             setDisplayHomeAsUpEnabled(!isRootFragment)
             requestNavigationHidden(!isRootFragment)
