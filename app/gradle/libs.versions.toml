@@ -8,6 +8,10 @@ libsu = "6.0.0"
 okhttp = "5.3.2"
 retrofit = "3.0.0"
 room = "2.8.4"
+compose = "1.10.3"
+activity-compose = "1.10.1"
+lifecycle-compose = "2.9.0"
+miuix = "0.9.0"
 
 [libraries]
 bcpkix = { module = "org.bouncycastle:bcpkix-jdk18on", version = "1.83" }
@@ -38,6 +42,19 @@ swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout"
 transition = { module = "androidx.transition:transition", version = "1.7.0" }
 collection-ktx = { module = "androidx.collection:collection-ktx", version = "1.5.0" }
 material = { module = "com.google.android.material:material", version = "1.13.0" }
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+compose-ui-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "compose" }
+compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
+compose-material-icons-core = { module = "androidx.compose.material:material-icons-core", version.ref = "compose" }
+compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
+activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
+lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle-compose" }
+navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+miuix-ui = { module = "top.yukonga.miuix.kmp:miuix-ui-android", version.ref = "miuix" }
+miuix-icons = { module = "top.yukonga.miuix.kmp:miuix-icons-android", version.ref = "miuix" }
+miuix-blur = { module = "top.yukonga.miuix.kmp:miuix-blur-android", version.ref = "miuix" }
 jdk-libs = { module = "com.android.tools:desugar_jdk_libs_nio", version = "2.1.5" }
 test-runner = { module = "androidx.test:runner", version = "1.7.0" }
 test-rules = { module = "androidx.test:rules", version = "1.7.0" }

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("plugin.parcelize")
+    kotlin("plugin.compose")
     id("androidx.navigation.safeargs.kotlin")
     id("dev.zacsweers.moshix")
     id("com.google.devtools.ksp")
@@ -18,10 +19,24 @@ android {
         dataBinding = true
         aidl = true
         buildConfig = true
+        compose = true
     }
 
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
+    }
+
+    kotlin {
+        compilerOptions {
+            freeCompilerArgs.addAll(
+                "-opt-in=androidx.compose.runtime.ExperimentalComposeApi",
+                "-opt-in=androidx.compose.foundation.ExperimentalFoundationApi"
+            )
+        }
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.10.3"
     }
 
     defaultConfig {
@@ -58,6 +73,18 @@ dependencies {
     implementation(libs.fragment.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+
+    implementation(libs.compose.ui)
+    implementation(libs.compose.ui.preview)
+    implementation(libs.compose.runtime)
+    implementation(libs.activity.compose)
+    implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.navigation.compose)
+    debugImplementation(libs.compose.ui.tooling)
+
+    implementation(libs.miuix.ui)
+    implementation(libs.miuix.icons)
+    implementation(libs.miuix.blur)
 
     implementation(libs.timber)
     implementation(libs.bcpkix)
