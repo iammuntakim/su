@@ -11,8 +11,6 @@
     <attr name="color_on_primary_variant" format="color" />
     <attr name="color_on_surface_variant" format="color" />
     <attr name="color_surface_surface_variant" format="color" />
-    <attr name="strokeWidth" format="dimension" />
-    <attr name="strokeColor" format="color" />
 
     <!--endregion-->
 

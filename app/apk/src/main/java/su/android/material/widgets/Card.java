@@ -2,7 +2,6 @@ package su.android.material.widgets;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -17,8 +16,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-
-import su.android.R;
 
 /**
  * An iOS styled card built on {@link CardView}.
@@ -49,12 +46,6 @@ public class Card extends CardView {
 
         mStrokePaint.setStyle(Paint.Style.STROKE);
         mStrokePaint.setAntiAlias(true);
-
-        final TypedArray a = context.obtainStyledAttributes(attrs, new int[]{
-                R.attr.strokeWidth, R.attr.strokeColor});
-        mStrokeWidth = a.getDimensionPixelSize(0, 0);
-        mStrokeColor = a.getColor(1, 0);
-        a.recycle();
 
         mRippleColor = ColorStateList.valueOf(resolveControlHighlight(context));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
