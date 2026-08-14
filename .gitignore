@@ -3,6 +3,7 @@ out
 *.apk
 *.log
 /notes.md
+/6_Task appbuildApk.txt
 
 # Built binaries
 native/out
