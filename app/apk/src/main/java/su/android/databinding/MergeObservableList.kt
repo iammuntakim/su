@@ -9,11 +9,15 @@ class MergeObservableList<T> : AbstractList<T>(), ObservableList<T> {
     private val listeners = ListChangeRegistry()
     private val callback = Callback()
 
-    override fun addOnListChangedCallback(callback: OnListChangedCallback<out ObservableList<T>>) {
+    override fun addOnListChangedCallback(
+        callback: ObservableList.OnListChangedCallback<out ObservableList<T>>
+    ) {
         listeners.add(callback)
     }
 
-    override fun removeOnListChangedCallback(callback: OnListChangedCallback<out ObservableList<T>>) {
+    override fun removeOnListChangedCallback(
+        callback: ObservableList.OnListChangedCallback<out ObservableList<T>>
+    ) {
         listeners.remove(callback)
     }
 
@@ -109,7 +113,7 @@ class MergeObservableList<T> : AbstractList<T>(), ObservableList<T> {
         throw IllegalArgumentException()
     }
 
-    private inner class Callback : OnListChangedCallback<ObservableList<T>> {
+    private inner class Callback : ObservableList.OnListChangedCallback<ObservableList<T>> {
         override fun onChanged(sender: ObservableList<T>) {
             ++modCount
             listeners.notifyChanged(this@MergeObservableList)

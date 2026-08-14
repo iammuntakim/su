@@ -16,7 +16,7 @@ class ItemLayouts {
     private val factories = SparseArray<(LayoutInflater, ViewGroup) -> View>()
     private val binders = SparseArray<(View, RvItem) -> Unit>()
 
-    operator fun put(
+    fun put(
         layoutId: Int,
         create: (LayoutInflater, ViewGroup) -> View,
         bind: (View, RvItem) -> Unit

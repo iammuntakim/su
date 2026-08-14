@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDialog
@@ -24,10 +25,10 @@ import su.android.R
 import su.android.arch.UIActivity
 import su.android.databinding.DialogBaseBinding
 import su.android.databinding.DiffItem
+import su.android.databinding.ItemLayouts
 import su.android.databinding.ItemWrapper
 import su.android.databinding.ObservableHost
 import su.android.databinding.RvItem
-import su.android.databinding.bindExtra
 import su.android.databinding.set
 import su.android.databinding.setAdapter
 import su.android.view.MaterialDialog.DialogClickListener
@@ -190,13 +191,24 @@ class MaterialDialog(
             it.layoutManager = LinearLayoutManager(context)
 
             val items = list.mapIndexed { i, cs -> DialogItem(cs, i) }
-            val extraBindings = bindExtra { sa ->
-                sa.put(BR.listener, DialogClickListener { pos ->
-                    listener.onClick(pos)
-                    dismiss()
-                })
+            val layouts = ItemLayouts().apply {
+                put(
+                    R.layout.item_list_single_line,
+                    { inflater, parent ->
+                        inflater.inflate(R.layout.item_list_single_line, parent, false)
+                    },
+                    { view, item ->
+                        val dialogItem = item as DialogItem
+                        val text = view.findViewById<TextView>(android.R.id.text1)
+                        text.text = dialogItem.item
+                        text.setOnClickListener {
+                            listener.onClick(dialogItem.position)
+                            dismiss()
+                        }
+                    }
+                )
             }
-            it.setAdapter(items, extraBindings)
+            it.setAdapter(items, layouts)
         }
     )
 

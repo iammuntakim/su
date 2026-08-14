@@ -19,6 +19,9 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.util.Collections
+import org.apache.commons.compress.archivers.zip.ZipArchiveEntry
+import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream
+import org.apache.commons.compress.archivers.zip.ZipFile
 
 inline fun <In : Closeable, Out : Closeable> withInOut(
     input: In,
@@ -64,6 +67,22 @@ suspend inline fun InputStream.writeTo(
     bufferSize: Int = DEFAULT_BUFFER_SIZE,
     dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) = copyAndClose(file.outputStream(), bufferSize, dispatcher)
+
+@Throws(IOException::class)
+suspend fun ZipFile.copyRawEntries(
+    out: ZipArchiveOutputStream,
+    filter: (ZipArchiveEntry) -> Boolean
+) {
+    for (entry in Collections.list(entries)) {
+        if (filter(entry)) {
+            getRawInputStream(entry).use { raw ->
+                out.putArchiveEntry(entry)
+                raw.copyAll(out)
+                out.closeArchiveEntry()
+            }
+        }
+    }
+}
 
 operator fun <E> SparseArrayCompat<E>.set(key: Int, value: E) {
     put(key, value)

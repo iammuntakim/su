@@ -8,6 +8,7 @@ import android.content.ContextWrapper
 import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
+import su.android.R
 import su.android.core.ktx.unwrap
 import su.android.core.utils.LocaleSetting
 

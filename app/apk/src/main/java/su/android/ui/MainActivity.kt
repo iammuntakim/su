@@ -86,10 +86,10 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
 
         // iOS style: frosted translucent appbar over scrolling content
         val tv = TypedValue()
-        if (theme.resolveAttribute(R.attr.colorSurface, tv, true)) {
+        if (theme.resolveAttribute(com.google.android.material.R.attr.colorSurface, tv, true)) {
             binding.mainToolbar.setBackgroundColor(ColorUtils.setAlphaComponent(tv.data, 226))
         }
-        if (theme.resolveAttribute(R.attr.colorOnSurface, tv, true)) {
+        if (theme.resolveAttribute(com.google.android.material.R.attr.colorOnSurface, tv, true)) {
             binding.mainHairline.setBackgroundColor(ColorUtils.setAlphaComponent(tv.data, 40))
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {

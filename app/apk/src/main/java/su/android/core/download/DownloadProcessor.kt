@@ -1,8 +1,10 @@
 package su.android.core.download
 
 import android.net.Uri
+import su.android.core.ktx.cachedFile
 import su.android.core.ktx.copyAll
 import su.android.core.ktx.copyAndClose
+import su.android.core.ktx.copyRawEntries
 import su.android.core.ktx.withInOut
 import su.android.core.ktx.writeTo
 import su.android.core.utils.MediaStoreUtils.outputStream

@@ -10,11 +10,15 @@ class ObservableArrayList<T> : ArrayList<T>(), ObservableList<T> {
 
     private val listeners = ListChangeRegistry()
 
-    override fun addOnListChangedCallback(listener: OnListChangedCallback<out ObservableList<T>>) {
+    override fun addOnListChangedCallback(
+        listener: ObservableList.OnListChangedCallback<out ObservableList<T>>
+    ) {
         listeners.add(listener)
     }
 
-    override fun removeOnListChangedCallback(listener: OnListChangedCallback<out ObservableList<T>>) {
+    override fun removeOnListChangedCallback(
+        listener: ObservableList.OnListChangedCallback<out ObservableList<T>>
+    ) {
         listeners.remove(listener)
     }
 

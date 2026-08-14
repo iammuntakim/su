@@ -26,12 +26,13 @@ interface ObservableList<T> : List<T> {
 class ListChangeRegistry {
 
     private val listeners =
-        mutableListOf<ObservableList.OnListChangedCallback<out ObservableList<*>>>()
+        mutableListOf<ObservableList.OnListChangedCallback<ObservableList<*>>>()
 
     @Synchronized
     fun add(listener: ObservableList.OnListChangedCallback<out ObservableList<*>>) {
         if (listeners.none { it === listener }) {
-            listeners.add(listener)
+            @Suppress("UNCHECKED_CAST")
+            listeners.add(listener as ObservableList.OnListChangedCallback<ObservableList<*>>)
         }
     }
 
@@ -64,9 +65,9 @@ class ListChangeRegistry {
 
     private fun notify(
         sender: ObservableList<*>,
-        invoke: (ObservableList.OnListChangedCallback<out ObservableList<*>>) -> Unit
+        invoke: (ObservableList.OnListChangedCallback<ObservableList<*>>) -> Unit
     ) {
-        val snapshot: List<ObservableList.OnListChangedCallback<out ObservableList<*>>>
+        val snapshot: List<ObservableList.OnListChangedCallback<ObservableList<*>>>
         synchronized(this) {
             snapshot = listeners.toList()
         }

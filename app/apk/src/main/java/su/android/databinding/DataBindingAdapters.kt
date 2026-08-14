@@ -203,6 +203,11 @@ fun Card.setCardStrokeWidthBound(stroke: Float) {
     setStrokeWidth(stroke)
 }
 
+@BindingAdapter("strokeColor")
+fun Card.setCardStrokeColorBound(color: Int) {
+    setStrokeColor(color)
+}
+
 @BindingAdapter("onMenuClick")
 fun Toolbar.setOnMenuClickListener(listener: Toolbar.OnMenuItemClickListener) {
     setOnMenuItemClickListener(listener)
