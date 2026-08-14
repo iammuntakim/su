@@ -8,6 +8,7 @@
     <string name="section_home">Home</string>
     <string name="section_theme">Themes</string>
     <string name="scroll_to_top">Scroll to top</string>
+    <string name="module_search_hint">Search modules</string>
     <string name="denylist">DenyList</string>
 
     <string name="no_connection">No connection available</string>

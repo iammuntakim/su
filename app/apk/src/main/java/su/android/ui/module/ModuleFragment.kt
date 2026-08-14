@@ -1,6 +1,8 @@
 package su.android.ui.module
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,6 +64,14 @@ class ModuleFragment : BaseFragment<FragmentModuleBinding>() {
         binding.fabInstall.updateLayoutParams<androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams> {
             this.bottomMargin = extraBottom
         }
+
+        binding.searchInput.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) = Unit
+            override fun afterTextChanged(s: Editable?) {
+                viewModel.searchQuery = s?.toString() ?: ""
+            }
+        })
     }
 
     override fun onPreBind(binding: FragmentModuleBinding) = Unit

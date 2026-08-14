@@ -22,19 +22,50 @@
             android:clipToPadding="false"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/module_list"
-                app:items="@{viewModel.items}"
-                app:extraBindings="@{viewModel.extraBindings}"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/internal_action_bar_size"
-                android:paddingBottom="180dp"
-                app:fitsSystemWindowsInsets="top|bottom"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_module" />
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/search_input_layout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/l1"
+                    android:layout_marginTop="@dimen/internal_action_bar_size"
+                    android:layout_marginEnd="@dimen/l1"
+                    android:hint="@string/module_search_hint"
+                    app:endIconMode="clear_text"
+                    app:fitsSystemWindowsInsets="top"
+                    app:startIconDrawable="@drawable/ic_search">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/search_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        tools:text="Lorem ipsum" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/module_list"
+                    app:items="@{viewModel.items}"
+                    app:extraBindings="@{viewModel.extraBindings}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/l1"
+                    android:paddingBottom="180dp"
+                    app:fitsSystemWindowsInsets="bottom"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_module" />
+
+            </LinearLayout>
 
         </su.android.material.widgets.Card>
 

@@ -1,8 +1,9 @@
 package su.android.ui.module
 
 import android.net.Uri
-import su.android.databinding.Bindable
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import su.android.databinding.Bindable
 import su.android.BR
 import su.android.MainDirections
 import su.android.R
@@ -15,7 +16,7 @@ import su.android.core.model.module.OnlineModule
 import su.android.databinding.MergeObservableList
 import su.android.databinding.RvItem
 import su.android.databinding.bindExtra
-import su.android.databinding.diffList
+import su.android.databinding.filterList
 import su.android.databinding.set
 import su.android.dialog.LocalModuleInstallDialog
 import su.android.dialog.OnlineModuleInstallDialog
@@ -30,9 +31,26 @@ class ModuleViewModel : AsyncLoadViewModel() {
 
     val bottomBarBarrierIds = intArrayOf(R.id.module_update, R.id.module_remove)
 
-    private val itemsInstalled = diffList<LocalModuleRvItem>()
+    private val itemsInstalled = filterList<LocalModuleRvItem>(viewModelScope)
+
+    private var allModules: List<LocalModuleRvItem> = emptyList()
 
     val items = MergeObservableList<RvItem>().insertList(itemsInstalled)
+
+    var searchQuery: String = ""
+        set(value) {
+            if (field == value) return
+            field = value
+            itemsInstalled.filter(::matchesQuery)
+        }
+
+    private fun matchesQuery(item: LocalModuleRvItem): Boolean {
+        val s = searchQuery
+        if (s.isEmpty()) return true
+        return item.item.name.contains(s, true) ||
+            item.item.author.contains(s, true) ||
+            item.item.description.contains(s, true)
+    }
     val extraBindings = bindExtra {
         it.put(BR.viewModel, this)
     }
@@ -57,15 +75,16 @@ class ModuleViewModel : AsyncLoadViewModel() {
     override fun onNetworkChanged(network: Boolean) = startLoading()
 
     private suspend fun loadInstalled() {
-        withContext(Dispatchers.Default) {
-            val installed = LocalModule.installed().map { LocalModuleRvItem(it) }
-            itemsInstalled.update(installed)
+        val installed = withContext(Dispatchers.Default) {
+            LocalModule.installed().map { LocalModuleRvItem(it) }
         }
+        allModules = installed
+        itemsInstalled.set(installed)
     }
 
     private suspend fun loadUpdateInfo() {
         withContext(Dispatchers.IO) {
-            itemsInstalled.forEach {
+            allModules.forEach {
                 if (it.item.fetch())
                     it.fetchedUpdateInfo()
             }
