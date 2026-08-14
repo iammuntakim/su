@@ -18,6 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 
+import su.android.R;
+
 /**
  * An iOS styled card built on {@link CardView}.
  *

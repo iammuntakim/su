@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearSmoothScroller;
-import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * An iOS feel {@link RecyclerView}.
@@ -99,7 +98,7 @@ public class RecyclerView extends androidx.recyclerview.widget.RecyclerView {
     private static final class IOSEdgeEffectFactory extends EdgeEffectFactory {
         @NonNull
         @Override
-        protected EdgeEffect createEdgeEffect(@NonNull RecyclerView view, int direction) {
+        protected EdgeEffect createEdgeEffect(@NonNull androidx.recyclerview.widget.RecyclerView view, int direction) {
             return new EdgeEffect(view.getContext()) {
                 @Override
                 public void onPull(float deltaDistance) {
