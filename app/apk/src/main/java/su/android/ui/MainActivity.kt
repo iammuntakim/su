@@ -35,7 +35,6 @@ import su.android.core.base.SplashScreenHost
 import su.android.core.ktx.toast
 import su.android.core.model.module.LocalModule
 import su.android.databinding.ActivityMainBinding
-import su.android.ui.theme.Theme
 import su.android.view.MaterialDialog
 import su.android.view.Shortcuts
 import kotlinx.coroutines.launch
@@ -68,7 +67,7 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
     private var isRootFragment = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(Theme.selected.themeRes)
+        setTheme(R.style.theme_foundation_md2_azure)
         super.onCreate(savedInstanceState)
         splashController.onCreate(savedInstanceState)
     }

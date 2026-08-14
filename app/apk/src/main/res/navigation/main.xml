@@ -100,21 +100,7 @@
             app:popEnterAnim="@anim/fragment_enter_pop"
             app:popExitAnim="@anim/fragment_exit_pop" />
 
-        <action
-            android:id="@+id/action_settings_fragment_to_theme_fragment"
-            app:destination="@id/theme_fragment"
-            app:enterAnim="@anim/fragment_enter"
-            app:exitAnim="@anim/fragment_exit"
-            app:popEnterAnim="@anim/fragment_enter_pop"
-            app:popExitAnim="@anim/fragment_exit_pop" />
-
     </fragment>
-
-    <fragment
-        android:id="@+id/theme_fragment"
-        android:name="su.android.ui.theme.ThemeFragment"
-        android:label="ThemeFragment"
-        tools:layout="@layout/fragment_theme" />
 
     <fragment
         android:id="@+id/superuser_fragment"

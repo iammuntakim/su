@@ -47,12 +47,6 @@ object DownloadPath : BaseSettingsItem.Input() {
         .inflate(LayoutInflater.from(context)).also { it.data = this }.root
 }
 
-object SettingsTheme : BaseSettingsItem.Blank() {
-    override val icon: Int? = R.drawable.ic_palette
-    override val title = CoreR.string.settings_theme_title.asText()
-    override val description = CoreR.string.settings_theme_summary.asText()
-}
-
 object SettingsLanguage : BaseSettingsItem.Selector() {
     override val icon: Int? = R.drawable.ic_language
     override val title = CoreR.string.settings_language_title.asText()

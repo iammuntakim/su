@@ -15,7 +15,6 @@ import su.android.core.base.UntrackedActivity
 import su.android.core.handler.CallbackHandler
 import su.android.core.handler.CallbackHandler.REQUEST
 import su.android.databinding.ActivityRequestBinding
-import su.android.ui.theme.Theme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -33,7 +32,7 @@ open class RequestActivity : UIActivity<ActivityRequestBinding>(), UntrackedActi
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             window.setHideOverlayWindows(true)
         }
-        setTheme(Theme.selected.themeRes)
+        setTheme(R.style.theme_foundation_md2_azure)
         super.onCreate(savedInstanceState)
 
         if (intent.action == Intent.ACTION_VIEW) {
