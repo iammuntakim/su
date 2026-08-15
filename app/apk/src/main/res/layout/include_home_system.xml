@@ -92,8 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="bottom"
-                app:referencedIds="@{viewModel.systemTitleBarrierIds}"
-                tools:constraint_referenced_ids="HomeSystemIcon,HomeSystemTitle,HomeSystemButton" />
+                app:constraint_referenced_ids="home_system_icon,home_system_title,home_system_button" />
 
             <HorizontalScrollView
                 android:layout_width="match_parent"

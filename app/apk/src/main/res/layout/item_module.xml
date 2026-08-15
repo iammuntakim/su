@@ -171,8 +171,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:barrierDirection="start"
-                    app:referencedIds="@{viewModel.bottomBarBarrierIds}"
-                    tools:constraint_referenced_ids="ModuleUpdate,ModuleRemove" />
+                    app:constraint_referenced_ids="module_update,module_remove" />
 
                 <TextView
                     android:id="@+id/module_notice_text"
