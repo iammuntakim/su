@@ -24,6 +24,24 @@ open class App : Application {
             super.attachBaseContext(context)
             AppContext.attachApplication(this)
         }
+        setupExceptionHandler()
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        if (inDebugProcess()) return
+        showPendingCrashReport()
+    }
+
+    private fun showPendingCrashReport() {
+        val file = crashFile()
+        if (!file.exists() || !file.canRead()) return
+        val content = runCatching { file.readText() }.getOrNull() ?: return
+        file.delete()
+        startActivity(Intent(this, DebugActivity::class.java).apply {
+            putExtra(DebugActivity.EXTRA_REPORT, content)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        })
     }
 
     private fun setupExceptionHandler() {
@@ -38,6 +56,9 @@ open class App : Application {
                 val exceptionType = throwable.javaClass.simpleName
                 val fullError = "$exceptionType\n$stackTraceString"
                 val startedAt = System.currentTimeMillis()
+                val report = DebugActivity.buildReport(this, fullError, startedAt)
+
+                crashFile().writeText(report)
 
                 val intent = Intent(this, DebugActivity::class.java).apply {
                     putExtra(DebugActivity.EXTRA_ERROR, fullError)
@@ -51,6 +72,8 @@ open class App : Application {
             }
         }
     }
+
+    private fun crashFile(): File = File(filesDir, DebugActivity.CRASH_FILE)
 
     private fun inDebugProcess(): Boolean =
         runCatching { File("/proc/self/cmdline").readBytes().toString(Charsets.US_ASCII) }

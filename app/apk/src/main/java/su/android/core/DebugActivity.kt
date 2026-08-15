@@ -3,6 +3,7 @@ package su.android.core
 import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
@@ -31,9 +32,14 @@ class DebugActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val error = intent?.getStringExtra(EXTRA_ERROR).orEmpty()
-        val started = intent?.getLongExtra(EXTRA_STARTED, 0L) ?: 0L
-        val report = buildReport(error, started)
+        val report = intent?.getStringExtra(EXTRA_REPORT)
+            ?: buildReport(
+                this,
+                intent?.getStringExtra(EXTRA_ERROR).orEmpty(),
+                intent?.getLongExtra(EXTRA_STARTED, 0L) ?: 0L
+            )
+
+        File(filesDir, CRASH_FILE).delete()
 
         val textView = TextView(this).apply {
             text = report
@@ -111,7 +117,7 @@ class DebugActivity : Activity() {
                 out
             }.getOrNull()
 
-            if (!logs.isNullOrBlank()) {
+            if (!logs.isNullOrEmpty()) {
                 runOnUiThread {
                     textView.text = report + "\n\n========== logcat ==========\n" + logs
                 }
@@ -119,36 +125,38 @@ class DebugActivity : Activity() {
         }
     }
 
-    private fun buildReport(error: String, started: Long): String {
-        val sb = StringBuilder()
-        sb.appendLine("SuperSU crash report")
-        sb.appendLine("App: ${BuildConfig.APP_PACKAGE_NAME} ${getVersionString()}")
-        sb.appendLine("Process: ${processName()}")
-        sb.appendLine("Device: ${Build.MANUFACTURER} ${Build.MODEL}")
-        sb.appendLine("Android: ${Build.VERSION.RELEASE} (API ${Build.VERSION.SDK_INT})")
-        sb.appendLine("Started: ${formatTime(started)}")
-        sb.appendLine()
-        sb.append(if (error.isBlank()) "No error message available." else error)
-        return sb.toString()
-    }
-
-    private fun getVersionString(): String =
-        runCatching {
-            val info = packageManager.getPackageInfo(packageName, 0)
-            "${info.versionName} (${info.versionCode})"
-        }.getOrElse { "?" }
-
-    private fun processName(): String =
-        runCatching { File("/proc/self/cmdline").readBytes().toString(Charsets.US_ASCII).trim('\u0000') }
-            .getOrElse { "?" }
-
-    private fun formatTime(t: Long): String =
-        if (t > 0) SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(Date(t)) else "?"
-
-    private fun dp(value: Int): Int = (value * resources.displayMetrics.density).toInt()
-
     companion object {
+        const val EXTRA_REPORT = "report"
         const val EXTRA_ERROR = "error"
         const val EXTRA_STARTED = "started"
+        const val CRASH_FILE = "crash_report.txt"
+
+        fun buildReport(context: Context, error: String, started: Long): String {
+            val sb = StringBuilder()
+            sb.appendLine("SuperSU crash report")
+            sb.appendLine("App: ${BuildConfig.APP_PACKAGE_NAME} ${versionString(context)}")
+            sb.appendLine("Process: ${processName()}")
+            sb.appendLine("Device: ${Build.MANUFACTURER} ${Build.MODEL}")
+            sb.appendLine("Android: ${Build.VERSION.RELEASE} (API ${Build.VERSION.SDK_INT})")
+            sb.appendLine("Started: ${formatTime(started)}")
+            sb.appendLine()
+            sb.append(if (error.isBlank()) "No error message available." else error)
+            return sb.toString()
+        }
+
+        private fun versionString(context: Context): String =
+            runCatching {
+                val info = context.packageManager.getPackageInfo(context.packageName, 0)
+                "${info.versionName} (${info.versionCode})"
+            }.getOrElse { "?" }
+
+        private fun processName(): String =
+            runCatching { File("/proc/self/cmdline").readBytes().toString(Charsets.US_ASCII).trim('\u0000') }
+                .getOrElse { "?" }
+
+        private fun formatTime(t: Long): String =
+            if (t > 0) SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(Date(t)) else "?"
     }
+
+    private fun dp(value: Int): Int = (value * resources.displayMetrics.density).toInt()
 }

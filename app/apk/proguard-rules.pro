@@ -28,6 +28,12 @@
 
 -dontwarn org.junit.**
 -dontwarn org.apache.**
+
+# MIUIX (top.yukonga.miuix.kmp) is a Compose Multiplatform library; keep its
+# internals intact so R8 cannot strip classes/resources used reflectively at
+# composition time.
+-keep class top.yukonga.miuix.** { *; }
+
 # Excessive obfuscation
 -flattenpackagehierarchy
 -allowaccessmodification
