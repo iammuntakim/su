@@ -1,43 +1,35 @@
 package su.android.ui
 
 import android.Manifest
-import android.Manifest.permission.REQUEST_INSTALL_PACKAGES
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.os.Build
 import android.os.Bundle
-import android.util.TypedValue
-import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
+import androidx.activity.compose.setContent
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.core.content.pm.ShortcutManagerCompat
-import androidx.core.graphics.ColorUtils
-import androidx.core.view.forEach
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
-import androidx.lifecycle.lifecycleScope
+import androidx.core.widget.NestedScrollView
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavDirections
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarView
+import androidx.navigation.fragment.NavHostFragment
 import su.android.MainDirections
 import su.android.R
 import su.android.arch.BaseViewModel
 import su.android.arch.NavigationActivity
-import su.android.arch.startAnimations
 import su.android.arch.viewModel
 import su.android.core.Config
 import su.android.core.Const
 import su.android.core.Info
 import su.android.core.base.SplashController
 import su.android.core.base.SplashScreenHost
-import su.android.core.ktx.toast
-import su.android.core.model.module.LocalModule
 import su.android.databinding.ActivityMainBinding
+import su.android.ui.theme.MiuixAppTheme
 import su.android.view.MaterialDialog
 import su.android.view.Shortcuts
-import kotlinx.coroutines.launch
 import java.io.File
 import su.android.R as CoreR
 
@@ -49,22 +41,31 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
     override val viewModel by viewModel<MainViewModel>()
     override val navHostId: Int = R.id.main_nav_host
     override val splashController = SplashController(this)
-    override val snackbarView: View
-        get() {
-            val fragmentOverride = currentFragment?.snackbarView
-            return fragmentOverride ?: super.snackbarView
-        }
-    override val snackbarAnchorView: View?
-        get() {
-            val fragmentAnchor = currentFragment?.snackbarAnchorView
-            return when {
-                fragmentAnchor?.isVisible == true -> fragmentAnchor
-                binding.mainNavigation.isVisible -> return binding.mainNavigation
-                else -> null
-            }
-        }
+
+    private var hasComposed = false
+    private var pendingSection: String? = null
+
+    var titleText by mutableStateOf("")
+        private set
+    var bottomBarHidden by mutableStateOf(false)
+        private set
+    var showBack by mutableStateOf(false)
+        private set
+    var showFab by mutableStateOf(false)
+        private set
+    var selectedTabId by mutableStateOf(R.id.home_fragment)
+        private set
+
+    internal var contentRoot: View? = null
 
     private var isRootFragment = true
+
+    override val snackbarView: View
+        get() = runCatching { currentFragment?.snackbarView }.getOrNull()
+            ?: contentRoot ?: window.decorView
+
+    override val snackbarAnchorView: View?
+        get() = runCatching { currentFragment?.snackbarAnchorView }.getOrNull()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.theme_foundation_md2_azure)
@@ -77,25 +78,17 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
         splashController.onResume()
     }
 
-    @SuppressLint("InlinedApi")
+    override fun setTitle(title: CharSequence?) {
+        super.setTitle(title)
+        titleText = title?.toString().orEmpty()
+    }
+
     override fun onCreateUi(savedInstanceState: Bundle?) {
-        setContentView()
         showUnsupportedMessage()
         askForHomeShortcut()
 
-        // iOS style: floating frosted appbar over scrolling content
-        val tv = TypedValue()
-        if (theme.resolveAttribute(com.google.android.material.R.attr.colorSurface, tv, true)) {
-            binding.mainToolbarCard.setCardBackgroundColor(ColorUtils.setAlphaComponent(tv.data, 226))
-        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             window.setBackgroundBlurRadius((48 * resources.displayMetrics.density).toInt())
-        }
-
-        binding.mainFab.setOnClickListener {
-            currentFragment?.view
-                ?.findViewById<androidx.core.widget.NestedScrollView>(R.id.home_scroll)
-                ?.smoothScrollTo(0, 0)
         }
 
         if (Config.checkUpdate) {
@@ -106,86 +99,85 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
 
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
 
-        navigation.addOnDestinationChangedListener { _, destination, _ ->
-            isRootFragment = when (destination.id) {
-                R.id.home_fragment,
-                R.id.modules_fragment,
-                R.id.superuser_fragment,
-                R.id.log_fragment,
-                R.id.settings_fragment -> true
-                else -> false
-            }
-
-            binding.mainFab.isVisible = destination.id == R.id.home_fragment
-
-            setDisplayHomeAsUpEnabled(!isRootFragment)
-            requestNavigationHidden(!isRootFragment)
-
-            binding.mainNavigation.menu.forEach {
-                if (it.itemId == destination.id) {
-                    it.isChecked = true
-                }
-            }
-        }
-
-        setSupportActionBar(binding.mainToolbar)
-
-        binding.mainNavigation.setOnItemSelectedListener {
-            getScreen(it.itemId)?.navigate()
-            true
-        }
-        binding.mainNavigation.setOnItemReselectedListener {
-        }
-        binding.mainNavigation.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
-        binding.mainNavigation.menu.apply {
-            findItem(R.id.superuser_fragment)?.isEnabled = Info.showSuperUser
-            findItem(R.id.modules_fragment)?.isEnabled = Info.env.isActive && LocalModule.loaded()
-        }
-
-        val section =
+        pendingSection =
             if (intent.action == Intent.ACTION_APPLICATION_PREFERENCES)
                 Const.Nav.SETTINGS
             else
                 intent.getStringExtra(Const.Key.OPEN_SECTION)
 
-        getScreen(section)?.navigate()
-
-        if (!isRootFragment) {
-            requestNavigationHidden(requiresAnimation = savedInstanceState == null)
+        if (!hasComposed) {
+            hasComposed = true
+            setContent {
+                MiuixAppTheme {
+                    MainShell(this@MainActivity)
+                }
+            }
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> onBackPressed()
-            else -> return super.onOptionsItemSelected(item)
+    internal fun attachNavHost() {
+        val existing = supportFragmentManager.findFragmentByTag(NAV_HOST_TAG) as? NavHostFragment
+        if (existing != null) {
+            existing.navController.currentDestination?.id?.let { onDestinationChanged(it) }
+            return
         }
-        return true
+        val navHost = NavHostFragment.create(R.navigation.main)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.main_nav_host, navHost, NAV_HOST_TAG)
+            .setPrimaryNavigationFragment(navHost)
+            .commitNow()
+        navHost.navController.addOnDestinationChangedListener { _, destination, _ ->
+            onDestinationChanged(destination.id)
+        }
+        onDestinationChanged(
+            navHost.navController.currentDestination?.id ?: R.id.home_fragment
+        )
+        val section = pendingSection
+        pendingSection = null
+        getScreen(section)?.navigate()
+        initBinding()
+    }
+
+    private fun initBinding() {
+        if (!::binding.isInitialized) {
+            binding = DataBindingUtil.inflate(layoutInflater, layoutRes, null, false)
+        }
+    }
+
+    private fun onDestinationChanged(destinationId: Int) {
+        val root = destinationId in ROOT_DESTINATIONS
+        isRootFragment = root
+        showFab = destinationId == R.id.home_fragment
+        showBack = !root
+        bottomBarHidden = !root
+        selectedTabId = destinationId
+        if (destinationId == R.id.home_fragment) {
+            titleText = ""
+        }
+    }
+
+    internal fun scrollHomeToTop() {
+        currentFragment?.view
+            ?.findViewById<NestedScrollView>(R.id.home_scroll)
+            ?.smoothScrollTo(0, 0)
     }
 
     fun setDisplayHomeAsUpEnabled(isEnabled: Boolean) {
-        binding.mainToolbar.startAnimations()
-        when {
-            isEnabled -> binding.mainToolbar.setNavigationIcon(R.drawable.ic_back)
-            else -> binding.mainToolbar.navigationIcon = null
-        }
+        showBack = isEnabled
     }
 
     internal fun requestNavigationHidden(hide: Boolean = true, requiresAnimation: Boolean = true) {
-        val bottomView = binding.mainNavigation
-        if (requiresAnimation) {
-            bottomView.isVisible = true
-            bottomView.translationY = if (hide) bottomView.height.toFloat() + (20 * resources.displayMetrics.density) else 0f
-        } else {
-            bottomView.isGone = hide
-        }
+        bottomBarHidden = hide
     }
 
-    fun invalidateToolbar() {
-        binding.mainToolbar.invalidate()
+    fun invalidateToolbar() = Unit
+
+    internal fun navigateToTab(id: Int) {
+        getScreen(id)?.navigate()
     }
 
-    private fun getScreen(name: String?): NavDirections? {
+    internal fun getScreen(name: String?): NavDirections? {
         return when (name) {
             Const.Nav.SUPERUSER -> MainDirections.actionSuperuserFragment()
             Const.Nav.MODULES -> MainDirections.actionModuleFragment()
@@ -194,7 +186,7 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
         }
     }
 
-    private fun getScreen(id: Int): NavDirections? {
+    internal fun getScreen(id: Int): NavDirections? {
         return when (id) {
             R.id.home_fragment -> MainDirections.actionHomeFragment()
             R.id.modules_fragment -> MainDirections.actionModuleFragment()
@@ -265,5 +257,16 @@ class MainActivity : NavigationActivity<ActivityMainBinding>(), SplashScreenHost
                 setCancelable(true)
             }.show()
         }
+    }
+
+    companion object {
+        private const val NAV_HOST_TAG = "main_nav_host"
+        private val ROOT_DESTINATIONS = setOf(
+            R.id.home_fragment,
+            R.id.modules_fragment,
+            R.id.superuser_fragment,
+            R.id.log_fragment,
+            R.id.settings_fragment,
+        )
     }
 }
