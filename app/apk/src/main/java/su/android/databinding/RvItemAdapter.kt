@@ -146,7 +146,13 @@ fun <T : RvItem> RecyclerView.setAdapter(items: List<T>?, extraBindings: SparseA
             put(
                 layoutRes,
                 { inflater, parent ->
-                    DataBindingUtil.inflate(inflater, layoutRes, parent, false).root
+                    val binding = DataBindingUtil.inflate<ViewDataBinding>(
+                        inflater,
+                        layoutRes,
+                        parent,
+                        false
+                    )
+                    binding.root
                 },
                 { view, item ->
                     val binding = DataBindingUtil.getBinding<ViewDataBinding>(view)
