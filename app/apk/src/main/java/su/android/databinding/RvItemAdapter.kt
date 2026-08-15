@@ -5,7 +5,12 @@ import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.BindingAdapter
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
+import su.android.BR
 
 /**
  * Creates and binds the view of a [RvItem] on demand, replacing the old layout/dataBinding
@@ -128,4 +133,36 @@ fun <T : RvItem> RecyclerView.setAdapter(items: List<T>, layouts: ItemLayouts) {
     if (rva == null || rva.items !== items || rva.layouts !== layouts) {
         adapter = RvItemAdapter(items, layouts)
     }
+}
+
+@BindingAdapter("items", "extraBindings", requireAll = false)
+fun <T : RvItem> RecyclerView.setAdapter(items: List<T>?, extraBindings: SparseArray<*>?) {
+    if (items == null) return
+    val rva = (adapter as? RvItemAdapter<*>)
+    if (rva != null && rva.items === items) return
+
+    val layouts = ItemLayouts().apply {
+        for (layoutRes in items.map { it.layoutRes }.distinct()) {
+            put(
+                layoutRes,
+                { inflater, parent ->
+                    DataBindingUtil.inflate(inflater, layoutRes, parent, false).root
+                },
+                { view, item ->
+                    val binding = DataBindingUtil.getBinding<ViewDataBinding>(view)
+                    if (binding != null) {
+                        binding.setVariable(BR.item, item)
+                        extraBindings?.let { eb ->
+                            for (i in 0 until eb.size()) {
+                                binding.setVariable(eb.keyAt(i), eb.valueAt(i))
+                            }
+                        }
+                        binding.lifecycleOwner = view.findViewTreeLifecycleOwner()
+                        binding.executePendingBindings()
+                    }
+                }
+            )
+        }
+    }
+    adapter = RvItemAdapter(items, layouts)
 }

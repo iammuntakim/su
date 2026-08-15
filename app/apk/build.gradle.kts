@@ -1,10 +1,20 @@
 plugins {
     id("com.android.application")
+    id("org.jetbrains.kotlin.android")
     kotlin("plugin.parcelize")
     kotlin("plugin.compose")
     id("androidx.navigation.safeargs.kotlin")
     id("dev.zacsweers.moshix")
     id("com.google.devtools.ksp")
+}
+
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.addAll(
+            "-opt-in=androidx.compose.runtime.ExperimentalComposeApi",
+            "-opt-in=androidx.compose.foundation.ExperimentalFoundationApi"
+        )
+    }
 }
 
 setupCoreLib()
@@ -24,19 +34,6 @@ android {
 
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
-    }
-
-    kotlin {
-        compilerOptions {
-            freeCompilerArgs.addAll(
-                "-opt-in=androidx.compose.runtime.ExperimentalComposeApi",
-                "-opt-in=androidx.compose.foundation.ExperimentalFoundationApi"
-            )
-        }
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.10.5"
     }
 
     defaultConfig {
