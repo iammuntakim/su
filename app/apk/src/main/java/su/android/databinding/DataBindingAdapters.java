@@ -30,6 +30,7 @@ import java.util.Objects;
 import kotlin.jvm.functions.Function1;
 
 import su.android.core.model.policy.Policy;
+import su.android.utils.TextHolder;
 
 public class DataBindingAdapters {
 
@@ -67,6 +68,11 @@ public class DataBindingAdapters {
     @BindingAdapter("srcCompat")
     public static void setImageResource(ImageView view, Drawable drawable) {
         view.setImageDrawable(drawable);
+    }
+
+    @BindingAdapter("android:text")
+    public static void setText(TextView view, TextHolder text) {
+        view.setText(text.getText(view.getResources()));
     }
 
     @BindingAdapter("onTouch")
