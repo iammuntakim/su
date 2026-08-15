@@ -72,7 +72,7 @@ public class DataBindingAdapters {
 
     @BindingAdapter("android:text")
     public static void setText(TextView view, TextHolder text) {
-        view.setText(text.getText(view.getResources()));
+        view.setText(text == null ? null : text.getText(view.getResources()));
     }
 
     @BindingAdapter("onTouch")
