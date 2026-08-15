@@ -18,7 +18,6 @@ import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.google.android.material.snackbar.Snackbar
 import su.android.BR
-import su.android.R
 import su.android.core.Config
 import su.android.core.base.ActivityExtension
 import su.android.core.base.IActivityExtension
@@ -125,7 +124,6 @@ fun ViewGroup.startAnimations() {
     val transition = AutoTransition()
         .setInterpolator(FastOutSlowInInterpolator())
         .setDuration(400)
-        .excludeTarget(R.id.main_toolbar, true)
     TransitionManager.beginDelayedTransition(
         this,
         transition
