@@ -30,7 +30,7 @@
         <item name="android:textAppearance">@style/appearance_foundation_caption_variant</item>
     </style>
 
-    <style name="w_home_item_content_right">
+    <style name="w_home_item_content_right" parent="w_home_item_content">
         <item name="android:layout_marginStart">@dimen/l_50</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAppearance">@style/appearance_foundation_caption</item>
