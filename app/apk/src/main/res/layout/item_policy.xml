@@ -5,7 +5,7 @@
 
     <data>
 
-        <import type="su.android.databinding.DataBindingAdaptersKt" />
+        <import type="su.android.databinding.DataBindingAdapters" />
 
         <variable
             name="item"
@@ -109,7 +109,7 @@
                             android:layout_width="96dp"
                             android:layout_height="wrap_content"
                             android:stepSize="1"
-                            android:value="@={DataBindingAdaptersKt.policyToSliderValue(item.sliderValue)}"
+                            android:value="@={DataBindingAdapters.policyToSliderValue(item.sliderValue)}"
                             android:valueFrom="1"
                             android:valueTo="3" />
                     </FrameLayout>
