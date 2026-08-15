@@ -6,7 +6,7 @@ pluginManagement {
         gradlePluginPortal()
     }
     plugins {
-        id("com.android.application") version "9.0.1"
+        id("com.android.application") version "9.1.1"
         id("org.jetbrains.kotlin.android") version "2.3.20"
         id("org.jetbrains.kotlin.plugin.parcelize") version "2.3.20"
         id("org.jetbrains.kotlin.plugin.compose") version "2.3.20"
