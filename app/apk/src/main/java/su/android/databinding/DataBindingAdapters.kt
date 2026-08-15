@@ -302,8 +302,8 @@ fun TextView.setTextColorAttr(attr: Int) {
 }
 
 @BindingAdapter("android:text")
-fun TextView.setText(text: TextHolder) {
-    this.text = text.getText(context.resources)
+fun TextView.setText(text: TextHolder?) {
+    this.text = text?.getText(context.resources)
 }
 
 @BindingAdapter("items", "layout")
