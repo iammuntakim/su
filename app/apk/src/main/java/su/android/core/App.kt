@@ -3,6 +3,7 @@ package su.android.core
 import android.app.Application
 import android.content.Context
 import android.content.Intent
+import java.io.File
 import java.io.PrintWriter
 import java.io.StringWriter
 import kotlin.system.exitProcess
@@ -12,13 +13,17 @@ open class App : Application {
     constructor() : super()
 
     override fun attachBaseContext(context: Context) {
+        if (inDebugProcess()) {
+            super.attachBaseContext(context)
+            return
+        }
+        setupExceptionHandler()
         if (context is Application) {
             AppContext.attachApplication(context)
         } else {
             super.attachBaseContext(context)
             AppContext.attachApplication(this)
         }
-        setupExceptionHandler()
     }
 
     private fun setupExceptionHandler() {
@@ -32,9 +37,11 @@ open class App : Application {
 
                 val exceptionType = throwable.javaClass.simpleName
                 val fullError = "$exceptionType\n$stackTraceString"
+                val startedAt = System.currentTimeMillis()
 
                 val intent = Intent(this, DebugActivity::class.java).apply {
-                    putExtra("error", fullError)
+                    putExtra(DebugActivity.EXTRA_ERROR, fullError)
+                    putExtra(DebugActivity.EXTRA_STARTED, startedAt)
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 }
                 startActivity(intent)
@@ -43,5 +50,14 @@ open class App : Application {
                 defaultHandler?.uncaughtException(thread, throwable)
             }
         }
+    }
+
+    private fun inDebugProcess(): Boolean =
+        runCatching { File("/proc/self/cmdline").readBytes().toString(Charsets.US_ASCII) }
+            .getOrElse { "" }
+            .contains(DEBUG_PROCESS_SUFFIX)
+
+    companion object {
+        private const val DEBUG_PROCESS_SUFFIX = ":debug"
     }
 }

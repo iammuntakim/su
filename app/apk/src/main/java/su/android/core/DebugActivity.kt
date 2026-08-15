@@ -1,59 +1,154 @@
 package su.android.core
 
 import android.app.Activity
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Typeface
+import android.os.Build
 import android.os.Bundle
-import android.text.SpannableStringBuilder
+import android.os.Process
+import android.view.Gravity
+import android.view.ViewGroup.LayoutParams
+import android.widget.Button
 import android.widget.HorizontalScrollView
+import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
+import android.widget.Toast
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.concurrent.TimeUnit
+import su.android.BuildConfig
+import su.android.ui.MainActivity
+import kotlin.concurrent.thread
 
 class DebugActivity : Activity() {
-
-    private val exceptionMap = mapOf(
-        "StringIndexOutOfBoundsException" to "Invalid string operation\n",
-        "IndexOutOfBoundsException" to "Invalid list operation\n",
-        "ArithmeticException" to "Invalid arithmetical operation\n",
-        "NumberFormatException" to "Invalid toNumber block operation\n",
-        "ActivityNotFoundException" to "Invalid intent operation\n"
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val formattedMessage = SpannableStringBuilder()
-        val errorMessage = intent?.getStringExtra("error") ?: ""
+        val error = intent?.getStringExtra(EXTRA_ERROR).orEmpty()
+        val started = intent?.getLongExtra(EXTRA_STARTED, 0L) ?: 0L
+        val report = buildReport(error, started)
 
-        if (errorMessage.isNotEmpty()) {
-            val split = errorMessage.split("\n")
-            val exceptionType = if (split.isNotEmpty()) split[0] else ""
-            val message = exceptionMap[exceptionType] ?: ""
-
-            if (message.isNotEmpty()) {
-                formattedMessage.append(message)
-            }
-
-            for (i in 1 until split.size) {
-                formattedMessage.append(split[i])
-                formattedMessage.append("\n")
-            }
-        } else {
-            formattedMessage.append("No error message available.")
+        val textView = TextView(this).apply {
+            text = report
+            setTextIsSelectable(true)
+            setTextColor(Color.rgb(0xE0, 0xE0, 0xE0))
+            setBackgroundColor(Color.rgb(0x1C, 0x1C, 0x1E))
+            typeface = Typeface.MONOSPACE
+            textSize = 11f
+            setPadding(dp(16), dp(16), dp(16), dp(16))
         }
 
-        title = "$title Crashed"
+        val copy = Button(this).apply {
+            text = "Copy"
+            setOnClickListener {
+                val clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+                clipboard.setPrimaryClip(ClipData.newPlainText("crash", textView.text))
+                Toast.makeText(this@DebugActivity, "Copied to clipboard", Toast.LENGTH_SHORT).show()
+            }
+        }
+        val restart = Button(this).apply {
+            text = "Restart"
+            setOnClickListener {
+                startActivity(Intent(this@DebugActivity, MainActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                })
+                finish()
+            }
+        }
+        val kill = Button(this).apply {
+            text = "Kill"
+            setOnClickListener {
+                Process.killProcess(Process.myPid())
+            }
+        }
 
-        val errorView = TextView(this).apply {
-            text = formattedMessage
-            setTextIsSelectable(true)
+        val buttons = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_HORIZONTAL
+            setPadding(0, dp(8), 0, dp(8))
+            addView(copy)
+            addView(restart)
+            addView(kill)
         }
 
         val hscroll = HorizontalScrollView(this)
+        hscroll.addView(textView)
+
         val vscroll = ScrollView(this)
+        vscroll.addView(hscroll)
 
-        hscroll.addView(vscroll)
-        vscroll.addView(errorView)
+        val root = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+        }
+        root.addView(
+            buttons,
+            LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+        )
+        root.addView(
+            vscroll,
+            LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 0, 1f)
+        )
 
-        setContentView(hscroll)
+        setContentView(root)
+        loadLogcat(textView, report)
+    }
+
+    private fun loadLogcat(textView: TextView, report: String) {
+        thread(isDaemon = true) {
+            val logs = runCatching {
+                val proc = ProcessBuilder("logcat", "-d", "-v", "brief", "-U", Process.myUid().toString())
+                    .redirectErrorStream(true)
+                    .start()
+                val out = proc.inputStream.bufferedReader().use { it.readText() }
+                proc.waitFor(5, TimeUnit.SECONDS)
+                out
+            }.getOrNull()
+
+            if (!logs.isNullOrBlank()) {
+                runOnUiThread {
+                    textView.text = report + "\n\n========== logcat ==========\n" + logs
+                }
+            }
+        }
+    }
+
+    private fun buildReport(error: String, started: Long): String {
+        val sb = StringBuilder()
+        sb.appendLine("SuperSU crash report")
+        sb.appendLine("App: ${BuildConfig.APP_PACKAGE_NAME} ${getVersionString()}")
+        sb.appendLine("Process: ${processName()}")
+        sb.appendLine("Device: ${Build.MANUFACTURER} ${Build.MODEL}")
+        sb.appendLine("Android: ${Build.VERSION.RELEASE} (API ${Build.VERSION.SDK_INT})")
+        sb.appendLine("Started: ${formatTime(started)}")
+        sb.appendLine()
+        sb.append(if (error.isBlank()) "No error message available." else error)
+        return sb.toString()
+    }
+
+    private fun getVersionString(): String =
+        runCatching {
+            val info = packageManager.getPackageInfo(packageName, 0)
+            "${info.versionName} (${info.versionCode})"
+        }.getOrElse { "?" }
+
+    private fun processName(): String =
+        runCatching { File("/proc/self/cmdline").readBytes().toString(Charsets.US_ASCII).trim('\u0000') }
+            .getOrElse { "?" }
+
+    private fun formatTime(t: Long): String =
+        if (t > 0) SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(Date(t)) else "?"
+
+    private fun dp(value: Int): Int = (value * resources.displayMetrics.density).toInt()
+
+    companion object {
+        const val EXTRA_ERROR = "error"
+        const val EXTRA_STARTED = "started"
     }
 }

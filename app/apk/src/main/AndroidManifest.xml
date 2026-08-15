@@ -61,6 +61,14 @@
         </activity>
 
         <activity
+            android:name=".core.DebugActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:process=":debug"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Material.NoActionBar" />
+
+        <activity
             android:name=".ui.surequest.RequestActivity"
             android:directBootAware="true"
             android:exported="false"
