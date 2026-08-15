@@ -41,38 +41,45 @@ class DebugActivity : Activity() {
 
         File(filesDir, CRASH_FILE).delete()
 
+        val output = terminalPrompt() + report
+
         val textView = TextView(this).apply {
-            text = report
+            text = output
             setTextIsSelectable(true)
-            setTextColor(Color.rgb(0xE0, 0xE0, 0xE0))
-            setBackgroundColor(Color.rgb(0x1C, 0x1C, 0x1E))
+            setTextColor(GREEN)
+            setBackgroundColor(BLACK)
             typeface = Typeface.MONOSPACE
-            textSize = 11f
+            textSize = 12f
             setPadding(dp(16), dp(16), dp(16), dp(16))
         }
 
-        val copy = Button(this).apply {
-            text = "Copy"
-            setOnClickListener {
-                val clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-                clipboard.setPrimaryClip(ClipData.newPlainText("crash", textView.text))
-                Toast.makeText(this@DebugActivity, "Copied to clipboard", Toast.LENGTH_SHORT).show()
-            }
+        val statusBar = TextView(this).apply {
+            text = "═══ SuperSU crash terminal ═══"
+            setTextColor(GREEN)
+            setBackgroundColor(Color.rgb(0x12, 0x12, 0x12))
+            typeface = Typeface.MONOSPACE
+            textSize = 13f
+            gravity = Gravity.CENTER
+            setPadding(0, dp(10), 0, dp(10))
         }
-        val restart = Button(this).apply {
-            text = "Restart"
-            setOnClickListener {
-                startActivity(Intent(this@DebugActivity, MainActivity::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                })
-                finish()
-            }
+
+        val copy = terminalButton("Copy")
+        val restart = terminalButton("Restart")
+        val kill = terminalButton("Kill")
+
+        copy.setOnClickListener {
+            val clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+            clipboard.setPrimaryClip(ClipData.newPlainText("crash", textView.text))
+            Toast.makeText(this@DebugActivity, "Copied to clipboard", Toast.LENGTH_SHORT).show()
         }
-        val kill = Button(this).apply {
-            text = "Kill"
-            setOnClickListener {
-                Process.killProcess(Process.myPid())
-            }
+        restart.setOnClickListener {
+            startActivity(Intent(this@DebugActivity, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            })
+            finish()
+        }
+        kill.setOnClickListener {
+            Process.killProcess(Process.myPid())
         }
 
         val buttons = LinearLayout(this).apply {
@@ -82,6 +89,11 @@ class DebugActivity : Activity() {
             addView(copy)
             addView(restart)
             addView(kill)
+            for (i in 0 until childCount) {
+                val lp = (getChildAt(i).layoutParams as LinearLayout.LayoutParams)
+                lp.marginStart = dp(6)
+                lp.marginEnd = dp(6)
+            }
         }
 
         val hscroll = HorizontalScrollView(this)
@@ -93,25 +105,34 @@ class DebugActivity : Activity() {
         val root = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
         }
-        root.addView(
-            buttons,
-            LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
-        )
-        root.addView(
-            vscroll,
-            LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 0, 1f)
-        )
+        root.addView(statusBar, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT))
+        root.addView(buttons, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT))
+        root.addView(vscroll, LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 0, 1f))
 
         setContentView(root)
-        loadLogcat(textView, report)
+        loadLogcat(textView, terminalPrompt() + report)
     }
 
-    private fun loadLogcat(textView: TextView, report: String) {
+    private fun terminalButton(label: String): Button {
+        return Button(this).apply {
+            text = label
+            setTextColor(GREEN)
+            setBackgroundColor(Color.rgb(0x12, 0x12, 0x12))
+            setPadding(dp(20), dp(8), dp(20), dp(8))
+        }
+    }
+
+    private fun terminalPrompt(): String {
+        val host = runCatching { Build.HOST }.getOrElse { "android" }
+        return "root@$host:~$ ./su-crashdump\n"
+    }
+
+    private fun loadLogcat(textView: TextView, base: String) {
         thread(isDaemon = true) {
             val logs = runCatching {
-                val proc = ProcessBuilder("logcat", "-d", "-v", "brief", "-U", Process.myUid().toString())
-                    .redirectErrorStream(true)
-                    .start()
+                val proc = ProcessBuilder(
+                    "logcat", "-d", "-v", "brief", "--uid=" + Process.myUid()
+                ).redirectErrorStream(true).start()
                 val out = proc.inputStream.bufferedReader().use { it.readText() }
                 proc.waitFor(5, TimeUnit.SECONDS)
                 out
@@ -119,7 +140,7 @@ class DebugActivity : Activity() {
 
             if (!logs.isNullOrEmpty()) {
                 runOnUiThread {
-                    textView.text = report + "\n\n========== logcat ==========\n" + logs
+                    textView.text = base + "\n\n$ run-logcat --uid=" + Process.myUid() + "\n" + logs
                 }
             }
         }
@@ -130,6 +151,9 @@ class DebugActivity : Activity() {
         const val EXTRA_ERROR = "error"
         const val EXTRA_STARTED = "started"
         const val CRASH_FILE = "crash_report.txt"
+
+        private val BLACK = Color.BLACK
+        private val GREEN = Color.rgb(0x33, 0xFF, 0x66)
 
         fun buildReport(context: Context, error: String, started: Long): String {
             val sb = StringBuilder()
