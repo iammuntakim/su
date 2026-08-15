@@ -55,6 +55,7 @@ android {
 }
 
 dependencies {
+    annotationProcessor(libs.kotlin.stdlib)
     implementation(files("../lib/native.jar"))
     coreLibraryDesugaring(libs.jdk.libs)
 
