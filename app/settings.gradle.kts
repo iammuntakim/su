@@ -12,7 +12,7 @@ pluginManagement {
         id("org.jetbrains.kotlin.plugin.compose") version "2.3.20"
         id("com.google.devtools.ksp") version "2.3.11"
         id("androidx.navigation.safeargs.kotlin") version "2.9.7"
-        id("dev.zacsweers.moshix") version "0.34.4"
+        id("dev.zacsweers.moshix") version "0.35.0"
     }
 }
 
