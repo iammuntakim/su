@@ -41,31 +41,29 @@ class DebugActivity : Activity() {
 
         File(filesDir, CRASH_FILE).delete()
 
-        val output = terminalPrompt() + report
-
         val textView = TextView(this).apply {
-            text = output
+            text = report
             setTextIsSelectable(true)
-            setTextColor(GREEN)
+            setTextColor(WHITE)
             setBackgroundColor(BLACK)
             typeface = Typeface.MONOSPACE
             textSize = 12f
             setPadding(dp(16), dp(16), dp(16), dp(16))
         }
 
-        val statusBar = TextView(this).apply {
-            text = "═══ SuperSU crash terminal ═══"
-            setTextColor(GREEN)
-            setBackgroundColor(Color.rgb(0x12, 0x12, 0x12))
+        val banner = TextView(this).apply {
+            text = "SU.ANDROID CRASH REPORTER"
+            setTextColor(WHITE)
+            setBackgroundColor(BLACK)
             typeface = Typeface.MONOSPACE
-            textSize = 13f
-            gravity = Gravity.CENTER
-            setPadding(0, dp(10), 0, dp(10))
+            textSize = 15f
+            gravity = Gravity.CENTER_HORIZONTAL
+            setPadding(0, dp(14), 0, dp(6))
         }
 
-        val copy = terminalButton("Copy")
-        val restart = terminalButton("Restart")
-        val kill = terminalButton("Kill")
+        val copy = recoveryButton("Copy")
+        val restart = recoveryButton("Restart")
+        val kill = recoveryButton("Kill")
 
         copy.setOnClickListener {
             val clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
@@ -85,7 +83,7 @@ class DebugActivity : Activity() {
         val buttons = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_HORIZONTAL
-            setPadding(0, dp(8), 0, dp(8))
+            setPadding(0, dp(8), 0, dp(10))
             addView(copy)
             addView(restart)
             addView(kill)
@@ -105,26 +103,21 @@ class DebugActivity : Activity() {
         val root = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
         }
-        root.addView(statusBar, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT))
-        root.addView(buttons, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT))
+        root.addView(banner, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT))
         root.addView(vscroll, LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 0, 1f))
+        root.addView(buttons, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT))
 
         setContentView(root)
-        loadLogcat(textView, terminalPrompt() + report)
+        loadLogcat(textView, report)
     }
 
-    private fun terminalButton(label: String): Button {
+    private fun recoveryButton(label: String): Button {
         return Button(this).apply {
             text = label
-            setTextColor(GREEN)
-            setBackgroundColor(Color.rgb(0x12, 0x12, 0x12))
-            setPadding(dp(20), dp(8), dp(20), dp(8))
+            setTextColor(WHITE)
+            setBackgroundColor(Color.rgb(0x11, 0x11, 0x11))
+            setPadding(dp(24), dp(6), dp(24), dp(6))
         }
-    }
-
-    private fun terminalPrompt(): String {
-        val host = runCatching { Build.HOST }.getOrElse { "android" }
-        return "root@$host:~$ ./su-crashdump\n"
     }
 
     private fun loadLogcat(textView: TextView, base: String) {
@@ -140,7 +133,7 @@ class DebugActivity : Activity() {
 
             if (!logs.isNullOrEmpty()) {
                 runOnUiThread {
-                    textView.text = base + "\n\n$ run-logcat --uid=" + Process.myUid() + "\n" + logs
+                    textView.text = base + "\n\nLOGCAT\n" + logs
                 }
             }
         }
@@ -153,16 +146,15 @@ class DebugActivity : Activity() {
         const val CRASH_FILE = "crash_report.txt"
 
         private val BLACK = Color.BLACK
-        private val GREEN = Color.rgb(0x33, 0xFF, 0x66)
+        private val WHITE = Color.rgb(0xED, 0xED, 0xED)
 
         fun buildReport(context: Context, error: String, started: Long): String {
             val sb = StringBuilder()
-            sb.appendLine("SuperSU crash report")
-            sb.appendLine("App: ${BuildConfig.APP_PACKAGE_NAME} ${versionString(context)}")
-            sb.appendLine("Process: ${processName()}")
-            sb.appendLine("Device: ${Build.MANUFACTURER} ${Build.MODEL}")
-            sb.appendLine("Android: ${Build.VERSION.RELEASE} (API ${Build.VERSION.SDK_INT})")
-            sb.appendLine("Started: ${formatTime(started)}")
+            sb.appendLine("Package:  ${BuildConfig.APP_PACKAGE_NAME} ${versionString(context)}")
+            sb.appendLine("Process:  ${processName()}")
+            sb.appendLine("Device:   ${Build.MANUFACTURER} ${Build.MODEL}")
+            sb.appendLine("Android:  ${Build.VERSION.RELEASE} (API ${Build.VERSION.SDK_INT})")
+            sb.appendLine("Started:  ${formatTime(started)}")
             sb.appendLine()
             sb.append(if (error.isBlank()) "No error message available." else error)
             return sb.toString()

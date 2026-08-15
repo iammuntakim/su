@@ -15,11 +15,11 @@
         <item name="android:paddingEnd">@dimen/l1</item>
     </style>
 
-    <style name="w_home_item_top">
+    <style name="w_home_item_top" parent="w_home_item">
         <item name="android:paddingTop">@dimen/l_75</item>
     </style>
 
-    <style name="w_home_item_bottom">
+    <style name="w_home_item_bottom" parent="w_home_item">
         <item name="android:paddingBottom">@dimen/l_75</item>
     </style>
 
