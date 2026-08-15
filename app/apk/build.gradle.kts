@@ -36,7 +36,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.10.3"
+        kotlinCompilerExtensionVersion = "1.10.5"
     }
 
     defaultConfig {
