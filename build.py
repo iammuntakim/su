@@ -182,6 +182,7 @@ def build_apk(module: str):
         f"--max-workers={cpu_count}",
         "-Dorg.gradle.jvmargs=-Xmx16g -XX:MaxMetaspaceSize=2g -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=20",
         "-q",
+        "--stacktrace",
     ]
 
     proc = execv(gradle_args, env=env)
