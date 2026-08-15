@@ -91,7 +91,6 @@ public class RecyclerView extends androidx.recyclerview.widget.RecyclerView {
             setRemoveDuration(240);
             setMoveDuration(360);
             setChangeDuration(320);
-            setInterpolator(new FastOutSlowInInterpolator());
         }
     }
 

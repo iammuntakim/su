@@ -130,7 +130,7 @@ public class Switch extends CompoundButton {
 
         final float scale = mPressedState ? 1.12f : 1f;
         final float travel = mTrackWidth - mThumbDiameter - mThumbInset * 2f;
-        final float position = ViewCompat.isLayoutRtl(this) ? 1f - mPosition : mPosition;
+        final float position = ViewCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_RTL ? 1f - mPosition : mPosition;
         final float thumbLeft = mTrackRect.left + mThumbInset + position * travel;
         final float thumbCenterX = thumbLeft + mThumbDiameter / 2f;
         final float thumbRadius = mThumbDiameter / 2f * scale;
@@ -210,7 +210,7 @@ public class Switch extends CompoundButton {
                     final float dx = ev.getX() - mTouchX;
                     final float travel = mTrackWidth - mThumbDiameter - mThumbInset * 2f;
                     float dPos = travel > 0 ? dx / travel : 0f;
-                    if (ViewCompat.isLayoutRtl(this)) {
+                    if (ViewCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_RTL) {
                         dPos = -dPos;
                     }
                     final float newPos = clamp(mPosition + dPos, 0f, 1f);
@@ -260,7 +260,7 @@ public class Switch extends CompoundButton {
             mVelocityTracker.computeCurrentVelocity(1000);
             final float xvel = mVelocityTracker.getXVelocity();
             if (Math.abs(xvel) > mMinFlingVelocity) {
-                newState = ViewCompat.isLayoutRtl(this) ? xvel < 0 : xvel > 0;
+                newState = ViewCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_RTL ? xvel < 0 : xvel > 0;
             } else {
                 newState = mPosition > 0.5f;
             }
@@ -276,7 +276,7 @@ public class Switch extends CompoundButton {
 
     private boolean hitThumb(float x, float y) {
         final float travel = mTrackWidth - mThumbDiameter - mThumbInset * 2f;
-        final float position = ViewCompat.isLayoutRtl(this) ? 1f - mPosition : mPosition;
+        final float position = ViewCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_RTL ? 1f - mPosition : mPosition;
         final float thumbLeft = getWidth() / 2f - mTrackWidth / 2f + mThumbInset + position * travel;
         final float thumbRight = thumbLeft + mThumbDiameter;
         final float trackTop = getHeight() / 2f - mTrackHeight / 2f;
