@@ -1,5 +1,6 @@
 plugins {
     id("SuperSuPlugin")
+    id("com.android.application")
 }
 
 tasks.register("clean", Delete::class) {
