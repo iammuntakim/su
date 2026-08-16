@@ -1,4 +1,4 @@
-package su.android.base
+package com.ma.base
 
 import android.content.ContentProvider
 import android.content.ContentValues

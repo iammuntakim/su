@@ -1,4 +1,4 @@
-package su.android
+package com.ma
 
 import android.annotation.SuppressLint
 import android.annotation.TargetApi

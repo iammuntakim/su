@@ -1,4 +1,4 @@
-package su.android.download
+package com.ma.download
 
 import android.annotation.SuppressLint
 import android.app.PendingIntent

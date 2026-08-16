@@ -1,4 +1,4 @@
-package su.android.utils
+package com.ma.utils
 
 import android.app.ActivityManager
 import android.content.ComponentName

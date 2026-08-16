@@ -1,4 +1,4 @@
-package su.android.utils
+package com.ma.utils
 
 import java.io.FilterInputStream
 import java.io.InputStream

@@ -1,4 +1,4 @@
-package su.android.model
+package com.ma.model
 
 import android.os.Parcelable
 import com.squareup.moshi.FromJson

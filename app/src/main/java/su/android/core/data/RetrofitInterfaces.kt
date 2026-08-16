@@ -1,4 +1,4 @@
-package su.android.data
+package com.ma.data
 
 import su.android.model.ModuleJson
 import su.android.model.Release

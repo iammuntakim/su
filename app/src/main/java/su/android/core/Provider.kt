@@ -1,4 +1,4 @@
-package su.android
+package com.ma
 
 import android.os.Bundle
 import su.android.base.BaseProvider

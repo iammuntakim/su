@@ -1,4 +1,4 @@
-package su.android.repository
+package com.ma.repository
 
 import su.android.BuildConfig
 import su.android.Config

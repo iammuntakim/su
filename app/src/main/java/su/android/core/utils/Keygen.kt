@@ -1,4 +1,4 @@
-package su.android.utils
+package com.ma.utils
 
 import android.util.Base64
 import android.util.Base64OutputStream

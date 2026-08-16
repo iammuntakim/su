@@ -1,4 +1,4 @@
-package su.android.model.module
+package com.ma.model.module
 
 import android.os.Parcelable
 import su.android.model.ModuleJson

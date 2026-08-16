@@ -1,4 +1,4 @@
-package su.android.tasks
+package com.ma.tasks
 
 import android.net.Uri
 import androidx.core.net.toFile

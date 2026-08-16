@@ -1,4 +1,4 @@
-package su.android.repository
+package com.ma.repository
 
 import android.content.Context
 import android.content.SharedPreferences

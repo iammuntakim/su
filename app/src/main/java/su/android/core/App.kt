@@ -1,4 +1,4 @@
-package su.android
+package com.ma
 
 import android.app.Application
 import android.content.Context

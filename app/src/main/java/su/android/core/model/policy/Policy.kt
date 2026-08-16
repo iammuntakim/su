@@ -1,4 +1,4 @@
-package su.android.model.policy
+package com.ma.model.policy
 
 import su.android.data.policy.PolicyDatabase
 

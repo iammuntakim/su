@@ -1,4 +1,4 @@
-package su.android.view
+package com.ma.view
 
 import android.content.Context
 import android.content.Intent

@@ -1,4 +1,4 @@
-package su.android
+package com.ma
 
 import android.os.Build
 import android.os.Process

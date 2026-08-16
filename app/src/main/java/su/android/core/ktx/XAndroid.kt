@@ -1,4 +1,4 @@
-package su.android.ktx
+package com.ma.ktx
 
 import android.annotation.SuppressLint
 import android.app.Activity

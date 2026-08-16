@@ -1,4 +1,4 @@
-package su.android.utils;
+package com.ma.utils;
 
 import static android.content.pm.PackageInstaller.EXTRA_SESSION_ID;
 import static android.content.pm.PackageInstaller.EXTRA_STATUS;

@@ -1,4 +1,4 @@
-package su.android.utils
+package com.ma.utils
 
 object DummyList : java.util.AbstractList<String>() {
 

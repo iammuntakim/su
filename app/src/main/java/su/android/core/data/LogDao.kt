@@ -1,4 +1,4 @@
-package su.android.data
+package com.ma.data
 
 import androidx.room.Dao
 import androidx.room.Database

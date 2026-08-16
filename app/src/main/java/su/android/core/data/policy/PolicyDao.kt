@@ -1,4 +1,4 @@
-package su.android.data.policy
+package com.ma.data.policy
 
 import su.android.AppContext
 import su.android.Const
