@@ -12,7 +12,7 @@ umask 022
 
 OUTFD=$2
 COMMONDIR=$INSTALLER/assets
-CHROMEDIR=$INSTALLER/assets/chromeos
+# CHROMEDIR disabled
 
 if [ ! -f $COMMONDIR/util_functions.sh ]; then
   echo "! Unable to extract zip file!"
@@ -130,7 +130,7 @@ case $((STATUS & 3)) in
       fi
       ./magiskboot repack $BOOTIMAGE
       # Sign chromeos boot
-      $CHROMEOS && sign_chromeos
+      # CHROMEOS disabled - no signing
       ui_print "- Flashing restored boot image"
       flash_image new-boot.img $BOOTIMAGE || abort "! Insufficient partition size"
     fi

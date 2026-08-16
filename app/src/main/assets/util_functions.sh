@@ -452,11 +452,11 @@ install_magisk() {
   run_migrations
 }
 
-sign_chromeos() {
+# sign_chromeos() - disabled
   ui_print "- Signing ChromeOS boot image"
 
   echo > empty
-  ./chromeos/futility vbutil_kernel --pack new-boot.img.signed \
+  vbutil_kernel --pack new-boot.img.signed vbutil_kernel --pack new-boot.img.signed \
   --keyblock ./chromeos/kernel.keyblock --signprivate ./chromeos/kernel_data_key.vbprivk \
   --version 1 --vmlinuz new-boot.img --config empty --arch arm --bootloader empty --flags 0x1
 

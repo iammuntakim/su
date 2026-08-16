@@ -260,7 +260,7 @@ ui_print "- Repacking boot image"
 ./magiskboot repack "$BOOTIMAGE" || abort "! Unable to repack boot image"
 
 # Sign chromeos boot
-$CHROMEOS && sign_chromeos
+# CHROMEOS disabled - no signing
 
 # Restore the original boot partition path
 [ -e "$BOOTNAND" ] && BOOTIMAGE="$BOOTNAND"
