@@ -17,6 +17,7 @@
         tools:ignore="UnusedAttribute,GoogleAppIndexingWarning"
         tools:remove="android:appComponentFactory">
 
+
         <receiver
             android:name=".Receiver"
             android:exported="false">
