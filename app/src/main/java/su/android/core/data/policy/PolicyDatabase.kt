@@ -1,4 +1,4 @@
-package com.ma.data.policy
+package su.android.data.policy
 
 import su.android.ktx.await
 import com.topjohnwu.superuser.Shell

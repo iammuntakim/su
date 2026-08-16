@@ -1,4 +1,4 @@
-package com.ma.download
+package su.android.download
 
 import android.Manifest
 import android.annotation.SuppressLint

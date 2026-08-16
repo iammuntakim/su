@@ -1,4 +1,4 @@
-package com.ma
+package su.android
 
 import android.os.Bundle
 import androidx.core.content.edit

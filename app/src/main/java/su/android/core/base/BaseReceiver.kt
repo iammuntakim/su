@@ -1,4 +1,4 @@
-package com.ma.base
+package su.android.base
 
 import android.content.BroadcastReceiver
 import android.content.Context

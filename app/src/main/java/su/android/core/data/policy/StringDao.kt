@@ -1,4 +1,4 @@
-package com.ma.data.policy
+package su.android.data.policy
 
 class StringDao : PolicyDatabase() {
 

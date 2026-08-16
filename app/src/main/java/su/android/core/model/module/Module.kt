@@ -1,4 +1,4 @@
-package com.ma.model.module
+package su.android.model.module
 
 abstract class Module : Comparable<Module> {
     abstract var id: String

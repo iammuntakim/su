@@ -1,4 +1,4 @@
-package com.ma.ktx
+package su.android.ktx
 
 import androidx.collection.SparseArrayCompat
 import kotlinx.coroutines.CoroutineDispatcher

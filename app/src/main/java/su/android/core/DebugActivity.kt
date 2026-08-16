@@ -1,4 +1,4 @@
-package com.ma
+package su.android
 
 import android.app.Activity
 import android.content.Intent

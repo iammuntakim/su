@@ -1,4 +1,4 @@
-package com.ma.repository
+package su.android.repository
 
 import su.android.Const
 import su.android.Info

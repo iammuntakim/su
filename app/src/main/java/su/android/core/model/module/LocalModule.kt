@@ -1,4 +1,4 @@
-package com.ma.model.module
+package su.android.model.module
 
 import com.squareup.moshi.JsonDataException
 import su.android.Const

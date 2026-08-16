@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package com.ma
+package su.android
 
 import android.content.ComponentName
 import android.content.Context

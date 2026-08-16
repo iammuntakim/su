@@ -1,4 +1,4 @@
-package com.ma.utils
+package su.android.utils
 
 import android.content.ContentUris
 import android.content.ContentValues

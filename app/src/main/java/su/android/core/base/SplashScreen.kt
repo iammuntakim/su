@@ -1,4 +1,4 @@
-package com.ma.base
+package su.android.base
 
 import android.Manifest.permission.REQUEST_INSTALL_PACKAGES
 import android.os.Bundle

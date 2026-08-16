@@ -1,4 +1,4 @@
-package com.ma;
+package su.android;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;

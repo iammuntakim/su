@@ -1,4 +1,4 @@
-package com.ma.di
+package su.android.di
 
 import android.content.Context
 import com.squareup.moshi.Moshi

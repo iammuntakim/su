@@ -1,4 +1,4 @@
-package com.ma.view
+package su.android.view
 
 import android.annotation.SuppressLint
 import android.app.Notification

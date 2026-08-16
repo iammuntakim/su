@@ -1,4 +1,4 @@
-package com.ma.di
+package su.android.di
 
 import android.annotation.SuppressLint
 import android.content.Context

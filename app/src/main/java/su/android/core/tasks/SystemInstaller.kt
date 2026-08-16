@@ -1,4 +1,4 @@
-package com.ma.tasks
+package su.android.tasks
 
 import android.net.Uri
 import android.os.Process

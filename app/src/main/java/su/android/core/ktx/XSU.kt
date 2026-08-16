@@ -1,4 +1,4 @@
-package com.ma.ktx
+package su.android.ktx
 
 import su.android.Config
 import com.topjohnwu.superuser.Shell

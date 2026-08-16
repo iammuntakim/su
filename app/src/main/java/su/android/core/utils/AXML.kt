@@ -1,4 +1,4 @@
-package com.ma.utils
+package su.android.utils
 
 import java.io.ByteArrayOutputStream
 import java.nio.ByteBuffer

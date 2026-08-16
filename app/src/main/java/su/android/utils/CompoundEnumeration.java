@@ -1,4 +1,4 @@
-package com.ma.utils;
+package su.android.utils;
 
 import java.util.Enumeration;
 import java.util.NoSuchElementException;

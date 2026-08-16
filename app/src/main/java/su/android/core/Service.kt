@@ -1,4 +1,4 @@
-package com.ma
+package su.android
 
 import android.app.Notification
 import android.content.Intent

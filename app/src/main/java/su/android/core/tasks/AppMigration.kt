@@ -1,4 +1,4 @@
-package com.ma.tasks
+package su.android.tasks
 
 import android.app.Activity
 import android.app.ActivityOptions

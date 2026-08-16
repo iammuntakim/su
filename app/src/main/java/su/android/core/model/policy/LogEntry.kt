@@ -1,4 +1,4 @@
-package com.ma.model.policy
+package su.android.model.policy
 
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager

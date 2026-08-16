@@ -1,4 +1,4 @@
-package com.ma.handler
+package su.android.handler
 
 import android.content.Intent
 import android.content.pm.PackageInfo
