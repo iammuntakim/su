@@ -1,6 +1,7 @@
 plugins {
     id("SuperSuPlugin")
     id("com.android.application")
+    id("com.android.kapt")
     id("com.google.devtools.ksp")
 }
 
