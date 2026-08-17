@@ -117,8 +117,10 @@ fun PackageManager.getPackageInfo(uid: Int, pid: Int): PackageInfo? {
                 // because the client is forked from ADB shell, not any app process.
                 return getPackageInfo("com.android.shell", flag)
             }
-        } else if (uid == proc.uid) {
-            return getPackageInfo(proc.pkgList[0], flag)
+        } else if (uid == proc.getField<Int>("uid")) {
+            @Suppress("UNCHECKED_CAST")
+            val pkgList = proc.getField<Array<String>>("pkgList")
+            return getPackageInfo(pkgList[0], flag)
         }
 
         return null
@@ -147,3 +149,6 @@ fun Context.toast(msg: CharSequence, duration: Int) {
 fun Context.toast(resId: Int, duration: Int) {
     UiThreadHandler.run { Toast.makeText(this, resId, duration).show() }
 }
+
+inline fun <reified T> Any.getField(name: String): T =
+    javaClass.reflectField(name).get(this) as T

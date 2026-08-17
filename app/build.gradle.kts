@@ -1,6 +1,7 @@
 plugins {
     id("SuperSuPlugin")
     id("com.android.application")
+    id("kotlin-parcelize")
     id("com.google.devtools.ksp")
 }
 
@@ -8,9 +9,16 @@ android {
     namespace = "android.sum"
     compileSdk = 36
     buildToolsVersion = "36.1.0"
+    buildFeatures {
+        buildConfig = true
+    }
     defaultConfig {
         minSdk = 23
         targetSdk = 36
+        buildConfigField("String", "APP_PACKAGE_NAME", "\"android.sum\"")
+        buildConfigField("int", "APP_VERSION_CODE", "30700")
+        buildConfigField("String", "APP_VERSION_NAME", "\"30.7\"")
+        buildConfigField("int", "STUB_VERSION", "40")
     }
 }
 
