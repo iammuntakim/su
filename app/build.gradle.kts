@@ -1,12 +1,11 @@
 plugins {
     id("SuperSuPlugin")
     id("com.android.application")
-    id("com.android.kapt")
     id("com.google.devtools.ksp")
 }
 
 android {
-    namespace = "su.android"
+    namespace = "android.sum"
     compileSdk = 36
     buildToolsVersion = "36.1.0"
     defaultConfig {
@@ -59,7 +58,4 @@ dependencies {
     implementation(libs.fragment.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
-
-    // Make sure kapt runs with a proper kotlin-stdlib
-    kapt(kotlin("stdlib"))
 }

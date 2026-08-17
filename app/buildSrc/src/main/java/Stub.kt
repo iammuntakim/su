@@ -216,7 +216,7 @@ private fun genStubClasses(outDir: File): Pair<String, String> {
         pkgDir.mkdirs()
         PrintStream(File(pkgDir, "$name.java")).use {
             it.println("package $pkg;")
-            it.println("public class $name extends su.android.$type {}")
+            it.println("public class $name extends android.sum.$type {}")
         }
         return clzName
     }
@@ -227,7 +227,7 @@ private fun genStubClasses(outDir: File): Pair<String, String> {
 }
 
 private fun genEncryptedResources(res: ByteArray, outDir: File) {
-    val mainPkgDir = File(outDir, "su.android")
+    val mainPkgDir = File(outDir, "android.sum")
     mainPkgDir.mkdirs()
 
     // Generate iv and key
@@ -247,7 +247,7 @@ private fun genEncryptedResources(res: ByteArray, outDir: File) {
     }
 
     PrintStream(File(mainPkgDir, "Bytes.java")).use {
-        it.println("package su.android;")
+        it.println("package android.sum;")
         it.println("public final class Bytes {")
 
         it.byteField("key", key)

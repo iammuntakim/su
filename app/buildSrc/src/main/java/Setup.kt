@@ -298,10 +298,10 @@ fun Project.setupMainApk() {
     setupAppCommon()
 
     androidApp {
-        namespace = "su.android"
+        namespace = "android.sum"
 
         defaultConfig {
-            applicationId = "su.android"
+            applicationId = "android.sum"
             vectorDrawables.useSupportLibrary = true
             versionName = Config.version
             versionCode = Config.versionCode
