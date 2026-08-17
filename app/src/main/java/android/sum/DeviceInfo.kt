@@ -3,10 +3,6 @@ package android.sum
 import android.app.KeyguardManager
 import android.os.Build
 import androidx.lifecycle.MutableLiveData
-import android.sum.StubPackageManager
-import android.sum.getProperty
-import android.sum.UpdateModels
-import android.sum.UpdateNetworkService
 import com.topjohnwu.superuser.CallbackList
 import com.topjohnwu.superuser.Shell
 import com.topjohnwu.superuser.ShellUtils.fastCmd
@@ -64,7 +60,7 @@ object DeviceInfo {
 
     val showSuperUser: Boolean get() {
         return env.isActive && (AppConstants.USER_ID == 0
-                || Config.suMultiuserMode == Config.Value.MULTIUSER_MODE_USER)
+                || AppConfig.suMultiuserMode == AppConfig.Value.MULTIUSER_MODE_USER)
     }
 
     val isDeviceSecure get() =
@@ -91,7 +87,7 @@ object DeviceInfo {
                 v[0], v.size >= 3 && v[2] == "D",
                 runCatching { fastCmd("magisk -V").toInt() }.getOrDefault(-1)
             )
-            Config.denyList = fastCmdResult(shell, "magisk --denylist status")
+            AppConfig.denyList = fastCmdResult(shell, "magisk --denylist status")
         }
 
         val map = mutableMapOf<String, String>()
@@ -118,8 +114,8 @@ object DeviceInfo {
         isVendorBoot = getBool("VENDORBOOT")
 
         // Default presets
-        Config.recovery = getBool("RECOVERYMODE")
-        Config.keepVerity = getBool("KEEPVERITY")
-        Config.keepEnc = getBool("KEEPFORCEENCRYPT")
+        AppConfig.recovery = getBool("RECOVERYMODE")
+        AppConfig.keepVerity = getBool("KEEPVERITY")
+        AppConfig.keepEnc = getBool("KEEPFORCEENCRYPT")
     }
 }

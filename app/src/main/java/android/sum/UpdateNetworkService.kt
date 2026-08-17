@@ -1,19 +1,6 @@
 package android.sum
 
 import android.sum.BuildConfig
-import android.sum.AppConfig
-import android.sum.AppConfig.Value.BETA_CHANNEL
-import android.sum.AppConfig.Value.CUSTOM_CHANNEL
-import android.sum.AppConfig.Value.DEBUG_CHANNEL
-import android.sum.AppConfig.Value.DEFAULT_CHANNEL
-import android.sum.AppConfig.Value.STABLE_CHANNEL
-import android.sum.DeviceInfo
-import android.sum.GithubApiServices
-import android.sum.RawUrl
-import android.sum.dateFormat
-import android.sum.Release
-import android.sum.ReleaseAssets
-import android.sum.UpdateModels
 import retrofit2.HttpException
 import timber.log.Timber
 import java.io.IOException
@@ -23,19 +10,19 @@ class NetworkService(
     private val api: GithubApiServices,
 ) {
     suspend fun fetchUpdate() = safe {
-        var info = when (Config.updateChannel) {
+        var info = when (AppConfig.updateChannel) {
             DEFAULT_CHANNEL -> if (BuildConfig.DEBUG) fetchDebugUpdate() else fetchStableUpdate()
             STABLE_CHANNEL -> fetchStableUpdate()
             BETA_CHANNEL -> fetchBetaUpdate()
             DEBUG_CHANNEL -> fetchDebugUpdate()
-            CUSTOM_CHANNEL -> fetchCustomUpdate(Config.customChannelUrl)
+            CUSTOM_CHANNEL -> fetchCustomUpdate(AppConfig.customChannelUrl)
             else -> throw IllegalArgumentException()
         }
         if (info.versionCode < DeviceInfo.env.versionCode &&
-            Config.updateChannel == DEFAULT_CHANNEL &&
+            AppConfig.updateChannel == DEFAULT_CHANNEL &&
             !BuildConfig.DEBUG
         ) {
-            Config.updateChannel = BETA_CHANNEL
+            AppConfig.updateChannel = BETA_CHANNEL
             info = fetchBetaUpdate()
         }
         info

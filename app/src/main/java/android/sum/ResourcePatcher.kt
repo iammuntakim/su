@@ -8,11 +8,8 @@ import android.content.ContextWrapper
 import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
-import android.sum.StubPackageManager
-import android.sum.unwrap
-import android.sum.LocaleManager
 
-fun Resources.addAssetPath(path: String) = StubApk.addAssetPath(this, path)
+fun Resources.addAssetPath(path: String) = StubPackageManager.addAssetPath(this, path)
 
 fun Resources.patch(): Resources {
     if (isRunningAsStub)

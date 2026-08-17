@@ -1,7 +1,5 @@
 package android.sum
 
-import android.sum.policy.MagiskSettingsDao
-import android.sum.policy.MagiskStringDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -9,8 +7,8 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 interface DBConfig {
-    val settingsDB: SettingsDao
-    val stringDB: StringDao
+    val settingsDB: MagiskSettingsDao
+    val stringDB: MagiskStringDao
     val coroutineScope: CoroutineScope
 
     fun dbSettings(

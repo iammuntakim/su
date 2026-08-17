@@ -3,8 +3,6 @@ package android.sum
 import android.app.Application
 import android.content.Context
 import android.content.Intent
-import android.sum.StubPackageManager
-import android.sum.RootServiceBridge
 import java.io.PrintWriter
 import java.io.StringWriter
 import kotlin.system.exitProcess
@@ -42,7 +40,7 @@ open class SuperApplication : Application {
                 val exceptionType = throwable.javaClass.simpleName
                 val fullError = "$exceptionType\n$stackTraceString"
 
-                val intent = Intent(this, DebugActivity::class.java).apply {
+                val intent = Intent(this, CrashReportActivity::class.java).apply {
                     putExtra("error", fullError)
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 }

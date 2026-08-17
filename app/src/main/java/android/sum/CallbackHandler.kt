@@ -4,14 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
 import android.sum.BuildConfig
-import android.sum.AppConfig
 import android.sum.R
-import android.sum.ServiceLocator
-import android.sum.getLabel
-import android.sum.getPackageInfo
-import android.sum.toast
-import android.sum.policy.SuAccessPolicy
-import android.sum.policy.createLogEntry
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 
@@ -90,7 +83,7 @@ object CallbackHandler {
     }
 
     private fun notify(context: Context, granted: Boolean, appName: String) {
-        if (Config.suNotification == Config.Value.NOTIFICATION_TOAST) {
+        if (AppConfig.suNotification == AppConfig.Value.NOTIFICATION_TOAST) {
             val resId = if (granted)
                 R.string.su_allow_toast
             else

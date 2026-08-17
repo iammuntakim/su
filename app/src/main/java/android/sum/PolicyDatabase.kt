@@ -1,6 +1,5 @@
 package android.sum
 
-import android.sum.await
 import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

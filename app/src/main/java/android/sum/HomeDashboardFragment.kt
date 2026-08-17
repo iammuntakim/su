@@ -14,11 +14,6 @@ import android.widget.ScrollView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import android.sum.DeviceInfo
-import android.sum.core.Const
-import android.sum.VectorDrawableFactory
-import android.sum.MaterialComponents
-import android.sum.MaterialComponents.dp
 
 class HomeDashboardFragment : Fragment() {
 

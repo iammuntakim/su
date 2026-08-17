@@ -22,9 +22,6 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.getSystemService
-import android.sum.LocaleManager
-import android.sum.RootServiceBridge
-import android.sum.APKInstall
 import com.topjohnwu.superuser.internal.UiThreadHandler
 import java.io.File
 

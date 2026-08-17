@@ -1,9 +1,6 @@
 package android.sum
 
 import com.squareup.moshi.JsonDataException
-import android.sum.AppConstants
-import android.sum.ServiceLocator
-import android.sum.RootServiceBridge
 import com.topjohnwu.superuser.Shell
 import com.topjohnwu.superuser.nio.ExtendedFile
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +11,7 @@ import java.util.Locale
 
 data class LocalModule(
     val base: ExtendedFile,
-) : Module() {
+) : ModuleBase() {
     private val svc get() = ServiceLocator.networkService
 
     override var id: String = ""

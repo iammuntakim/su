@@ -1,8 +1,5 @@
 package android.sum
 
-import android.sum.ApplicationContext
-import android.sum.AppConstants
-import android.sum.policy.SuAccessPolicy
 
 private const val SELECT_QUERY = "SELECT (until - strftime(\"%s\", \"now\")) AS remain, *"
 

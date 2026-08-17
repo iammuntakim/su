@@ -9,12 +9,7 @@ import android.os.Build
 import android.os.Build.VERSION.SDK_INT
 import androidx.core.content.getSystemService
 import androidx.core.graphics.drawable.toIcon
-import android.sum.ApplicationContext
 import android.sum.R
-import android.sum.DownloadEngine
-import android.sum.DownloadTarget
-import android.sum.getBitmap
-import android.sum.selfLaunchIntent
 import java.util.concurrent.atomic.AtomicInteger
 
 @Suppress("DEPRECATION")
@@ -67,7 +62,7 @@ object NotificationHelper {
 
     fun updateAvailable() {
         AppContext.apply {
-            val intent = DownloadEngine.getPendingIntent(this, Subject.App())
+            val intent = DownloadEngine.getPendingIntent(this, DownloadTarget.App())
             val bitmap = getBitmap(R.drawable.ic_app_logo_outline)
             val builder = if (SDK_INT >= Build.VERSION_CODES.O) {
                 Notification.Builder(this, UPDATE_CHANNEL)

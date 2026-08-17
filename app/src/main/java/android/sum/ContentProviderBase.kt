@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.pm.ProviderInfo
 import android.database.Cursor
 import android.net.Uri
-import android.sum.patch
 
 open class ContentProviderBase : ContentProvider() {
     override fun attachInfo(context: Context, info: ProviderInfo) {

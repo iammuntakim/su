@@ -1,8 +1,5 @@
 package android.sum
 
-import android.sum.ModuleJson
-import android.sum.Release
-import android.sum.UpdateJson
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.GET

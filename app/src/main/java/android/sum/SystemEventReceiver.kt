@@ -4,17 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import androidx.core.content.IntentCompat
-import android.sum.BaseReceiver
-import android.sum.ServiceLocator
-import android.sum.DownloadEngine
-import android.sum.DownloadTarget
-import android.sum.NotificationHelper
-import android.sum.ShortcutHelper
 import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-open class SystemEventReceiver : BaseReceiver() {
+open class SystemEventReceiver : BroadcastReceiverBase() {
 
     private val policyDB get() = ServiceLocator.policyDB
 
@@ -40,13 +34,13 @@ open class SystemEventReceiver : BaseReceiver() {
         when (intent.action ?: return) {
             DownloadEngine.ACTION -> {
                 IntentCompat.getParcelableExtra(
-                    intent, DownloadEngine.SUBJECT_KEY, Subject::class.java)?.let {
+                    intent, DownloadEngine.SUBJECT_KEY, DownloadTarget::class.java)?.let {
                         DownloadEngine.start(context, it)
                     }
             }
             Intent.ACTION_PACKAGE_REPLACED -> {
                 // This will only work pre-O
-                if (Config.suReAuth)
+                if (AppConfig.suReAuth)
                     getUid(intent)?.let { rmPolicy(it) }
             }
             Intent.ACTION_UID_REMOVED -> {
@@ -60,7 +54,7 @@ open class SystemEventReceiver : BaseReceiver() {
                 @Suppress("DEPRECATION")
                 val installer = context.packageManager.getInstallerPackageName(context.packageName)
                 if (installer == context.packageName) {
-                    Notifications.updateDone()
+                    NotificationHelper.updateDone()
                 }
             }
         }

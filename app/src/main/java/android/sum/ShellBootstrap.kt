@@ -1,13 +1,6 @@
 package android.sum
 
 import android.content.Context
-import android.sum.StubPackageManager
-import android.sum.AppConstants
-import android.sum.DeviceInfo
-import android.sum.isRunningAsStub
-import android.sum.cachedFile
-import android.sum.deviceProtectedContext
-import android.sum.writeTo
 import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -28,7 +21,7 @@ class ShellBootstrap : Shell.Initializer() {
             if (isRunningAsStub) {
                 if (!shell.isRoot)
                     return true
-                val jar = JarFile(StubApk.current(context))
+                val jar = JarFile(StubPackageManager.current(context))
                 val bb = jar.getJarEntry("lib/${AppConstants.CPU_ABI}/libbusybox.so")
                 localBB = context.deviceProtectedContext.cachedFile("busybox")
                 localBB.delete()
@@ -43,11 +36,11 @@ class ShellBootstrap : Shell.Initializer() {
             if (shell.isRoot) {
                 add("export MAGISKTMP=\$(magisk --path)")
                 // Test if we can properly execute stuff in /data
-                Info.noDataExec = !shell.newJob()
+                DeviceInfo.noDataExec = !shell.newJob()
                     .add("$localBB sh -c '$localBB true'").exec().isSuccess
             }
 
-            if (Info.noDataExec) {
+            if (DeviceInfo.noDataExec) {
                 // Copy it out of /data to workaround Samsung bullshit
                 add(
                     "if [ -x \$MAGISKTMP/.magisk/busybox/busybox ]; then",
@@ -69,7 +62,7 @@ class ShellBootstrap : Shell.Initializer() {
             }
         }.exec()
 
-        Info.init(shell)
+        DeviceInfo.init(shell)
         return true
     }
 }

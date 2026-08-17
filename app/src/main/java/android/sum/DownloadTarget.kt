@@ -7,11 +7,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Parcelable
 import androidx.core.net.toUri
-import android.sum.DeviceInfo
-import android.sum.UpdateModels
-import android.sum.module.RemoteModule
-import android.sum.FileAccessHelper
-import android.sum.NotificationHelper
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import java.io.File
@@ -27,7 +22,7 @@ abstract class DownloadTarget : Parcelable {
 
     open fun pendingIntent(context: Context): PendingIntent? = null
 
-    abstract class ModuleBase : Subject() {
+    abstract class ModuleBase : DownloadTarget() {
         abstract val module: OnlineModule
         final override val url: String get() = module.zipUrl
         final override val title: String get() = module.downloadFilename
@@ -40,7 +35,7 @@ abstract class DownloadTarget : Parcelable {
     class App(
         private val json: UpdateInfo = DeviceInfo.update,
         override val notifyId: Int = NotificationHelper.nextId()
-    ) : Subject() {
+    ) : DownloadTarget() {
         override val title: String get() = "SuperSU-${json.version}(${json.versionCode})"
         override val url: String get() = json.link
 
@@ -58,7 +53,7 @@ abstract class DownloadTarget : Parcelable {
     class Test(
         override val notifyId: Int = NotificationHelper.nextId(),
         override val title: String = UUID.randomUUID().toString().substring(0, 6)
-    ) : Subject() {
+    ) : DownloadTarget() {
         override val url get() = "https://link.testfile.org/250MB"
         override val file get() = File("/dev/null").toUri()
         override val autoLaunch get() = false

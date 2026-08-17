@@ -1,10 +1,8 @@
 package android.sum
 
 import android.os.Bundle
-import android.sum.BaseProvider
-import android.sum.CallbackHandler
 
-class SuCallbackProvider : BaseProvider() {
+class SuCallbackProvider : ContentProviderBase() {
 
     override fun call(method: String, arg: String?, extras: Bundle?): Bundle? {
         return when (method) {

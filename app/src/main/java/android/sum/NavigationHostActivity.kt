@@ -27,12 +27,6 @@ import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.ShapeAppearanceModel
 import android.sum.R
-import android.sum.HomeDashboardFragment
-import android.sum.ModuleManagerFragment
-import android.sum.SuperuserFragment
-import android.sum.AppSettingsFragment
-import android.sum.MaterialComponents
-import android.sum.VectorDrawableFactory
 
 class NavigationHostActivity : AppCompatActivity() {
 

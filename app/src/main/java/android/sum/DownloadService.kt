@@ -5,12 +5,8 @@ import android.content.Intent
 import android.os.Build
 import androidx.core.app.ServiceCompat
 import androidx.core.content.IntentCompat
-import android.sum.BaseService
-import android.sum.DownloadEngine
-import android.sum.DownloadSession
-import android.sum.DownloadTarget
 
-class DownloadService : BaseService(), DownloadSession {
+class DownloadService : ForegroundServiceBase(), DownloadSession {
 
     private var mEngine: DownloadEngine? = null
     override val context get() = this
@@ -18,7 +14,7 @@ class DownloadService : BaseService(), DownloadSession {
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         if (intent.action == DownloadEngine.ACTION) {
             IntentCompat
-                .getParcelableExtra(intent, DownloadEngine.SUBJECT_KEY, Subject::class.java)
+                .getParcelableExtra(intent, DownloadEngine.SUBJECT_KEY, DownloadTarget::class.java)
                 ?.let { subject ->
                     val engine = mEngine ?: DownloadEngine(this).also { mEngine = it }
                     engine.download(subject)

@@ -16,10 +16,6 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts.GetContent
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
 import android.sum.R
-import android.sum.reflectField
-import android.sum.toast
-import android.sum.BiometricAuthContract
-import android.sum.InstallPermissionContract
 
 interface ContentResultCallback: ActivityResultCallback<Uri>, Parcelable {
     fun onActivityLaunch() {}

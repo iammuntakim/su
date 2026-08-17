@@ -2,11 +2,7 @@ package android.sum
 
 import android.content.Context
 import com.squareup.moshi.Moshi
-import android.sum.ProviderInstaller
 import android.sum.BuildConfig
-import android.sum.AppConfig
-import android.sum.DateTimeAdapter
-import android.sum.LocaleManager
 import okhttp3.Cache
 import okhttp3.ConnectionSpec
 import okhttp3.Dns
@@ -41,7 +37,7 @@ private class DnsResolver(client: OkHttpClient) : Dns {
     }
 
     override fun lookup(hostname: String): List<InetAddress> {
-        if (Config.doh) {
+        if (AppConfig.doh) {
             try {
                 return doh.lookup(hostname)
             } catch (e: UnknownHostException) {}

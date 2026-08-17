@@ -2,10 +2,6 @@ package android.sum
 
 import android.os.Bundle
 import androidx.core.content.edit
-import android.sum.ServiceLocator
-import android.sum.DatabasePropertyDelegate
-import android.sum.PreferencePropertyDelegate
-import android.sum.LocaleManager
 import kotlinx.coroutines.GlobalScope
 
 object AppConfig : PreferenceConfig, DBConfig {
@@ -120,7 +116,7 @@ object AppConfig : PreferenceConfig, DBConfig {
         set(value) {
             if (checkUpdatePrefs != value) {
                 checkUpdatePrefs = value
-                JobService.schedule(AppContext)
+                UpdateJobService.schedule(AppContext)
             }
         }
     var locale
@@ -130,7 +126,7 @@ object AppConfig : PreferenceConfig, DBConfig {
             LocaleSetting.instance.setLocale(value)
         }
 
-    var zygisk by dbSettings(Key.ZYGISK, Info.isEmulator)
+    var zygisk by dbSettings(Key.ZYGISK, DeviceInfo.isEmulator)
     var suManager by dbStrings(Key.SU_MANAGER, "", true)
     var keyStoreRaw by dbStrings(Key.KEYSTORE, "", true)
 
@@ -142,7 +138,7 @@ object AppConfig : PreferenceConfig, DBConfig {
     var suMultiuserMode by dbSettings(Key.SU_MULTIUSER_MODE, Value.MULTIUSER_MODE_OWNER_ONLY)
     private var suBiometric by dbSettings(Key.SU_BIOMETRIC, false)
     var suAuth
-        get() = Info.isDeviceSecure && suBiometric
+        get() = DeviceInfo.isDeviceSecure && suBiometric
         set(value) {
             suBiometric = value
         }

@@ -4,15 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.text.method.LinkMovementMethod
 import androidx.room.Room
-import android.sum.ApplicationContext
-import android.sum.AppConstants
-import android.sum.LogDatabase
-import android.sum.policy.SuPolicyDao
-import android.sum.policy.MagiskSettingsDao
-import android.sum.policy.MagiskStringDao
-import android.sum.deviceProtectedContext
-import android.sum.AccessLogRepository
-import android.sum.UpdateNetworkService
 import io.noties.markwon.Markwon
 import io.noties.markwon.utils.NoCopySpannableFactory
 
@@ -23,9 +14,9 @@ object ServiceLocator {
     val timeoutPrefs by lazy { deContext.getSharedPreferences("su_timeout", 0) }
 
     // Database
-    val policyDB = PolicyDao()
-    val settingsDB = SettingsDao()
-    val stringDB = StringDao()
+    val policyDB = SuPolicyDao()
+    val settingsDB = MagiskSettingsDao()
+    val stringDB = MagiskStringDao()
     val sulogDB by lazy { createLogDatabase(deContext).logDao() }
     val logRepo by lazy { LogRepository(sulogDB) }
 

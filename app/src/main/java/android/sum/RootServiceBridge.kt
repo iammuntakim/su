@@ -11,8 +11,6 @@ import android.os.Parcel
 import android.os.Process
 import android.system.Os
 import androidx.core.content.getSystemService
-import android.sum.AppConstants
-import android.sum.DeviceInfo
 import com.topjohnwu.superuser.Shell
 import com.topjohnwu.superuser.ShellUtils
 import com.topjohnwu.superuser.ipc.RootService

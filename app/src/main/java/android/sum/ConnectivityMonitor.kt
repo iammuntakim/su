@@ -11,8 +11,6 @@ import android.net.NetworkRequest
 import android.os.PowerManager
 import androidx.collection.ArraySet
 import androidx.core.content.getSystemService
-import android.sum.DeviceInfo
-import android.sum.registerRuntimeReceiver
 
 class NetworkObserver(context: Context) {
     private val manager = context.getSystemService<ConnectivityManager>()!!
@@ -62,7 +60,7 @@ class NetworkObserver(context: Context) {
     }
 
     private fun postValue(b: Boolean) {
-        Info.resetUpdate()
+        DeviceInfo.resetUpdate()
         DeviceInfo.isConnected.postValue(b)
     }
 

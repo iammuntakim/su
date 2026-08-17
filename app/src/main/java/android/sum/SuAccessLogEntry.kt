@@ -4,7 +4,6 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import android.sum.getLabel
 
 @Entity(tableName = "logs")
 class LogEntry(

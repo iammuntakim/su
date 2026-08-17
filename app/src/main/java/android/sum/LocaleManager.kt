@@ -11,12 +11,7 @@ import android.os.Build
 import android.os.LocaleList
 import android.provider.Settings
 import androidx.annotation.RequiresApi
-import android.sum.AppApkPath
-import android.sum.ApplicationContext
-import android.sum.AppConfig
 import android.sum.R
-import android.sum.relaunch
-import android.sum.isRunningAsStub
 import org.xmlpull.v1.XmlPullParser
 import java.util.Locale
 
@@ -37,7 +32,7 @@ interface LocaleSetting {
         override var currentLocale: Locale = systemLocale
 
         init {
-            setLocale(Config.locale)
+            setLocale(AppConfig.locale)
         }
 
         override fun setLocale(tag: String) {
@@ -70,7 +65,7 @@ interface LocaleSetting {
         override val currentLocale: Locale get() = currentLocaleList[0]
 
         init {
-            setLocale(Config.locale)
+            setLocale(AppConfig.locale)
         }
 
         override fun setLocale(tag: String) {

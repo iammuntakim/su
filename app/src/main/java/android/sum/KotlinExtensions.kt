@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.withContext
+import com.topjohnwu.superuser.Shell
 import java.io.Closeable
 import java.io.File
 import java.io.IOException
@@ -18,6 +19,9 @@ import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+import org.apache.commons.compress.archivers.zip.ZipArchiveEntry
+import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream
+import org.apache.commons.compress.archivers.zip.ZipFile
 import java.util.Collections
 
 inline fun <In : Closeable, Out : Closeable> withInOut(
@@ -95,4 +99,21 @@ val timeDateFormat: DateTimeFormatter by lazy {
 }
 val dateFormat: DateTimeFormatter by lazy {
     DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).withZone(ZoneId.systemDefault())
+}
+
+suspend fun Shell.Job.await() = withContext(Dispatchers.IO) { exec() }
+
+fun ZipFile.copyRawEntries(
+    out: ZipArchiveOutputStream,
+    filter: (ZipArchiveEntry) -> Boolean = { true }
+) {
+    for (entry in entries) {
+        if (!filter(entry)) continue
+        val archiveEntry = ZipArchiveEntry(entry.name)
+        out.putArchiveEntry(archiveEntry)
+        getInputStream(entry).use { input ->
+            input.copyAll(out)
+        }
+        out.closeArchiveEntry()
+    }
 }

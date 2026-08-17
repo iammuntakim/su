@@ -1,17 +1,7 @@
 package android.sum
 
 import android.net.Uri
-import android.sum.StubPackageManager
 import android.sum.R
-import android.sum.isRunningAsStub
-import android.sum.cachedFile
-import android.sum.copyAll
-import android.sum.copyAndClose
-import android.sum.withInOut
-import android.sum.writeTo
-import android.sum.PackageMigration
-import android.sum.FileAccessHelper.outputStream
-import android.sum.APKInstall
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry
 import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream
 import org.apache.commons.compress.archivers.zip.ZipFile
@@ -21,19 +11,19 @@ import java.io.OutputStream
 
 class DownloadProcessor(notifier: DownloadNotifier) : DownloadNotifier by notifier {
 
-    suspend fun handle(stream: InputStream, subject: Subject) {
+    suspend fun handle(stream: InputStream, subject: DownloadTarget) {
         when (subject) {
-            is Subject.App -> handleApp(stream, subject)
-            is Subject.Module -> handleModule(stream, subject.file)
+            is DownloadTarget.App -> handleApp(stream, subject)
+            is DownloadTarget.ModuleBase -> handleModule(stream, subject.file)
             else -> stream.copyAndClose(subject.file.outputStream())
         }
     }
 
-    suspend fun handleApp(stream: InputStream, subject: Subject.App) {
+    suspend fun handleApp(stream: InputStream, subject: DownloadTarget.App) {
         val external = subject.file.outputStream()
 
         if (isRunningAsStub) {
-            val updateApk = StubApk.update(context)
+            val updateApk = StubPackageManager.update(context)
             try {
                 // Download full APK to stub update path
                 stream.copyAndClose(TeeOutputStream(external, updateApk.outputStream()))

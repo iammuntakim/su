@@ -6,15 +6,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.widget.Toast
-import android.sum.BuildConfig.APP_PACKAGE_NAME
-import android.sum.R
 import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
-import java.io.OutputStream
 
-object PackageMigration {
+object AppMigration {
 
     private fun launchApp(context: Context, pkg: String) {
         val intent = context.packageManager.getLaunchIntentForPackage(pkg) ?: return
@@ -31,11 +28,11 @@ object PackageMigration {
 
     suspend fun restoreApp(context: Context): Boolean {
         val apk = StubPackageManager.current(context)
-        val cmd = "adb_pm_install $apk $APP_PACKAGE_NAME"
+        val cmd = "adb_pm_install $apk ${BuildConfig.APP_PACKAGE_NAME}"
         if (Shell.cmd(cmd).await().isSuccess) {
             AppConfig.suManager = ""
             Shell.cmd("touch $AppApkPath").exec()
-            launchApp(context, APP_PACKAGE_NAME)
+            launchApp(context, BuildConfig.APP_PACKAGE_NAME)
             return true
         }
         return false

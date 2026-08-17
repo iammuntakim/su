@@ -1,10 +1,5 @@
 package android.sum
 
-import android.sum.AppConstants
-import android.sum.DeviceInfo
-import android.sum.AccessLogDao
-import android.sum.await
-import android.sum.policy.SuAccessLogEntry
 import com.topjohnwu.superuser.Shell
 class LogRepository(
     private val logDao: LogDao

@@ -1,6 +1,5 @@
 package android.sum
 
-import android.sum.policy.PolicyDatabase
 
 class Policy(
     val uid: Int,

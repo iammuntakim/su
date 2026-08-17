@@ -8,18 +8,12 @@ import android.app.job.JobParameters
 import android.app.job.JobScheduler
 import android.content.Context
 import androidx.core.content.getSystemService
-import android.sum.BaseJobService
-import android.sum.ServiceLocator
-import android.sum.DownloadEngine
-import android.sum.DownloadSession
-import android.sum.DownloadTarget
-import android.sum.NotificationHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
-class UpdateJobService : BaseJobService() {
+class UpdateJobService : BackgroundJobService() {
 
     private var mSession: Session? = null
 
@@ -58,9 +52,9 @@ class UpdateJobService : BaseJobService() {
 
     @TargetApi(value = 34)
     private fun downloadFile(params: JobParameters): Boolean {
-        params.transientExtras.classLoader = Subject::class.java.classLoader
+        params.transientExtras.classLoader = DownloadTarget::class.java.classLoader
         val subject = params.transientExtras
-            .getParcelable(DownloadEngine.SUBJECT_KEY, Subject::class.java) ?:
+            .getParcelable(DownloadEngine.SUBJECT_KEY, DownloadTarget::class.java) ?:
             return false
 
         val session = mSession?.also {
@@ -75,9 +69,9 @@ class UpdateJobService : BaseJobService() {
 
     private fun checkUpdate(params: JobParameters): Boolean {
         GlobalScope.launch(Dispatchers.IO) {
-            Info.fetchUpdate(ServiceLocator.networkService)?.let {
+            DeviceInfo.fetchUpdate(ServiceLocator.networkService)?.let {
                 if (DeviceInfo.env.isActive && BuildConfig.APP_VERSION_CODE < it.versionCode)
-                    Notifications.updateAvailable()
+                    NotificationHelper.updateAvailable()
                 jobFinished(params, false)
             }
         }
@@ -87,8 +81,8 @@ class UpdateJobService : BaseJobService() {
     companion object {
         fun schedule(context: Context) {
             val scheduler = context.getSystemService<JobScheduler>() ?: return
-            if (Config.checkUpdate) {
-                val cmp = JobService::class.java.cmp(context.packageName)
+            if (AppConfig.checkUpdate) {
+                val cmp = UpdateJobService::class.java.cmp(context.packageName)
                 val info = JobInfo.Builder(AppConstants.ID.CHECK_UPDATE_JOB_ID, cmp)
                     .setPeriodic(TimeUnit.HOURS.toMillis(12))
                     .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)

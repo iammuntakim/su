@@ -1,7 +1,6 @@
 package android.sum
 
 import android.os.Parcelable
-import android.sum.ModuleJson
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -12,7 +11,7 @@ data class OnlineModule(
     override var versionCode: Int,
     val zipUrl: String,
     val changelog: String,
-) : Module(), Parcelable {
+) : ModuleBase(), Parcelable {
     constructor(local: LocalModule, json: ModuleJson) :
         this(local.id, local.name, json.version, json.versionCode, json.zipUrl, json.changelog)
 

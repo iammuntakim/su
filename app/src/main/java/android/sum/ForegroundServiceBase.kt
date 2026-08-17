@@ -4,7 +4,6 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
-import android.sum.patch
 
 open class ForegroundServiceBase : Service() {
     override fun attachBaseContext(base: Context) {

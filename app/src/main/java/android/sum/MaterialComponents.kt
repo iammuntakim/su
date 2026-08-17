@@ -31,7 +31,6 @@ import com.google.android.material.color.MaterialColors
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.ShapeAppearanceModel
-import android.sum.VectorDrawableFactory
 
 object MaterialComponents {
 

@@ -15,7 +15,7 @@ import java.io.FileNotFoundException
 import java.io.IOException
 
 @Suppress("DEPRECATION")
-object FileAccessHelper {
+object MediaStoreUtils {
 
     private val cr get() = AppContext.contentResolver
 
@@ -35,10 +35,6 @@ object FileAccessHelper {
         values.put(MediaStore.MediaColumns.RELATIVE_PATH, downloadPath)
         values.put(MediaStore.MediaColumns.DISPLAY_NAME, displayName)
 
-        // When a file with the same name exists and was not created by us:
-        // - Before Android 11, insert will return null
-        // - On Android 11+, the system will automatically create a new name
-        // Thus the reason to restrict this method call to API 30+
         val fileUri = cr.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, values)
             ?: throw IOException("Can't insert $displayName.")
 
@@ -59,7 +55,6 @@ object FileAccessHelper {
     @RequiresApi(api = 29)
     private fun queryFile(displayName: String): UriFile? {
         val projection = arrayOf(MediaStore.MediaColumns._ID, MediaStore.MediaColumns.DATA)
-        // Before Android 10, we wrote the DISPLAY_NAME field when insert, so it can be used.
         val selection = "${MediaStore.MediaColumns.DISPLAY_NAME} == ?"
         val selectionArgs = arrayOf(displayName)
         val sortOrder = "${MediaStore.MediaColumns.DATE_ADDED} DESC"
@@ -83,7 +78,6 @@ object FileAccessHelper {
     @Throws(IOException::class)
     fun getFile(displayName: String): UriFile {
         return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
-            // Fallback to file based I/O pre Android 11
             val parent = File(Environment.getExternalStorageDirectory(), downloadPath)
             parent.mkdirs()
             LegacyUriFile(File(parent, displayName))
@@ -98,7 +92,6 @@ object FileAccessHelper {
 
     val Uri.displayName: String get() {
         if (scheme == "file") {
-            // Simple uri wrapper over file, directly get file name
             return toFile().name
         }
         require(scheme == "content") { "Uri lacks 'content' scheme: $this" }

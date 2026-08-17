@@ -11,9 +11,6 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import android.sum.VectorDrawableFactory
-import android.sum.MaterialComponents
-import android.sum.MaterialComponents.dp
 
 class AppSettingsFragment : Fragment() {
 

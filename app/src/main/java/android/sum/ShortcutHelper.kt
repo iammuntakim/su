@@ -11,11 +11,7 @@ import androidx.core.content.getSystemService
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
-import android.sum.AppConstants
-import android.sum.DeviceInfo
 import android.sum.R
-import android.sum.isRunningAsStub
-import android.sum.getBitmap
 
 object ShortcutHelper {
 
@@ -66,7 +62,7 @@ object ShortcutHelper {
 
         val shortCuts = mutableListOf<ShortcutInfo>()
 
-        if (Info.showSuperUser) {
+        if (DeviceInfo.showSuperUser) {
             shortCuts.add(
                 ShortcutInfo.Builder(context, AppConstants.Nav.SUPERUSER)
                     .setShortLabel(context.getString(R.string.superuser))

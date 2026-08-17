@@ -12,12 +12,6 @@ import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.system.Os
 import androidx.profileinstaller.ProfileInstaller
-import android.sum.StubPackageManager
-import android.sum.UntrackedActivity
-import android.sum.LocaleManager
-import android.sum.ConnectivityMonitor
-import android.sum.RootServiceBridge
-import android.sum.ShellBootstrap
 import com.topjohnwu.superuser.Shell
 import com.topjohnwu.superuser.internal.UiThreadHandler
 import com.topjohnwu.superuser.ipc.RootService
@@ -80,7 +74,7 @@ object AppContext : ContextWrapper(null),
         app.registerComponentCallbacks(this)
 
         AppApkPath = if (isRunningAsStub) {
-            StubApk.current(base).path
+            StubPackageManager.current(base).path
         } else {
             base.packageResourcePath
         }
@@ -88,7 +82,7 @@ object AppContext : ContextWrapper(null),
 
         val shellBuilder = Shell.Builder.create()
             .setFlags(Shell.FLAG_MOUNT_MASTER)
-            .setInitializers(ShellInit::class.java)
+            .setInitializers(ShellBootstrap::class.java)
             .setContext(this)
             .setTimeout(2)
         Shell.setDefaultBuilder(shellBuilder)

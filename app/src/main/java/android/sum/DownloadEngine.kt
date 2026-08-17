@@ -15,17 +15,7 @@ import androidx.collection.isNotEmpty
 import androidx.core.content.getSystemService
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
-import android.sum.ApplicationContext
-import android.sum.AppConstants
-import android.sum.UpdateJobService
 import android.sum.R
-import android.sum.IActivityExtension
-import android.sum.cmp
-import android.sum.ServiceLocator
-import android.sum.intent
-import android.sum.set
-import android.sum.ProgressTrackingInputStream
-import android.sum.NotificationHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -58,13 +48,13 @@ class DownloadEngine(session: DownloadSession) : DownloadSession by session, Dow
         const val SUBJECT_KEY = "subject"
         private const val REQUEST_CODE = 1
 
-        private val progressBroadcast = MutableLiveData<Pair<Float, Subject>?>()
+        private val progressBroadcast = MutableLiveData<Pair<Float, DownloadTarget>?>()
 
-        private fun broadcast(progress: Float, subject: Subject) {
+        private fun broadcast(progress: Float, subject: DownloadTarget) {
             progressBroadcast.postValue(progress to subject)
         }
 
-        fun observeProgress(owner: LifecycleOwner, callback: (Float, Subject) -> Unit) {
+        fun observeProgress(owner: LifecycleOwner, callback: (Float, DownloadTarget) -> Unit) {
             progressBroadcast.value = null
             progressBroadcast.observe(owner) {
                 val (progress, subject) = it ?: return@observe
@@ -72,18 +62,18 @@ class DownloadEngine(session: DownloadSession) : DownloadSession by session, Dow
             }
         }
 
-        private fun createBroadcastIntent(context: Context, subject: Subject) =
-            context.intent<android.sum.Receiver>()
+        private fun createBroadcastIntent(context: Context, subject: DownloadTarget) =
+            context.intent<SystemEventReceiver>()
                 .setAction(ACTION)
                 .putExtra(SUBJECT_KEY, subject)
 
-        private fun createServiceIntent(context: Context, subject: Subject) =
-            context.intent<android.sum.Service>()
+        private fun createServiceIntent(context: Context, subject: DownloadTarget) =
+            context.intent<DownloadService>()
                 .setAction(ACTION)
                 .putExtra(SUBJECT_KEY, subject)
 
         @SuppressLint("InlinedApi")
-        fun getPendingIntent(context: Context, subject: Subject): PendingIntent {
+        fun getPendingIntent(context: Context, subject: DownloadTarget): PendingIntent {
             val flag = PendingIntent.FLAG_IMMUTABLE or
                 PendingIntent.FLAG_UPDATE_CURRENT or
                 PendingIntent.FLAG_ONE_SHOT
@@ -107,7 +97,7 @@ class DownloadEngine(session: DownloadSession) : DownloadSession by session, Dow
         @SuppressLint("InlinedApi")
         fun <T> startWithActivity(
             activity: T,
-            subject: Subject
+            subject: DownloadTarget
         ) where T : ComponentActivity, T : IActivityExtension {
             activity.withPermission(Manifest.permission.POST_NOTIFICATIONS) {
                 // Always download regardless of notification permission status
@@ -116,10 +106,10 @@ class DownloadEngine(session: DownloadSession) : DownloadSession by session, Dow
         }
 
         @SuppressLint("MissingPermission")
-        fun start(context: Context, subject: Subject) {
+        fun start(context: Context, subject: DownloadTarget) {
             if (Build.VERSION.SDK_INT >= 34) {
                 val scheduler = context.getSystemService<JobScheduler>()!!
-                val cmp = JobService::class.java.cmp(context.packageName)
+                val cmp = UpdateJobService::class.java.cmp(context.packageName)
                 val extras = Bundle()
                 extras.putParcelable(SUBJECT_KEY, subject)
                 val info = JobInfo.Builder(AppConstants.ID.DOWNLOAD_JOB_ID, cmp)
@@ -145,7 +135,7 @@ class DownloadEngine(session: DownloadSession) : DownloadSession by session, Dow
     private val processor = DownloadProcessor(this)
     private val network get() = ServiceLocator.networkService
 
-    fun download(subject: Subject) {
+    fun download(subject: DownloadTarget) {
         notifyUpdate(subject.notifyId)
         CoroutineScope(job + Dispatchers.IO).launch {
             try {
@@ -179,18 +169,18 @@ class DownloadEngine(session: DownloadSession) : DownloadSession by session, Dow
     private fun finalNotify(id: Int, editor: (Notification.Builder) -> Unit): Int {
         val notification = notifyRemove(id)?.also(editor) ?: return -1
         val newId = NotificationHelper.nextId()
-        Notifications.mgr.notify(newId, notification.build())
+        NotificationHelper.mgr.notify(newId, notification.build())
         return newId
     }
 
-    private fun notifyFail(subject: Subject) = finalNotify(subject.notifyId) {
+    private fun notifyFail(subject: DownloadTarget) = finalNotify(subject.notifyId) {
         broadcast(-2f, subject)
         it.setContentText(context.getString(R.string.download_file_error))
             .setSmallIcon(android.R.drawable.stat_notify_error)
             .setOngoing(false)
     }
 
-    private fun notifyFinish(subject: Subject) = finalNotify(subject.notifyId) {
+    private fun notifyFinish(subject: DownloadTarget) = finalNotify(subject.notifyId) {
         broadcast(1f, subject)
         it.setContentTitle(subject.title)
             .setContentText(context.getString(R.string.download_complete))
@@ -203,14 +193,14 @@ class DownloadEngine(session: DownloadSession) : DownloadSession by session, Dow
 
     @Synchronized
     override fun notifyUpdate(id: Int, editor: (Notification.Builder) -> Unit) {
-        val notification = (notifications[id] ?: Notifications.startProgress("").also {
+        val notification = (notifications[id] ?: NotificationHelper.startProgress("").also {
             notifications[id] = it
         }).apply(editor)
 
         if (attachedId < 0)
             attach(id, notification)
         else
-            Notifications.mgr.notify(id, notification.build())
+            NotificationHelper.mgr.notify(id, notification.build())
     }
 
     @Synchronized
@@ -237,11 +227,11 @@ class DownloadEngine(session: DownloadSession) : DownloadSession by session, Dow
             }
         }
 
-        Notifications.mgr.cancel(id)
+        NotificationHelper.mgr.cancel(id)
         return n
     }
 
-    private fun ResponseBody.toProgressStream(subject: Subject): InputStream {
+    private fun ResponseBody.toProgressStream(subject: DownloadTarget): InputStream {
         val max = contentLength()
         val total = max.toFloat() / 1048576
         val id = subject.notifyId
