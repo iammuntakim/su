@@ -1,0 +1,95 @@
+﻿2026-08-17T00:44:54.0996576Z ##[group]Run if [ "release" = "release" ]; then
+2026-08-17T00:44:54.0997111Z [36;1mif [ "release" = "release" ]; then[0m
+2026-08-17T00:44:54.0997462Z [36;1m    python build.py -vr app[0m
+2026-08-17T00:44:54.0997787Z [36;1melse[0m
+2026-08-17T00:44:54.0998087Z [36;1m    python build.py -v app[0m
+2026-08-17T00:44:54.0998425Z [36;1mfi[0m
+2026-08-17T00:44:54.1021088Z shell: /usr/bin/bash -e {0}
+2026-08-17T00:44:54.1021409Z env:
+2026-08-17T00:44:54.1021874Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-8/x64
+2026-08-17T00:44:54.1022362Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-8/x64
+2026-08-17T00:44:54.1022752Z ##[endgroup]
+2026-08-17T00:46:24.6293291Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/AppContext.kt:110:14 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6316397Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/Const.kt:5:20 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6446494Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/JobService.kt:79:42 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6448050Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/base/SplashScreen.kt:10:20 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6449259Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/base/SplashScreen.kt:11:20 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6450717Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/base/SplashScreen.kt:101:28 Unresolved reference 'APP_PACKAGE_NAME'.
+2026-08-17T00:46:24.6454132Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/base/SplashScreen.kt:103:51 Unresolved reference 'APP_PACKAGE_NAME'.
+2026-08-17T00:46:24.6455776Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/base/SplashScreen.kt:104:43 Unresolved reference 'APP_PACKAGE_NAME'.
+2026-08-17T00:46:24.6457067Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/base/SplashScreen.kt:122:55 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6458256Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/di/Networking.kt:6:20 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6459552Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/di/Networking.kt:56:9 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6460763Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/di/Networking.kt:68:49 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6461995Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/download/Subject.kt:15:16 Unresolved reference 'parcelize'.
+2026-08-17T00:46:24.6463191Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/download/Subject.kt:16:16 Unresolved reference 'parcelize'.
+2026-08-17T00:46:24.6464443Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/download/Subject.kt:39:6 Unresolved reference 'Parcelize'.
+2026-08-17T00:46:24.6465946Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/download/Subject.kt:40:5 Class 'Subject.App' is not abstract and does not implement abstract members:
+2026-08-17T00:46:24.6467047Z fun describeContents(): Int
+2026-08-17T00:46:24.6467761Z fun writeToParcel(p0: Parcel, p1: Int): Unit
+2026-08-17T00:46:24.6468679Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/download/Subject.kt:47:10 Unresolved reference 'IgnoredOnParcel'.
+2026-08-17T00:46:24.6470401Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/download/Subject.kt:52:10 Unresolved reference 'IgnoredOnParcel'.
+2026-08-17T00:46:24.6471648Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/download/Subject.kt:57:6 Unresolved reference 'Parcelize'.
+2026-08-17T00:46:24.6473002Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/download/Subject.kt:58:5 Class 'Subject.Test' is not abstract and does not implement abstract members:
+2026-08-17T00:46:24.6474433Z fun describeContents(): Int
+2026-08-17T00:46:24.6474927Z fun writeToParcel(p0: Parcel, p1: Int): Unit
+2026-08-17T00:46:24.6490035Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/handler/CallbackHandler.kt:6:20 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6493222Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/handler/CallbackHandler.kt:28:13 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6495692Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/handler/RequestHandler.kt:6:20 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6499535Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/handler/RequestHandler.kt:37:36 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6502975Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/handler/RequestHandler.kt:38:40 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6505821Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/ktx/XAndroid.kt:120:32 Unresolved reference 'uid'.
+2026-08-17T00:46:24.6506991Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/ktx/XAndroid.kt:121:35 Cannot infer type for type parameter 'V'. Specify it explicitly.
+2026-08-17T00:46:24.6508196Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/ktx/XAndroid.kt:121:40 Unresolved reference 'pkgList'.
+2026-08-17T00:46:24.6509341Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/model/UpdateInfo.kt:9:16 Unresolved reference 'parcelize'.
+2026-08-17T00:46:24.6510428Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/model/UpdateInfo.kt:17:2 Unresolved reference 'Parcelize'.
+2026-08-17T00:46:24.6511807Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/model/UpdateInfo.kt:19:6 Class 'UpdateInfo' is not abstract and does not implement abstract members:
+2026-08-17T00:46:24.6512743Z fun describeContents(): Int
+2026-08-17T00:46:24.6513171Z fun writeToParcel(p0: Parcel, p1: Int): Unit
+2026-08-17T00:46:24.6514091Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/model/module/OnlineModule.kt:5:16 Unresolved reference 'parcelize'.
+2026-08-17T00:46:24.6515616Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/model/module/OnlineModule.kt:7:2 Unresolved reference 'Parcelize'.
+2026-08-17T00:46:24.6517214Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/model/module/OnlineModule.kt:8:6 Class 'OnlineModule' is not abstract and does not implement abstract members:
+2026-08-17T00:46:24.6518377Z fun describeContents(): Int
+2026-08-17T00:46:24.6518822Z fun writeToParcel(p0: Parcel, p1: Int): Unit
+2026-08-17T00:46:24.6519644Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/repository/NetworkService.kt:3:20 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6520824Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/repository/NetworkService.kt:27:36 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6522080Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/repository/NetworkService.kt:36:14 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6523356Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/tasks/AppMigration.kt:11:20 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6524639Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/tasks/AppMigration.kt:40:41 Unresolved reference 'APP_PACKAGE_NAME'.
+2026-08-17T00:46:24.6533771Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/tasks/AppMigration.kt:44:32 Unresolved reference 'APP_PACKAGE_NAME'.
+2026-08-17T00:46:24.6535108Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/tasks/SystemInstaller.kt:13:20 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6536505Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/tasks/SystemInstaller.kt:72:46 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6538262Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/tasks/SystemInstaller.kt:111:38 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6539506Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/tasks/SystemInstaller.kt:111:71 Unresolved reference 'BuildConfig'.
+2026-08-17T00:46:24.6540924Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/utils/RootUtils.kt:46:16 Return type mismatch: expected 'IBinder', actual '<anonymous>'.
+2026-08-17T00:46:24.6542251Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/utils/RootUtils.kt:46:25 Unresolved reference 'IRootUtils'.
+2026-08-17T00:46:24.6543493Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/utils/RootUtils.kt:98:13 Unresolved reference 'IRootUtils'.
+2026-08-17T00:46:24.6544781Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/utils/RootUtils.kt:98:50 Cannot infer type for type parameter 'T'. Specify it explicitly.
+2026-08-17T00:46:24.6546343Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/utils/RootUtils.kt:98:50 Cannot infer type for type parameter 'R'. Specify it explicitly.
+2026-08-17T00:46:24.6547818Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/utils/RootUtils.kt:98:54 Cannot infer type for type parameter 'T'. Specify it explicitly.
+2026-08-17T00:46:24.6549118Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/utils/RootUtils.kt:100:53 Unresolved reference 'fileSystem'.
+2026-08-17T00:46:24.6550347Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/utils/RootUtils.kt:144:26 Unresolved reference 'IRootUtils'.
+2026-08-17T00:46:24.6551551Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/utils/RootUtils.kt:150:57 Unresolved reference 'getAppProcess'.
+2026-08-17T00:46:24.6552769Z e: file:///home/runner/work/su/su/app/src/main/java/android/sum/core/utils/RootUtils.kt:153:62 Unresolved reference 'addSystemlessHosts'.
+2026-08-17T00:46:24.6553566Z 
+2026-08-17T00:46:24.6553736Z FAILURE: Build failed with an exception.
+2026-08-17T00:46:24.6554047Z 
+2026-08-17T00:46:24.6554222Z * What went wrong:
+2026-08-17T00:46:24.6554672Z Execution failed for task ':compileReleaseKotlin'.
+2026-08-17T00:46:24.6570257Z > A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+2026-08-17T00:46:24.6571399Z    > Compilation error. See log for more details
+2026-08-17T00:46:24.6571898Z 
+2026-08-17T00:46:24.6572061Z * Try:
+2026-08-17T00:46:24.6572481Z > Run with --stacktrace option to get the stack trace.
+2026-08-17T00:46:24.6573085Z > Run with --info or --debug option to get more log output.
+2026-08-17T00:46:24.6573760Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+2026-08-17T00:46:24.6574384Z > Get more help at https://help.gradle.org.
+2026-08-17T00:46:24.6574776Z 
+2026-08-17T00:46:24.6574951Z BUILD FAILED in 1m 28s
+2026-08-17T00:46:25.1387205Z [44;39m[0m
+2026-08-17T00:46:25.1387762Z [44;39m* Building the SuperSU app[0m
+2026-08-17T00:46:25.1388207Z [44;39m[0m
+2026-08-17T00:46:25.1388589Z [41;39m[0m
+2026-08-17T00:46:25.1388963Z [41;39m! Build apk failed![0m
+2026-08-17T00:46:25.1389326Z [41;39m[0m
+2026-08-17T00:46:25.1448876Z ##[error]Process completed with exit code 1.

@@ -18,7 +18,7 @@
         tools:remove="android:appComponentFactory">
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.NavigationHostActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.Foundation">
